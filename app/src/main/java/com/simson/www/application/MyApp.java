@@ -2,11 +2,9 @@ package com.simson.www.application;
 
 import android.app.Application;
 
+import com.bumptech.glide.annotation.GlideModule;
+import com.bumptech.glide.module.AppGlideModule;
 import com.squareup.leakcanary.LeakCanary;
-
-/**
- * 玩Android
- */
 
 public class MyApp extends Application {
     @Override
@@ -20,5 +18,8 @@ public class MyApp extends Application {
         //初始化App配置
         AppContext.initialize(this);
     }
+
+    @GlideModule
+    public final class MyAppGlideModule extends AppGlideModule {}
 
 }

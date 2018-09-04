@@ -61,10 +61,6 @@ public abstract class BaseAbListFragment<P extends BasePresenter<V>, V extends I
     }
 
     @Override
-    public void collect(boolean isCollect, String result) {
-    }
-
-    @Override
     protected int getLayoutId() {
         return R.layout.include_recycler_list;
     }
@@ -138,12 +134,7 @@ public abstract class BaseAbListFragment<P extends BasePresenter<V>, V extends I
     /**
      * 下拉刷新监听
      */
-    private SwipeRefreshLayout.OnRefreshListener mOnRefreshListener = new SwipeRefreshLayout.OnRefreshListener() {
-        @Override
-        public void onRefresh() {
-            refreshData();
-        }
-    };
+    private SwipeRefreshLayout.OnRefreshListener mOnRefreshListener = () -> refreshData();
 
 
     /**

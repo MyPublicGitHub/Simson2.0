@@ -1,12 +1,10 @@
 package com.simson.www.ui.core.model;
 
 
-import com.simson.www.net.bean.home.BroadcastsBean;
 import com.simson.www.net.bean.home.HomeDataBean;
 import com.simson.www.net.bean.home.HomeHeaderBean;
 import com.simson.www.net.callback.RxConsumer;
 import com.simson.www.net.callback.RxObserver;
-import com.simson.www.net.callback.RxPageListObserver;
 
 import java.util.List;
 

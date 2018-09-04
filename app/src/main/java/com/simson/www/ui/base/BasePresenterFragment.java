@@ -5,13 +5,15 @@ import android.support.annotation.Nullable;
 
 import com.simson.www.ui.core.presenter.BasePresenter;
 import com.simson.www.ui.core.view.IView;
+import com.simson.www.utils.ToastUtils;
 
 /**
  */
 
-public abstract class BasePresenterFragment<P extends BasePresenter<V>, V extends IView> extends BaseFragment implements IView{
+public abstract class BasePresenterFragment<P extends BasePresenter<V>, V extends IView> extends BaseFragment implements IView {
 
     protected P mPresenter;
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,9 +25,17 @@ public abstract class BasePresenterFragment<P extends BasePresenter<V>, V extend
 
     @Override
     public void onDestroy() {
-        super.onDestroy();
-        //解除关联
+        //接触presenter与View关联
         detachView();
+        //移除所有请求
+        removeAllDisposable();
+        super.onDestroy();
+    }
+
+    protected void removeAllDisposable() {
+        if (mPresenter != null) {
+            mPresenter.removeAllDisposable();
+        }
     }
 
     private void detachView() {
@@ -43,5 +53,37 @@ public abstract class BasePresenterFragment<P extends BasePresenter<V>, V extend
     }
 
     protected abstract P createPresenter();
+
+
+    @Override
+    public void showLoading(String msg) {
+    }
+
+    @Override
+    public void hideLoading() {
+        hideLoadingDialog();
+    }
+
+    @Override
+    public void showFail(String msg) {
+        ToastUtils.showToast(getActivity(), msg);
+    }
+
+    @Override
+    public void showError() {
+    }
+
+    @Override
+    public void showEmpty() {
+    }
+
+    @Override
+    protected void receiveEvent(Object object) {
+    }
+
+    @Override
+    protected String registerEvent() {
+        return null;
+    }
 
 }

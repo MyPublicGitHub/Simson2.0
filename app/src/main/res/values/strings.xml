@@ -1,5 +1,7 @@
 <resources>
-    <string name="app_name">新生植发</string>
+    <string name="app_name_release">新生植发</string>
+    <string name="app_name_debug">新生test</string>
+
     <string name="title_home">首页</string>
     <string name="title_community">社区</string>
     <string name="title_hospital">医院</string>
@@ -14,4 +16,26 @@
     <string name="request_timeout">请求超时</string>
     <string name="parse_error">解析错误</string>
     <string name="unknown_error">未知错误</string>
+
+    <string name="sign_in_or_register">登录/注册</string>
+    <string name="get_code">获取验证码</string>
+    <string name="be_created_as_new_users">未注册过的手机将自动创建为新用户</string>
+    <string name="get_code_fail">获取验证码失败</string>
+    <string name="phone_or_code_no_null">手机号或验证码不能为空</string>
+    <string name="code_send_success">验证码发送成功请注意查收</string>
+    <string name="login_fail">登录失败</string>
+    <string name="login_success">登录成功</string>
+    <string name="loging">登录中...</string>
+    <string name="login_please">您还没有登录，请先登录</string>
+    <string name="login_out">退出登录</string>
+    <string name="no_net">网络连接失败，请检查您的网络</string>
+    <string name="sign_in">签到</string>
+    <string name="pending_payment">待付款</string>
+    <string name="pending_delivery">待发货</string>
+    <string name="already_shipped">已发货</string>
+    <string name="evaluate">评价</string>
+    <string name="refund">退款</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

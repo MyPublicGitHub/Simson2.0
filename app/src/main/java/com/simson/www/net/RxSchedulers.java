@@ -19,11 +19,6 @@ public class RxSchedulers {
      */
 
     public static ObservableTransformer io_main() {
-        return new ObservableTransformer() {
-            @Override
-            public ObservableSource apply(Observable upstream) {
-                return upstream.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread());
-            }
-        };
+        return upstream -> upstream.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread());
     }
 }

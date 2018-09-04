@@ -13,7 +13,7 @@ import com.simson.www.utils.ToastUtils;
 
 public abstract class BasePresenterActivity<P extends BasePresenter<V>, V extends IView> extends BaseActivity implements IView {
 
-   protected P mPresenter;
+    protected P mPresenter;
 
     @Override
     protected void onCreate(Bundle bundle) {
@@ -32,6 +32,7 @@ public abstract class BasePresenterActivity<P extends BasePresenter<V>, V extend
     }
 
     protected abstract P createPresenter();
+
 
     @Override
     protected void onDestroy() {
@@ -84,17 +85,14 @@ public abstract class BasePresenterActivity<P extends BasePresenter<V>, V extend
     public void showFail(String msg) {
         ToastUtils.showToast(this, msg);
     }
+
     @Override
     public void showError() {
     }
+
     @Override
     public void showEmpty() {
     }
-
-//    @Override
-//    public void collect(boolean isCollect, String result) {
-//
-//    }
 
     @Override
     protected void receiveEvent(Object object) {

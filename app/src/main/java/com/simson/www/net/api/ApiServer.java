@@ -4,6 +4,8 @@ import com.simson.www.common.UrlConstainer;
 import com.simson.www.net.bean.BaseBean;
 import com.simson.www.net.bean.home.HomeDataBean;
 import com.simson.www.net.bean.home.HomeHeaderBean;
+import com.simson.www.net.bean.main.CodeBean;
+import com.simson.www.net.bean.main.LoginBean;
 
 import java.util.List;
 
@@ -22,26 +24,19 @@ public interface ApiServer {
 
     /**
      * 登录
-     *
-     * @param username 用户名
-     * @param password 密码
-     * @return
      */
-    @FormUrlEncoded
-    @POST(UrlConstainer.LOGIN)
-    Observable<BaseBean> login(@Field("username") String username, @Field("password") String password);
+    @GET(UrlConstainer.LOGIN)
+    Observable<BaseBean<LoginBean>> login(@Query("json") String json);
+
+    @GET(UrlConstainer.GET_CODE)
+    Observable<BaseBean<CodeBean>> getCode(@Query("json") String json);
 
     /**
      * 注册
-     *
-     * @param username   用户名
-     * @param password   密码
-     * @param repassword 重复密码
-     * @return
      */
     @FormUrlEncoded
     @POST(UrlConstainer.REGISTER)
-    Observable<BaseBean<String>> register(@Field("username") String username, @Field("password") String password, @Field("repassword") String repassword);
+    Observable<BaseBean<String>> register(@Query("json") String json);
 
 
     /**
@@ -49,6 +44,7 @@ public interface ApiServer {
      */
     @GET("loginController/homepage")
     Observable<BaseBean<HomeHeaderBean>> getHomeHeader();
+
     /**
      * 首页文章列表
      *

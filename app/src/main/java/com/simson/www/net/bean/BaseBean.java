@@ -18,11 +18,11 @@ public class BaseBean<T> {
      */
     public T data;
 
-    public double timestamp;
+    public long timestamp;
 
 
 
-    public BaseBean(int result, String message, T data,double timestamp) {
+    public BaseBean(int result, String message, T data,long timestamp) {
         this.result = result;
         this.message = message;
         this.data = data;

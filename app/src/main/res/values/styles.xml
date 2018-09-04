@@ -1,4 +1,5 @@
 <resources>
+
     <style name="AppTheme.Base" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
@@ -21,6 +22,12 @@
         <item name="android:indeterminateTintMode">src_atop</item>
         <item name="android:indeterminateTint">@color/colorPrimary</item>
     </style>
+    <!-- ToolBar菜单样式 -->
+    <style name="ToolBarStyle" parent="@style/BaseToolBarStyle">
+        <item name="actionMenuTextColor">@color/colorWhite</item>
+    </style>
+    <style name="TabLayoutTextStyle">
+        <item name="android:textSize">@dimen/sp_16</item>
+    </style>
 
-    <style name="ToolBarStyle" parent="@style/BaseToolBarStyle" />
 </resources>

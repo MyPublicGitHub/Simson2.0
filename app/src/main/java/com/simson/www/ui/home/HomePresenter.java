@@ -1,17 +1,12 @@
 package com.simson.www.ui.home;
 
 
-
-import com.simson.www.net.bean.home.BroadcastsBean;
 import com.simson.www.net.bean.home.HomeDataBean;
 import com.simson.www.net.bean.home.HomeHeaderBean;
 import com.simson.www.net.callback.RxConsumer;
 import com.simson.www.net.callback.RxObserver;
-import com.simson.www.net.callback.RxPageListObserver;
 import com.simson.www.ui.core.model.impl.HomeModel;
 import com.simson.www.ui.core.presenter.BasePresenter;
-import com.simson.www.utils.LogUtils;
-import com.simson.www.utils.ToastUtils;
 
 import java.util.List;
 
@@ -47,7 +42,7 @@ public class HomePresenter extends BasePresenter<HomeContract.IHomeView> impleme
             }
 
             @Override
-            public void onFail(int code,String errorMsg) {
+            public void onFail(int code, String errorMsg) {
                 homeView.showFail(errorMsg);
             }
         };

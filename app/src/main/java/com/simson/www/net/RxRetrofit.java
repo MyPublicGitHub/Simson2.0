@@ -32,9 +32,9 @@ public class RxRetrofit {
 
         OkHttpClient okHttpClient = new OkHttpClient.Builder()
                 //链接超时
-                .connectTimeout(10, TimeUnit.SECONDS)
+                .connectTimeout(20, TimeUnit.SECONDS)
                 //读取超时
-                .readTimeout(10, TimeUnit.SECONDS)
+                .readTimeout(20, TimeUnit.SECONDS)
                 //缓存
                 .cache(new Cache(context.getExternalFilesDir("http_cache"), 10 << 20))
                 //添加Cookie拦截器

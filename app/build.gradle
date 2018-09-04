@@ -8,7 +8,6 @@ android {
         targetSdkVersion 27
         versionCode 1
         versionName "1.0"
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         renderscriptSupportModeEnabled true    // Enable RS support
         javaCompileOptions { annotationProcessorOptions { includeCompileClasspath = true } }
         multiDexEnabled true
@@ -24,6 +23,7 @@ android {
             shrinkResources true
             minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            resValue "string", "app_name", "@string/app_name_release"
         }
 
         debug {
@@ -31,9 +31,11 @@ android {
                 abiFilters "armeabi-v7a", "x86", "arm64-v8a"
             }
             //打包时剔除剔除无用资源
-            shrinkResources true
-            minifyEnabled true
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            //shrinkResources true
+            //minifyEnabled true
+            //proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            applicationIdSuffix '.test' //增加包名后缀test
+            resValue "string", "app_name", "@string/app_name_debug"
         }
     }
     sourceSets {
@@ -58,9 +60,12 @@ dependencies {
     implementation 'com.android.support:cardview-v7:27.1.1'
     implementation 'com.android.support:design:27.1.1'
     implementation 'com.android.support:support-v4:27.1.1'
+    //implementation 'com.android.support.constraint:constraint-layout:1.1.3'
+
     //rxjava
-    implementation 'io.reactivex.rxjava2:rxjava:2.0.7'
-    implementation 'io.reactivex.rxjava2:rxandroid:2.0.1'
+    implementation 'io.reactivex.rxjava2:rxjava:2.2.0'
+    implementation 'io.reactivex.rxjava2:rxandroid:2.1.0'
+    implementation "com.tbruyelle.rxpermissions2:rxpermissions:0.9.5"
     //retrofit2
     implementation 'com.squareup.retrofit2:retrofit:2.2.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.2.0'
@@ -68,7 +73,14 @@ dependencies {
     implementation 'com.google.code.gson:gson:2.8.2'
     implementation 'com.github.bumptech.glide:glide:4.8.0'
     //annotationProcessor 'com.github.bumptech.glide:compiler:4.8.0'
+    //ui
+    implementation "com.scwang.smartrefresh:SmartRefreshLayout:1.0.5.1"
+    implementation "com.youth.banner:banner:1.4.10"
+    implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.34'
 
+
+    implementation "com.jakewharton:butterknife:8.8.1"
+    implementation "com.jakewharton:butterknife-compiler:8.8.1"
     debugImplementation 'com.squareup.leakcanary:leakcanary-android:1.5.4'
     //只在debug模式下有用
     releaseImplementation 'com.squareup.leakcanary:leakcanary-android-no-op:1.5.4'

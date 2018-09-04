@@ -7,7 +7,6 @@ package com.simson.www.ui.core.view;
 
 public interface IView{
 
-
     /**
      * 显示进度条
      *
@@ -35,8 +34,5 @@ public interface IView{
      * 没有数据
      */
     void showEmpty();//没有数据
-
-    void collect(boolean isCollect,String result); //收藏Result
-
 
 }
