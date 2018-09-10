@@ -24,11 +24,13 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ui.main.LoginActivity"
+            android:name=".ui.main.login.LoginActivity"
             android:launchMode="singleTop" />
         <activity
-            android:name=".ui.main.RegisterActivity"
-            android:launchMode="singleTop"></activity>
+            android:name=".ui.main.register.RegisterActivity"
+            android:launchMode="singleTop" />
+        <activity android:name=".ui.home.hospital.HospitalActivity" />
+        <activity android:name=".ui.home.hospital.detail.HospitalDetailActivity"></activity>
     </application>
 
 </manifest>

@@ -9,7 +9,10 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.simson.www.event.RxEvent;
+import com.simson.www.widget.WaitProgressDialog;
 
+import butterknife.ButterKnife;
+import butterknife.Unbinder;
 import io.reactivex.observers.DisposableObserver;
 import io.reactivex.subjects.PublishSubject;
 
@@ -21,7 +24,7 @@ public abstract class BaseFragment extends Fragment {
     private PublishSubject mSubject;
     private RxEvent mRxEvent;
     private DisposableObserver mDisposableObserver;
-
+    private Unbinder unBinder;
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,6 +63,7 @@ public abstract class BaseFragment extends Fragment {
         super.onDestroy();
         //注销事件
         RxEvent.getInstance().unRegisterEvent(registerEvent(), mSubject, mDisposableObserver);
+        unBinder.unbind();
     }
 
     protected abstract void getBundle(Bundle bundle);
@@ -72,6 +76,7 @@ public abstract class BaseFragment extends Fragment {
         int layoutId = getLayoutId();
         if (layoutId != 0) {
             view = inflater.inflate(getLayoutId(), container, false);
+            unBinder = ButterKnife.bind(this, view);
             initViews(view);
         }
         return view;
@@ -80,7 +85,7 @@ public abstract class BaseFragment extends Fragment {
     protected abstract void initViews(View view);
 
     protected abstract int getLayoutId();
-    private ProgressDialog loadingDialog = null;
+    private WaitProgressDialog loadingDialog = null;
     /**
      * 显示带消息的进度框
      *
@@ -107,7 +112,7 @@ public abstract class BaseFragment extends Fragment {
      */
     private void createLoadingDialog() {
         if (loadingDialog == null) {
-            loadingDialog = new ProgressDialog(getActivity());
+            loadingDialog = new WaitProgressDialog(getActivity());
             loadingDialog.setCancelable(true);
             loadingDialog.setCanceledOnTouchOutside(false);
         }

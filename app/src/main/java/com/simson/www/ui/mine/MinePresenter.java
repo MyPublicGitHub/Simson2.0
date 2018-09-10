@@ -1,14 +1,8 @@
 package com.simson.www.ui.mine;
 
 
-import com.simson.www.net.bean.home.HomeDataBean;
-import com.simson.www.net.bean.home.HomeHeaderBean;
-import com.simson.www.net.callback.RxConsumer;
-import com.simson.www.net.callback.RxObserver;
 import com.simson.www.ui.core.model.impl.HomeModel;
 import com.simson.www.ui.core.presenter.BasePresenter;
-
-import java.util.List;
 
 /**
  * Home Presenter
@@ -45,14 +39,14 @@ public class MinePresenter extends BasePresenter<MineContract.IMineView> impleme
 //                homeView.showFail(errorMsg);
 //            }
 //        };
-//        mHomeModel.getHomeData(homeView.getPage(), new RxConsumer<HomeHeaderBean>() {
+//        mHomeModel.getHomeData(homeView.getPage(), new RxConsumer<HomeBannerBean>() {
 //            @Override
 //            protected void onFail(String errorMsg) {
 //                homeView.showFail(errorMsg);
 //            }
 //
 //            @Override
-//            protected void onSuccess(HomeHeaderBean data) {
+//            protected void onSuccess(HomeBannerBean data) {
 //                homeView.setBannerData(data.getBroadcasts());
 //            }
 //        }, mHomeRxPageListObserver);

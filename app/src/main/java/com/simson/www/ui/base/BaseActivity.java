@@ -17,6 +17,7 @@ import android.widget.TextView;
 
 import com.simson.www.R;
 import com.simson.www.event.RxEvent;
+import com.simson.www.widget.WaitProgressDialog;
 
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
@@ -30,7 +31,7 @@ public abstract class BaseActivity extends AppCompatActivity {
     protected Toolbar mToolbar;
     protected TextView mTitle;
     protected FrameLayout mContainerLayout;
-    private ProgressDialog loadingDialog = null;
+    private WaitProgressDialog loadingDialog = null;
     private PublishSubject mSubject;
     private DisposableObserver mDisposableObserver;
     private RxEvent mRxEvent;
@@ -129,8 +130,9 @@ public abstract class BaseActivity extends AppCompatActivity {
     protected void showLoadingDialog(String title) {
         createLoadingDialog();
         loadingDialog.setMessage(title);
-        if (!loadingDialog.isShowing())
+        if (!loadingDialog.isShowing()) {
             loadingDialog.show();
+        }
     }
 
     /**
@@ -147,7 +149,7 @@ public abstract class BaseActivity extends AppCompatActivity {
      */
     private void createLoadingDialog() {
         if (loadingDialog == null) {
-            loadingDialog = new ProgressDialog(this);
+            loadingDialog = new WaitProgressDialog(this);
             loadingDialog.setCancelable(true);
             loadingDialog.setCanceledOnTouchOutside(false);
         }

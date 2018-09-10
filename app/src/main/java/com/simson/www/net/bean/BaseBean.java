@@ -22,10 +22,10 @@ public class BaseBean<T> {
 
 
 
-    public BaseBean(int result, String message, T data,long timestamp) {
-        this.result = result;
-        this.message = message;
-        this.data = data;
-        this.timestamp = timestamp;
-    }
+//    public BaseBean(int result, String message, T data,long timestamp) {
+//        this.result = result;
+//        this.message = message;
+//        this.data = data;
+//        this.timestamp = timestamp;
+//    }
 }

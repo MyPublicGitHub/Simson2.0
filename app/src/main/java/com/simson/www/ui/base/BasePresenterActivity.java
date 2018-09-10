@@ -3,9 +3,12 @@ package com.simson.www.ui.base;
 import android.content.Intent;
 import android.os.Bundle;
 
+import com.simson.www.net.bean.main.ItemTypeBean;
 import com.simson.www.ui.core.presenter.BasePresenter;
 import com.simson.www.ui.core.view.IView;
 import com.simson.www.utils.ToastUtils;
+
+import java.util.List;
 
 /**
  * 管理Presenter的Activity基类
@@ -74,6 +77,7 @@ public abstract class BasePresenterActivity<P extends BasePresenter<V>, V extend
 
     @Override
     public void showLoading(String msg) {
+        showLoadingDialog(msg);
     }
 
     @Override
@@ -101,5 +105,10 @@ public abstract class BasePresenterActivity<P extends BasePresenter<V>, V extend
     @Override
     protected String registerEvent() {
         return null;
+    }
+
+    @Override
+    public void setItemType(List<ItemTypeBean> bean) {
+
     }
 }

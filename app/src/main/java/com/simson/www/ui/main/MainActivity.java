@@ -86,4 +86,5 @@ public class MainActivity extends BasePresenterActivity {
         mFragments.add(new MineFragment());
         switchFragment(0);
     }
+
 }

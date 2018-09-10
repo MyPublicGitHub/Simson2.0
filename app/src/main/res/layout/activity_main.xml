@@ -4,19 +4,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:clipToPadding="true"
     tools:context=".ui.main.MainActivity">
 
-
     <FrameLayout
+        android:layout_weight="1"
         android:id="@+id/container"
         android:layout_width="match_parent"
+        android:layout_above="@+id/navigation"
         android:layout_height="match_parent" />
 
     <android.support.design.widget.BottomNavigationView
         android:id="@+id/navigation"
         android:layout_width="match_parent"
-        android:layout_gravity="bottom"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         app:itemIconTint="@drawable/nav_item_color_state"

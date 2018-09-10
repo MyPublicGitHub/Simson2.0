@@ -1,34 +1,53 @@
 package com.simson.www.ui.home;
 
+import android.content.Intent;
+import android.os.Bundle;
+import android.support.design.widget.TabLayout;
+import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.simson.www.R;
-import com.simson.www.inter.OnHomeListItemClickListener;
 import com.simson.www.net.bean.home.BroadcastsBean;
-import com.simson.www.net.bean.home.HomeDataBean;
-import com.simson.www.ui.adapter.BannerAdapter;
-import com.simson.www.ui.adapter.BaseListAdapter;
-import com.simson.www.ui.adapter.HomeListAdapter;
-import com.simson.www.ui.base.BaseAbListFragment;
-import com.simson.www.utils.ToastUtils;
-import com.simson.www.widget.BannerViewPager;
+import com.simson.www.net.bean.home.HomeBannerBean;
+import com.simson.www.net.bean.main.ItemTypeBean;
+import com.simson.www.ui.adapter.TabViewPagerAdapter;
+import com.simson.www.ui.adapter.TabViewPagerAdapterItem;
+import com.simson.www.ui.base.BasePresenterFragment;
+import com.simson.www.ui.home.hospital.HospitalActivity;
+import com.simson.www.utils.GlideImageLoader;
+import com.simson.www.utils.GlideUtils;
+import com.youth.banner.Banner;
+import com.youth.banner.BannerConfig;
+import com.youth.banner.Transformer;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
+import butterknife.Unbinder;
 
-/**
- * 首页文章
- * author:
- * date: 2018/2/12
- */
 
-public class HomeFragment extends BaseAbListFragment<HomePresenter, HomeContract.IHomeView, HomeDataBean> implements HomeContract.IHomeView, OnHomeListItemClickListener {
-    private int position;
-    private List<BroadcastsBean> mBannerList = new ArrayList<>();
-    private BannerViewPager mViewPager;
-    private BannerAdapter mBannerAdapter;
+public class HomeFragment extends BasePresenterFragment<HomePresenter, HomeContract.IHomeView> implements HomeContract.IHomeView {
+    @BindView(R.id.tab_layout)
+    TabLayout tabLayout;
+    @BindView(R.id.view_pager)
+    ViewPager viewPager;
+    @BindView(R.id.banner)
+    Banner mBanner;
+    @BindView(R.id.iv_sign)
+    ImageView ivSign;
+    @BindView(R.id.tv_hospital)
+    TextView tvHospital;
+    @BindView(R.id.tv_expert)
+    TextView tvExpert;
+    @BindView(R.id.tv_case)
+    TextView tvCase;
 
     @Override
     protected HomePresenter createPresenter() {
@@ -36,116 +55,88 @@ public class HomeFragment extends BaseAbListFragment<HomePresenter, HomeContract
     }
 
     @Override
-    protected boolean isCanLoadMore() {
-        return true;
-    }
+    protected void getBundle(Bundle bundle) {
 
-    //初始化HeaderView
-    @Override
-    protected View initHeaderView() {
-        View headerView = LayoutInflater.from(getActivity()).inflate(R.layout.main_header_banner, mRecyclerView, false);
-        mViewPager = (BannerViewPager) headerView.findViewById(R.id.viewPager);
-        return headerView;
-    }
-
-
-    //设置Banner选中item
-    private void setCurrentItem(final int position) {
-        mViewPager.setCurrentItem(position, false);
-    }
-
-    //加载列表数据
-    @Override
-    protected void loadDatas() {
-        mPresenter.getHomeList();
     }
 
     @Override
-    protected BaseListAdapter getListAdapter() {
-        return new HomeListAdapter(this);
+    protected void initViews(View view) {
+        initBanner();
+        mPresenter.getBanner();
+        mPresenter.getItemType();
+        ivSign.setOnClickListener(v -> {
+            mPresenter.getBanner();
+            mPresenter.getItemType();
+        });
     }
 
-    //Banner数据
-    @Override
-    public void setBannerData(List<BroadcastsBean> banner) {
-        mBannerList.clear();
-        mBannerList.addAll(banner);
-        ToastUtils.showToast(banner.size()+"个轮播图");
-    }
-
-    //列表数据
-    @Override
-    public void setData(List<HomeDataBean> data) {
-        mListData.addAll(data);
-    }
-
-    //显示内容
-    @Override
-    public void showContent() {
-        notifyDatas();
-        super.showContent();
-    }
-
-    //刷新所有数据
-    public void notifyDatas() {
-        if (mBannerAdapter == null) {
-            mBannerAdapter = new BannerAdapter(mBannerList);
-            mViewPager.setAdapter(mBannerAdapter);
-            //设置预加载两个页面
-            mViewPager.setOffscreenPageLimit(2);
-            setCurrentItem(1000 * mBannerList.size());
+    @OnClick({R.id.tv_hospital, R.id.tv_expert, R.id.tv_case})
+    public void onViewClicked(View view) {
+        switch (view.getId()) {
+            case R.id.tv_hospital:
+                startActivity(new Intent(getActivity(),HospitalActivity.class));
+                break;
+            case R.id.tv_expert:
+                break;
+            case R.id.tv_case:
+                break;
         }
-        mBannerAdapter.notifyDatas(mBannerList);
     }
-
-
-    //刷新单条Item
-    private void notifyItemData(boolean isCollect, String result) {
-        //mListData.get(position).setCollect(isCollect);
-        position++;
-        mListAdapter.notifyItemDataChanged(position, mRecyclerView);
-        ToastUtils.showToast(getActivity(), result);
-    }
-
-
-    //进入详情
     @Override
-    public void onItemClick(HomeDataBean bean) {
-        ToastUtils.showToast("条目类型："+bean.getData_status());
+    public void setItemType(List<ItemTypeBean> bean) {
+        TabViewPagerAdapter adapter = new TabViewPagerAdapter(getChildFragmentManager(),
+                TabViewPagerAdapterItem.createHomeFragments(bean));
+        viewPager.setAdapter(adapter);
+        tabLayout.setupWithViewPager(viewPager);
     }
-
 
     @Override
-    public void onResume() {
-        super.onResume();
-        mViewPager.start();
+    protected int getLayoutId() {
+        return R.layout.fragment_home;
+    }
+
+    @Override
+    public void setBannerData(HomeBannerBean bean) {
+        //List<String> mBannerTitleList = new ArrayList<>();
+        List<String> bannerImageList = new ArrayList<>();
+        List<String> mBannerUrlList = new ArrayList<>();
+        List<BroadcastsBean> bannerDataList = bean.getBroadcasts();
+        for (BroadcastsBean bannerData : bannerDataList) {
+            //mBannerTitleList.add(bannerData.getMenu_title());
+            bannerImageList.add(bannerData.getMenu_picture());
+            mBannerUrlList.add(bannerData.getMenu_link());
+        }
+        mBanner.setImages(bannerImageList);//设置图片集合
+        GlideUtils.with(bean.getSignIns().get(0).getMenu_picture(), ivSign);
+        //mBanner.setBannerTitles(mBannerTitleList);//设置标题集合（当banner样式有显示title时）
+//        mBanner.setOnBannerListener(i ->
+//                startActivity(new Intent(getActivity(), WebViewActivity.class)
+//                        .putExtra(Constants.WEB_VIEW_TITLE, mBannerTitleList.get(i))
+//                        .putExtra(Constants.WEB_VIEW_URL, bannerDataList.get(i).getId())));
+        //banner设置方法全部调用完毕时最后调用
+        mBanner.start();
     }
 
     @Override
     public void onPause() {
         super.onPause();
-        mViewPager.stop();
+        if (mBanner != null)
+            mBanner.stopAutoPlay();
     }
 
     @Override
-    public void onHiddenChanged(boolean hidden) {
-        if (hidden) {
-            if (mViewPager!=null)
-            mViewPager.stop();
-        } else {
-            if (mViewPager!=null)
-            mViewPager.start();
-        }
+    public void onResume() {
+        super.onResume();
+        if (mBanner != null)
+            mBanner.startAutoPlay();
     }
 
-    @Override
-    protected void receiveEvent(Object object) {
-
-    }
-
-    @Override
-    protected String registerEvent() {
-        return null;
+    private void initBanner() {
+        mBanner.setBannerStyle(BannerConfig.CIRCLE_INDICATOR);//设置banner样式
+        mBanner.setImageLoader(new GlideImageLoader());//设置图片加载器
+        mBanner.setBannerAnimation(Transformer.DepthPage);//设置banner动画效果
+        mBanner.setDelayTime(4000);//设置轮播时间
+        mBanner.setIndicatorGravity(BannerConfig.CENTER);//设置指示器位置（当banner模式中有指示器时）
     }
 
 }

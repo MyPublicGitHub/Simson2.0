@@ -8,23 +8,30 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.simson.www.R;
+import com.simson.www.ui.adapter.HospitalFragmentAdapter;
+import com.simson.www.ui.base.BasePresenterFragment;
+import com.simson.www.ui.core.presenter.BasePresenter;
 
-/**
- * A simple {@link Fragment} subclass.
- */
-public class HospitalFragment extends Fragment {
+public class HospitalFragment extends BasePresenterFragment {
 
-
-    public HospitalFragment() {
-        // Required empty public constructor
+    HospitalFragmentAdapter adapter;
+    @Override
+    protected BasePresenter createPresenter() {
+        return null;
     }
-
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_hospital, container, false);
+    protected void getBundle(Bundle bundle) {
+
     }
 
+    @Override
+    protected void initViews(View view) {
+
+    }
+
+    @Override
+    protected int getLayoutId() {
+        return R.layout.fragment_hospital;
+    }
 }

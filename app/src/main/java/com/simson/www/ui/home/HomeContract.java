@@ -1,25 +1,17 @@
 package com.simson.www.ui.home;
 
-import com.simson.www.net.bean.home.BroadcastsBean;
-import com.simson.www.net.bean.home.HomeDataBean;
-import com.simson.www.ui.core.view.IListDataView;
+import com.simson.www.net.bean.home.HomeBannerBean;
+import com.simson.www.ui.core.view.IView;
 
-import java.util.List;
-
-/**
- * Home协约类
- * author:
- * date: 2018/3/6
- */
 
 public interface HomeContract {
     interface IHomePresenter {
-        void getHomeList();
+        void getBanner();
     }
 
-    interface IHomeView extends IListDataView<HomeDataBean> {
+    interface IHomeView extends IView {
 
-        void setBannerData(List<BroadcastsBean> banner);
+        void setBannerData(HomeBannerBean bean);
 
     }
 }

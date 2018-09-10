@@ -6,7 +6,7 @@ import android.content.SharedPreferences;
 
 public class SPUtils {
 
-    private static String pre_name = "simson_sp";
+    private static String pre_name = "simson2_sp";
     private static Context mContext;
 
     public static void init(Context context) {

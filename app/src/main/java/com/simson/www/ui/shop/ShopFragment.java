@@ -2,29 +2,33 @@ package com.simson.www.ui.shop;
 
 
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 
 import com.simson.www.R;
-
-/**
- * A simple {@link Fragment} subclass.
- */
-public class ShopFragment extends Fragment {
+import com.simson.www.ui.base.BasePresenterFragment;
+import com.simson.www.ui.core.presenter.BasePresenter;
 
 
-    public ShopFragment() {
-        // Required empty public constructor
-    }
+public class ShopFragment extends BasePresenterFragment {
 
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_shop, container, false);
+    protected BasePresenter createPresenter() {
+        return null;
     }
 
+    @Override
+    protected void getBundle(Bundle bundle) {
+
+    }
+
+    @Override
+    protected void initViews(View view) {
+
+    }
+
+    @Override
+    protected int getLayoutId() {
+        return R.layout.fragment_shop;
+    }
 }

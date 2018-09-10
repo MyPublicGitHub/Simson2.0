@@ -1,14 +1,10 @@
 package com.simson.www.ui.home;
 
 
-import com.simson.www.net.bean.home.HomeDataBean;
-import com.simson.www.net.bean.home.HomeHeaderBean;
-import com.simson.www.net.callback.RxConsumer;
+import com.simson.www.net.bean.home.HomeBannerBean;
 import com.simson.www.net.callback.RxObserver;
 import com.simson.www.ui.core.model.impl.HomeModel;
-import com.simson.www.ui.core.presenter.BasePresenter;
-
-import java.util.List;
+import com.simson.www.ui.core.presenter.CommonItemTypePresenter;
 
 /**
  * Home Presenter
@@ -16,7 +12,7 @@ import java.util.List;
  * date: 2018/2/11
  */
 
-public class HomePresenter extends BasePresenter<HomeContract.IHomeView> implements HomeContract.IHomePresenter {
+public class HomePresenter extends CommonItemTypePresenter<HomeContract.IHomeView> implements HomeContract.IHomePresenter {
     private HomeModel mHomeModel;
     private HomeContract.IHomeView homeView;
 
@@ -25,20 +21,16 @@ public class HomePresenter extends BasePresenter<HomeContract.IHomeView> impleme
     }
 
     /**
-     * 获取首页列表和Bannder
+     * 获取首页Bannder
      */
     @Override
-    public void getHomeList() {
+    public void getBanner() {
         homeView = getView();
-        RxObserver<List<HomeDataBean>> mHomeRxPageListObserver = new RxObserver<List<HomeDataBean>>(this) {
+        RxObserver<HomeBannerBean> mHomeRxPageListObserver = new RxObserver<HomeBannerBean>(this) {
 
             @Override
-            public void onSuccess(List<HomeDataBean> mData) {
-                homeView.setData(mData);
-                if (homeView.getData().size() == 0)
-                    homeView.showEmpty();
-                else
-                    homeView.showContent();
+            public void onSuccess(HomeBannerBean mData) {
+                homeView.setBannerData(mData);
             }
 
             @Override
@@ -46,18 +38,7 @@ public class HomePresenter extends BasePresenter<HomeContract.IHomeView> impleme
                 homeView.showFail(errorMsg);
             }
         };
-        mHomeModel.getHomeData(homeView.getPage(), new RxConsumer<HomeHeaderBean>() {
-            @Override
-            protected void onFail(String errorMsg) {
-                homeView.showFail(errorMsg);
-            }
-
-            @Override
-            protected void onSuccess(HomeHeaderBean data) {
-                homeView.setBannerData(data.getBroadcasts());
-            }
-        }, mHomeRxPageListObserver);
-
+        mHomeModel.getHomeBannerData(mHomeRxPageListObserver);
         addDisposable(mHomeRxPageListObserver);
     }
 

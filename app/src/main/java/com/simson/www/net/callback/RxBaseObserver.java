@@ -7,10 +7,10 @@ import com.simson.www.R;
 import com.simson.www.application.AppContext;
 import com.simson.www.net.NetConfig;
 import com.simson.www.net.bean.BaseBean;
+import com.simson.www.ui.core.view.IView;
 import com.simson.www.utils.LogUtils;
 import com.simson.www.utils.NetworkUtils;
 import com.simson.www.utils.ToastUtils;
-import com.simson.www.ui.core.view.IView;
 
 import org.json.JSONException;
 
@@ -39,7 +39,7 @@ public abstract class RxBaseObserver<T> extends DisposableObserver<BaseBean<T>> 
     protected void onStart() {
         super.onStart();
         //显示loading
-        if (!NetworkUtils.isAvailable(AppContext.getContext())){
+        if (!NetworkUtils.isAvailable(AppContext.getContext())) {
             ToastUtils.showToast("网络异常，请检查您的网络连接");
             return;
         }
@@ -74,7 +74,7 @@ public abstract class RxBaseObserver<T> extends DisposableObserver<BaseBean<T>> 
      * @param t
      */
     void dealException(Context context, Throwable t) {
-
+        LogUtils.e("Throwable:" + t.getMessage());
         if (t instanceof ConnectException || t instanceof UnknownHostException) {
             //连接错误
             onException(NetConfig.CONNECT_ERROR, context);
@@ -100,7 +100,7 @@ public abstract class RxBaseObserver<T> extends DisposableObserver<BaseBean<T>> 
 
 
     void onException(int errorCode, Context context) {
-        LogUtils.e("-------------http错误代码："+errorCode);
+        LogUtils.e("-------------http错误代码：" + errorCode);
         switch (errorCode) {
             case NetConfig.CONNECT_ERROR:
                 ToastUtils.showToast(context, R.string.connect_error);

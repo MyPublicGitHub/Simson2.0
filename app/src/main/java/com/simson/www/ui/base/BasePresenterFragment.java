@@ -3,9 +3,12 @@ package com.simson.www.ui.base;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 
+import com.simson.www.net.bean.main.ItemTypeBean;
 import com.simson.www.ui.core.presenter.BasePresenter;
 import com.simson.www.ui.core.view.IView;
 import com.simson.www.utils.ToastUtils;
+
+import java.util.List;
 
 /**
  */
@@ -57,6 +60,7 @@ public abstract class BasePresenterFragment<P extends BasePresenter<V>, V extend
 
     @Override
     public void showLoading(String msg) {
+        showLoadingDialog(msg);
     }
 
     @Override
@@ -86,4 +90,8 @@ public abstract class BasePresenterFragment<P extends BasePresenter<V>, V extend
         return null;
     }
 
+    @Override
+    public void setItemType(List<ItemTypeBean> bean) {
+
+    }
 }

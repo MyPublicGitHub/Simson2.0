@@ -1,5 +1,9 @@
 package com.simson.www.ui.core.view;
 
+import com.simson.www.net.bean.main.ItemTypeBean;
+
+import java.util.List;
+
 /**
  * view基类
  * Created by  on 2018/2/1.
@@ -34,5 +38,7 @@ public interface IView{
      * 没有数据
      */
     void showEmpty();//没有数据
+
+    void setItemType(List<ItemTypeBean> bean);
 
 }

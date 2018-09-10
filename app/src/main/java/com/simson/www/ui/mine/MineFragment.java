@@ -1,23 +1,20 @@
 package com.simson.www.ui.mine;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import com.simson.www.R;
-import com.simson.www.inter.OnHomeListItemClickListener;
-import com.simson.www.net.bean.home.BroadcastsBean;
-import com.simson.www.net.bean.home.HomeDataBean;
-import com.simson.www.ui.adapter.BannerAdapter;
-import com.simson.www.ui.adapter.BaseListAdapter;
-import com.simson.www.ui.adapter.HomeListAdapter;
-import com.simson.www.ui.base.BaseAbListFragment;
 import com.simson.www.ui.base.BasePresenterFragment;
-import com.simson.www.utils.ToastUtils;
-import com.simson.www.widget.BannerViewPager;
+import com.simson.www.ui.main.login.LoginActivity;
 
-import java.util.ArrayList;
-import java.util.List;
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
+import butterknife.Unbinder;
 
 
 /**
@@ -29,11 +26,13 @@ import java.util.List;
 public class MineFragment extends BasePresenterFragment<MinePresenter, MineContract.IMineView> implements MineContract.IMineView {
 
 
+    @BindView(R.id.iv_setting)
+    ImageView ivSetting;
+
     @Override
     protected MinePresenter createPresenter() {
         return new MinePresenter();
     }
-
 
 
     @Override
@@ -52,4 +51,14 @@ public class MineFragment extends BasePresenterFragment<MinePresenter, MineContr
 
     }
 
+    @OnClick({R.id.iv_setting, R.id.iv_header})
+    public void onViewClicked(View view) {
+        switch (view.getId()) {
+            case R.id.iv_setting:
+                startActivity(new Intent(getActivity(), LoginActivity.class));
+                break;
+            case R.id.iv_header:
+                break;
+        }
+    }
 }

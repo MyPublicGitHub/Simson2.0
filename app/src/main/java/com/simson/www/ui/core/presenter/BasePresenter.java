@@ -1,17 +1,15 @@
 package com.simson.www.ui.core.presenter;
 
 import com.simson.www.ui.core.view.IView;
-import com.simson.www.ui.core.view.IView;
 
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
 
 /**
  * 基类Presenter,用来处理view和请求
- * Created by  on 2018/2/1.
  */
 
-public class BasePresenter<V extends IView> implements com.simson.www.ui.core.presenter.IPresenter<V> {
+public class BasePresenter<V extends IView> implements IPresenter<V> {
     private V view;
     //用来存放Disposable的容器
     private CompositeDisposable mCompositeDisposable;

@@ -20,7 +20,7 @@ public class AppConfig {
         if (BuildConfig.DEBUG){
             baseUrl = UrlConstainer.baseUrl_DEBUG;
         }else {
-            baseUrl = UrlConstainer.baseUrl1_RELEASE;
+            baseUrl = UrlConstainer.baseUrl_RELEASE;
         }
         //初始化网络框架
         RxRetrofit.getInstance().initRxRetrofit(context, baseUrl);
