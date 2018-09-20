@@ -3,10 +3,8 @@ package com.simson.www.ui.home.hospital;
 
 import com.simson.www.net.bean.home.HomeBannerBean;
 import com.simson.www.net.callback.RxObserver;
-import com.simson.www.ui.core.model.impl.HomeModel;
-import com.simson.www.ui.core.model.impl.HospitalActivityModel;
+import com.simson.www.ui.core.model.HospitalActivityModel;
 import com.simson.www.ui.core.presenter.BasePresenter;
-import com.simson.www.ui.home.HomeContract;
 
 public class HospitalActivityPresenter extends BasePresenter<HospitalActivityContract.View> implements HospitalActivityContract.Presenter {
     private HospitalActivityModel mModel;
@@ -31,7 +29,7 @@ public class HospitalActivityPresenter extends BasePresenter<HospitalActivityCon
                 mView.showFail(errorMsg);
             }
         };
-        mModel.getHomeBannerData(mHomeRxPageListObserver);
+        //mModel.getHomeBannerData(mHomeRxPageListObserver);
         addDisposable(mHomeRxPageListObserver);
     }
 

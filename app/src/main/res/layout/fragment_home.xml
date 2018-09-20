@@ -1,12 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-
-<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorWhiteBg"
-    android:fillViewport="true"
     android:scrollbars="none">
 
     <LinearLayout
@@ -16,7 +13,9 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:focusable="true"
+            android:focusableInTouchMode="true">
 
             <com.youth.banner.Banner
                 android:id="@+id/banner"
@@ -304,35 +303,30 @@
                 android:background="@color/colorBlack_2" />
         </LinearLayout>
 
-        <android.support.design.widget.CoordinatorLayout
+
+        <android.support.design.widget.AppBarLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content">
 
-            <android.support.design.widget.AppBarLayout
+            <android.support.design.widget.TabLayout
+                android:id="@+id/tab_layout"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:background="@color/colorWhite"
+                android:elevation="4dp"
+                app:tabIndicatorColor="@color/colorMain"
+                app:tabMode="scrollable"
+                app:tabSelectedTextColor="@color/colorMain"
+                app:tabTextColor="@color/colorBlack_6" />
 
-                <android.support.design.widget.TabLayout
-                    android:id="@+id/tab_layout"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@color/colorWhite"
-                    android:elevation="4dp"
-                    app:tabIndicatorColor="@color/colorMain"
-                    app:tabMode="scrollable"
-                    app:tabSelectedTextColor="@color/colorMain"
-                    app:tabTextColor="@color/colorBlack_6" />
+        </android.support.design.widget.AppBarLayout>
 
-            </android.support.design.widget.AppBarLayout>
-
-            <com.simson.www.widget.ViewPagerForScrollView
-                android:id="@+id/view_pager"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                app:layout_behavior="@string/appbar_scrolling_view_behavior" />
-        </android.support.design.widget.CoordinatorLayout>
+        <com.simson.www.widget.ViewPagerForScrollView
+            android:id="@+id/view_pager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"/>
 
     </LinearLayout>
 
-</android.support.v4.widget.NestedScrollView>
+</ScrollView>

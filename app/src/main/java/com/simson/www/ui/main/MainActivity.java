@@ -1,8 +1,10 @@
 package com.simson.www.ui.main;
 
+import android.graphics.Paint;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.widget.TextView;
 
 import com.simson.www.R;
 import com.simson.www.ui.base.BasePresenterActivity;
@@ -85,6 +87,8 @@ public class MainActivity extends BasePresenterActivity {
         mFragments.add(new ShopFragment());
         mFragments.add(new MineFragment());
         switchFragment(0);
+//        TextView textView = helper.getView(R.id.tv_original);
+//        textView.getPaint().setFlags(Paint.STRIKE_THRU_TEXT_FLAG);
     }
 
 }

@@ -5,7 +5,7 @@ import com.google.gson.Gson;
 import com.simson.www.common.Const;
 import com.simson.www.net.bean.home.HomeItemBean;
 import com.simson.www.net.callback.RxObserver;
-import com.simson.www.ui.core.model.impl.HomeItemModel;
+import com.simson.www.ui.core.model.HomeItemModel;
 import com.simson.www.ui.core.presenter.CommonItemTypePresenter;
 import com.simson.www.utils.DateUtils;
 import com.simson.www.utils.SPUtils;
@@ -43,7 +43,7 @@ public class HomeItemPresenter extends CommonItemTypePresenter<HomeItemContract.
             }
         };
         Map map = new HashMap();
-        map.put("customerId", SPUtils.get(Const.USERINFO.CUSTOMER_ID,"12312"));
+        map.put("customerId", SPUtils.get(Const.USER_INFO.CUSTOMER_ID,"12312"));
         map.put("itemTypeId", mView.getItemType());//项目类型
         map.put("type", mView.getType());//1推荐，2关注，空不传是全部
         map.put("search", "");

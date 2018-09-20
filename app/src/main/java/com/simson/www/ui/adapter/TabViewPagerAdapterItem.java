@@ -4,6 +4,7 @@ import android.support.v4.app.Fragment;
 
 
 import com.simson.www.net.bean.main.ItemTypeBean;
+import com.simson.www.ui.community.diary.item.DiaryItemFragment;
 import com.simson.www.ui.home.item.HomeItemFragment;
 
 import java.util.ArrayList;
@@ -32,6 +33,15 @@ public class TabViewPagerAdapterItem {
         for (int i = 0; i < titleList.size(); i++) {
             adapterItems.add(new TabViewPagerAdapterItem(titleList.get(i).getTypeName(),
                     HomeItemFragment.newInstance(titleList.get(i).getItemTypeId())));
+        }
+        return adapterItems;
+    }
+
+    public static List<TabViewPagerAdapterItem> createDiaryItemFragments(List<String> titleList) {
+        ArrayList<TabViewPagerAdapterItem> adapterItems = new ArrayList<>();
+        for (int i = 0; i < titleList.size(); i++) {
+            adapterItems.add(new TabViewPagerAdapterItem(titleList.get(i),
+                    DiaryItemFragment.newInstance(i)));
         }
         return adapterItems;
     }

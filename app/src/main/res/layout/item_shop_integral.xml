@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="@dimen/dp_120"
+    android:layout_height="wrap_content"
+    android:background="@color/colorWhite"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:padding="@dimen/dp_10">
+
+    <ImageView
+        android:id="@+id/iv_image"
+        android:layout_width="@dimen/dp_100"
+        android:layout_height="@dimen/dp_100"
+        android:background="@mipmap/ic_placeholder" />
+
+    <TextView
+        android:id="@+id/tv_title"
+        android:layout_width="wrap_content"
+        android:text="新生剃须刀"
+        android:layout_marginTop="@dimen/dp_5"
+        android:maxLines="1"
+        android:ellipsize="end"
+        android:textSize="@dimen/sp_16"
+        android:textColor="@color/colorBlack"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:id="@+id/tv_integral"
+        android:layout_width="wrap_content"
+        android:text="积分：2000"
+        android:maxLines="1"
+        android:ellipsize="end"
+        android:layout_marginTop="@dimen/dp_5"
+        android:textSize="@dimen/sp_12"
+        android:textColor="@color/colorRed"
+        android:layout_height="wrap_content" />
+</LinearLayout>

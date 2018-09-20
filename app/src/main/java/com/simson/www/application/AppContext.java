@@ -2,12 +2,6 @@ package com.simson.www.application;
 
 import android.content.Context;
 
-/**
- * 上下文Context
- * author:
- * date: 2018/3/13
- */
-
 public class AppContext {
     private static Context mContext;
     private static AppContext mInstance;

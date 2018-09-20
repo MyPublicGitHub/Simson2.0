@@ -1,0 +1,74 @@
+package com.simson.www.ui.mine.diary;
+
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.view.View;
+
+import com.chad.library.adapter.base.BaseQuickAdapter;
+import com.scwang.smartrefresh.layout.SmartRefreshLayout;
+import com.simson.www.R;
+import com.simson.www.net.bean.BaseBean;
+import com.simson.www.ui.adapter.MyDiaryAdapter;
+import com.simson.www.ui.base.BasePresenterActivity;
+import com.simson.www.ui.core.presenter.BasePresenter;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import butterknife.BindView;
+
+public class MyDiaryActivity extends BasePresenterActivity {
+
+
+    @BindView(R.id.recyclerView)
+    RecyclerView mRecyclerView;
+    @BindView(R.id.refresh_layout)
+    SmartRefreshLayout mRefreshLayout;
+    private MyDiaryAdapter mAdapter;
+
+    @Override
+    protected void initViews() {
+        setRefresh();
+        mAdapter = new MyDiaryAdapter(null);
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        mRecyclerView.setAdapter(mAdapter);
+        mAdapter.setOnItemClickListener((BaseQuickAdapter adapter, View view, int position) -> {
+
+        });
+
+        List<BaseBean> list = new ArrayList<>();
+        for (int i = 0; i < 5; i++) {
+            list.add(new BaseBean());
+        }
+        mAdapter.replaceData(list);
+    }
+    private void setRefresh() {
+        mRefreshLayout.setOnRefreshListener(refreshLayout -> {
+            //mCurrentPage = 1;
+            //mPresenter.getDiaryData(mCustomerId, mCurrentPage);
+            mRefreshLayout.setNoMoreData(false);
+            refreshLayout.finishRefresh();
+        });
+        mRefreshLayout.setOnLoadMoreListener(refreshLayout -> {
+            //mCurrentPage++;
+            //mPresenter.getDiaryData(mCustomerId, mCurrentPage);
+            refreshLayout.finishLoadMore();
+        });
+    }
+    @Override
+    protected int getLayoutId() {
+        return R.layout.activity_my_diary;
+    }
+
+    @Override
+    protected BasePresenter createPresenter() {
+        return null;
+    }
+
+    @Override
+    protected boolean initToolbar() {
+        mTitle.setText("我的日记");
+        return true;
+    }
+
+}

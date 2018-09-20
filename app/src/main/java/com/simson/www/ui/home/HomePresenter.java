@@ -1,10 +1,15 @@
 package com.simson.www.ui.home;
 
 
+import com.google.gson.Gson;
 import com.simson.www.net.bean.home.HomeBannerBean;
 import com.simson.www.net.callback.RxObserver;
-import com.simson.www.ui.core.model.impl.HomeModel;
+import com.simson.www.ui.core.model.HomeModel;
 import com.simson.www.ui.core.presenter.CommonItemTypePresenter;
+import com.simson.www.utils.DateUtils;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Home Presenter
@@ -12,12 +17,12 @@ import com.simson.www.ui.core.presenter.CommonItemTypePresenter;
  * date: 2018/2/11
  */
 
-public class HomePresenter extends CommonItemTypePresenter<HomeContract.IHomeView> implements HomeContract.IHomePresenter {
-    private HomeModel mHomeModel;
-    private HomeContract.IHomeView homeView;
+public class HomePresenter extends CommonItemTypePresenter<HomeContract.View> implements HomeContract.Presenter {
+    private HomeModel mModel;
+    private HomeContract.View mView;
 
     HomePresenter() {
-        this.mHomeModel = new HomeModel();
+        this.mModel = new HomeModel();
     }
 
     /**
@@ -25,21 +30,24 @@ public class HomePresenter extends CommonItemTypePresenter<HomeContract.IHomeVie
      */
     @Override
     public void getBanner() {
-        homeView = getView();
-        RxObserver<HomeBannerBean> mHomeRxPageListObserver = new RxObserver<HomeBannerBean>(this) {
+        mView = getView();
+        RxObserver<HomeBannerBean> observer = new RxObserver<HomeBannerBean>(this) {
 
             @Override
             public void onSuccess(HomeBannerBean mData) {
-                homeView.setBannerData(mData);
+                mView.setBannerData(mData);
             }
 
             @Override
             public void onFail(int code, String errorMsg) {
-                homeView.showFail(errorMsg);
+                mView.showFail(errorMsg);
             }
         };
-        mHomeModel.getHomeBannerData(mHomeRxPageListObserver);
-        addDisposable(mHomeRxPageListObserver);
+        Map<String, String> map = new HashMap<>();
+        map.put("timestamp", DateUtils.getStringDate());
+        String json = new Gson().toJson(map);
+        mModel.getHomeBannerData(json,observer);
+        addDisposable(observer);
     }
 
 }

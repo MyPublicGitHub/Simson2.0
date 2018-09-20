@@ -12,7 +12,13 @@ android {
         javaCompileOptions { annotationProcessorOptions { includeCompileClasspath = true } }
         multiDexEnabled true
         vectorDrawables.useSupportLibrary = true
-        manifestPlaceholders = [qqappid: "tencent100424468"]
+        //manifestPlaceholders = [qqappid: "tencent100424468"]
+        manifestPlaceholders = [
+                JPUSH_PKGNAME : "com.simson.www",
+                //JPUSH_APPKEY : "9a3bd399dad9968d6792d1a6", //JPush 上注册的包名对应的 Appkey.
+                JPUSH_APPKEY : "0fa6d308abab72ad12f5ce7c", //JPush 上注册的包名对应的 Appkey.
+                JPUSH_CHANNEL : "developer-default", //暂时填写默认值即可.
+        ]
     }
     buildTypes {
         release {
@@ -34,7 +40,7 @@ android {
             //shrinkResources true
             //minifyEnabled true
             //proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-            applicationIdSuffix '.test' //增加包名后缀test
+            //applicationIdSuffix '.test' //增加包名后缀test
             resValue "string", "app_name", "@string/app_name_debug"
         }
     }
@@ -43,11 +49,13 @@ android {
             jni.srcDirs = []
             jniLibs.srcDirs = ['libs']
         }
+
     }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+
 //    bugly {
 //        appId = 'c280c5ebb7' // 注册时分配的App ID
 //        appKey = '1f0b896a-c638-4bb7-ba20-56dc4d920af3' // 注册时分配的App Key
@@ -60,7 +68,7 @@ dependencies {
     implementation 'com.android.support:cardview-v7:27.1.1'
     implementation 'com.android.support:design:27.1.1'
     implementation 'com.android.support:support-v4:27.1.1'
-
+    implementation 'com.just.agentweb:agentweb:4.0.1'//WebView
     //rxjava
     implementation 'io.reactivex.rxjava2:rxjava:2.2.0'
     implementation 'io.reactivex.rxjava2:rxandroid:2.1.0'
@@ -85,4 +93,16 @@ dependencies {
     debugImplementation 'com.squareup.leakcanary:leakcanary-android:1.5.4'
     //只在debug模式下有用
     releaseImplementation 'com.squareup.leakcanary:leakcanary-android-no-op:1.5.4'
+    //图片选择
+    implementation 'cn.bingoogolapple:bga-photopicker:1.2.8@aar'
+    implementation 'cn.bingoogolapple:bga-baseadapter:1.2.7@aar'
+    //multidex分包方法超过
+    implementation "com.android.support:multidex:1.0.3"
+    //地址选择器
+    implementation 'liji.library.dev:citypickerview:3.1.7'
+    implementation 'com.zaaach:citypicker:2.0.2'
+
+    //极光推送
+    implementation 'cn.jiguang.sdk:jpush:3.1.6'  // 此处以JPush 3.1.6 版本为例。
+    implementation 'cn.jiguang.sdk:jcore:1.2.5'  // 此处以JCore 1.2.5 版本为例。
 }

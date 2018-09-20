@@ -45,7 +45,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:padding="@dimen/dp_5"
-                    android:text="@string/sign_in_or_register"
+                    android:textColorHint="@color/colorWhiteBg"
+                    android:hint="@string/sign_in_or_register"
                     android:textColor="@color/colorWhite"
                     android:textSize="@dimen/sp_16" />
             </LinearLayout>
@@ -117,6 +118,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/tv_fans"
                 android:layout_marginTop="@dimen/dp_1"
+                android:id="@+id/ll_post"
                 android:gravity="center_vertical"
                 android:orientation="horizontal"
                 android:paddingBottom="@dimen/dp_10"
@@ -155,6 +157,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:id="@+id/ll_diary"
                     android:gravity="center"
                     android:orientation="vertical">
 
@@ -181,6 +184,7 @@
                     android:background="@color/colorWhiteBg" />
 
                 <LinearLayout
+                    android:id="@+id/ll_message"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -210,6 +214,7 @@
                     android:background="@color/colorWhiteBg" />
 
                 <LinearLayout
+                    android:id="@+id/ll_integral"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -402,6 +407,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
+                android:id="@+id/ll_integral_mall"
                 android:orientation="horizontal">
 
                 <ImageView
@@ -526,6 +532,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
+                android:id="@+id/ll_invitation"
                 android:orientation="vertical">
 
                 <ImageView
@@ -590,8 +597,6 @@
                 android:layout_weight="1"
                 android:gravity="center"
                 android:orientation="vertical">
-
-
             </LinearLayout>
 
         </LinearLayout>

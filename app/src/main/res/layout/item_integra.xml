@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@color/colorWhite"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:padding="@dimen/dp_10">
+
+    <ImageView
+        android:layout_width="@dimen/dp_100"
+        android:layout_height="@dimen/dp_100"
+        android:background="@mipmap/ic_placeholder" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_5"
+        android:text="新生剃须刀"
+        android:textColor="@color/colorBlack"
+        android:textSize="@dimen/sp_16" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_5"
+        android:text="积分：2000"
+        android:textColor="@color/colorMain"
+        android:textSize="@dimen/sp_12" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_5"
+        android:background="@drawable/shape_corner_red_5dp"
+        android:paddingBottom="@dimen/dp_3"
+        android:paddingLeft="@dimen/dp_10"
+        android:paddingRight="@dimen/dp_10"
+        android:paddingTop="@dimen/dp_3"
+        android:text="立即兑换"
+        android:textColor="@color/colorWhite"
+        android:textSize="@dimen/sp_12" />
+</LinearLayout>

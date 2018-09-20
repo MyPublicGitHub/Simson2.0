@@ -2,6 +2,7 @@ package com.simson.www.net.bean.home;
 
 public class HomeItemBean {
 
+
     /**
      * diary_id : 1
      * customer_id : 2018083115357026708136689
@@ -13,17 +14,17 @@ public class HomeItemBean {
      * titile : 终于长出新头发了
      * content : 我在也不用担心秃头了，啦啦啦啦啦绿绿绿绿绿绿绿绿绿绿绿绿绿绿绿绿绿绿绿绿绿绿绿
      * days : 1
-     * unit_price : 0.1
+     * price : 0.10
      * item_name : 【头发种植】头发种植
      * browse : 2
-     * service_score : 5
-     * effect_score : 5
-     * doctor_score : 5
+     * service_score : 5.0
+     * effect_score : 5.0
+     * doctor_score : 5.0
      * comments : 0
      * praises : 0
+     * is_follow : 0
      * shu_qian : http://58.213.14.195:8081/upload/diary/5.png
      * shu_hou : http://58.213.14.195:8081/upload/diary/6.png
-     * is_follow : 0
      */
 
     private String diary_id;
@@ -35,18 +36,18 @@ public class HomeItemBean {
     private String issue_time;
     private String titile;
     private String content;
-    private int days;
-    private double unit_price;
+    private String days;
+    private String price;
     private String item_name;
-    private int browse;
-    private int service_score;
-    private int effect_score;
-    private int doctor_score;
-    private int comments;
-    private int praises;
+    private String browse;
+    private String service_score;
+    private String effect_score;
+    private String doctor_score;
+    private String comments;
+    private String praises;
+    private int is_follow;
     private String shu_qian;
     private String shu_hou;
-    private int is_follow;
 
     public String getDiary_id() {
         return diary_id;
@@ -120,20 +121,20 @@ public class HomeItemBean {
         this.content = content;
     }
 
-    public int getDays() {
+    public String getDays() {
         return days;
     }
 
-    public void setDays(int days) {
+    public void setDays(String days) {
         this.days = days;
     }
 
-    public double getUnit_price() {
-        return unit_price;
+    public String getPrice() {
+        return price;
     }
 
-    public void setUnit_price(double unit_price) {
-        this.unit_price = unit_price;
+    public void setPrice(String price) {
+        this.price = price;
     }
 
     public String getItem_name() {
@@ -144,52 +145,60 @@ public class HomeItemBean {
         this.item_name = item_name;
     }
 
-    public int getBrowse() {
+    public String getBrowse() {
         return browse;
     }
 
-    public void setBrowse(int browse) {
+    public void setBrowse(String browse) {
         this.browse = browse;
     }
 
-    public int getService_score() {
+    public String getService_score() {
         return service_score;
     }
 
-    public void setService_score(int service_score) {
+    public void setService_score(String service_score) {
         this.service_score = service_score;
     }
 
-    public int getEffect_score() {
+    public String getEffect_score() {
         return effect_score;
     }
 
-    public void setEffect_score(int effect_score) {
+    public void setEffect_score(String effect_score) {
         this.effect_score = effect_score;
     }
 
-    public int getDoctor_score() {
+    public String getDoctor_score() {
         return doctor_score;
     }
 
-    public void setDoctor_score(int doctor_score) {
+    public void setDoctor_score(String doctor_score) {
         this.doctor_score = doctor_score;
     }
 
-    public int getComments() {
+    public String getComments() {
         return comments;
     }
 
-    public void setComments(int comments) {
+    public void setComments(String comments) {
         this.comments = comments;
     }
 
-    public int getPraises() {
+    public String getPraises() {
         return praises;
     }
 
-    public void setPraises(int praises) {
+    public void setPraises(String praises) {
         this.praises = praises;
+    }
+
+    public int getIs_follow() {
+        return is_follow;
+    }
+
+    public void setIs_follow(int is_follow) {
+        this.is_follow = is_follow;
     }
 
     public String getShu_qian() {
@@ -206,13 +215,5 @@ public class HomeItemBean {
 
     public void setShu_hou(String shu_hou) {
         this.shu_hou = shu_hou;
-    }
-
-    public int getIs_follow() {
-        return is_follow;
-    }
-
-    public void setIs_follow(int is_follow) {
-        this.is_follow = is_follow;
     }
 }

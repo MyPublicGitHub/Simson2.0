@@ -41,18 +41,15 @@ public class HospitalActivity extends BasePresenterActivity<HospitalActivityPres
     protected void initViews() {
         setRefresh();
         List<BaseBean> list = new ArrayList<>();
-        for (int i = 0; i < 20; i++) {
+        for (int i = 0; i < 10; i++) {
             list.add(new BaseBean());
         }
         adapter = new HospitalActivityAdapter(list);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);
-        adapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
-            @Override
-            public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-                startActivity(new Intent(HospitalActivity.this, HospitalDetailActivity.class));
-            }
-        });
+        adapter.setOnItemClickListener((adapter, view, position) ->
+                startActivity(new Intent(HospitalActivity.this, HospitalDetailActivity.class))
+        );
     }
 
     @Override

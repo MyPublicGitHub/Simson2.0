@@ -1,12 +1,16 @@
 package com.simson.www.ui.core.presenter;
 
 
+import com.google.gson.Gson;
 import com.simson.www.net.bean.main.ItemTypeBean;
 import com.simson.www.net.callback.RxObserver;
-import com.simson.www.ui.core.model.impl.CommonItemTypeModel;
+import com.simson.www.ui.core.model.CommonItemTypeModel;
 import com.simson.www.ui.core.view.IView;
+import com.simson.www.utils.DateUtils;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class CommonItemTypePresenter<V extends IView> extends BasePresenter<V> implements ICommonItemTypePresenter {
     private CommonItemTypeModel mCommonModel;
@@ -32,7 +36,11 @@ public class CommonItemTypePresenter<V extends IView> extends BasePresenter<V> i
 
 
         };
-        mCommonModel.getItemType(mCollectRxObserver);
+
+        Map<String, String> map = new HashMap<>();
+        map.put("timestamp", DateUtils.getStringDate());
+        String json = new Gson().toJson(map);
+        mCommonModel.getItemType(json,mCollectRxObserver);
         addDisposable(mCollectRxObserver);
     }
 

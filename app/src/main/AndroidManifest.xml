@@ -30,7 +30,25 @@
             android:name=".ui.main.register.RegisterActivity"
             android:launchMode="singleTop" />
         <activity android:name=".ui.home.hospital.HospitalActivity" />
-        <activity android:name=".ui.home.hospital.detail.HospitalDetailActivity"></activity>
+        <activity android:name=".ui.home.hospital.detail.HospitalDetailActivity" />
+        <activity android:name=".ui.main.reset.ResetPasswordActivity" />
+        <activity android:name=".ui.home.expert.ExpertActivity" />
+        <activity android:name=".ui.home.expert.detail.ExpertDetailActivity" />
+        <activity android:name=".ui.shop.detail.CommodityDetailActivity" />
+        <activity android:name=".ui.mine.integral.mall.IntegralMallActivity" />
+        <activity android:name=".ui.mine.integral.IntegralActivity" />
+        <activity android:name=".ui.mine.sign.SignActivity" />
+        <activity android:name=".ui.mine.set.SettingActivity" />
+        <activity android:name=".ui.mine.set.address.AddressActivity" />
+        <activity android:name=".ui.mine.set.address.add.NewAddressActivity" />
+        <activity android:name=".ui.mine.user.UserInfoActivity" />
+        <activity android:name=".ui.mine.invitation.InvitationActivity" />
+        <activity android:name=".ui.mine.feed.FeedBackActivity" />
+        <activity android:name=".ui.mine.diary.MyDiaryActivity" />
+        <activity android:name=".ui.mine.post.MyPostActivity" />
+        <activity android:name=".ui.mine.message.MyMessageActivity" />
+        <activity android:name=".ui.community.diary.detail.DiaryDetailActivity" />
+        <activity android:name=".ui.community.diary.detail.append.AppendDiaryDetailActivity"></activity>
     </application>
 
 </manifest>

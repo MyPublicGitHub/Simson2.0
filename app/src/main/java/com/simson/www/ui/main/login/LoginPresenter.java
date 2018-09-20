@@ -9,7 +9,7 @@ import com.simson.www.application.AppContext;
 import com.simson.www.net.bean.main.CodeBean;
 import com.simson.www.net.bean.main.LoginBean;
 import com.simson.www.net.callback.RxObserver;
-import com.simson.www.ui.core.model.impl.LoginModel;
+import com.simson.www.ui.core.model.LoginModel;
 import com.simson.www.ui.core.presenter.BasePresenter;
 import com.simson.www.utils.DateUtils;
 import com.simson.www.utils.ToastUtils;
@@ -23,10 +23,10 @@ import java.util.Map;
  * date: 2018/2/11
  */
 
-public class LoginPresenter extends BasePresenter<LoginContract.ILoginView> implements LoginContract.ILoginPresenter {
+public class LoginPresenter extends BasePresenter<LoginContract.View> implements LoginContract.Presenter {
     private String username, password;
     private LoginModel mLoginModel;
-    private LoginContract.ILoginView mLoginView;
+    private LoginContract.View mLoginView;
 
     LoginPresenter() {
         this.mLoginModel = new LoginModel();
@@ -62,7 +62,7 @@ public class LoginPresenter extends BasePresenter<LoginContract.ILoginView> impl
                 @Override
                 protected void onSuccess(LoginBean userBean) {
                     mLoginModel.saveUserInfo(userBean);
-                    mLoginView.showResult(AppContext.getContext().getString(R.string.login_success));
+                    mLoginView.showLogin(userBean);
                 }
 
                 @Override
@@ -92,12 +92,12 @@ public class LoginPresenter extends BasePresenter<LoginContract.ILoginView> impl
 
             @Override
             protected void onSuccess(CodeBean codeBean) {
-                mLoginView.showResult("获取验证码成功");
+                mLoginView.showCode(codeBean);
             }
 
             @Override
             protected void onFail(int errorCode, String errorMsg) {
-                mLoginView.showResult(errorMsg);
+                mLoginView.showFail(errorMsg);
             }
         };
         Map<String, String> map = new HashMap<>();

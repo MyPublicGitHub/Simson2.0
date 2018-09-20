@@ -8,10 +8,12 @@ import android.view.View;
 
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.simson.www.R;
+import com.simson.www.net.bean.BaseBean;
 import com.simson.www.net.bean.home.HomeItemBean;
 import com.simson.www.ui.adapter.HomeItemAdapter;
 import com.simson.www.ui.base.BasePresenterFragment;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
@@ -50,8 +52,12 @@ public class HomeItemFragment extends BasePresenterFragment<HomeItemPresenter, H
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         adapter = new HomeItemAdapter(null);
         recyclerView.setAdapter(adapter);
+        recyclerView.setNestedScrollingEnabled(false);
+        adapter.bindToRecyclerView(recyclerView);
+        adapter.setEmptyView(R.layout.list_empty_view);
         setRefresh();
         mPage = 1;
+
         mPresenter.getHomeItemData();
     }
 
@@ -86,16 +92,13 @@ public class HomeItemFragment extends BasePresenterFragment<HomeItemPresenter, H
         }
         if (mPage == 1) {
             adapter.replaceData(bean);
-            if (bean.size() == 0) {
-                mRefreshLayout.setNoMoreData(true);
-                adapter.bindToRecyclerView(recyclerView);
-                adapter.setEmptyView(R.layout.list_empty_view);
-            }
+
         } else {
             adapter.addData(bean);
-            if (bean.size() == 0) {
-                mRefreshLayout.setNoMoreData(true);
-            }
+        }
+        if (bean.size() == 0) {
+            mRefreshLayout.setNoMoreData(true);
+
         }
     }
 

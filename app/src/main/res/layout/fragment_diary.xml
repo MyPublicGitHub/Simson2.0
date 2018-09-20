@@ -1,15 +1,23 @@
-<?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:orientation="horizontal">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorWhiteBg"
+    android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/item_number"
-        android:layout_width="wrap_content"
+    <android.support.design.widget.TabLayout
+        android:id="@+id/tab_layout"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="日记"
-        android:layout_margin="@dimen/text_margin"/>
+        android:layout_marginBottom="@dimen/dp_1"
+        android:background="@color/colorWhite"
+        app:tabIndicatorColor="@color/colorMain"
+        app:tabSelectedTextColor="@color/colorMain"
+        app:tabTextColor="@color/colorBlack_6" />
 
-
+    <android.support.v4.view.ViewPager
+        android:id="@+id/view_pager"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1" />
 </LinearLayout>

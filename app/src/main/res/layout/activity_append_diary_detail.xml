@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/edit"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:padding="@dimen/dp_10" />
+
+        <TextView
+            android:id="@+id/baidu"
+            android:layout_margin="@dimen/dp_10"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/colorBlue"
+            android:padding="@dimen/dp_10"
+            android:text="百度搜索"
+            android:textColor="@color/colorWhite" />
+
+        <TextView
+            android:id="@+id/sll"
+            android:layout_margin="@dimen/dp_10"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/colorBlue"
+            android:padding="@dimen/dp_10"
+            android:text="360搜索"
+            android:textColor="@color/colorWhite" />
+    </LinearLayout>
+    <FrameLayout
+        android:id="@+id/container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"></FrameLayout>
+</LinearLayout>

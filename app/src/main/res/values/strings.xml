@@ -36,6 +36,11 @@
     <string name="evaluate">评价</string>
     <string name="refund">退款</string>
 
+    <string name="sign_in_rule_title">签到规则</string>
+    <string name="sign_in_rule_one">1、每日登录客户端签到专区进行签到，每日可签到一次，每天都可签到。</string>
+    <string name="sign_in_rule_two">2、每日签到可获得5个积分。</string>
+    <string name="sign_in_rule_three">3、本积分规则解释权归优培宝所有。</string>
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 

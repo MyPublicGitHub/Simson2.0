@@ -2,42 +2,43 @@ package com.simson.www.ui.mine;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.LayoutInflater;
+import android.text.TextUtils;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.simson.www.R;
+import com.simson.www.common.Const;
+import com.simson.www.event.Event;
 import com.simson.www.ui.base.BasePresenterFragment;
 import com.simson.www.ui.main.login.LoginActivity;
+import com.simson.www.ui.mine.diary.MyDiaryActivity;
+import com.simson.www.ui.mine.integral.IntegralActivity;
+import com.simson.www.ui.mine.integral.mall.IntegralMallActivity;
+import com.simson.www.ui.mine.invitation.InvitationActivity;
+import com.simson.www.ui.mine.message.MyMessageActivity;
+import com.simson.www.ui.mine.post.MyPostActivity;
+import com.simson.www.ui.mine.set.SettingActivity;
+import com.simson.www.ui.mine.sign.SignActivity;
+import com.simson.www.ui.mine.user.UserInfoActivity;
+import com.simson.www.utils.GlideUtils;
+import com.simson.www.utils.SPUtils;
+import com.simson.www.widget.CircleImageView;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
-import butterknife.Unbinder;
 
-
-/**
- * 首页文章
- * author:
- * date: 2018/2/12
- */
 
 public class MineFragment extends BasePresenterFragment<MinePresenter, MineContract.IMineView> implements MineContract.IMineView {
 
-
-    @BindView(R.id.iv_setting)
-    ImageView ivSetting;
-
-    @Override
-    protected MinePresenter createPresenter() {
-        return new MinePresenter();
-    }
-
+    @BindView(R.id.iv_header)
+    CircleImageView ivHeader;
+    @BindView(R.id.tv_user_name)
+    TextView tvUserName;
 
     @Override
     protected void initViews(View view) {
-
+        GlideUtils.with(SPUtils.get(Const.USER_INFO.CUSTOMER_HEAD, ""), ivHeader);
+        tvUserName.setText((String)SPUtils.get(Const.USER_INFO.CUSTOMER_NICK_NAME, ""));
     }
 
 
@@ -46,19 +47,78 @@ public class MineFragment extends BasePresenterFragment<MinePresenter, MineContr
         return R.layout.fragment_mine;
     }
 
+
+    @OnClick({R.id.iv_setting, R.id.ll_user_info, R.id.ll_integral_mall, R.id.ll_sign_in, R.id.ll_invitation,
+            R.id.ll_diary, R.id.ll_message, R.id.ll_integral, R.id.ll_post, R.id.ll_pending_payment,
+            R.id.ll_pending_delivery, R.id.ll_already_shipped, R.id.ll_evaluate, R.id.ll_refund})
+    public void onViewClicked(View view) {
+        if (TextUtils.isEmpty((String) SPUtils.get(Const.USER_INFO.CUSTOMER_ID, ""))) {
+            startActivity(new Intent(getActivity(), LoginActivity.class));
+            return;
+        }
+        switch (view.getId()) {
+            case R.id.iv_setting:
+                startActivity(new Intent(getActivity(), SettingActivity.class));
+                break;
+            case R.id.ll_integral_mall:
+                startActivity(new Intent(getActivity(), IntegralMallActivity.class));
+                break;
+            case R.id.ll_sign_in:
+                startActivity(new Intent(getActivity(), SignActivity.class));
+                break;
+            case R.id.ll_user_info:
+                startActivity(new Intent(getActivity(), UserInfoActivity.class));
+                break;
+            case R.id.ll_invitation:
+                startActivity(new Intent(getActivity(), InvitationActivity.class));
+                break;
+            case R.id.ll_diary:
+                startActivity(new Intent(getActivity(), MyDiaryActivity.class));
+                break;
+            case R.id.ll_message:
+                startActivity(new Intent(getActivity(), MyMessageActivity.class));
+                break;
+            case R.id.ll_integral:
+                startActivity(new Intent(getActivity(), IntegralActivity.class));
+                break;
+            case R.id.ll_post:
+                startActivity(new Intent(getActivity(), MyPostActivity.class));
+                break;
+            case R.id.ll_pending_payment:
+                break;
+            case R.id.ll_pending_delivery:
+                break;
+            case R.id.ll_already_shipped:
+                break;
+            case R.id.ll_evaluate:
+                break;
+            case R.id.ll_refund:
+                break;
+        }
+    }
+
+    @Override
+    protected void receiveEvent(Object object) {
+        Event mEvent = (Event) object;
+        if (mEvent.type == Event.Type.LOGIN) {
+            GlideUtils.with(SPUtils.get(Const.USER_INFO.CUSTOMER_HEAD, ""), ivHeader);
+            tvUserName.setText((String)SPUtils.get(Const.USER_INFO.CUSTOMER_NICK_NAME, ""));
+        }
+    }
+
+    @Override
+    protected MinePresenter createPresenter() {
+        return new MinePresenter();
+    }
+
+    @Override
+    protected String registerEvent() {
+        return Const.EVENT_ACTION.LOGIN;
+    }
+
     @Override
     protected void getBundle(Bundle bundle) {
 
     }
 
-    @OnClick({R.id.iv_setting, R.id.iv_header})
-    public void onViewClicked(View view) {
-        switch (view.getId()) {
-            case R.id.iv_setting:
-                startActivity(new Intent(getActivity(), LoginActivity.class));
-                break;
-            case R.id.iv_header:
-                break;
-        }
-    }
 }

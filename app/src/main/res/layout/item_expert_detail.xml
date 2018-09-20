@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/colorWhite"
+    android:layout_marginBottom="@dimen/dp_5"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="@dimen/dp_10">
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+
+            <com.simson.www.widget.CircleImageView
+                android:id="@+id/iv_header"
+                android:layout_width="@dimen/dp_60"
+                android:layout_height="@dimen/dp_60"
+                android:src="@mipmap/ic_placeholder" />
+
+            <TextView
+                android:id="@+id/tv_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dp_10"
+                android:layout_marginTop="@dimen/dp_5"
+                android:layout_toRightOf="@id/iv_header"
+                android:text="张俊杰"
+                android:textColor="@color/colorBlack"
+                android:textSize="@dimen/sp_16" />
+
+            <TextView
+                android:id="@+id/tv_post"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dp_10"
+                android:layout_marginTop="@dimen/dp_5"
+                android:layout_toRightOf="@id/tv_name"
+                android:text="新生院长"
+                android:textColor="@color/colorBlack"
+                android:textSize="@dimen/sp_15" />
+
+            <TextView
+                android:id="@+id/tv_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_name"
+                android:layout_marginLeft="@dimen/dp_10"
+                android:layout_marginTop="@dimen/dp_5"
+                android:layout_toRightOf="@id/iv_header"
+                android:text="2018-09-09"
+                android:textColor="@color/colorBlack_6"
+                android:textSize="@dimen/sp_14" />
+
+            <TextView
+                android:id="@+id/tv_question"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/iv_header"
+                android:layout_marginTop="@dimen/dp_10"
+                android:background="@color/colorOrange"
+                android:padding="@dimen/dp_3"
+                android:text="问"
+                android:textColor="@color/colorWhite"
+                android:textSize="@dimen/sp_15" />
+
+            <TextView
+                android:id="@+id/tv_question_content"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/iv_header"
+                android:layout_marginLeft="@dimen/dp_10"
+                android:layout_marginTop="@dimen/dp_10"
+                android:layout_toRightOf="@id/tv_question"
+                android:text="我这样的脱发严重吗？"
+                android:textColor="@color/colorBlack"
+                android:textSize="@dimen/sp_15" />
+
+            <TextView
+                android:id="@+id/tv_answer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_question"
+                android:layout_marginTop="@dimen/dp_10"
+                android:background="@color/colorMain"
+                android:padding="@dimen/dp_3"
+                android:text="答"
+                android:textColor="@color/colorWhite"
+                android:textSize="@dimen/sp_15" />
+
+            <TextView
+                android:id="@+id/tv_answer_content"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_question"
+                android:layout_marginLeft="@dimen/dp_10"
+                android:layout_marginTop="@dimen/dp_10"
+                android:layout_toRightOf="@id/tv_question"
+                android:text="已经明显发际线三一收到货幅度为电视剧换个几个肺结核就恢复本基金的时间的话收"
+                android:textColor="@color/colorBlack"
+                android:textSize="@dimen/sp_15" />
+        </RelativeLayout>
+
+        <ImageView
+            android:layout_width="@dimen/dp_100"
+            android:layout_height="@dimen/dp_100"
+            android:layout_marginLeft="@dimen/dp_5"
+            android:layout_marginTop="@dimen/dp_20"
+            android:background="@mipmap/ic_placeholder" />
+    </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_margin="@dimen/dp_5"
+        android:background="@color/colorGrey" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="left"
+            android:padding="@dimen/dp_5"
+            android:text="526已看"
+            android:textColor="@color/colorBlack_6"
+            android:textSize="@dimen/sp_14" />
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:padding="@dimen/dp_5"
+            android:text="23评论"
+            android:textColor="@color/colorBlack_6"
+            android:textSize="@dimen/sp_14" />
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="right"
+            android:padding="@dimen/dp_5"
+            android:text="152赞"
+            android:textColor="@color/colorBlack_6"
+            android:textSize="@dimen/sp_14" />
+
+    </LinearLayout>
+</LinearLayout>

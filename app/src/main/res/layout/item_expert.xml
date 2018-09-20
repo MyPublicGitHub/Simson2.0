@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="@dimen/dp_1"
+    android:background="@color/colorWhite"
+    android:orientation="vertical"
+    android:padding="@dimen/dp_10">
+
+    <ImageView
+        android:id="@+id/iv_header"
+        android:layout_width="@dimen/dp_100"
+        android:layout_height="@dimen/dp_100"
+        android:scaleType="centerCrop"
+        android:src="@mipmap/ic_placeholder" />
+
+    <TextView
+        android:id="@+id/tv_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_toRightOf="@+id/iv_header"
+        android:ellipsize="end"
+        android:text="张春杰"
+        android:textColor="@color/colorBlack"
+        android:textSize="@dimen/sp_16" />
+
+    <TextView
+        android:id="@+id/tv_post"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="@dimen/dp_4"
+        android:layout_toRightOf="@+id/tv_name"
+        android:ellipsize="end"
+        android:text="院长"
+        android:textColor="@color/colorBlack_6"
+        android:textSize="@dimen/sp_14" />
+
+
+    <RatingBar
+        android:id="@+id/rate"
+        style="@style/Base.Widget.AppCompat.RatingBar.Small"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/dp_20"
+        android:layout_below="@id/tv_name"
+        android:layout_marginLeft="@dimen/dp_10"
+        android:layout_marginTop="@dimen/dp_3"
+        android:layout_toRightOf="@id/iv_header"
+        android:rating="3" />
+
+
+    <TextView
+        android:id="@+id/tv_case"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_name"
+        android:layout_marginLeft="10dp"
+        android:layout_toRightOf="@+id/rate"
+        android:ellipsize="end"
+        android:text="成功案例129"
+        android:textSize="@dimen/sp_13" />
+
+    <TextView
+        android:id="@+id/tv_hospital_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/rate"
+        android:layout_marginBottom="@dimen/dp_3"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="@dimen/dp_5"
+        android:layout_toRightOf="@+id/iv_header"
+        android:ellipsize="end"
+        android:text="新生医院"
+        android:textSize="@dimen/sp_14" />
+
+    <ImageView
+        android:id="@+id/iv_1"
+        android:layout_width="@dimen/dp_20"
+        android:layout_height="@dimen/dp_20"
+        android:layout_below="@id/tv_hospital_name"
+        android:layout_marginLeft="@dimen/dp_10"
+        android:layout_toRightOf="@+id/iv_header"
+        android:scaleType="centerCrop"
+        android:src="@mipmap/ic_placeholder" />
+
+    <TextView
+        android:id="@+id/tv_reserve"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_hospital_name"
+        android:layout_marginLeft="10dp"
+        android:layout_toRightOf="@+id/iv_1"
+        android:ellipsize="end"
+        android:text="擅长：发际线种植"
+        android:textSize="@dimen/sp_14" />
+
+    <ImageView
+        android:layout_width="@dimen/dp_20"
+        android:layout_height="@dimen/dp_20"
+        android:layout_alignParentRight="true"
+        android:scaleType="centerCrop"
+        android:src="@mipmap/ic_placeholder" />
+</RelativeLayout>
+

@@ -12,6 +12,9 @@ import android.widget.TextView;
 import com.simson.www.R;
 import com.simson.www.ui.adapter.MyViewPageAdapter;
 import com.simson.www.ui.base.BasePresenterFragment;
+import com.simson.www.ui.community.diary.DiaryFragment;
+import com.simson.www.ui.community.expert.ExpertFragment;
+import com.simson.www.ui.community.knowledge.KnowledgeFragment;
 import com.simson.www.ui.core.presenter.BasePresenter;
 
 import java.util.ArrayList;
@@ -41,33 +44,19 @@ public class CommunityFragment extends BasePresenterFragment {
 
     @Override
     protected void initViews(View view) {
-        ArrayList<String> titleDatas = new ArrayList<>();
-        titleDatas.add("科普知识");
-        titleDatas.add("专家提问");
-        titleDatas.add("蜕变日记");
-        ArrayList<Fragment> fragmentList = new ArrayList<>();
-        fragmentList.add(new KnowledgeFragment());
-        fragmentList.add(new ExpertFragment());
-        fragmentList.add(new DiaryFragment());
-        MyViewPageAdapter myViewPageAdapter = new MyViewPageAdapter(getActivity().getSupportFragmentManager(), titleDatas, fragmentList);
-        viewPager.setAdapter(myViewPageAdapter);
+
+        ArrayList<Fragment> frag = new ArrayList<>();
+        frag.add(new KnowledgeFragment());
+        frag.add(new ExpertFragment());
+        frag.add(new DiaryFragment());
+        ArrayList<String> titleData = new ArrayList<>();
+        titleData.add("科普知识");
+        titleData.add("专家提问");
+        titleData.add("蜕变日记");
+        MyViewPageAdapter adapter = new MyViewPageAdapter(getChildFragmentManager(),titleData,frag);
+        viewPager.setAdapter(adapter);
         tabLayout.setupWithViewPager(viewPager);
-        tabLayout.setTabsFromPagerAdapter(myViewPageAdapter);
-//        viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
-//            @Override
-//            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-//
-//            }
-//
-//            @Override
-//            public void onPageSelected(int position) {
-//            }
-//
-//            @Override
-//            public void onPageScrollStateChanged(int state) {
-//
-//            }
-//        });
+
     }
 
     @Override

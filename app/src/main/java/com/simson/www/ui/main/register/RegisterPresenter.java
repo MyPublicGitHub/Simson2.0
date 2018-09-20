@@ -7,7 +7,7 @@ import com.google.gson.Gson;
 import com.simson.www.net.bean.main.CodeBean;
 import com.simson.www.net.bean.main.RegisterBean;
 import com.simson.www.net.callback.RxObserver;
-import com.simson.www.ui.core.model.impl.RegisterModel;
+import com.simson.www.ui.core.model.RegisterModel;
 import com.simson.www.ui.core.presenter.BasePresenter;
 import com.simson.www.utils.DateUtils;
 import com.simson.www.utils.ToastUtils;

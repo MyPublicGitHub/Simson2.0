@@ -16,4 +16,5 @@
     <color name="colorBlack_8">#888888</color>
     <color name="bg_load">#90000000</color>
     <color name="colorOrange">#f06b36</color>
+    <color name="colorBlue">#4a5ebc</color>
 </resources>

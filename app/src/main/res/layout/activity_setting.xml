@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorWhiteBg"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tv_user_info"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_1"
+        android:background="@color/colorWhite"
+        android:drawableRight="@mipmap/ic_open"
+        android:padding="@dimen/dp_10"
+        android:text="个人信息"
+        android:textColor="@color/colorBlack"
+        android:textSize="@dimen/sp_16" />
+
+    <TextView
+        android:id="@+id/tv_phone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_1"
+        android:background="@color/colorWhite"
+        android:drawableRight="@mipmap/ic_open"
+        android:padding="@dimen/dp_10"
+        android:text="修改手机号"
+        android:textColor="@color/colorBlack"
+        android:textSize="@dimen/sp_16" />
+
+    <TextView
+        android:id="@+id/tv_password"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_1"
+        android:background="@color/colorWhite"
+        android:drawableRight="@mipmap/ic_open"
+        android:padding="@dimen/dp_10"
+        android:text="修改密码"
+        android:textColor="@color/colorBlack"
+        android:textSize="@dimen/sp_16" />
+
+
+    <TextView
+        android:id="@+id/tv_address"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_1"
+        android:background="@color/colorWhite"
+        android:drawableRight="@mipmap/ic_open"
+        android:padding="@dimen/dp_10"
+        android:text="收货地址"
+        android:textColor="@color/colorBlack"
+        android:textSize="@dimen/sp_16" />
+
+    <TextView
+        android:id="@+id/tv_feed_back"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_10"
+        android:background="@color/colorWhite"
+        android:drawableRight="@mipmap/ic_open"
+        android:padding="@dimen/dp_10"
+        android:text="意见反馈"
+        android:textColor="@color/colorBlack"
+        android:textSize="@dimen/sp_16" />
+
+    <TextView
+        android:id="@+id/tv_cache"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_1"
+        android:background="@color/colorWhite"
+        android:drawableRight="@mipmap/ic_open"
+        android:padding="@dimen/dp_10"
+        android:text="清除缓存"
+        android:textColor="@color/colorBlack"
+        android:textSize="@dimen/sp_16" />
+
+    <TextView
+        android:id="@+id/tv_about"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_1"
+        android:background="@color/colorWhite"
+        android:drawableRight="@mipmap/ic_open"
+        android:padding="@dimen/dp_10"
+        android:text="当前版本"
+        android:textColor="@color/colorBlack"
+        android:textSize="@dimen/sp_16" />
+
+    <TextView
+        android:id="@+id/tv_logout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:layout_margin="@dimen/dp_10"
+        android:background="@color/colorRed"
+        android:gravity="center"
+        android:padding="@dimen/dp_10"
+        android:text="@string/login_out"
+        android:textColor="@color/colorWhite"
+        android:textSize="@dimen/sp_16" />
+</LinearLayout>

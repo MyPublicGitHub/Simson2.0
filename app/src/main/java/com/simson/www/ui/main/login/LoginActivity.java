@@ -5,7 +5,6 @@ import android.support.design.widget.TabLayout;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
 import android.text.method.TransformationMethod;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -14,14 +13,20 @@ import android.widget.TextView;
 
 import com.simson.www.BuildConfig;
 import com.simson.www.R;
+import com.simson.www.common.Const;
+import com.simson.www.event.Event;
+import com.simson.www.event.RxEvent;
+import com.simson.www.net.bean.main.CodeBean;
+import com.simson.www.net.bean.main.LoginBean;
 import com.simson.www.ui.base.BasePresenterActivity;
 import com.simson.www.ui.main.register.RegisterActivity;
+import com.simson.www.ui.main.reset.ResetPasswordActivity;
 import com.simson.www.utils.ToastUtils;
 
 import butterknife.BindView;
 import butterknife.OnClick;
 
-public class LoginActivity extends BasePresenterActivity<LoginPresenter, LoginContract.ILoginView> implements LoginContract.ILoginView {
+public class LoginActivity extends BasePresenterActivity<LoginPresenter, LoginContract.View> implements LoginContract.View {
 
     @BindView(R.id.tab_layout)
     TabLayout tabLayout;
@@ -66,12 +71,12 @@ public class LoginActivity extends BasePresenterActivity<LoginPresenter, LoginCo
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
                 if (tab.getPosition() == 1) {
-                    llPhoneCode.setVisibility(View.GONE);
-                    llUserPsw.setVisibility(View.VISIBLE);
+                    llPhoneCode.setVisibility(android.view.View.GONE);
+                    llUserPsw.setVisibility(android.view.View.VISIBLE);
                     mType = 1;
                 } else {
-                    llPhoneCode.setVisibility(View.VISIBLE);
-                    llUserPsw.setVisibility(View.GONE);
+                    llPhoneCode.setVisibility(android.view.View.VISIBLE);
+                    llUserPsw.setVisibility(android.view.View.GONE);
                     mType = 0;
                 }
             }
@@ -94,36 +99,27 @@ public class LoginActivity extends BasePresenterActivity<LoginPresenter, LoginCo
         }
     }
 
+
     @Override
-    protected boolean initToolbar() {
-        mTitle.setText("登录");
-        mToolbar.inflateMenu(R.menu.toolbar_menu_login);
-        mToolbar.setOnMenuItemClickListener(item -> {
-            startActivity(new Intent(LoginActivity.this, RegisterActivity.class));
-            return false;
-        });
-        return true;
+    public void showCode(CodeBean bean) {
+        ToastUtils.showToast("获取验证码成功");
+        if (BuildConfig.DEBUG) {
+            etCode.setText(bean.getCode());
+            mPresenter.login();
+        }
     }
 
     @Override
-    public String getUserName() {
-        if (mType == 0) return etPhone.getText().toString();
-        else return etUsername.getText().toString();
+    public void showLogin(LoginBean bean) {
+        ToastUtils.showToast("登录成功");
+        RxEvent.getInstance().postEvent(Const.EVENT_ACTION.LOGIN,new Event(Event.Type.LOGIN, true));
+        finish();
     }
 
-    @Override
-    public String getPassWord() {
-        if (mType == 0) return etCode.getText().toString();
-        else return etPassword.getText().toString();
-    }
 
-    @Override
-    public void showResult(String msg) {
-        ToastUtils.showToast(msg);
-    }
 
-    @OnClick({R.id.btn_get_code, R.id.btn_sign_in, R.id.tv_forget_password, R.id.tv_agreement,R.id.iv_password})
-    public void onViewClicked(View view) {
+    @OnClick({R.id.btn_get_code, R.id.btn_sign_in, R.id.tv_forget_password, R.id.tv_agreement, R.id.iv_password})
+    public void onViewClicked(android.view.View view) {
         switch (view.getId()) {
             case R.id.btn_get_code:
                 mPresenter.getCode();
@@ -132,6 +128,7 @@ public class LoginActivity extends BasePresenterActivity<LoginPresenter, LoginCo
                 mPresenter.login();
                 break;
             case R.id.tv_forget_password:
+                startActivity(new Intent(this, ResetPasswordActivity.class));
                 break;
 
             case R.id.iv_password:
@@ -159,4 +156,26 @@ public class LoginActivity extends BasePresenterActivity<LoginPresenter, LoginCo
         }
     }
 
+    @Override
+    protected boolean initToolbar() {
+        mTitle.setText("登录");
+        mToolbar.inflateMenu(R.menu.toolbar_menu_login);
+        mToolbar.setOnMenuItemClickListener(item -> {
+            startActivity(new Intent(LoginActivity.this, RegisterActivity.class));
+            return false;
+        });
+        return true;
+    }
+
+    @Override
+    public String getUserName() {
+        if (mType == 0) return etPhone.getText().toString();
+        else return etUsername.getText().toString();
+    }
+
+    @Override
+    public String getPassWord() {
+        if (mType == 0) return etCode.getText().toString();
+        else return etPassword.getText().toString();
+    }
 }

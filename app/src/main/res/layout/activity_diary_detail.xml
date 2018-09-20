@@ -1,0 +1,310 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorWhiteBg"
+    tools:context="com.simson.www.ui.community.diary.detail.DiaryDetailActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/dp_10"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:background="@color/colorWhite"
+            android:orientation="vertical"
+            android:padding="@dimen/dp_10">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical">
+
+                <com.simson.www.widget.CircleImageView
+                    android:id="@+id/iv_header"
+                    android:layout_width="@dimen/dp_60"
+                    android:layout_height="@dimen/dp_60"
+                    android:src="@mipmap/ic_placeholder" />
+
+                <TextView
+                    android:id="@+id/tv_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/dp_10"
+                    android:layout_marginTop="@dimen/dp_5"
+                    android:layout_toRightOf="@id/iv_header"
+                    android:text="张俊杰"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="@dimen/sp_15" />
+
+                <TextView
+                    android:id="@+id/tv_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/tv_name"
+                    android:layout_marginLeft="@dimen/dp_10"
+                    android:layout_marginTop="@dimen/dp_5"
+                    android:layout_toRightOf="@id/iv_header"
+                    android:text="2018-08-09"
+                    android:textColor="@color/colorBlack_6"
+                    android:textSize="@dimen/sp_14" />
+
+                <TextView
+                    android:id="@+id/tv_follow"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginTop="@dimen/dp_10"
+                    android:background="@drawable/shape_corner_white_main"
+                    android:paddingBottom="@dimen/dp_3"
+                    android:paddingLeft="@dimen/dp_10"
+                    android:paddingRight="@dimen/dp_10"
+                    android:paddingTop="@dimen/dp_3"
+                    android:text="+ 关注"
+                    android:textColor="@color/colorMain"
+                    android:textSize="@dimen/sp_15" />
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_180"
+                android:layout_marginBottom="@dimen/dp_10"
+                android:layout_marginTop="@dimen/dp_10"
+                android:orientation="horizontal">
+
+                <FrameLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="@dimen/dp_5"
+                    android:layout_weight="1">
+
+                    <ImageView
+                        android:id="@+id/iv_before"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@mipmap/ic_placeholder"
+                        android:scaleType="centerCrop" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom"
+                        android:layout_marginBottom="@dimen/dp_10"
+                        android:layout_marginTop="@dimen/dp_5"
+                        android:background="@drawable/shape_corner_diary_image"
+                        android:paddingBottom="@dimen/dp_5"
+                        android:paddingLeft="@dimen/dp_10"
+                        android:paddingRight="@dimen/dp_15"
+                        android:paddingTop="@dimen/dp_5"
+                        android:text="术前"
+                        android:textColor="@color/colorWhite" />
+                </FrameLayout>
+
+                <FrameLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="@dimen/dp_5"
+                    android:layout_weight="1">
+
+                    <ImageView
+                        android:id="@+id/iv_after"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@mipmap/ic_placeholder"
+                        android:scaleType="centerCrop" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom"
+                        android:layout_marginBottom="@dimen/dp_10"
+                        android:layout_marginTop="@dimen/dp_5"
+                        android:background="@drawable/shape_corner_diary_image"
+                        android:paddingBottom="@dimen/dp_5"
+                        android:paddingLeft="@dimen/dp_10"
+                        android:paddingRight="@dimen/dp_15"
+                        android:paddingTop="@dimen/dp_5"
+                        android:text="术后"
+                        android:textColor="@color/colorWhite" />
+                </FrameLayout>
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tv_content"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:text="【发际线种植】这样涉及到撒娇的电视剧爱护欧恩擅长大数据库的人撒大家好"
+                android:textColor="@color/colorBlack"
+                android:textSize="@dimen/sp_15" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@mipmap/ic_bg_rounded_rectangle"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:padding="@dimen/dp_15">
+
+                <ImageView
+                    android:layout_width="@dimen/dp_20"
+                    android:layout_height="@dimen/dp_20"
+                    android:layout_marginRight="@dimen/dp_10"
+                    android:src="@mipmap/ic_diary_project" />
+
+                <TextView
+                    android:id="@+id/tv_item"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:text="【发际线种植】这样涉及到撒娇的电视剧爱护欧恩擅长大数据库的人撒大家好"
+                    android:textColor="@color/colorBlack_4"
+                    android:textSize="@dimen/sp_15" />
+
+                <TextView
+                    android:id="@+id/tv_price"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/dp_10"
+                    android:text="￥2561.00"
+                    android:textColor="@color/colorOrange"
+                    android:textSize="@dimen/sp_15" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/dp_10"
+                    android:text="楼主的评分"
+                    android:textColor="@color/colorBlack_4"
+                    android:textSize="@dimen/sp_15" />
+
+                <RatingBar
+                    android:id="@+id/rate"
+                    style="@style/Widget.AppCompat.RatingBar.Small"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:clickable="false"
+                    android:isIndicator="false"
+                    android:rating="3" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tv_service"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/dp_10"
+                    android:text="服务：5.0"
+                    android:textColor="@color/colorBlack_4"
+                    android:textSize="@dimen/sp_15" />
+
+                <TextView
+                    android:id="@+id/tv_effect"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/dp_10"
+                    android:text="手术效果：5.0"
+                    android:textColor="@color/colorBlack_4"
+                    android:textSize="@dimen/sp_15" />
+
+                <TextView
+                    android:id="@+id/tv_evaluate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/dp_10"
+                    android:text="医生评价：5.0"
+                    android:textColor="@color/colorBlack_4"
+                    android:textSize="@dimen/sp_15" />
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_1"
+                android:background="@color/colorWhiteBg" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tv_browse"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="left"
+                    android:padding="@dimen/dp_10"
+                    android:text="526已看"
+                    android:textColor="@color/colorBlack_4"
+                    android:textSize="@dimen/sp_15" />
+
+                <TextView
+                    android:id="@+id/tv_comments"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:padding="@dimen/dp_10"
+                    android:text="23评论"
+                    android:textColor="@color/colorBlack_4"
+                    android:textSize="@dimen/sp_15" />
+
+                <TextView
+                    android:id="@+id/tv_praises"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="right"
+                    android:padding="@dimen/dp_10"
+                    android:text="152赞"
+                    android:textColor="@color/colorBlack_4"
+                    android:textSize="@dimen/sp_15" />
+
+            </LinearLayout>
+        </LinearLayout>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:layout_marginTop="@dimen/dp_5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/dp_1"
+            android:background="@color/colorWhite"
+            android:padding="@dimen/dp_10"
+            android:text="相关日记推荐"
+            android:textColor="@color/colorBlack_2"
+            android:textSize="@dimen/sp_15" />
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv_recommend"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+</android.support.v4.widget.NestedScrollView>

@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorWhiteBg"
+    android:orientation="vertical">
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <com.youth.banner.Banner
+                android:id="@+id/banner_sign_in"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_130"
+                android:background="@mipmap/ic_mine_sign_in_bg" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_3"
+                android:background="@color/colorWhite"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/portrait"
+                    android:layout_width="@dimen/dp_30"
+                    android:layout_height="@dimen/dp_30"
+                    android:layout_margin="@dimen/dp_15" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="连续签到"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="@dimen/sp_16" />
+
+                <TextView
+                    android:id="@+id/sign_in_day"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/dp_15"
+                    android:text="2"
+                    android:textColor="@color/colorMain"
+                    android:textSize="@dimen/sp_16" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="/28天"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="@dimen/sp_16" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical|right"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="@dimen/dp_15"
+                        android:text="签到提醒"
+                        android:textColor="@color/colorBlack"
+                        android:textSize="@dimen/sp_16" />
+
+                    <Switch
+                        android:id="@+id/remind_switch"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="@dimen/dp_15" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_5"
+                android:background="@color/colorWhite"
+                android:gravity="center_horizontal"
+                android:orientation="vertical">
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/sign_in_list"
+                    android:layout_width="wrap_content"
+                    android:layout_height="80dp"
+                    android:layout_marginTop="@dimen/dp_15" />
+
+                <Button
+                    android:id="@+id/sign_in_btn"
+                    android:layout_width="@dimen/dp_150"
+                    android:layout_height="@dimen/dp_40"
+                    android:layout_marginBottom="@dimen/dp_15"
+                    android:layout_marginTop="@dimen/dp_10"
+                    android:background="@drawable/shape_corner_orange_15dp"
+                    android:text="立即签到"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="@dimen/sp_16" />
+            </LinearLayout>
+
+            <!--<LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_10"
+                android:background="@color/colorWhite"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:id="@+id/exchange_record"
+                    android:layout_width="@dimen/dp_0"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:padding="@dimen/dp_15">
+
+                    <ImageView
+                        android:layout_width="@dimen/dp_40"
+                        android:layout_height="@dimen/dp_40"
+                        android:src="@mipmap/ic_mine_diary" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/dp_5"
+                        android:text="兑换记录"
+                        android:textColor="@color/colorBlack"
+                        android:textSize="@dimen/sp_16" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/integral_detail"
+                    android:layout_width="@dimen/dp_0"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:padding="@dimen/dp_15">
+
+                    <ImageView
+                        android:layout_width="@dimen/dp_40"
+                        android:layout_height="@dimen/dp_40"
+                        android:src="@mipmap/ic_mine_integral" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/dp_5"
+                        android:text="积分明细"
+                        android:textColor="@color/colorBlack"
+                        android:textSize="@dimen/sp_16" />
+                </LinearLayout>
+            </LinearLayout>-->
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="@dimen/dp_10"
+                android:background="@color/colorWhite"
+                android:gravity="left"
+                android:orientation="vertical"
+                android:paddingBottom="@dimen/dp_10"
+                android:paddingLeft="@dimen/dp_30"
+                android:paddingRight="@dimen/dp_30"
+                android:paddingTop="@dimen/dp_10">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:lineSpacingExtra="@dimen/dp_5"
+                    android:text="@string/sign_in_rule_title"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="@dimen/sp_16" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp_5"
+                    android:lineSpacingExtra="@dimen/dp_5"
+                    android:text="@string/sign_in_rule_one"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="@dimen/sp_12" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp_5"
+                    android:lineSpacingExtra="@dimen/dp_5"
+                    android:text="@string/sign_in_rule_two"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="@dimen/sp_12" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp_5"
+                    android:lineSpacingExtra="@dimen/dp_5"
+                    android:text="@string/sign_in_rule_three"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="@dimen/sp_12" />
+            </LinearLayout>
+        </LinearLayout>
+    </android.support.v4.widget.NestedScrollView>
+</LinearLayout>

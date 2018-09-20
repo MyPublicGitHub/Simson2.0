@@ -5,11 +5,11 @@ import com.simson.www.ui.core.view.IView;
 
 
 public interface HomeContract {
-    interface IHomePresenter {
+    interface Presenter {
         void getBanner();
     }
 
-    interface IHomeView extends IView {
+    interface View extends IView {
 
         void setBannerData(HomeBannerBean bean);
 

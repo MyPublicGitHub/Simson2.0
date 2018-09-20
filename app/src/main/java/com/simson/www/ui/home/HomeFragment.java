@@ -4,9 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -17,6 +14,7 @@ import com.simson.www.net.bean.main.ItemTypeBean;
 import com.simson.www.ui.adapter.TabViewPagerAdapter;
 import com.simson.www.ui.adapter.TabViewPagerAdapterItem;
 import com.simson.www.ui.base.BasePresenterFragment;
+import com.simson.www.ui.home.expert.ExpertActivity;
 import com.simson.www.ui.home.hospital.HospitalActivity;
 import com.simson.www.utils.GlideImageLoader;
 import com.simson.www.utils.GlideUtils;
@@ -28,12 +26,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
-import butterknife.Unbinder;
 
 
-public class HomeFragment extends BasePresenterFragment<HomePresenter, HomeContract.IHomeView> implements HomeContract.IHomeView {
+public class HomeFragment extends BasePresenterFragment<HomePresenter, HomeContract.View> implements HomeContract.View {
     @BindView(R.id.tab_layout)
     TabLayout tabLayout;
     @BindView(R.id.view_pager)
@@ -60,7 +56,7 @@ public class HomeFragment extends BasePresenterFragment<HomePresenter, HomeContr
     }
 
     @Override
-    protected void initViews(View view) {
+    protected void initViews(android.view.View view) {
         initBanner();
         mPresenter.getBanner();
         mPresenter.getItemType();
@@ -71,14 +67,16 @@ public class HomeFragment extends BasePresenterFragment<HomePresenter, HomeContr
     }
 
     @OnClick({R.id.tv_hospital, R.id.tv_expert, R.id.tv_case})
-    public void onViewClicked(View view) {
+    public void onViewClicked(android.view.View view) {
         switch (view.getId()) {
             case R.id.tv_hospital:
                 startActivity(new Intent(getActivity(),HospitalActivity.class));
                 break;
             case R.id.tv_expert:
+                startActivity(new Intent(getActivity(),ExpertActivity.class));
                 break;
             case R.id.tv_case:
+                //startActivity(new Intent(getActivity(),HospitalActivity.class));
                 break;
         }
     }

@@ -1,7 +1,7 @@
 package com.simson.www.ui.mine;
 
 
-import com.simson.www.ui.core.model.impl.HomeModel;
+import com.simson.www.ui.core.model.HomeModel;
 import com.simson.www.ui.core.presenter.BasePresenter;
 
 /**

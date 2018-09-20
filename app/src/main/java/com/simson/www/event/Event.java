@@ -6,7 +6,7 @@ package com.simson.www.event;
 
 public class Event {
     public enum Type {
-        ITEM, LIST
+        LOGIN
     }
 
     public Type type;
