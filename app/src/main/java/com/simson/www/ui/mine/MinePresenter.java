@@ -1,57 +1,54 @@
 package com.simson.www.ui.mine;
 
 
-import com.simson.www.ui.core.model.HomeModel;
+import com.google.gson.Gson;
+import com.simson.www.common.Const;
+import com.simson.www.net.bean.community.DiaryBean;
+import com.simson.www.net.bean.home.HomeBannerBean;
+import com.simson.www.net.bean.home.HomeDataBean;
+import com.simson.www.net.bean.mine.CustomerBean;
+import com.simson.www.net.callback.RxConsumer;
+import com.simson.www.net.callback.RxObserver;
+import com.simson.www.ui.core.model.MineModel;
 import com.simson.www.ui.core.presenter.BasePresenter;
+import com.simson.www.utils.DateUtils;
+import com.simson.www.utils.SPUtils;
 
-/**
- * Home Presenter
- * author:
- * date: 2018/2/11
- */
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
-public class MinePresenter extends BasePresenter<MineContract.IMineView> implements MineContract.IMinePresenter {
-    private HomeModel mHomeModel;
-    private MineContract.IMineView homeView;
+public class MinePresenter extends BasePresenter<MineContract.View> implements MineContract.Presenter {
+    private MineModel mModel;
+    private MineContract.View mView;
 
     MinePresenter() {
-        this.mHomeModel = new HomeModel();
+        this.mModel = new MineModel();
     }
 
-    /**
-     */
-//    @Override
-//    public void getHomeList() {
-//        homeView = getView();
-//        RxObserver<List<HomeDataBean>> mHomeRxPageListObserver = new RxObserver<List<HomeDataBean>>(this) {
-//
-//            @Override
-//            public void onSuccess(List<HomeDataBean> mData) {
-//                homeView.setData(mData);
-//                if (homeView.getData().size() == 0)
-//                    homeView.showEmpty();
-//                else
-//                    homeView.showContent();
-//            }
-//
-//            @Override
-//            public void onFail(int code, String errorMsg) {
-//                homeView.showFail(errorMsg);
-//            }
-//        };
-//        mHomeModel.getHomeData(homeView.getPage(), new RxConsumer<HomeBannerBean>() {
-//            @Override
-//            protected void onFail(String errorMsg) {
-//                homeView.showFail(errorMsg);
-//            }
-//
-//            @Override
-//            protected void onSuccess(HomeBannerBean data) {
-//                homeView.setBannerData(data.getBroadcasts());
-//            }
-//        }, mHomeRxPageListObserver);
-//
-//        addDisposable(mHomeRxPageListObserver);
-//    }
+
+    @Override
+    public void getCustomer() {
+        mView = getView();
+        RxObserver<CustomerBean> observer = new RxObserver<CustomerBean>(this) {
+
+            @Override
+            public void onSuccess(CustomerBean mData) {
+                mView.showCustomer(mData);
+            }
+
+            @Override
+            public void onFail(int code, String errorMsg) {
+                mView.showFail(errorMsg);
+            }
+        };
+
+        Map<String, String> map = new HashMap<>();
+        map.put("timestamp", DateUtils.getStringDate());
+        map.put("customerId", (String) SPUtils.get(Const.USER_INFO.CUSTOMER_ID, ""));//当前登录人
+        String json = new Gson().toJson(map);
+        mModel.getCustomer(json, observer);
+        addDisposable(observer);
+    }
 
 }

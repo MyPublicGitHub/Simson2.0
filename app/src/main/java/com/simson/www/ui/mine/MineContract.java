@@ -1,21 +1,17 @@
 package com.simson.www.ui.mine;
 
+import com.simson.www.net.bean.mine.CustomerBean;
 import com.simson.www.ui.core.view.IView;
 
-/**
- * Home协约类
- * author:
- * date: 2018/3/6
- */
-
 public interface MineContract {
-    interface IMinePresenter {
+    interface Presenter {
 
+        void getCustomer();
 
     }
 
-    interface IMineView extends IView {
+    interface View extends IView {
 
-
+        void showCustomer(CustomerBean bean);
     }
 }

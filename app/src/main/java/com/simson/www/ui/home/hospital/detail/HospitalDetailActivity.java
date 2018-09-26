@@ -47,9 +47,9 @@ public class HospitalDetailActivity extends BasePresenterActivity {
         rvInstrument.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
         rvInstrument.setAdapter(mHDAInstrumentAdapter);
 
-        mHDACaseDiaryAdapter = new HDACaseDiaryAdapter(list);
-        rvCaseDiary.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
-        rvCaseDiary.setAdapter(mHDACaseDiaryAdapter);
+//        mHDACaseDiaryAdapter = new HDACaseDiaryAdapter(list);
+//        rvCaseDiary.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
+//        rvCaseDiary.setAdapter(mHDACaseDiaryAdapter);
 
         mHDAHospitalInfoAdapter = new HDAHospitalInfoAdapter(list);
         rvHospitalInfo.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));

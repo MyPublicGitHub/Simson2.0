@@ -42,6 +42,7 @@ public class DiaryFragment extends BasePresenterFragment {
         titleData.add("全部");
         TabViewPagerAdapter adapter = new TabViewPagerAdapter(getChildFragmentManager(),
                 TabViewPagerAdapterItem.createDiaryItemFragments(titleData));
+        viewPager.setOffscreenPageLimit(3);
         viewPager.setAdapter(adapter);
         tabLayout.setupWithViewPager(viewPager);
     }

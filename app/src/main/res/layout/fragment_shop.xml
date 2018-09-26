@@ -61,71 +61,128 @@
                 </LinearLayout>
             </RelativeLayout>
 
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/colorWhite"
                 android:orientation="horizontal">
 
-                <TextView
+                <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:drawablePadding="5dp"
-                    android:drawableTop="@mipmap/ic_community_hair"
                     android:gravity="center"
-                    android:padding="@dimen/dp_10"
-                    android:text="头发"
-                    android:textColor="@color/colorBlack"
-                    android:textSize="@dimen/sp_14" />
+                    android:orientation="vertical"
+                    android:padding="@dimen/dp_10">
 
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:drawablePadding="5dp"
-                    android:drawableTop="@mipmap/ic_community_eyebrow"
-                    android:gravity="center"
-                    android:padding="@dimen/dp_10"
-                    android:text="眉毛"
-                    android:textColor="@color/colorBlack"
-                    android:textSize="@dimen/sp_14" />
+                    <ImageView
+                        android:layout_width="@dimen/dp_50"
+                        android:layout_height="@dimen/dp_50"
+                        android:src="@mipmap/ic_community_hair" />
 
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:drawablePadding="5dp"
-                    android:drawableTop="@mipmap/ic_community_eyelash"
-                    android:gravity="center"
-                    android:padding="@dimen/dp_10"
-                    android:text="睫毛"
-                    android:textColor="@color/colorBlack"
-                    android:textSize="@dimen/sp_14" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/dp_5"
+                        android:drawablePadding="5dp"
+                        android:text="头发"
+                        android:textColor="@color/colorBlack"
+                        android:textSize="@dimen/sp_14" />
+                </LinearLayout>
 
-                <TextView
+                <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:drawablePadding="5dp"
-                    android:drawableTop="@mipmap/ic_launcher_round"
                     android:gravity="center"
-                    android:padding="@dimen/dp_10"
-                    android:text="发际线"
-                    android:textColor="@color/colorBlack"
-                    android:textSize="@dimen/sp_14" />
+                    android:orientation="vertical"
+                    android:padding="@dimen/dp_10">
 
-                <TextView
+                    <ImageView
+                        android:layout_width="@dimen/dp_50"
+                        android:layout_height="@dimen/dp_50"
+                        android:src="@mipmap/ic_community_eyebrow" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/dp_5"
+                        android:drawablePadding="5dp"
+                        android:text="眉毛"
+                        android:textColor="@color/colorBlack"
+                        android:textSize="@dimen/sp_14" />
+                </LinearLayout>
+
+                <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:drawablePadding="5dp"
-                    android:drawableTop="@mipmap/ic_community_temples"
                     android:gravity="center"
-                    android:padding="@dimen/dp_10"
-                    android:text="鬓角"
-                    android:textColor="@color/colorBlack"
-                    android:textSize="@dimen/sp_14" />
+                    android:orientation="vertical"
+                    android:padding="@dimen/dp_10">
+
+                    <ImageView
+                        android:layout_width="@dimen/dp_50"
+                        android:layout_height="@dimen/dp_50"
+                        android:src="@mipmap/ic_community_eyelash" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/dp_5"
+                        android:drawablePadding="5dp"
+                        android:text="睫毛"
+                        android:textColor="@color/colorBlack"
+                        android:textSize="@dimen/sp_14" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:padding="@dimen/dp_10">
+
+                    <ImageView
+                        android:layout_width="@dimen/dp_50"
+                        android:layout_height="@dimen/dp_50"
+                        android:src="@mipmap/ic_launcher_round" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/dp_5"
+                        android:drawablePadding="5dp"
+                        android:text="发际线"
+                        android:textColor="@color/colorBlack"
+                        android:textSize="@dimen/sp_14" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:padding="@dimen/dp_10">
+
+                    <ImageView
+                        android:layout_width="@dimen/dp_50"
+                        android:layout_height="@dimen/dp_50"
+                        android:src="@mipmap/ic_community_temples" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/dp_5"
+                        android:drawablePadding="5dp"
+                        android:text="鬓角"
+                        android:textColor="@color/colorBlack"
+                        android:textSize="@dimen/sp_14" />
+                </LinearLayout>
+
             </LinearLayout>
 
             <LinearLayout
@@ -134,65 +191,121 @@
                 android:background="@color/colorWhite"
                 android:orientation="horizontal">
 
-                <TextView
+                <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:drawablePadding="5dp"
-                    android:drawableTop="@mipmap/ic_community_beard"
                     android:gravity="center"
-                    android:padding="@dimen/dp_10"
-                    android:text="胡须"
-                    android:textColor="@color/colorBlack"
-                    android:textSize="@dimen/sp_14" />
+                    android:orientation="vertical"
+                    android:padding="@dimen/dp_10">
 
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:drawablePadding="5dp"
-                    android:drawableTop="@mipmap/ic_community_scar"
-                    android:gravity="center"
-                    android:padding="@dimen/dp_10"
-                    android:text="疤痕"
-                    android:textColor="@color/colorBlack"
-                    android:textSize="@dimen/sp_14" />
+                    <ImageView
+                        android:layout_width="@dimen/dp_50"
+                        android:layout_height="@dimen/dp_50"
+                        android:src="@mipmap/ic_community_beard" />
 
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:drawablePadding="5dp"
-                    android:drawableTop="@mipmap/ic_community_peak"
-                    android:gravity="center"
-                    android:padding="@dimen/dp_10"
-                    android:text="美人尖"
-                    android:textColor="@color/colorBlack"
-                    android:textSize="@dimen/sp_14" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/dp_5"
+                        android:drawablePadding="5dp"
+                        android:text="胡须"
+                        android:textColor="@color/colorBlack"
+                        android:textSize="@dimen/sp_14" />
+                </LinearLayout>
 
-                <TextView
+                <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:drawablePadding="5dp"
-                    android:drawableTop="@mipmap/ic_community_leg_hair"
                     android:gravity="center"
-                    android:padding="@dimen/dp_10"
-                    android:text="腿毛"
-                    android:textColor="@color/colorBlack"
-                    android:textSize="@dimen/sp_14" />
+                    android:orientation="vertical"
+                    android:padding="@dimen/dp_10">
 
-                <TextView
+                    <ImageView
+                        android:layout_width="@dimen/dp_50"
+                        android:layout_height="@dimen/dp_50"
+                        android:src="@mipmap/ic_community_scar" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/dp_5"
+                        android:drawablePadding="5dp"
+                        android:text="疤痕"
+                        android:textColor="@color/colorBlack"
+                        android:textSize="@dimen/sp_14" />
+                </LinearLayout>
+
+                <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:drawablePadding="5dp"
-                    android:drawableTop="@mipmap/ic_community_body_hair"
                     android:gravity="center"
-                    android:padding="@dimen/dp_10"
-                    android:text="体毛"
-                    android:textColor="@color/colorBlack"
-                    android:textSize="@dimen/sp_14" />
+                    android:orientation="vertical"
+                    android:padding="@dimen/dp_10">
+
+                    <ImageView
+                        android:layout_width="@dimen/dp_50"
+                        android:layout_height="@dimen/dp_50"
+                        android:src="@mipmap/ic_community_peak" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/dp_5"
+                        android:drawablePadding="5dp"
+                        android:text="美人尖"
+                        android:textColor="@color/colorBlack"
+                        android:textSize="@dimen/sp_14" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:padding="@dimen/dp_10">
+
+                    <ImageView
+                        android:layout_width="@dimen/dp_50"
+                        android:layout_height="@dimen/dp_50"
+                        android:src="@mipmap/ic_community_leg_hair" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/dp_5"
+                        android:drawablePadding="5dp"
+                        android:text="腿毛"
+                        android:textColor="@color/colorBlack"
+                        android:textSize="@dimen/sp_14" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:padding="@dimen/dp_10">
+
+                    <ImageView
+                        android:layout_width="@dimen/dp_50"
+                        android:layout_height="@dimen/dp_50"
+                        android:src="@mipmap/ic_community_body_hair" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/dp_5"
+                        android:drawablePadding="5dp"
+                        android:text="体毛"
+                        android:textColor="@color/colorBlack"
+                        android:textSize="@dimen/sp_14" />
+                </LinearLayout>
+
             </LinearLayout>
 
             <ImageView

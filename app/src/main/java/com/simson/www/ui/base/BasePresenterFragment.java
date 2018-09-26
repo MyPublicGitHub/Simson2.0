@@ -23,8 +23,10 @@ public abstract class BasePresenterFragment<P extends BasePresenter<V>, V extend
         mPresenter = createPresenter();
         //关联View
         attachView();
+        initData();
     }
-
+    @Override
+    protected void initData() {}
 
     @Override
     public void onDestroy() {

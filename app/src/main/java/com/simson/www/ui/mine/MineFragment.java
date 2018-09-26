@@ -9,6 +9,7 @@ import android.widget.TextView;
 import com.simson.www.R;
 import com.simson.www.common.Const;
 import com.simson.www.event.Event;
+import com.simson.www.net.bean.mine.CustomerBean;
 import com.simson.www.ui.base.BasePresenterFragment;
 import com.simson.www.ui.main.login.LoginActivity;
 import com.simson.www.ui.mine.diary.MyDiaryActivity;
@@ -28,17 +29,29 @@ import butterknife.BindView;
 import butterknife.OnClick;
 
 
-public class MineFragment extends BasePresenterFragment<MinePresenter, MineContract.IMineView> implements MineContract.IMineView {
+public class MineFragment extends BasePresenterFragment<MinePresenter, MineContract.View> implements MineContract.View {
 
     @BindView(R.id.iv_header)
     CircleImageView ivHeader;
     @BindView(R.id.tv_user_name)
     TextView tvUserName;
+    @BindView(R.id.tv_fans)
+    TextView tvFans;
+    @BindView(R.id.tv_follow)
+    TextView tvFollow;
+    @BindView(R.id.tv_post)
+    TextView tvPost;
+    @BindView(R.id.tv_diary)
+    TextView tvDiary;
+    @BindView(R.id.tv_message)
+    TextView tvMessage;
+    @BindView(R.id.tv_integral)
+    TextView tvIntegral;
 
     @Override
     protected void initViews(View view) {
         GlideUtils.with(SPUtils.get(Const.USER_INFO.CUSTOMER_HEAD, ""), ivHeader);
-        tvUserName.setText((String)SPUtils.get(Const.USER_INFO.CUSTOMER_NICK_NAME, ""));
+        tvUserName.setText((String) SPUtils.get(Const.USER_INFO.CUSTOMER_NICK_NAME, ""));
     }
 
 
@@ -47,6 +60,17 @@ public class MineFragment extends BasePresenterFragment<MinePresenter, MineContr
         return R.layout.fragment_mine;
     }
 
+    @Override
+    public void showCustomer(CustomerBean bean) {
+        if (bean == null) return;
+        GlideUtils.with(bean.getCustomer_head(), ivHeader);
+        tvUserName.setText(bean.getCustomer_name() + "");
+        tvFans.setText("粉丝："+bean.getFans());
+        tvFollow.setText("关注："+bean.getFollows());
+        tvDiary.setText(bean.getDiarys() + "");
+        tvMessage.setText(bean.getUnreads() + "");
+
+    }
 
     @OnClick({R.id.iv_setting, R.id.ll_user_info, R.id.ll_integral_mall, R.id.ll_sign_in, R.id.ll_invitation,
             R.id.ll_diary, R.id.ll_message, R.id.ll_integral, R.id.ll_post, R.id.ll_pending_payment,
@@ -102,7 +126,7 @@ public class MineFragment extends BasePresenterFragment<MinePresenter, MineContr
         Event mEvent = (Event) object;
         if (mEvent.type == Event.Type.LOGIN) {
             GlideUtils.with(SPUtils.get(Const.USER_INFO.CUSTOMER_HEAD, ""), ivHeader);
-            tvUserName.setText((String)SPUtils.get(Const.USER_INFO.CUSTOMER_NICK_NAME, ""));
+            tvUserName.setText((String) SPUtils.get(Const.USER_INFO.CUSTOMER_NICK_NAME, ""));
         }
     }
 

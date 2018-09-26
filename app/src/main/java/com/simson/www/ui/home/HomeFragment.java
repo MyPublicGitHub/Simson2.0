@@ -84,6 +84,7 @@ public class HomeFragment extends BasePresenterFragment<HomePresenter, HomeContr
     public void setItemType(List<ItemTypeBean> bean) {
         TabViewPagerAdapter adapter = new TabViewPagerAdapter(getChildFragmentManager(),
                 TabViewPagerAdapterItem.createHomeFragments(bean));
+        viewPager.setOffscreenPageLimit(3);
         viewPager.setAdapter(adapter);
         tabLayout.setupWithViewPager(viewPager);
     }

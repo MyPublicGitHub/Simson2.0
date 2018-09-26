@@ -54,6 +54,7 @@ public class CommunityFragment extends BasePresenterFragment {
         titleData.add("专家提问");
         titleData.add("蜕变日记");
         MyViewPageAdapter adapter = new MyViewPageAdapter(getChildFragmentManager(),titleData,frag);
+        viewPager.setOffscreenPageLimit(3);
         viewPager.setAdapter(adapter);
         tabLayout.setupWithViewPager(viewPager);
 

@@ -28,7 +28,7 @@ public class HomeItemAdapter extends BaseQuickAdapter<HomeItemBean, BaseViewHold
         helper.setText(R.id.tv_name, item.getCustomer_name());
         helper.setText(R.id.tv_date, item.getIssue_time());
         if (item.getIs_follow() == 0){
-            helper.setText(R.id.tv_follow, "关注");
+            helper.setText(R.id.tv_follow, "+关注");
 
         }else {
             helper.setText(R.id.tv_follow, "已关注");

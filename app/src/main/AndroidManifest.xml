@@ -48,7 +48,11 @@
         <activity android:name=".ui.mine.post.MyPostActivity" />
         <activity android:name=".ui.mine.message.MyMessageActivity" />
         <activity android:name=".ui.community.diary.detail.DiaryDetailActivity" />
-        <activity android:name=".ui.community.diary.detail.append.AppendDiaryDetailActivity"></activity>
+        <activity android:name=".ui.community.diary.detail.append.AppendDiaryDetailActivity" />
+        <activity android:name=".ui.mine.diary.add.NewDiaryActivity" />
+        <activity android:name=".ui.mine.set.address.detail.AddressDetailActivity" />
+        <activity android:name=".ui.mine.set.address.edit.EditAddressActivity" />
+        <activity android:name=".ui.mine.cart.ShopCartActivity"></activity>
     </application>
 
 </manifest>

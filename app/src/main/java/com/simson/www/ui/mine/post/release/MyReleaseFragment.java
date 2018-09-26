@@ -10,7 +10,7 @@ import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.simson.www.R;
 import com.simson.www.net.bean.BaseBean;
-import com.simson.www.ui.adapter.MyDiaryAdapter;
+import com.simson.www.ui.adapter.DiaryAdapter;
 import com.simson.www.ui.base.BasePresenterFragment;
 import com.simson.www.ui.core.presenter.BasePresenter;
 
@@ -27,7 +27,7 @@ public class MyReleaseFragment extends BasePresenterFragment {
     RecyclerView mRecyclerView;
     @BindView(R.id.refresh_layout)
     SmartRefreshLayout mRefreshLayout;
-    private MyDiaryAdapter mAdapter;
+    private DiaryAdapter mAdapter;
 
     @Override
     protected void getBundle(Bundle bundle) {
@@ -37,18 +37,14 @@ public class MyReleaseFragment extends BasePresenterFragment {
     @Override
     protected void initViews(View views) {
         setRefresh();
-        mAdapter = new MyDiaryAdapter(null);
+        mAdapter = new DiaryAdapter(null);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         mRecyclerView.setAdapter(mAdapter);
         mAdapter.setOnItemClickListener((BaseQuickAdapter adapter, View view, int position) -> {
 
         });
 
-        List<BaseBean> list = new ArrayList<>();
-        for (int i = 0; i < 5; i++) {
-            list.add(new BaseBean());
-        }
-        mAdapter.replaceData(list);
+        //mAdapter.replaceData(list);
     }
 
     private void setRefresh() {

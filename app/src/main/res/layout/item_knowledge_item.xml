@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    style="@style/MatchWrap"
+    android:background="@color/colorWhite"
+    android:orientation="vertical"
+    android:padding="@dimen/dp_10">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical">
+
+        <com.simson.www.widget.CircleImageView
+            android:id="@+id/iv_header"
+            android:layout_width="@dimen/dp_60"
+            android:layout_height="@dimen/dp_60"
+            android:src="@mipmap/ic_placeholder" />
+
+        <TextView
+            android:id="@+id/tv_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp_10"
+            android:layout_marginTop="@dimen/dp_5"
+            android:layout_toRightOf="@id/iv_header"
+            android:text="张俊杰"
+            android:textColor="@color/colorBlack"
+            android:textSize="@dimen/sp_15" />
+
+        <TextView
+            android:id="@+id/tv_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_name"
+            android:layout_marginLeft="@dimen/dp_10"
+            android:layout_marginTop="@dimen/dp_5"
+            android:layout_toRightOf="@id/iv_header"
+            android:text="2018-08-09"
+            android:textColor="@color/colorBlack_6"
+            android:textSize="@dimen/sp_14" />
+
+        <TextView
+            android:id="@+id/tv_follow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="@dimen/dp_10"
+            android:background="@drawable/shape_corner_white_main"
+            android:paddingBottom="@dimen/dp_3"
+            android:paddingLeft="@dimen/dp_10"
+            android:paddingRight="@dimen/dp_10"
+            android:paddingTop="@dimen/dp_3"
+            android:text="+ 关注"
+            android:textColor="@color/colorMain"
+            android:textSize="@dimen/sp_15" />
+    </RelativeLayout>
+    <TextView
+        android:id="@+id/tv_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_5"
+        android:text="张俊杰"
+        android:textColor="@color/colorBlack"
+        android:textSize="@dimen/sp_15" />
+
+    <TextView
+        android:id="@+id/tv_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_name"
+        android:layout_marginTop="@dimen/dp_5"
+        android:text="2018-08-09"
+        android:textColor="@color/colorBlack_2"
+        android:textSize="@dimen/sp_14" />
+
+    <cn.bingoogolapple.photopicker.widget.BGANinePhotoLayout
+        android:id="@+id/bga"
+        style="@style/MatchWrap"
+        android:layout_marginTop="8dp"
+        app:bga_npl_itemCornerRadius="0dp"
+        app:bga_npl_itemSpanCount="3"
+        app:bga_npl_itemWhiteSpacing="4dp"
+        app:bga_npl_itemWidth="0dp"
+        app:bga_npl_otherWhiteSpacing="64dp"
+        app:bga_npl_placeholderDrawable="@mipmap/bga_pp_ic_holder_light"
+        app:bga_npl_showAsLargeWhenOnlyOne="true" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_1"
+        android:background="@color/colorWhiteBg" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tv_browse"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="left"
+            android:padding="@dimen/dp_10"
+            android:text="526已看"
+            android:textColor="@color/colorBlack_4"
+            android:textSize="@dimen/sp_15" />
+
+        <TextView
+            android:id="@+id/tv_comments"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:padding="@dimen/dp_10"
+            android:text="23评论"
+            android:textColor="@color/colorBlack_4"
+            android:textSize="@dimen/sp_15" />
+
+        <TextView
+            android:id="@+id/tv_praises"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="right"
+            android:padding="@dimen/dp_10"
+            android:text="152赞"
+            android:textColor="@color/colorBlack_4"
+            android:textSize="@dimen/sp_15" />
+
+    </LinearLayout>
+</LinearLayout>

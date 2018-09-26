@@ -14,10 +14,10 @@ android {
         vectorDrawables.useSupportLibrary = true
         //manifestPlaceholders = [qqappid: "tencent100424468"]
         manifestPlaceholders = [
-                JPUSH_PKGNAME : "com.simson.www",
-                //JPUSH_APPKEY : "9a3bd399dad9968d6792d1a6", //JPush 上注册的包名对应的 Appkey.
-                JPUSH_APPKEY : "0fa6d308abab72ad12f5ce7c", //JPush 上注册的包名对应的 Appkey.
-                JPUSH_CHANNEL : "developer-default", //暂时填写默认值即可.
+                JPUSH_PKGNAME: "com.simson.www",
+                JPUSH_APPKEY : "9a3bd399dad9968d6792d1a6", //JPush 上注册的包名对应的 Appkey.
+                //JPUSH_APPKEY : "0fa6d308abab72ad12f5ce7c", //JPush 上注册的包名对应的 Appkey.
+                JPUSH_CHANNEL: "developer-default", //暂时填写默认值即可.
         ]
     }
     buildTypes {
@@ -105,4 +105,7 @@ dependencies {
     //极光推送
     implementation 'cn.jiguang.sdk:jpush:3.1.6'  // 此处以JPush 3.1.6 版本为例。
     implementation 'cn.jiguang.sdk:jcore:1.2.5'  // 此处以JCore 1.2.5 版本为例。
+
+    implementation 'com.iarcuschin:simpleratingbar:0.1.5'
+    implementation 'me.zhanghai.android.materialratingbar:library:1.3.1'
 }

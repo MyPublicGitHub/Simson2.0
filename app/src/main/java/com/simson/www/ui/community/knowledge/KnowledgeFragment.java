@@ -2,26 +2,32 @@ package com.simson.www.ui.community.knowledge;
 
 
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import android.support.design.widget.TabLayout;
+import android.support.v4.view.ViewPager;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 
 import com.simson.www.R;
-import com.simson.www.net.bean.BaseBean;
 import com.simson.www.ui.adapter.HDACaseDiaryAdapter;
+import com.simson.www.ui.adapter.TabViewPagerAdapter;
+import com.simson.www.ui.adapter.TabViewPagerAdapterItem;
 import com.simson.www.ui.base.BasePresenterFragment;
 import com.simson.www.ui.core.presenter.BasePresenter;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.Unbinder;
 
 
 public class KnowledgeFragment extends BasePresenterFragment {
-    @BindView(R.id.recyclerView)
-    RecyclerView recyclerView;
-    HDACaseDiaryAdapter adapter;
+
+    @BindView(R.id.tab_layout)
+    TabLayout tabLayout;
+    @BindView(R.id.view_pager)
+    ViewPager viewPager;
 
     @Override
     protected void getBundle(Bundle bundle) {
@@ -31,16 +37,15 @@ public class KnowledgeFragment extends BasePresenterFragment {
 
     @Override
     protected void initViews(View view) {
-        List<BaseBean> list = new ArrayList<>();
-        for (int i = 0; i < 10; i++) {
-            list.add(new BaseBean());
-        }
-
-
-        adapter = new HDACaseDiaryAdapter(list);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        recyclerView.setAdapter(adapter);
-        recyclerView.setNestedScrollingEnabled(false);
+        ArrayList<String> titleData = new ArrayList<>();
+        titleData.add("推荐");
+        titleData.add("关注");
+        titleData.add("全部");
+        TabViewPagerAdapter adapter = new TabViewPagerAdapter(getChildFragmentManager(),
+                TabViewPagerAdapterItem.createKnowledgeItemFragments(titleData));
+        viewPager.setOffscreenPageLimit(3);
+        viewPager.setAdapter(adapter);
+        tabLayout.setupWithViewPager(viewPager);
     }
 
     @Override
@@ -52,4 +57,5 @@ public class KnowledgeFragment extends BasePresenterFragment {
     protected BasePresenter createPresenter() {
         return null;
     }
+
 }

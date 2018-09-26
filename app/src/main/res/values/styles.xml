@@ -26,8 +26,19 @@
     <style name="ToolBarStyle" parent="@style/BaseToolBarStyle">
         <item name="actionMenuTextColor">@color/colorWhite</item>
     </style>
+
     <style name="TabLayoutTextStyle">
         <item name="android:textSize">@dimen/sp_16</item>
+    </style>
+
+    <style name="roomRatingBar" parent="@style/Widget.AppCompat.RatingBar.Small">
+
+        <item name="android:progressDrawable">@drawable/ratingbar_smile</item>
+<!--
+        <item name="android:minHeight">@dimen/dp_32</item>
+
+        <item name="android:maxHeight">@dimen/dp_32</item>-->
+
     </style>
 
 </resources>

@@ -69,11 +69,12 @@
                 android:layout_marginRight="@dimen/dp_10"
                 android:layout_marginTop="5dp"
                 android:layout_toLeftOf="@+id/view_line"
-                android:text="粉丝：5311"
+                android:text="粉丝：0"
                 android:textColor="@color/colorWhite"
                 android:textSize="@dimen/sp_16" />
 
             <TextView
+                android:id="@+id/tv_follow"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/ll_user_info"
@@ -81,7 +82,7 @@
                 android:layout_marginLeft="@dimen/dp_10"
                 android:layout_marginTop="5dp"
                 android:layout_toRightOf="@+id/view_line"
-                android:text="关注：211"
+                android:text="关注：0"
                 android:textColor="@color/colorWhite"
                 android:textSize="@dimen/sp_16" />
 
@@ -132,10 +133,11 @@
                     android:orientation="vertical">
 
                     <TextView
+                        android:id="@+id/tv_post"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/dp_3"
-                        android:text="1"
+                        android:text="0"
                         android:textColor="@color/colorWhite"
                         android:textSize="@dimen/sp_14" />
 
@@ -162,10 +164,11 @@
                     android:orientation="vertical">
 
                     <TextView
+                        android:id="@+id/tv_diary"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/dp_3"
-                        android:text="34"
+                        android:text="0"
                         android:textColor="@color/colorWhite"
                         android:textSize="@dimen/sp_16" />
 
@@ -192,10 +195,11 @@
                     android:orientation="vertical">
 
                     <TextView
+                        android:id="@+id/tv_message"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/dp_3"
-                        android:text="20"
+                        android:text="0"
                         android:textColor="@color/colorWhite"
                         android:textSize="@dimen/sp_16" />
 
@@ -222,10 +226,11 @@
                     android:orientation="vertical">
 
                     <TextView
+                        android:id="@+id/tv_integral"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/dp_3"
-                        android:text="123"
+                        android:text="0"
                         android:textColor="@color/colorWhite"
                         android:textSize="@dimen/sp_16" />
 

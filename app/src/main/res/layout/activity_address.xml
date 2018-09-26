@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.scwang.smartrefresh.layout.SmartRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/refresh_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
@@ -21,4 +22,4 @@
         android:text="新增收货地址"
         android:textColor="@color/colorWhite"
         android:textSize="@dimen/sp_16" />
-</LinearLayout>
+</com.scwang.smartrefresh.layout.SmartRefreshLayout>

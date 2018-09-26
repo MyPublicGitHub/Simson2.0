@@ -5,6 +5,8 @@ import android.support.v4.app.Fragment;
 
 import com.simson.www.net.bean.main.ItemTypeBean;
 import com.simson.www.ui.community.diary.item.DiaryItemFragment;
+import com.simson.www.ui.community.expert.item.ExpertItemFragment;
+import com.simson.www.ui.community.knowledge.item.KnowledgeItemFragment;
 import com.simson.www.ui.home.item.HomeItemFragment;
 
 import java.util.ArrayList;
@@ -46,4 +48,21 @@ public class TabViewPagerAdapterItem {
         return adapterItems;
     }
 
+    public static List<TabViewPagerAdapterItem> createKnowledgeItemFragments(List<String> titleList) {
+        ArrayList<TabViewPagerAdapterItem> adapterItems = new ArrayList<>();
+        for (int i = 0; i < titleList.size(); i++) {
+            adapterItems.add(new TabViewPagerAdapterItem(titleList.get(i),
+                    KnowledgeItemFragment.newInstance(i)));
+        }
+        return adapterItems;
+    }
+
+    public static List<TabViewPagerAdapterItem> createExpertItemFragments(List<String> titleList) {
+        ArrayList<TabViewPagerAdapterItem> adapterItems = new ArrayList<>();
+        for (int i = 0; i < titleList.size(); i++) {
+            adapterItems.add(new TabViewPagerAdapterItem(titleList.get(i),
+                    ExpertItemFragment.newInstance(i)));
+        }
+        return adapterItems;
+    }
 }

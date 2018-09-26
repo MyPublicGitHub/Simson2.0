@@ -1,6 +1,5 @@
 package com.simson.www.ui.base;
 
-import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -27,6 +26,7 @@ public abstract class BaseFragment extends Fragment {
     private RxEvent mRxEvent;
     private DisposableObserver mDisposableObserver;
     private Unbinder unBinder;
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -88,8 +88,12 @@ public abstract class BaseFragment extends Fragment {
 
     protected abstract void initViews(View view);
 
+    protected abstract void initData();
+
     protected abstract int getLayoutId();
+
     private WaitProgressDialog loadingDialog = null;
+
     /**
      * 显示带消息的进度框
      *
