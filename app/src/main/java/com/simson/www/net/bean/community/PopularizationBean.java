@@ -4,16 +4,18 @@ import java.util.List;
 
 public class PopularizationBean {
 
+
     /**
      * popularization_id : 123123
-     * item_type_id :
-     * hospital_name :
-     * hospital_icon :
-     * title :
-     * popularization_type :
-     * issue_time :
-     * browse : 0
-     * is_collect : 0
+     * item_type_id : 1
+     * hospital_name : 南京新生植发
+     * hospital_icon : http://58.213.14.195:8081/upload/hospital/logo@2x.png
+     * title : 了解一下
+     * popularization_link : http://58.213.14.195:8081/simson/webview/popularization/popularization.jsp
+     * create_time : 2018-09-20
+     * browse : 27
+     * collects : 0
+     * praises : 0
      * is_follow : 0
      * pictures : ["https://images.maofa.com/userfiles/24bf2ba294c2fcca9f415adc990734b4/images/popularization/files/2018/08/35b9fa9c.jpg"]
      */
@@ -23,10 +25,11 @@ public class PopularizationBean {
     private String hospital_name;
     private String hospital_icon;
     private String title;
-    private String popularization_type;
-    private String issue_time;
+    private String popularization_link;
+    private String create_time;
     private int browse;
-    private int is_collect;
+    private int collects;
+    private int praises;
     private int is_follow;
     private List<String> pictures;
 
@@ -70,20 +73,20 @@ public class PopularizationBean {
         this.title = title;
     }
 
-    public String getPopularization_type() {
-        return popularization_type;
+    public String getPopularization_link() {
+        return popularization_link;
     }
 
-    public void setPopularization_type(String popularization_type) {
-        this.popularization_type = popularization_type;
+    public void setPopularization_link(String popularization_link) {
+        this.popularization_link = popularization_link;
     }
 
-    public String getIssue_time() {
-        return issue_time;
+    public String getCreate_time() {
+        return create_time;
     }
 
-    public void setIssue_time(String issue_time) {
-        this.issue_time = issue_time;
+    public void setCreate_time(String create_time) {
+        this.create_time = create_time;
     }
 
     public int getBrowse() {
@@ -94,12 +97,20 @@ public class PopularizationBean {
         this.browse = browse;
     }
 
-    public int getIs_collect() {
-        return is_collect;
+    public int getCollects() {
+        return collects;
     }
 
-    public void setIs_collect(int is_collect) {
-        this.is_collect = is_collect;
+    public void setCollects(int collects) {
+        this.collects = collects;
+    }
+
+    public int getPraises() {
+        return praises;
+    }
+
+    public void setPraises(int praises) {
+        this.praises = praises;
     }
 
     public int getIs_follow() {

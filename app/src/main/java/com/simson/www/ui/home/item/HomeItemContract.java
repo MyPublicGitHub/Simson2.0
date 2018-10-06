@@ -7,11 +7,11 @@ import java.util.List;
 
 
 public interface HomeItemContract {
-    interface IHomeItemPresenter {
+    interface Presenter {
         void getHomeItemData();
     }
 
-    interface IHomeItemView extends IView {
+    interface View extends IView {
 
         void setHomeItemData(List<HomeItemBean> bean);
 

@@ -44,6 +44,8 @@ public class IntegralMallActivity extends BasePresenterActivity {
         mIntegralMallAdapter = new IntegralMallAdapter(list);
         recyclerView.setLayoutManager(new GridLayoutManager(this, 3));
         recyclerView.setAdapter(mIntegralMallAdapter);
+        recyclerView.setFocusable(false);
+        recyclerView.setNestedScrollingEnabled(false);
     }
 
     @Override

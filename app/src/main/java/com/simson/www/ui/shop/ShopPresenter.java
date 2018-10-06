@@ -41,7 +41,7 @@ public class ShopPresenter extends BasePresenter<ShopContract.View> implements S
         Map<String,String> map = new HashMap();
         map.put("timestamp", DateUtils.getStringDate());
         map.put("isPoint", "0");//1积分项目；0普通项目 必填
-        map.put("itemTypeId", "1");//项目类型id
+        map.put("itemTypeId", "");//项目类型id
         map.put("search", "");
         map.put("pageIndex", mView.getPageCommodity()+"");
         map.put("pageSize", Const.PAGE_SIZE);
@@ -66,8 +66,8 @@ public class ShopPresenter extends BasePresenter<ShopContract.View> implements S
 
         Map map = new HashMap();
         map.put("timestamp", DateUtils.getStringDate());
-        map.put("isPoint", "0");//1积分项目；0普通项目 必填
-        map.put("itemTypeId", "1");//项目类型id
+        map.put("isPoint", "1");//1积分项目；0普通项目 必填
+        map.put("itemTypeId", "");//项目类型id
         map.put("search", "");
         map.put("pageIndex", mView.getPageIntegral()+"");
         map.put("pageSize", Const.PAGE_SIZE);

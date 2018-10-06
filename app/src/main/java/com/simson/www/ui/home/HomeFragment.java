@@ -14,6 +14,8 @@ import com.simson.www.net.bean.main.ItemTypeBean;
 import com.simson.www.ui.adapter.TabViewPagerAdapter;
 import com.simson.www.ui.adapter.TabViewPagerAdapterItem;
 import com.simson.www.ui.base.BasePresenterFragment;
+import com.simson.www.ui.home.cases.CaseActivity;
+import com.simson.www.ui.home.cause.CauseActivity;
 import com.simson.www.ui.home.expert.ExpertActivity;
 import com.simson.www.ui.home.hospital.HospitalActivity;
 import com.simson.www.utils.GlideImageLoader;
@@ -66,7 +68,7 @@ public class HomeFragment extends BasePresenterFragment<HomePresenter, HomeContr
         });
     }
 
-    @OnClick({R.id.tv_hospital, R.id.tv_expert, R.id.tv_case})
+    @OnClick({R.id.tv_hospital, R.id.tv_expert, R.id.tv_case,R.id.rl_cause})
     public void onViewClicked(android.view.View view) {
         switch (view.getId()) {
             case R.id.tv_hospital:
@@ -76,7 +78,10 @@ public class HomeFragment extends BasePresenterFragment<HomePresenter, HomeContr
                 startActivity(new Intent(getActivity(),ExpertActivity.class));
                 break;
             case R.id.tv_case:
-                //startActivity(new Intent(getActivity(),HospitalActivity.class));
+                startActivity(new Intent(getActivity(),CaseActivity.class));
+                break;
+                case R.id.rl_cause:
+                startActivity(new Intent(getActivity(),CauseActivity.class));
                 break;
         }
     }

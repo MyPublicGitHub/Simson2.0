@@ -9,15 +9,25 @@ import com.simson.www.net.bean.community.DiaryDetailRecommendBean;
 import com.simson.www.net.bean.community.DoctorBean;
 import com.simson.www.net.bean.community.PopularizationBean;
 import com.simson.www.net.bean.community.QuestionsBean;
+import com.simson.www.net.bean.home.CauseListBean;
+import com.simson.www.net.bean.home.CityListBean;
+import com.simson.www.net.bean.home.DoctorDetailBean;
 import com.simson.www.net.bean.home.HomeBannerBean;
 import com.simson.www.net.bean.home.HomeItemBean;
+import com.simson.www.net.bean.home.HospitalDetailBean;
+import com.simson.www.net.bean.home.HospitalItemBean;
 import com.simson.www.net.bean.main.CodeBean;
 import com.simson.www.net.bean.main.ItemTypeBean;
 import com.simson.www.net.bean.main.LoginBean;
 import com.simson.www.net.bean.mine.AddressBean;
 import com.simson.www.net.bean.mine.AddressDetailBean;
+import com.simson.www.net.bean.mine.CaseBean;
 import com.simson.www.net.bean.mine.CustomerBean;
+import com.simson.www.net.bean.mine.OrderBean;
+import com.simson.www.net.bean.mine.PaymentOrderBean;
 import com.simson.www.net.bean.mine.ShopCartBean;
+import com.simson.www.net.bean.mine.SubmitOrderBean;
+import com.simson.www.net.bean.shop.CommentBean;
 import com.simson.www.net.bean.shop.CommodityDetailBean;
 import com.simson.www.net.bean.shop.CommodityDetailPraiseBean;
 import com.simson.www.net.bean.shop.ShopListBean;
@@ -33,6 +43,10 @@ import retrofit2.http.Query;
  */
 
 public interface ApiServer {
+
+    //脱发原因列表
+    @POST("alopeciaCauseController/alopeciaCauseList")
+    Observable<BaseBean<List<CauseListBean>>> getCauseList(@Query("json") String json);
 
     //登录
     @POST(UrlConstainer.LOGIN)
@@ -68,6 +82,14 @@ public interface ApiServer {
     @POST("itemController/getItemPraise")
     Observable<BaseBean<CommodityDetailPraiseBean>> getCommodityDetailPraise(@Query("json") String json);
 
+    //预约流程
+    @POST("itemController/subscribeProcess")
+    Observable<BaseBean<CommodityDetailBean>> getCommoditySubscribeProcess(@Query("json") String json);
+
+    //评价列表
+    @POST("itemController/queryItemComment")
+    Observable<BaseBean<List<CommentBean>>> getCommodityQueryItemComment(@Query("json") String json);
+
     //日记列表
     @POST("diaryController/diaryList")
     Observable<BaseBean<List<DiaryBean>>> getDiaryList(@Query("json") String json);
@@ -96,6 +118,10 @@ public interface ApiServer {
     @POST("doctorController/doctorList")
     Observable<BaseBean<DoctorBean>> getDoctorList(@Query("json") String json);
 
+    //医生详情
+    @POST("doctorController/doctorDetail")
+    Observable<BaseBean<DoctorDetailBean>> getDoctorDetail(@Query("json") String json);
+
     //我的
     @POST("customerController/byCustomer")
     Observable<BaseBean<CustomerBean>> getCustomer(@Query("json") String json);
@@ -116,7 +142,59 @@ public interface ApiServer {
     @POST("deliveryController/updateDelivery")
     Observable<BaseBean> editAddress(@Query("json") String json);
 
-    //购物车
+    //购物车列表
     @POST("shoppingCart/shoppingCartList")
     Observable<BaseBean<List<ShopCartBean>>> getShopCart(@Query("json") String json);
+
+    //移除购物车
+    @POST("shoppingCart/removeShoppingCart")
+    Observable<BaseBean> removeShopCart(@Query("json") String json);
+
+    //修改购物车
+    @POST("shoppingCart/updateShoppingCart")
+    Observable<BaseBean> updateShopCart(@Query("json") String json);
+
+    //提交订单
+    @POST("transaction/submitOrder")
+    Observable<BaseBean<SubmitOrderBean>> submitOrder(@Query("json") String json);
+
+    //加入购物车
+    @POST("shoppingCart/saveShoppingCart")
+    Observable<BaseBean> saveShopCart(@Query("json") String json);
+
+    //订单
+    @POST("transaction/orderList")
+    Observable<BaseBean<List<OrderBean>>> getOrder(@Query("json") String json);
+
+    //订单支付
+    @POST("transaction/paymentOrder")
+    Observable<BaseBean<PaymentOrderBean>> paymentOrder(@Query("json") String json);
+
+    //收藏
+    @POST("customerController/collect")
+    Observable<BaseBean> collect(@Query("json") String json);
+
+    //关注
+    @POST("customerController/follow")
+    Observable<BaseBean> follow(@Query("json") String json);
+
+    //赞
+    @POST("customerController/praise")
+    Observable<BaseBean> praise(@Query("json") String json);
+
+    //案例
+    @POST("caseController/caseList")
+    Observable<BaseBean<List<CaseBean>>> getCase(@Query("json") String json);
+
+    //城市列表
+    @POST("hospitalController/cityList")
+    Observable<BaseBean<List<CityListBean>>> getCityList(@Query("json") String json);
+
+    //医院列表
+    @POST("hospitalController/hospitalList")
+    Observable<BaseBean<List<HospitalItemBean>>> getHospital(@Query("json") String json);
+
+    //医院详情
+    @POST("hospitalController/hospitalDetail")
+    Observable<BaseBean<HospitalDetailBean>> getHospitalDetail(@Query("json") String json);
 }

@@ -2,11 +2,19 @@ package com.simson.www.ui.core.model;
 
 
 import com.simson.www.net.RxSchedulers;
+import com.simson.www.net.bean.mine.SubmitOrderBean;
 import com.simson.www.net.bean.shop.CommodityDetailBean;
 import com.simson.www.net.bean.shop.CommodityDetailPraiseBean;
+import com.simson.www.net.callback.RxBaseObserver;
 import com.simson.www.net.callback.RxObserver;
 
 public class CommodityDetailModel extends BaseModel {
+    public void submitOrder(String json, RxObserver<SubmitOrderBean> rxObserver) {
+        doRxRequest().
+                submitOrder(json)
+                .compose(RxSchedulers.io_main())
+                .subscribe(rxObserver);
+    }
 
     public void getCommodityDetail(String json, RxObserver<CommodityDetailBean> rxObserver) {
         doRxRequest().
@@ -29,4 +37,10 @@ public class CommodityDetailModel extends BaseModel {
                 .subscribe(rxObserver);
     }
 
+    public void saveShopCart(String json, RxBaseObserver rxObserver) {
+        doRxRequest().
+                saveShopCart(json)
+                .compose(RxSchedulers.io_main())
+                .subscribe(rxObserver);
+    }
 }

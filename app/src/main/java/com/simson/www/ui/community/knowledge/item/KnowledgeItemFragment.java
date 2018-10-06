@@ -9,15 +9,11 @@ import android.view.View;
 
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.simson.www.R;
-import com.simson.www.net.bean.community.DiaryBean;
+import com.simson.www.common.Const;
 import com.simson.www.net.bean.community.PopularizationBean;
-import com.simson.www.ui.adapter.DiaryAdapter;
-import com.simson.www.ui.adapter.HDACaseDiaryAdapter;
 import com.simson.www.ui.adapter.KnowledgeItemAdapter;
 import com.simson.www.ui.base.BasePresenterFragment;
-import com.simson.www.ui.community.diary.detail.DiaryDetailActivity;
-import com.simson.www.ui.community.diary.item.DiaryItemContract;
-import com.simson.www.ui.community.diary.item.DiaryItemPresenter;
+import com.simson.www.ui.community.knowledge.detail.WebViewActivity;
 import com.simson.www.ui.main.login.LoginActivity;
 
 import java.util.List;
@@ -43,12 +39,17 @@ public class KnowledgeItemFragment extends BasePresenterFragment<KnowledgeItemPr
         recyclerView.setAdapter(adapter);
         adapter.bindToRecyclerView(recyclerView);
         adapter.setEmptyView(R.layout.list_empty_view);
-//        adapter.setOnItemClickListener((adapter, view1, position) -> {
-//            List<DiaryBean> bean = (List<DiaryBean>) adapter.getData();
-//            String diary_id = bean.get(position).getDiary_id();
-//            startActivity(new Intent(getContext(), DiaryDetailActivity.class).putExtra("id", ));
-//        });
+        adapter.setOnItemClickListener((adapter, view1, position) -> {
+            List<PopularizationBean> bean = (List<PopularizationBean>) adapter.getData();
+            String popularizationLink = bean.get(position).getPopularization_link();
+            String popularizationId = bean.get(position).getPopularization_id();
+            String url = popularizationLink + "?json={popularizationId:" + popularizationId + "}";
+            startActivity(new Intent(getContext(), WebViewActivity.class)
+                    .putExtra(Const.WEB_VIEW_TITLE, "科普详情")
+                    .putExtra(Const.WEB_VIEW_URL,url));
+        });
         setRefresh();
+        //?json={"timestamp":"2018-09-26 01:38:17","popularizationId":"123123"}
         mPresenter.getPopularizationList();
     }
 

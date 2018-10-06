@@ -7,6 +7,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.widget.TextView;
 
 import com.simson.www.R;
+import com.simson.www.common.Const;
 import com.simson.www.ui.base.BasePresenterActivity;
 import com.simson.www.ui.community.CommunityFragment;
 import com.simson.www.ui.core.presenter.BasePresenter;
@@ -15,6 +16,7 @@ import com.simson.www.ui.hospital.HospitalFragment;
 import com.simson.www.ui.mine.MineFragment;
 import com.simson.www.ui.shop.ShopFragment;
 import com.simson.www.utils.BottomNavigationViewHelper;
+import com.simson.www.utils.SPUtils;
 
 import java.util.ArrayList;
 
@@ -89,6 +91,7 @@ public class MainActivity extends BasePresenterActivity {
         switchFragment(0);
 //        TextView textView = helper.getView(R.id.tv_original);
 //        textView.getPaint().setFlags(Paint.STRIKE_THRU_TEXT_FLAG);
+        SPUtils.put(Const.USER_INFO.CUSTOMER_ID,"2018090115357871316905625");
     }
 
 }

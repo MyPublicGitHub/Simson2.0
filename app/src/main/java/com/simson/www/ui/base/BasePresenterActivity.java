@@ -3,6 +3,7 @@ package com.simson.www.ui.base;
 import android.content.Intent;
 import android.os.Bundle;
 
+import com.simson.www.net.bean.BaseBean;
 import com.simson.www.net.bean.main.ItemTypeBean;
 import com.simson.www.ui.core.presenter.BasePresenter;
 import com.simson.www.ui.core.view.IView;
@@ -106,4 +107,19 @@ public abstract class BasePresenterActivity<P extends BasePresenter<V>, V extend
 
     @Override
     public void setItemType(List<ItemTypeBean> bean) {}
+
+    @Override
+    public void collect(BaseBean bean) {
+
+    }
+
+    @Override
+    public void follow(BaseBean bean) {
+
+    }
+
+    @Override
+    public void praise(BaseBean bean) {
+
+    }
 }

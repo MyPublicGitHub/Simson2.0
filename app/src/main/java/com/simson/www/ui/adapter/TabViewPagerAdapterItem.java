@@ -3,10 +3,13 @@ package com.simson.www.ui.adapter;
 import android.support.v4.app.Fragment;
 
 
+import com.simson.www.net.bean.home.CityListBean;
 import com.simson.www.net.bean.main.ItemTypeBean;
 import com.simson.www.ui.community.diary.item.DiaryItemFragment;
 import com.simson.www.ui.community.expert.item.ExpertItemFragment;
 import com.simson.www.ui.community.knowledge.item.KnowledgeItemFragment;
+import com.simson.www.ui.home.cases.item.CaseItemFragment;
+import com.simson.www.ui.home.hospital.item.HospitalItemFragment;
 import com.simson.www.ui.home.item.HomeItemFragment;
 
 import java.util.ArrayList;
@@ -62,6 +65,23 @@ public class TabViewPagerAdapterItem {
         for (int i = 0; i < titleList.size(); i++) {
             adapterItems.add(new TabViewPagerAdapterItem(titleList.get(i),
                     ExpertItemFragment.newInstance(i)));
+        }
+        return adapterItems;
+    }
+
+    public static List<TabViewPagerAdapterItem> createCaseItemFragments(List<ItemTypeBean> titleList) {
+        ArrayList<TabViewPagerAdapterItem> adapterItems = new ArrayList<>();
+        for (int i = 0; i < titleList.size(); i++) {
+            adapterItems.add(new TabViewPagerAdapterItem(titleList.get(i).getTypeName(),
+                    CaseItemFragment.newInstance(titleList.get(i).getItemTypeId())));
+        }
+        return adapterItems;
+    }
+    public static List<TabViewPagerAdapterItem> createHospitalItemFragments(List<CityListBean> titleList) {
+        ArrayList<TabViewPagerAdapterItem> adapterItems = new ArrayList<>();
+        for (int i = 0; i < titleList.size(); i++) {
+            adapterItems.add(new TabViewPagerAdapterItem(titleList.get(i).getCity_name(),
+                    HospitalItemFragment.newInstance(titleList.get(i).getCity_id())));
         }
         return adapterItems;
     }

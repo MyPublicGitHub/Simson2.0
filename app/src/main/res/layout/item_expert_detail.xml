@@ -34,7 +34,7 @@
                 android:textColor="@color/colorBlack"
                 android:textSize="@dimen/sp_16" />
 
-            <TextView
+            <!--<TextView
                 android:id="@+id/tv_post"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -43,7 +43,7 @@
                 android:layout_toRightOf="@id/tv_name"
                 android:text="新生院长"
                 android:textColor="@color/colorBlack"
-                android:textSize="@dimen/sp_15" />
+                android:textSize="@dimen/sp_15" />-->
 
             <TextView
                 android:id="@+id/tv_date"
@@ -100,6 +100,8 @@
                 android:layout_below="@id/tv_question"
                 android:layout_marginLeft="@dimen/dp_10"
                 android:layout_marginTop="@dimen/dp_10"
+                android:maxLines="3"
+                android:ellipsize="end"
                 android:layout_toRightOf="@id/tv_question"
                 android:text="已经明显发际线三一收到货幅度为电视剧换个几个肺结核就恢复本基金的时间的话收"
                 android:textColor="@color/colorBlack"
@@ -107,6 +109,7 @@
         </RelativeLayout>
 
         <ImageView
+            android:id="@+id/iv_image"
             android:layout_width="@dimen/dp_100"
             android:layout_height="@dimen/dp_100"
             android:layout_marginLeft="@dimen/dp_5"
@@ -126,6 +129,7 @@
         android:orientation="horizontal">
 
         <TextView
+            android:id="@+id/tv_browse"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -144,6 +148,7 @@
             android:textColor="@color/colorBlack_6"
             android:textSize="@dimen/sp_14" />
         <TextView
+            android:id="@+id/tv_praises"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"

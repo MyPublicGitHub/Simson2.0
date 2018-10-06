@@ -30,7 +30,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
-        android:layout_marginTop="@dimen/dp_4"
+        android:layout_marginTop="@dimen/dp_2"
         android:layout_toRightOf="@+id/tv_name"
         android:ellipsize="end"
         android:text="院长"
@@ -44,22 +44,24 @@
         android:layout_width="wrap_content"
         android:layout_height="@dimen/dp_20"
         android:layout_below="@id/tv_name"
+        android:focusable="false"
+        android:clickable="false"
         android:layout_marginLeft="@dimen/dp_10"
         android:layout_marginTop="@dimen/dp_3"
         android:layout_toRightOf="@id/iv_header"
         android:rating="3" />
 
 
-    <TextView
-        android:id="@+id/tv_case"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/tv_name"
-        android:layout_marginLeft="10dp"
-        android:layout_toRightOf="@+id/rate"
-        android:ellipsize="end"
-        android:text="成功案例129"
-        android:textSize="@dimen/sp_13" />
+    <!--<TextView-->
+        <!--android:id="@+id/tv_case"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_below="@id/tv_name"-->
+        <!--android:layout_marginLeft="@dimen/dp_10"-->
+        <!--android:layout_toRightOf="@+id/rate"-->
+        <!--android:ellipsize="end"-->
+        <!--android:text="成功案例129"-->
+        <!--android:textSize="@dimen/sp_13" />-->
 
     <TextView
         android:id="@+id/tv_hospital_name"
@@ -71,35 +73,37 @@
         android:layout_marginTop="@dimen/dp_5"
         android:layout_toRightOf="@+id/iv_header"
         android:ellipsize="end"
+        android:textColor="@color/colorBlack_6"
         android:text="新生医院"
-        android:textSize="@dimen/sp_14" />
+        android:textSize="@dimen/sp_15" />
 
     <ImageView
         android:id="@+id/iv_1"
-        android:layout_width="@dimen/dp_20"
-        android:layout_height="@dimen/dp_20"
+        android:layout_width="@dimen/dp_18"
+        android:layout_height="@dimen/dp_18"
+        android:layout_marginTop="@dimen/dp_5"
         android:layout_below="@id/tv_hospital_name"
         android:layout_marginLeft="@dimen/dp_10"
         android:layout_toRightOf="@+id/iv_header"
-        android:scaleType="centerCrop"
-        android:src="@mipmap/ic_placeholder" />
+        android:src="@mipmap/ic_good" />
 
     <TextView
         android:id="@+id/tv_reserve"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_5"
         android:layout_below="@id/tv_hospital_name"
         android:layout_marginLeft="10dp"
         android:layout_toRightOf="@+id/iv_1"
         android:ellipsize="end"
+        android:textColor="@color/colorBlack_6"
         android:text="擅长：发际线种植"
         android:textSize="@dimen/sp_14" />
 
     <ImageView
-        android:layout_width="@dimen/dp_20"
-        android:layout_height="@dimen/dp_20"
+        android:layout_width="@dimen/dp_50"
+        android:layout_height="@dimen/dp_25"
         android:layout_alignParentRight="true"
-        android:scaleType="centerCrop"
-        android:src="@mipmap/ic_placeholder" />
+        android:src="@mipmap/ic_authentication" />
 </RelativeLayout>
 

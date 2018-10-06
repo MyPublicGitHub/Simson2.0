@@ -19,7 +19,7 @@ public class CommodityDetailBean {
 
     private String item_id;
     private String item_name;
-    private String present_price;
+    private double present_price;
     private String original_price;
     private int item_point;
     private int browse;
@@ -27,6 +27,7 @@ public class CommodityDetailBean {
     private int is_delivery;
     private int is_point;
     private List<String> picture;
+    public List<String> pictures;
 
     public String getItem_id() {
         return item_id;
@@ -44,11 +45,11 @@ public class CommodityDetailBean {
         this.item_name = item_name;
     }
 
-    public String getPresent_price() {
+    public double getPresent_price() {
         return present_price;
     }
 
-    public void setPresent_price(String present_price) {
+    public void setPresent_price(double present_price) {
         this.present_price = present_price;
     }
 

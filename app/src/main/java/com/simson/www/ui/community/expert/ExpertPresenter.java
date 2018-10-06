@@ -21,7 +21,7 @@ public class ExpertPresenter extends BasePresenter<ExpertContract.View> implemen
     private ExpertModel mModel;
     private ExpertContract.View mView;
 
-    ExpertPresenter() {
+    public ExpertPresenter() {
         this.mModel = new ExpertModel();
     }
 

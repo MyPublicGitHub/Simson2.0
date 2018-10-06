@@ -1,10 +1,8 @@
 package com.simson.www.ui.base;
 
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.AppBarLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
@@ -38,6 +36,7 @@ public abstract class BaseActivity extends AppCompatActivity {
     private DisposableObserver mDisposableObserver;
     private RxEvent mRxEvent;
     private Unbinder unBinder;
+
     @Override
     protected void onCreate(Bundle bundle) {
         if (bundle != null) {
@@ -103,8 +102,8 @@ public abstract class BaseActivity extends AppCompatActivity {
         super.onDestroy();
         //注销事件
         RxEvent.getInstance().unRegisterEvent(registerEvent(), mSubject, mDisposableObserver);
-        if (unBinder!=null)
-        unBinder.unbind();
+        if (unBinder != null)
+            unBinder.unbind();
         RefWatcher refWatcher = MyApp.getRefWatcher(this);
         refWatcher.watch(this);
     }

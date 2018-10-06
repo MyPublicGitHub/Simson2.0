@@ -59,12 +59,12 @@
         android:id="@+id/tv_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/dp_5"
+        android:layout_marginTop="@dimen/dp_10"
         android:text="张俊杰"
         android:textColor="@color/colorBlack"
         android:textSize="@dimen/sp_15" />
 
-    <TextView
+    <!--<TextView
         android:id="@+id/tv_content"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -72,12 +72,12 @@
         android:layout_marginTop="@dimen/dp_5"
         android:text="2018-08-09"
         android:textColor="@color/colorBlack_2"
-        android:textSize="@dimen/sp_14" />
+        android:textSize="@dimen/sp_14" />-->
 
     <cn.bingoogolapple.photopicker.widget.BGANinePhotoLayout
         android:id="@+id/bga"
         style="@style/MatchWrap"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="10dp"
         app:bga_npl_itemCornerRadius="0dp"
         app:bga_npl_itemSpanCount="3"
         app:bga_npl_itemWhiteSpacing="4dp"

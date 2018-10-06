@@ -52,7 +52,27 @@
         <activity android:name=".ui.mine.diary.add.NewDiaryActivity" />
         <activity android:name=".ui.mine.set.address.detail.AddressDetailActivity" />
         <activity android:name=".ui.mine.set.address.edit.EditAddressActivity" />
-        <activity android:name=".ui.mine.cart.ShopCartActivity"></activity>
+        <activity android:name=".ui.mine.cart.ShopCartActivity" />
+        <activity android:name=".ui.mine.order.OrderActivity" />
+        <activity android:name=".ui.home.cases.CaseActivity" />
+        <activity android:name=".ui.community.knowledge.detail.WebViewActivity" />
+        <activity android:name=".ui.community.expert.detail.QuestionDetailActivity" />
+        <activity android:name=".ui.home.cause.CauseActivity" />
+        <activity android:name=".ui.mine.pay.PayActivity" />
+        <activity
+            android:name="com.alipay.sdk.app.H5PayActivity"
+            android:configChanges="orientation|keyboardHidden|navigation|screenSize"
+            android:exported="false"
+            android:screenOrientation="behind"
+            android:windowSoftInputMode="adjustResize|stateHidden" />
+        <activity
+            android:name="com.alipay.sdk.app.H5AuthActivity"
+            android:configChanges="orientation|keyboardHidden|navigation"
+            android:exported="false"
+            android:screenOrientation="behind"
+            android:windowSoftInputMode="adjustResize|stateHidden" />
+        <activity android:name=".ui.shop.type.ShopTypeActivity" />
+        <activity android:name=".ui.shop.detail.praise.PraiseActivity"></activity>
     </application>
 
 </manifest>

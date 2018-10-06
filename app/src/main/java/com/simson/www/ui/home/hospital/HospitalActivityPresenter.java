@@ -1,27 +1,33 @@
 package com.simson.www.ui.home.hospital;
 
 
-import com.simson.www.net.bean.home.HomeBannerBean;
+import com.google.gson.Gson;
+import com.simson.www.net.bean.home.CityListBean;
 import com.simson.www.net.callback.RxObserver;
-import com.simson.www.ui.core.model.HospitalActivityModel;
+import com.simson.www.ui.core.model.HospitalModel;
 import com.simson.www.ui.core.presenter.BasePresenter;
+import com.simson.www.utils.DateUtils;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class HospitalActivityPresenter extends BasePresenter<HospitalActivityContract.View> implements HospitalActivityContract.Presenter {
-    private HospitalActivityModel mModel;
+    private HospitalModel mModel;
     private HospitalActivityContract.View mView;
 
     HospitalActivityPresenter() {
-        this.mModel = new HospitalActivityModel();
+        this.mModel = new HospitalModel();
     }
 
     @Override
-    public void getBanner() {
+    public void getCityList() {
         mView = getView();
-        RxObserver<HomeBannerBean> mHomeRxPageListObserver = new RxObserver<HomeBannerBean>(this) {
+        RxObserver<List<CityListBean>> mObserver = new RxObserver<List<CityListBean>>(this) {
 
             @Override
-            public void onSuccess(HomeBannerBean mData) {
-                mView.setBannerData(mData);
+            public void onSuccess(List<CityListBean> mData) {
+                mView.setCityList(mData);
             }
 
             @Override
@@ -29,8 +35,11 @@ public class HospitalActivityPresenter extends BasePresenter<HospitalActivityCon
                 mView.showFail(errorMsg);
             }
         };
-        //mModel.getHomeBannerData(mHomeRxPageListObserver);
-        addDisposable(mHomeRxPageListObserver);
+        Map<String, String> map = new HashMap<>();
+        map.put("timestamp", DateUtils.getStringDate());
+        String json = new Gson().toJson(map);
+        mModel.getCityList(json, mObserver);
+        addDisposable(mObserver);
     }
 
 }

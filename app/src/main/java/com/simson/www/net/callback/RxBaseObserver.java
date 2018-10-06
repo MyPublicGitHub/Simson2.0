@@ -30,7 +30,7 @@ public abstract class RxBaseObserver<T> extends DisposableObserver<BaseBean<T>> 
 
     protected IView view;
 
-    RxBaseObserver(com.simson.www.ui.core.presenter.BasePresenter mPresenter) {
+    public RxBaseObserver(com.simson.www.ui.core.presenter.BasePresenter mPresenter) {
         this.view = mPresenter.getView();
     }
 

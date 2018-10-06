@@ -9,14 +9,10 @@ import android.view.View;
 
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.simson.www.R;
-import com.simson.www.net.bean.community.DoctorBean;
-import com.simson.www.net.bean.community.PopularizationBean;
 import com.simson.www.net.bean.community.QuestionsBean;
-import com.simson.www.ui.adapter.ExpertCommunityAdapter;
-import com.simson.www.ui.adapter.ExpertDetailAdapter;
-import com.simson.www.ui.adapter.KnowledgeItemAdapter;
 import com.simson.www.ui.adapter.QuestionAdapter;
 import com.simson.www.ui.base.BasePresenterFragment;
+import com.simson.www.ui.community.expert.detail.QuestionDetailActivity;
 import com.simson.www.ui.main.login.LoginActivity;
 
 import java.util.List;
@@ -34,6 +30,7 @@ public class ExpertItemFragment extends BasePresenterFragment<ExpertItemPresente
     private String type;
     private int mPage = 1;
     QuestionAdapter adapter;
+
     @Override
     protected void initViews(View view) {
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
@@ -41,11 +38,13 @@ public class ExpertItemFragment extends BasePresenterFragment<ExpertItemPresente
         recyclerView.setAdapter(adapter);
         adapter.bindToRecyclerView(recyclerView);
         adapter.setEmptyView(R.layout.list_empty_view);
-//        adapter.setOnItemClickListener((adapter, view1, position) -> {
-//            List<DiaryBean> bean = (List<DiaryBean>) adapter.getData();
-//            String diary_id = bean.get(position).getDiary_id();
-//            startActivity(new Intent(getContext(), DiaryDetailActivity.class).putExtra("id", ));
-//        });
+        recyclerView.setNestedScrollingEnabled(false);
+        recyclerView.setFocusable(false);
+        adapter.setOnItemClickListener((adapter, view1, position) -> {
+            List<QuestionsBean> bean = (List<QuestionsBean>) adapter.getData();
+            String questionsId = bean.get(position).getQuestions_id();
+            startActivity(new Intent(getContext(), QuestionDetailActivity.class).putExtra("questionsId", questionsId));
+        });
         setRefresh();
         mPresenter.getQuestionsList();
     }
@@ -66,7 +65,6 @@ public class ExpertItemFragment extends BasePresenterFragment<ExpertItemPresente
 
         }
     }
-
 
 
     @Override

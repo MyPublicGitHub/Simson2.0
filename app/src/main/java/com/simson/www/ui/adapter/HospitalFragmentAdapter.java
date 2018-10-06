@@ -17,6 +17,8 @@ public class HospitalFragmentAdapter extends BaseQuickAdapter<BaseBean, BaseView
 
     @Override
     protected void convert(BaseViewHolder helper, BaseBean item) {
-
+        // Glide.with(helper.getView(R.id.popLayoutId).getContext()).
     }
+
+
 }

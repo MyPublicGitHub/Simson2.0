@@ -1,5 +1,6 @@
 package com.simson.www.ui.core.view;
 
+import com.simson.www.net.bean.BaseBean;
 import com.simson.www.net.bean.main.ItemTypeBean;
 
 import java.util.List;
@@ -9,11 +10,10 @@ import java.util.List;
  * Created by  on 2018/2/1.
  */
 
-public interface IView{
+public interface IView {
 
     /**
      * 显示进度条
-     *
      */
     void showLoading(String msg);
 
@@ -40,5 +40,11 @@ public interface IView{
     void showEmpty();//没有数据
 
     void setItemType(List<ItemTypeBean> bean);
+
+    void collect(BaseBean bean);
+
+    void follow(BaseBean bean);
+
+    void praise(BaseBean bean);
 
 }

@@ -118,6 +118,7 @@
 
             <RelativeLayout
                 android:layout_width="0dp"
+                android:id="@+id/rl_cause"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:padding="@dimen/dp_10">
