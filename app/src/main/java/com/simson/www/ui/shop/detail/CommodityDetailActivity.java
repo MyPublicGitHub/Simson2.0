@@ -2,7 +2,6 @@ package com.simson.www.ui.shop.detail;
 
 import android.content.Intent;
 import android.graphics.Paint;
-import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.view.View;
@@ -35,7 +34,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class CommodityDetailActivity extends BasePresenterActivity<CommodityDetailPresenter, CommodityDetailContract.View>
@@ -75,6 +73,8 @@ public class CommodityDetailActivity extends BasePresenterActivity<CommodityDeta
     TextView tvName;
     @BindView(R.id.tv_contents)
     TextView tvContents;
+    @BindView(R.id.tv_collection)
+    TextView tvCollection;
 
     @Override
     protected int getLayoutId() {
@@ -116,6 +116,20 @@ public class CommodityDetailActivity extends BasePresenterActivity<CommodityDeta
         tvOriginal.setText("￥" + bean.getOriginal_price());
         point = bean.getItem_point();
         money = bean.getPresent_price();
+        initMethod(bean.getIs_collect() == 0 ? false : true);
+    }
+    boolean isCollect;
+    private void initMethod(boolean isCollect) {
+        if (isCollect) {
+            mMethodCollect = "delete";
+            tvCollection.setText("已收藏");
+            //ivCollection.setImageResource();
+        } else {
+            mMethodCollect = "save";
+            tvCollection.setText("收藏");
+            //ivCollection.setImageResource();
+        }
+        this.isCollect = isCollect;
     }
 
     @Override
@@ -128,13 +142,13 @@ public class CommodityDetailActivity extends BasePresenterActivity<CommodityDeta
 
         tvTotalPoints.setText(bean.getItem_comment_star() + "分");
         rate.setRating(bean.getItem_comment_star());
-        tvEnvironment.setText("环境："+bean.getEffect_score()+"");
-        tvProfession.setText("专业："+bean.getProfessional_score()+"");
-        tvServe.setText("服务："+bean.getService_score()+"");
-        tvEffect.setText("效果："+bean.getEffect_score() + "");
-        GlideUtils.with(bean.getCustomer_head(),ivHeader);
-        tvName.setText(bean.getCustomer_name()+"");
-        tvContents.setText(bean.getContent()+"");
+        tvEnvironment.setText("环境：" + bean.getEffect_score() + "");
+        tvProfession.setText("专业：" + bean.getProfessional_score() + "");
+        tvServe.setText("服务：" + bean.getService_score() + "");
+        tvEffect.setText("效果：" + bean.getEffect_score() + "");
+        GlideUtils.with(bean.getCustomer_head(), ivHeader);
+        tvName.setText(bean.getCustomer_name() + "");
+        tvContents.setText(bean.getContent() + "");
     }
 
     @Override
@@ -167,13 +181,14 @@ public class CommodityDetailActivity extends BasePresenterActivity<CommodityDeta
         } else {
             ToastUtils.showToast("失败");
         }
+        initMethod(!isCollect);
     }
 
-    @OnClick({R.id.ll_consultation, R.id.ll_collection, R.id.tv_save_shop, R.id.tv_pay_now,R.id.tv_more})
+    @OnClick({R.id.ll_consultation, R.id.ll_collection, R.id.tv_save_shop, R.id.tv_pay_now, R.id.tv_more})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.tv_more:
-                startActivity(new Intent(this,PraiseActivity.class).putExtra("itemId",getItemId()));
+                startActivity(new Intent(this, PraiseActivity.class).putExtra("itemId", getItemId()));
                 break;
             case R.id.ll_consultation:
                 break;
@@ -233,12 +248,12 @@ public class CommodityDetailActivity extends BasePresenterActivity<CommodityDeta
         return id;
     }
 
-    private String id, mMethod;
+    private String id, mMethodCollect;
     int mBuyNum = 1;
 
     @Override
     public String getMethod() {
-        return mMethod;
+        return mMethodCollect;
     }
 
     @Override
@@ -251,10 +266,4 @@ public class CommodityDetailActivity extends BasePresenterActivity<CommodityDeta
         return mBuyNum + "";
     }
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        // TODO: add setContentView(...) invocation
-        ButterKnife.bind(this);
-    }
 }

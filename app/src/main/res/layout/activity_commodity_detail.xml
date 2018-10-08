@@ -397,6 +397,7 @@
                 android:src="@mipmap/ic_collection" />
 
             <TextView
+                android:id="@+id/tv_collection"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="收藏"

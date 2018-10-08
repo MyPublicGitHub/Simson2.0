@@ -1,8 +1,12 @@
 package com.simson.www.ui.main;
 
-import android.support.design.widget.BottomNavigationView;
+import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
+import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
@@ -37,30 +41,11 @@ public class MainActivity extends BasePresenterActivity {
     Button btnShop;
     @BindView(R.id.btn_mine)
     Button btnMine;
-    private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
-            = item -> {
-        switch (item.getItemId()) {
-            case R.id.navigation_home:
-                switchFragment(0);
-                return true;
-            case R.id.navigation_community:
-                switchFragment(1);
-                return true;
-            case R.id.navigation_hospital:
-                switchFragment(2);
-                return true;
-            case R.id.navigation_shop:
-                switchFragment(3);
-                return true;
-            case R.id.navigation_mine:
-                switchFragment(4);
-                return true;
-        }
-        return false;
-    };
-
     public ArrayList<Fragment> mFragments;
-    private int mLastFgIndex;
+    @BindView(R.id.navigation_view)
+    NavigationView mNavigationView;
+    @BindView(R.id.drawerLayout)
+    DrawerLayout mDrawerLayout;
     private Button[] btns;
 
 
@@ -77,19 +62,50 @@ public class MainActivity extends BasePresenterActivity {
 
     @Override
     protected void initViews() {
-//        BottomNavigationView navigation = findViewById(R.id.navigation);
-//        BottomNavigationViewHelper.disableShiftMode(navigation);
-//        navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+        //设置Home旋转开关按钮
+        ActionBarDrawerToggle mToggle = new ActionBarDrawerToggle(this, mDrawerLayout, mToolbar,
+                R.string.navigation_drawer_opens,
+                R.string.navigation_drawer_close);
+        mToggle.syncState();
+        mDrawerLayout.addDrawerListener(mToggle);
+        mNavigationView.setItemIconTintList(null);
+        mNavigationView.setNavigationItemSelectedListener(onNavigationItemSelectedListener);
+        //侧滑菜单
+        initNavigationHeaderView();
 
 //        TextView textView = helper.getView(R.id.tv_original);
 //        textView.getPaint().setFlags(Paint.STRIKE_THRU_TEXT_FLAG);
         SPUtils.put(Const.USER_INFO.CUSTOMER_ID, "2018090115357871316905625");
         initButton();
         initFragment();
-        switchFragment(0);
-
     }
 
+    private void initNavigationHeaderView() {
+//        View mHeaderView = mNavigationView.getHeaderView(0);
+//        mAvatarView = (ImageView) mHeaderView.findViewById(R.id.img_avatar);
+//        mNameView = (TextView) mHeaderView.findViewById(R.id.tv_name);
+    }
+
+    //设置侧滑item click
+    private NavigationView.OnNavigationItemSelectedListener onNavigationItemSelectedListener = item -> {
+        switch (item.getItemId()) {
+//            case R.id.menu_favorite_article: {
+//                if (!UserInfoManager.isLogin()) {
+//                    startActivity(new Intent(MainActivity.this, LogonActivity.class));
+//                } else {
+//                    startActivity(new Intent(MainActivity.this, CollectArticleActivity.class));
+//                }
+//            }
+//            break;
+//            case R.id.menu_about:
+//                startActivity(new Intent(MainActivity.this, AboutUsActivity.class));
+//                break;
+//            case R.id.menu_exit:
+//                exitToLogin();
+//                break;
+        }
+        return true;
+    };
     private int currentPosition;
     private int index;
 
@@ -117,25 +133,8 @@ public class MainActivity extends BasePresenterActivity {
         mFragments.add(new HospitalFragment());
         mFragments.add(new ShopFragment());
         mFragments.add(new MineFragment());
-    }
-
-    /**
-     * 切换fragment
-     */
-    public void switchFragment(int position) {
-        if (position >= mFragments.size()) {
-            return;
-        }
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-        Fragment targetFg = mFragments.get(position);
-        Fragment lastFg = mFragments.get(mLastFgIndex);
-        mLastFgIndex = position;
-        ft.hide(lastFg);
-        if (!targetFg.isAdded()) {
-            ft.add(R.id.container, targetFg);
-        }
-        ft.show(targetFg);
-        ft.commitAllowingStateLoss();
+        ft.add(R.id.container, mFragments.get(0)).show(mFragments.get(0)).commitAllowingStateLoss();
     }
 
     /**
@@ -158,6 +157,14 @@ public class MainActivity extends BasePresenterActivity {
         }
     }
 
+    public void drawer() {
+        if (mDrawerLayout.isDrawerOpen(GravityCompat.START)){
+            mDrawerLayout.closeDrawers();
+        }else {
+            mDrawerLayout.openDrawer(GravityCompat.START);
+        }
+    }
+
     /**
      * view放大缩小
      */
@@ -175,10 +182,10 @@ public class MainActivity extends BasePresenterActivity {
 
         if (keyCode == KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_DOWN) {
 
-//            if (mDrawerLayout.isDrawerOpen(Gravity.START)) {
-//                mDrawerLayout.closeDrawer(Gravity.START);
-//                return true;
-//            }
+            if (mDrawerLayout.isDrawerOpen(Gravity.START)) {
+                mDrawerLayout.closeDrawer(Gravity.START);
+                return true;
+            }
 
             if (System.currentTimeMillis() - mExitTime < 2000) {
                 finish();
@@ -213,4 +220,5 @@ public class MainActivity extends BasePresenterActivity {
         }
         showCurrentFragment(index);
     }
+
 }

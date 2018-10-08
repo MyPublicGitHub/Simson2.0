@@ -26,6 +26,7 @@ import com.simson.www.net.bean.mine.CaseBean;
 import com.simson.www.net.bean.mine.CustomerBean;
 import com.simson.www.net.bean.mine.CustomerInfoBean;
 import com.simson.www.net.bean.mine.IntegralDetailBean;
+import com.simson.www.net.bean.mine.ItemCollectBean;
 import com.simson.www.net.bean.mine.OrderBean;
 import com.simson.www.net.bean.mine.PaymentOrderBean;
 import com.simson.www.net.bean.mine.ShopCartBean;
@@ -237,4 +238,8 @@ public interface ApiServer {
     //积分明细
     @POST("pointController/pointList")
     Observable<BaseBean<List<IntegralDetailBean>>> pointList(@Query("json") String json);
+
+    //收藏
+    @POST("itemController/itemCollectList")
+    Observable<BaseBean<List<ShopListBean>>> itemCollectList(@Query("json") String json);
 }

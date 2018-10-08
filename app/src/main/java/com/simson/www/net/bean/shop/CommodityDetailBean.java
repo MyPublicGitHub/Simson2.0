@@ -4,17 +4,19 @@ import java.util.List;
 
 public class CommodityDetailBean {
 
+
     /**
-     * item_id : 11201809
-     * item_name : 【头顶加密种植】 【毛囊检测】 5分钟头皮体验，直抵毛囊深处，轻松掌握毛囊健康问题
-     * present_price : 11.00
-     * original_price : 0.10
+     * item_id : 2018007
+     * item_name : 【头顶加密种植】【私信领红包 送保险】无痕种植，个性定制，美丽从"头"做起
+     * present_price : 888.00
+     * original_price : 1065.60
      * item_point : 0
      * browse : 0
      * subscribes : 0
      * is_delivery : 0
      * is_point : 0
-     * picture : ["http://58.213.14.195:8081/upload/item/毛囊检测2/1.jpg","http://58.213.14.195:8081/upload/item/毛囊检测2/2.jpg","http://58.213.14.195:8081/upload/item/毛囊检测2/3.jpg","http://58.213.14.195:8081/upload/item/毛囊检测2/4.jpg"]
+     * is_collect : 0
+     * picture : ["http://58.213.14.195:8081/upload/item/kunmingtoudingjiami/1.jpg","http://58.213.14.195:8081/upload/item/kunmingtoudingjiami/2.jpg","http://58.213.14.195:8081/upload/item/kunmingtoudingjiami/3.jpg","http://58.213.14.195:8081/upload/item/kunmingtoudingjiami/4.jpg"]
      */
 
     private String item_id;
@@ -26,6 +28,7 @@ public class CommodityDetailBean {
     private int subscribes;
     private int is_delivery;
     private int is_point;
+    private int is_collect;
     private List<String> picture;
     public List<String> pictures;
 
@@ -99,6 +102,14 @@ public class CommodityDetailBean {
 
     public void setIs_point(int is_point) {
         this.is_point = is_point;
+    }
+
+    public int getIs_collect() {
+        return is_collect;
+    }
+
+    public void setIs_collect(int is_collect) {
+        this.is_collect = is_collect;
     }
 
     public List<String> getPicture() {

@@ -18,6 +18,7 @@ import com.simson.www.ui.home.cases.CaseActivity;
 import com.simson.www.ui.home.cause.CauseActivity;
 import com.simson.www.ui.home.expert.ExpertActivity;
 import com.simson.www.ui.home.hospital.HospitalActivity;
+import com.simson.www.ui.main.MainActivity;
 import com.simson.www.utils.GlideImageLoader;
 import com.simson.www.utils.GlideUtils;
 import com.youth.banner.Banner;
@@ -48,13 +49,8 @@ public class HomeFragment extends BasePresenterFragment<HomePresenter, HomeContr
     TextView tvCase;
 
     @Override
-    protected HomePresenter createPresenter() {
-        return new HomePresenter();
-    }
-
-    @Override
-    protected void getBundle(Bundle bundle) {
-
+    protected int getLayoutId() {
+        return R.layout.fragment_home;
     }
 
     @Override
@@ -68,23 +64,28 @@ public class HomeFragment extends BasePresenterFragment<HomePresenter, HomeContr
         });
     }
 
-    @OnClick({R.id.tv_hospital, R.id.tv_expert, R.id.tv_case,R.id.rl_cause})
+    @OnClick({R.id.iv_menu, R.id.tv_hospital, R.id.tv_expert, R.id.tv_case, R.id.rl_cause})
     public void onViewClicked(android.view.View view) {
         switch (view.getId()) {
+            case R.id.iv_menu:
+                MainActivity activity = (MainActivity) getActivity();
+                activity.drawer();
+                break;
             case R.id.tv_hospital:
-                startActivity(new Intent(getActivity(),HospitalActivity.class));
+                startActivity(new Intent(getActivity(), HospitalActivity.class));
                 break;
             case R.id.tv_expert:
-                startActivity(new Intent(getActivity(),ExpertActivity.class));
+                startActivity(new Intent(getActivity(), ExpertActivity.class));
                 break;
             case R.id.tv_case:
-                startActivity(new Intent(getActivity(),CaseActivity.class));
+                startActivity(new Intent(getActivity(), CaseActivity.class));
                 break;
-                case R.id.rl_cause:
-                startActivity(new Intent(getActivity(),CauseActivity.class));
+            case R.id.rl_cause:
+                startActivity(new Intent(getActivity(), CauseActivity.class));
                 break;
         }
     }
+
     @Override
     public void setItemType(List<ItemTypeBean> bean) {
         TabViewPagerAdapter adapter = new TabViewPagerAdapter(getChildFragmentManager(),
@@ -92,11 +93,6 @@ public class HomeFragment extends BasePresenterFragment<HomePresenter, HomeContr
         viewPager.setOffscreenPageLimit(3);
         viewPager.setAdapter(adapter);
         tabLayout.setupWithViewPager(viewPager);
-    }
-
-    @Override
-    protected int getLayoutId() {
-        return R.layout.fragment_home;
     }
 
     @Override
@@ -143,4 +139,13 @@ public class HomeFragment extends BasePresenterFragment<HomePresenter, HomeContr
         mBanner.setIndicatorGravity(BannerConfig.CENTER);//设置指示器位置（当banner模式中有指示器时）
     }
 
+    @Override
+    protected HomePresenter createPresenter() {
+        return new HomePresenter();
+    }
+
+    @Override
+    protected void getBundle(Bundle bundle) {
+
+    }
 }

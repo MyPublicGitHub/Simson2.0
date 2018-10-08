@@ -13,6 +13,7 @@ import com.simson.www.net.bean.mine.CustomerBean;
 import com.simson.www.ui.base.BasePresenterFragment;
 import com.simson.www.ui.main.login.LoginActivity;
 import com.simson.www.ui.mine.cart.ShopCartActivity;
+import com.simson.www.ui.mine.collect.CollectActivity;
 import com.simson.www.ui.mine.diary.MyDiaryActivity;
 import com.simson.www.ui.mine.integral.IntegralActivity;
 import com.simson.www.ui.mine.integral.mall.IntegralMallActivity;
@@ -77,7 +78,7 @@ public class MineFragment extends BasePresenterFragment<MinePresenter, MineContr
     @OnClick({R.id.iv_setting, R.id.ll_user_info, R.id.ll_integral_mall, R.id.ll_sign_in, R.id.ll_invitation,
             R.id.ll_diary, R.id.ll_message, R.id.ll_integral, R.id.ll_post, R.id.ll_pending_payment,
             R.id.ll_pending_delivery, R.id.ll_already_shipped, R.id.ll_evaluate, R.id.ll_refund,
-            R.id.ll_shop_card})
+            R.id.ll_shop_card,R.id.ll_collect})
     public void onViewClicked(View view) {
         if (TextUtils.isEmpty((String) SPUtils.get(Const.USER_INFO.CUSTOMER_ID, ""))) {
             startActivity(new Intent(getActivity(), LoginActivity.class));
@@ -126,6 +127,9 @@ public class MineFragment extends BasePresenterFragment<MinePresenter, MineContr
                 break;
             case R.id.ll_shop_card:
                 startActivity(new Intent(getActivity(), ShopCartActivity.class));
+                break;
+            case R.id.ll_collect:
+                startActivity(new Intent(getActivity(), CollectActivity.class));
                 break;
         }
     }
