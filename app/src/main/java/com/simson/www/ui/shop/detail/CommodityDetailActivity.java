@@ -125,26 +125,13 @@ public class CommodityDetailActivity extends BasePresenterActivity<CommodityDeta
 
     @Override
     public void showCommodityDetailPraise(CommodityDetailPraiseBean bean) {
-/**
- * item_comment_id : 1119
- * customer_id : 2018091915373510035276172
- * customer_name : 173****8583
- * customer_head : http://58.213.14.195:8081/upload/user.jpg
- * item_comment_star : 5.0
- * environmental_score : 5.0
- * professional_score : 5.0
- * service_score : 5.0
- * effect_score : 5.0
- * content : 完美
- * create_time : 2018-09-27
- * comments : 1
- */
+
         tvTotalPoints.setText(bean.getItem_comment_star() + "分");
         rate.setRating(bean.getItem_comment_star());
-        tvEnvironment.setText(bean.getEffect_score()+"");
-        tvProfession.setText(bean.getProfessional_score()+"");
-        tvServe.setText(bean.getService_score()+"");
-        tvEffect.setText(bean.getEffect_score() + "");
+        tvEnvironment.setText("环境："+bean.getEffect_score()+"");
+        tvProfession.setText("专业："+bean.getProfessional_score()+"");
+        tvServe.setText("服务："+bean.getService_score()+"");
+        tvEffect.setText("效果："+bean.getEffect_score() + "");
         GlideUtils.with(bean.getCustomer_head(),ivHeader);
         tvName.setText(bean.getCustomer_name()+"");
         tvContents.setText(bean.getContent()+"");
@@ -186,7 +173,7 @@ public class CommodityDetailActivity extends BasePresenterActivity<CommodityDeta
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.tv_more:
-                startActivity(new Intent(this,PraiseActivity.class));
+                startActivity(new Intent(this,PraiseActivity.class).putExtra("itemId",getItemId()));
                 break;
             case R.id.ll_consultation:
                 break;

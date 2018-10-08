@@ -8,11 +8,13 @@
     android:padding="@dimen/dp_10">
 
     <ImageView
+        android:id="@+id/iv_image"
         android:layout_width="@dimen/dp_100"
         android:layout_height="@dimen/dp_100"
-        android:background="@mipmap/ic_placeholder" />
+        android:scaleType="centerCrop"/>
 
     <TextView
+        android:id="@+id/tv_name"
         android:layout_width="wrap_content"
         android:text="植发机器人"
         android:layout_marginTop="@dimen/dp_5"

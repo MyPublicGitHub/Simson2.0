@@ -41,18 +41,23 @@ public class HomeItemFragment extends BasePresenterFragment<HomeItemPresenter, H
 
     @Override
     protected void initViews(android.view.View view) {
-        //        DividerItemDecoration itemDecoration = new DividerItemDecoration(getContext(),
-//                DividerItemDecoration.VERTICAL);
-//        itemDecoration.setDrawable(ContextCompat.getDrawable(getContext(),
-//                R.drawable.recycler_divider));
-//        recyclerView.addItemDecoration(itemDecoration);
+
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         adapter = new HomeItemAdapter(null);
         recyclerView.setAdapter(adapter);
-//        recyclerView.setNestedScrollingEnabled(false);
+        recyclerView.setNestedScrollingEnabled(false);
         recyclerView.setFocusable(false);
         adapter.bindToRecyclerView(recyclerView);
         adapter.setEmptyView(R.layout.list_empty_view);
+        adapter.setOnItemChildClickListener((adapter, views, position) -> {
+            List<HomeItemBean> data = (List<HomeItemBean>) adapter.getData();
+            HomeItemBean bean = data.get(position);
+            switch (views.getId()) {
+                case R.id.tv_follow:
+//mPresenter.follow(bean.);
+                    break;
+            }
+        });
         setRefresh();
         mPage = 1;
 
@@ -101,7 +106,7 @@ public class HomeItemFragment extends BasePresenterFragment<HomeItemPresenter, H
     }
 
     private int mPage = 1;
-    private String mItemType,mType = "";
+    private String mItemType, mType = "";
 
     @Override
     public int getPage() {

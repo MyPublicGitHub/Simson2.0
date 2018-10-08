@@ -9,14 +9,17 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.simson.www.R;
-import com.simson.www.common.Const;
 import com.simson.www.net.bean.BaseBean;
+import com.simson.www.net.bean.community.DiaryBean;
+import com.simson.www.net.bean.community.DoctorBean;
 import com.simson.www.net.bean.home.HospitalDetailBean;
+import com.simson.www.net.bean.home.HospitalDeviceBean;
 import com.simson.www.ui.adapter.HDACaseDiaryAdapter;
 import com.simson.www.ui.adapter.HDAExpertAdapter;
 import com.simson.www.ui.adapter.HDAHospitalInfoAdapter;
 import com.simson.www.ui.adapter.HDAInstrumentAdapter;
 import com.simson.www.ui.base.BasePresenterActivity;
+import com.simson.www.ui.home.expert.ExpertActivity;
 import com.simson.www.utils.GlideImageLoader;
 import com.simson.www.utils.GlideUtils;
 import com.simson.www.utils.ToastUtils;
@@ -25,7 +28,6 @@ import com.youth.banner.Banner;
 import com.youth.banner.BannerConfig;
 import com.youth.banner.Transformer;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
@@ -86,26 +88,30 @@ public class HospitalDetailActivity extends BasePresenterActivity<HospitalDetail
 
     @Override
     protected void initViews() {
-        List<BaseBean> list = new ArrayList<>();
-        for (int i = 0; i < 5; i++) {
-            list.add(new BaseBean());
-        }
-        mHDAExpertAdapter = new HDAExpertAdapter(list);
+
+        mHDAExpertAdapter = new HDAExpertAdapter(null);
         rvExperts.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
+        mHDAExpertAdapter.bindToRecyclerView(rvExperts);
+        mHDAExpertAdapter.setEmptyView(R.layout.list_empty_view);
         rvExperts.setAdapter(mHDAExpertAdapter);
 
-        mHDAInstrumentAdapter = new HDAInstrumentAdapter(list);
+        mHDAInstrumentAdapter = new HDAInstrumentAdapter(null);
         rvInstrument.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
+        mHDAInstrumentAdapter.bindToRecyclerView(rvInstrument);
+        mHDAInstrumentAdapter.setEmptyView(R.layout.list_empty_view);
         rvInstrument.setAdapter(mHDAInstrumentAdapter);
 
-//        mHDACaseDiaryAdapter = new HDACaseDiaryAdapter(list);
-//        rvCaseDiary.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
-//        rvCaseDiary.setAdapter(mHDACaseDiaryAdapter);
+        mHDACaseDiaryAdapter = new HDACaseDiaryAdapter(null);
+        rvCaseDiary.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
+        mHDACaseDiaryAdapter.bindToRecyclerView(rvCaseDiary);
+        mHDACaseDiaryAdapter.setEmptyView(R.layout.list_empty_view);
+        rvCaseDiary.setAdapter(mHDACaseDiaryAdapter);
 
-        mHDAHospitalInfoAdapter = new HDAHospitalInfoAdapter(list);
+        mHDAHospitalInfoAdapter = new HDAHospitalInfoAdapter(null);
         rvHospitalInfo.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
+        mHDAHospitalInfoAdapter.bindToRecyclerView(rvHospitalInfo);
+        mHDAHospitalInfoAdapter.setEmptyView(R.layout.list_empty_view);
         rvHospitalInfo.setAdapter(mHDAHospitalInfoAdapter);
-
         initBanner();
     }
 
@@ -126,14 +132,47 @@ public class HospitalDetailActivity extends BasePresenterActivity<HospitalDetail
             isFollow = true;
         }
         initMethod();
+    }
+
+    @Override
+    public void showDoctorList(DoctorBean beans) {
+        if (beans == null && beans.getList() != null) {
+            return;
+        }
+        List<DoctorBean.DoctorItemBean> bean = beans.getList();
+        mHDAExpertAdapter.replaceData(bean);
 
     }
 
-    @OnClick({R.id.tv_follow, R.id.ll_location, R.id.ll_call, R.id.ll_online})
+    @Override
+    public void showHospitalDeviceList(List<HospitalDeviceBean> beans) {
+        if (beans == null) {
+            return;
+        }
+        mHDAInstrumentAdapter.replaceData(beans);
+    }
+
+    @Override
+    public void showDiaryList(List<DiaryBean> beans) {
+        if (beans == null) {
+            return;
+        }
+        mHDACaseDiaryAdapter.replaceData(beans);
+    }
+
+    @OnClick({R.id.tv_doctor_more, R.id.tv_device_more, R.id.tv_diary_more,
+            R.id.tv_follow, R.id.ll_location, R.id.ll_call, R.id.ll_online})
     public void onViewClicked(View view) {
         switch (view.getId()) {
+            case R.id.tv_doctor_more:
+                startActivity(new Intent(this, ExpertActivity.class));
+                break;
+            case R.id.tv_device_more:
+                break;
+            case R.id.tv_diary_more:
+                break;
             case R.id.tv_follow:
-                mPresenter.follow();
+                mPresenter.followHospital();
                 break;
             case R.id.ll_location:
                 break;
@@ -158,6 +197,8 @@ public class HospitalDetailActivity extends BasePresenterActivity<HospitalDetail
     @Override
     protected void initData() {
         mPresenter.getHospitalDetail();
+        mPresenter.getDoctorList();
+        mPresenter.getHospitalDeviceList();
     }
 
     @Override
@@ -194,11 +235,6 @@ public class HospitalDetailActivity extends BasePresenterActivity<HospitalDetail
     @Override
     public String getMethod() {
         return mMethod;
-    }
-
-    @Override
-    public String getType() {
-        return Const.FOLLOW_TYPE.HOSPITAL;
     }
 
     @Override

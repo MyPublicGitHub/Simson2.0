@@ -3,8 +3,10 @@ package com.simson.www.ui.mine.set.address.edit;
 
 import com.google.gson.Gson;
 import com.simson.www.common.Const;
+import com.simson.www.net.NetConfig;
 import com.simson.www.net.bean.BaseBean;
 import com.simson.www.net.bean.mine.AddressBean;
+import com.simson.www.net.callback.RxBaseObserver;
 import com.simson.www.net.callback.RxObserver;
 import com.simson.www.ui.core.model.AddressModel;
 import com.simson.www.ui.core.model.EditAddressModel;
@@ -30,19 +32,17 @@ public class EditAddressPresenter extends BasePresenter<EditAddressContract.View
     @Override
     public void editAddress() {
         mView = getView();
-        RxObserver<BaseBean> observer = new RxObserver<BaseBean>(this) {
-
+        RxBaseObserver<BaseBean> observer = new RxBaseObserver<BaseBean>(this) {
             @Override
-            public void onSuccess(BaseBean mData) {
-                mView.showSuccess(mData);
+            public void onNext(BaseBean<BaseBean> bean) {
+                if (bean.result == NetConfig.REQUEST_SUCCESS) {
+                    mView.showSuccess(bean);
+                } else {
+                    mView.showFail(bean.message);
+                }
             }
 
-            @Override
-            public void onFail(int code, String errorMsg) {
-                mView.showFail(errorMsg);
-            }
         };
-
         Map<String, String> map = new HashMap<>();
         map.put("timestamp", DateUtils.getStringDate());
         map.put("customerId", (String) SPUtils.get(Const.USER_INFO.CUSTOMER_ID, ""));//当前登录人

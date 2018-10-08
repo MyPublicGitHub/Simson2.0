@@ -2,6 +2,7 @@ package com.simson.www.utils;
 
 import android.graphics.Color;
 import android.text.TextUtils;
+import android.view.View;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
@@ -9,6 +10,33 @@ import java.util.Random;
 
 
 public class CommonUtils {
+    public static String getDatePickerToString(int year, int monthOfYear, int dayOfMonth) {
+        StringBuffer sb = new StringBuffer();
+        sb.append(year);
+        if (monthOfYear < 9) {
+            sb.append("-0").append(monthOfYear + 1);
+        } else {
+            sb.append("-").append(monthOfYear + 1);
+        }
+        if (dayOfMonth < 10) {
+            sb.append("-0").append(dayOfMonth);
+        } else {
+            sb.append("-").append(dayOfMonth);
+        }
+        return sb.toString();
+    }
+
+    /**
+     * 测量View的宽高
+     *
+     * @param view View
+     */
+    public static void measureWidthAndHeight(View view) {
+        int widthMeasureSpec = View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED);
+        int heightMeasureSpec = View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED);
+        view.measure(widthMeasureSpec, heightMeasureSpec);
+    }
+
     /**
      * 获取随机rgb颜色值
      */

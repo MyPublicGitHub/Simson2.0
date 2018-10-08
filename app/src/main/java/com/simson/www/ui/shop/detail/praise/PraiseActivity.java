@@ -33,6 +33,7 @@ public class PraiseActivity extends BasePresenterActivity<PraisePresenter, Prais
         adapter = new PraiseAdapter(null);
         recyclerView.setAdapter(adapter);
         recyclerView.setFocusable(false);
+        recyclerView.setNestedScrollingEnabled(false);
         adapter.bindToRecyclerView(recyclerView);
         adapter.setEmptyView(R.layout.list_empty_view);
         setRefresh();
@@ -93,5 +94,11 @@ public class PraiseActivity extends BasePresenterActivity<PraisePresenter, Prais
     @Override
     protected PraisePresenter createPresenter() {
         return new PraisePresenter();
+    }
+
+    @Override
+    protected boolean initToolbar() {
+        mTitle.setText("商品评价");
+        return true;
     }
 }

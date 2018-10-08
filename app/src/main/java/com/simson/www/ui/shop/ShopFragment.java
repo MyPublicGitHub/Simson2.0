@@ -5,7 +5,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
@@ -15,11 +17,15 @@ import com.simson.www.ui.adapter.ShopCommodityAdapter;
 import com.simson.www.ui.adapter.ShopIntegralAdapter;
 import com.simson.www.ui.base.BasePresenterFragment;
 import com.simson.www.ui.shop.detail.CommodityDetailActivity;
+import com.simson.www.ui.shop.type.ShopTypeActivity;
 import com.youth.banner.Banner;
 
 import java.util.List;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
+import butterknife.Unbinder;
 
 
 public class ShopFragment extends BasePresenterFragment<ShopPresenter, ShopContract.View> implements ShopContract.View {
@@ -84,6 +90,16 @@ public class ShopFragment extends BasePresenterFragment<ShopPresenter, ShopContr
         mPresenter.getShopIntegralList();
     }
 
+
+
+    @OnClick({R.id.ll_hair,})
+    public void onViewClicked(View view) {
+        switch (view.getId()) {
+            case R.id.ll_hair:
+                startActivity(new Intent(getActivity(), ShopTypeActivity.class));
+                break;
+        }
+    }
     @Override
     public void setShopListResponse(List<ShopListBean> bean) {
         if (bean == null) {

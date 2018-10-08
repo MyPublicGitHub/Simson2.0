@@ -1,11 +1,10 @@
 package com.simson.www.ui.mine.set.address.detail;
 
+import android.content.Intent;
+
 import com.simson.www.R;
-import com.simson.www.net.bean.mine.AddressBean;
 import com.simson.www.net.bean.mine.AddressDetailBean;
 import com.simson.www.ui.base.BasePresenterActivity;
-
-import java.util.List;
 
 public class AddressDetailActivity extends BasePresenterActivity<AddressDetailPresenter, AddressDetailContract.View>
         implements AddressDetailContract.View {
@@ -16,8 +15,20 @@ public class AddressDetailActivity extends BasePresenterActivity<AddressDetailPr
     }
 
     @Override
+    protected void initData() {
+        mPresenter.getAddressDetail();
+    }
+
+    @Override
+    protected void getIntent(Intent intent) {
+        deliveryId = intent.getStringExtra("deliveryId");
+    }
+
+    String deliveryId;
+
+    @Override
     public String getDeliveryId() {
-        return null;
+        return deliveryId;
     }
 
     @Override

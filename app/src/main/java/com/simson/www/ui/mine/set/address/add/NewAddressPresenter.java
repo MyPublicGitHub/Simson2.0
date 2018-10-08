@@ -3,8 +3,9 @@ package com.simson.www.ui.mine.set.address.add;
 
 import com.google.gson.Gson;
 import com.simson.www.common.Const;
+import com.simson.www.net.NetConfig;
 import com.simson.www.net.bean.BaseBean;
-import com.simson.www.net.callback.RxObserver;
+import com.simson.www.net.callback.RxBaseObserver;
 import com.simson.www.ui.core.model.NewAddressModel;
 import com.simson.www.ui.core.presenter.BasePresenter;
 import com.simson.www.utils.DateUtils;
@@ -26,17 +27,16 @@ public class NewAddressPresenter extends BasePresenter<NewAddressContract.View> 
     @Override
     public void newAddress() {
         mView = getView();
-        RxObserver<BaseBean> observer = new RxObserver<BaseBean>(this) {
-
+        RxBaseObserver<BaseBean> observer = new RxBaseObserver<BaseBean>(this) {
             @Override
-            public void onSuccess(BaseBean mData) {
-                mView.showSuccess(mData);
+            public void onNext(BaseBean<BaseBean> bean) {
+                if (bean.result == NetConfig.REQUEST_SUCCESS) {
+                    mView.showSuccess(bean);
+                } else {
+                    mView.showFail(bean.message);
+                }
             }
 
-            @Override
-            public void onFail(int code, String errorMsg) {
-                mView.showFail(errorMsg);
-            }
         };
 
         Map<String, String> map = new HashMap<>();

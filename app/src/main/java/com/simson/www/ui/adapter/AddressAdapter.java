@@ -1,6 +1,7 @@
 package com.simson.www.ui.adapter;
 
 import android.support.annotation.Nullable;
+import android.widget.CompoundButton;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
@@ -14,30 +15,32 @@ import java.util.List;
 public class AddressAdapter extends BaseQuickAdapter<AddressBean, BaseViewHolder> {
 
     public AddressAdapter(@Nullable List<AddressBean> data) {
-        super(R.layout.item_hda_case_diary, data);
+        super(R.layout.item_address, data);
     }
 
     @Override
     protected void convert(BaseViewHolder helper, AddressBean item) {
-/*
-        GlideUtils.with(item.getCustomer_head(),helper.getView(R.id.iv_header));
-        helper.setText(R.id.tv_name, item.getCustomer_name());
-        helper.setText(R.id.tv_date, item.getIssue_time());
-        if (item.getIs_follow() == 0){
-            helper.setText(R.id.tv_follow, "关注");
-
-        }else {
-            helper.setText(R.id.tv_follow, "已关注");
-        }
-        helper.addOnClickListener(R.id.tv_follow);
-        GlideUtils.with(item.getShu_qian(),helper.getView(R.id.iv_before));
-        GlideUtils.with(item.getShu_hou(),helper.getView(R.id.iv_after));
-
-        helper.setText(R.id.tv_content, item.getContent());
-        helper.setText(R.id.tv_price, "￥"+item.getPrice());
-
-        helper.setText(R.id.tv_browse, item.getBrowse() + "阅读");
-        helper.setText(R.id.tv_comments, item.getComments() + "评论");
-        helper.setText(R.id.tv_praises,item.getPraises()+"赞");*/
+        /**
+         * delivery_id : 3acdb0e085944f27837e6aa597d1f9b5
+         * customer_id : 2018090115357871316905625
+         * address : sdf  df
+         * consignee : ff
+         * contact_number : 17633717732
+         * is_default : 0
+         * location : 浙江省杭州市滨江区
+         */
+        helper.setText(R.id.tv_name, item.getConsignee()+"");
+        helper.setText(R.id.tv_phone, item.getContact_number());
+        helper.setText(R.id.tv_address, item.getLocation() + item.getAddress());
+        helper.setChecked(R.id.cb_default, item.getIs_default() == 1);
+        helper.addOnClickListener(R.id.tv_edit);
+        helper.addOnClickListener(R.id.tv_delete);
+//        helper.setOnCheckedChangeListener(R.id.cb_default, new CompoundButton.OnCheckedChangeListener() {
+//            @Override
+//            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+//                if (isChecked)
+//                    activity.setDefaultAddress(item.getId());
+//            }
+//        });
     }
 }

@@ -1,26 +1,105 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.main.MainActivity">
+    android:orientation="vertical">
 
-    <FrameLayout
-        android:layout_weight="1"
-        android:id="@+id/container"
+    <android.support.v4.widget.DrawerLayout
+        android:id="@+id/drawerLayout"
         android:layout_width="match_parent"
-        android:layout_above="@+id/navigation"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent">
 
-    <android.support.design.widget.BottomNavigationView
-        android:id="@+id/navigation"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        app:itemIconTint="@drawable/nav_item_color_state"
-        app:itemTextColor="@drawable/nav_item_color_state"
-        app:itemBackground="@color/colorWhite"
-        app:menu="@menu/navigation" />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-</RelativeLayout>
+            <FrameLayout
+                android:id="@+id/container"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_above="@+id/bottom_tab" />
+
+            <LinearLayout
+                android:id="@+id/bottom_tab"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:background="@color/white">
+
+                <Button
+                    android:id="@+id/btn_main"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:drawableTop="@drawable/tab_main_selsctor"
+                    android:drawablePadding="2dp"
+                    android:padding="5dp"
+                    android:text="首页"
+                    android:textColor="@color/tab_text_color" />
+
+                <Button
+                    android:id="@+id/btn_community"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:drawableTop="@drawable/tab_community_selsctor"
+                    android:drawablePadding="2dp"
+                    android:padding="5dp"
+                    android:text="社区"
+                    android:textColor="@color/tab_text_color" />
+
+                <Button
+                    android:id="@+id/btn_hospital"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:drawablePadding="2dp"
+                    android:padding="5dp"
+                    android:text="医院"
+                    android:textColor="@color/tab_text_color" />
+
+                <Button
+                    android:id="@+id/btn_shop"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:drawableTop="@drawable/tab_shop_selsctor"
+                    android:drawablePadding="2dp"
+                    android:padding="5dp"
+                    android:text="商城"
+                    android:textColor="@color/tab_text_color" />
+
+                <Button
+                    android:id="@+id/btn_mine"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:drawableTop="@drawable/tab_mine_selsctor"
+                    android:drawablePadding="2dp"
+                    android:padding="5dp"
+                    android:text="我的"
+                    android:textColor="@color/tab_text_color" />
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/iv_hospital"
+                android:layout_width="@dimen/dp_55"
+                android:layout_height="@dimen/dp_55"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="@dimen/dp_25"
+                android:src="@drawable/tabbar_hospital" />
+        </RelativeLayout>
+
+        <android.support.design.widget.NavigationView
+            android:id="@+id/navigation_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="start" />
+    </android.support.v4.widget.DrawerLayout>
+</FrameLayout>

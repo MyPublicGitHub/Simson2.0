@@ -15,6 +15,7 @@ import com.simson.www.net.bean.home.DoctorDetailBean;
 import com.simson.www.net.bean.home.HomeBannerBean;
 import com.simson.www.net.bean.home.HomeItemBean;
 import com.simson.www.net.bean.home.HospitalDetailBean;
+import com.simson.www.net.bean.home.HospitalDeviceBean;
 import com.simson.www.net.bean.home.HospitalItemBean;
 import com.simson.www.net.bean.main.CodeBean;
 import com.simson.www.net.bean.main.ItemTypeBean;
@@ -23,9 +24,13 @@ import com.simson.www.net.bean.mine.AddressBean;
 import com.simson.www.net.bean.mine.AddressDetailBean;
 import com.simson.www.net.bean.mine.CaseBean;
 import com.simson.www.net.bean.mine.CustomerBean;
+import com.simson.www.net.bean.mine.CustomerInfoBean;
+import com.simson.www.net.bean.mine.IntegralDetailBean;
 import com.simson.www.net.bean.mine.OrderBean;
 import com.simson.www.net.bean.mine.PaymentOrderBean;
 import com.simson.www.net.bean.mine.ShopCartBean;
+import com.simson.www.net.bean.mine.SignBean;
+import com.simson.www.net.bean.mine.SignPageBean;
 import com.simson.www.net.bean.mine.SubmitOrderBean;
 import com.simson.www.net.bean.shop.CommentBean;
 import com.simson.www.net.bean.shop.CommodityDetailBean;
@@ -35,6 +40,8 @@ import com.simson.www.net.bean.shop.ShopListBean;
 import java.util.List;
 
 import io.reactivex.Observable;
+import retrofit2.http.Field;
+import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.POST;
 import retrofit2.http.Query;
 
@@ -138,7 +145,7 @@ public interface ApiServer {
     @POST("deliveryController/saveDelivery")
     Observable<BaseBean> newAddress(@Query("json") String json);
 
-    //新增收货地址
+    //编辑收货地址
     @POST("deliveryController/updateDelivery")
     Observable<BaseBean> editAddress(@Query("json") String json);
 
@@ -197,4 +204,37 @@ public interface ApiServer {
     //医院详情
     @POST("hospitalController/hospitalDetail")
     Observable<BaseBean<HospitalDetailBean>> getHospitalDetail(@Query("json") String json);
+
+    //医院设备
+    @POST("deviceController/deviceList")
+    Observable<BaseBean<List<HospitalDeviceBean>>> getHospitalDeviceList(@Query("json") String json);
+
+    //个人信息
+    @POST("customerController/getCustomerInfo")
+    Observable<BaseBean<CustomerInfoBean>> getCustomerInfo(@Query("json") String json);
+
+    //个人信息
+    @FormUrlEncoded
+    @POST("customerController/updateCustomerInfo")
+    Observable<BaseBean> updateCustomerInfo(@Field("json") String json);
+
+    //重置密码获取短信
+    @POST("customerController/pwdCode")
+    Observable<CodeBean> pwdCode(@Query("json") String json);
+
+    //重置密码
+    @POST("customerController/updateCustomerPwd")
+    Observable<BaseBean> updateCustomerPwd(@Query("json") String json);
+
+    //签到
+    @POST("signInController/signInPage")
+    Observable<BaseBean<SignPageBean>> signInPage(@Query("json") String json);
+
+    //签到
+    @POST("signInController/signIn")
+    Observable<BaseBean<SignBean>> signIn(@Query("json") String json);
+
+    //积分明细
+    @POST("pointController/pointList")
+    Observable<BaseBean<List<IntegralDetailBean>>> pointList(@Query("json") String json);
 }

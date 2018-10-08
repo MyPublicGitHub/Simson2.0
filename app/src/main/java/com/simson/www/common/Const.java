@@ -22,6 +22,8 @@ public class Const {
         public static final String CUSTOMER_HEAD = "CUSTOMER_HEAD";  //
         public static final String CUSTOMER_NAME = "CUSTOMER_NAME";  //
         public static final String CUSTOMER_NICK_NAME = "CUSTOMER_NICK_NAME";  //
+        public static final String CUSTOMER_SEX = "CUSTOMER_SEX";  //
+        public static final String CUSTOMER_LOCATION = "CUSTOMER_LOCATION";  //
     }
 
     /**

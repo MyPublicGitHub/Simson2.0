@@ -34,10 +34,10 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:background="@drawable/shape_corner_white_main"
-                android:paddingBottom="@dimen/dp_3"
                 android:paddingLeft="@dimen/dp_10"
-                android:paddingRight="@dimen/dp_10"
                 android:paddingTop="@dimen/dp_3"
+                android:paddingRight="@dimen/dp_10"
+                android:paddingBottom="@dimen/dp_3"
                 android:text="+ 关注"
                 android:textColor="@color/colorMain"
                 android:textSize="@dimen/sp_15"
@@ -58,12 +58,12 @@
                 style="@style/Base.Widget.AppCompat.RatingBar.Small"
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/dp_20"
-                android:focusable="false"
-                android:clickable="false"
                 android:layout_below="@id/tv_name"
                 android:layout_marginLeft="@dimen/dp_10"
                 android:layout_marginTop="@dimen/dp_3"
                 android:layout_toRightOf="@id/iv_header"
+                android:clickable="false"
+                android:focusable="false"
                 android:rating="3" />
 
             <TextView
@@ -111,8 +111,8 @@
             android:padding="@dimen/dp_10">
 
             <ImageView
-                android:layout_width="@dimen/dp_30"
-                android:layout_height="@dimen/dp_30"
+                android:layout_width="@dimen/dp_20"
+                android:layout_height="@dimen/dp_20"
                 android:src="@mipmap/ic_location" />
 
             <TextView
@@ -127,8 +127,8 @@
                 android:textSize="@dimen/sp_15" />
 
             <ImageView
-                android:layout_width="@dimen/dp_30"
-                android:layout_height="@dimen/dp_30"
+                android:layout_width="@dimen/dp_20"
+                android:layout_height="@dimen/dp_20"
                 android:src="@mipmap/ic_open" />
         </LinearLayout>
 
@@ -150,10 +150,10 @@
                 android:background="@drawable/shape_corner_orange_15dp"
                 android:gravity="center"
                 android:orientation="horizontal"
-                android:paddingBottom="@dimen/dp_5"
                 android:paddingLeft="@dimen/dp_20"
+                android:paddingTop="@dimen/dp_5"
                 android:paddingRight="@dimen/dp_20"
-                android:paddingTop="@dimen/dp_5">
+                android:paddingBottom="@dimen/dp_5">
 
                 <ImageView
                     android:layout_width="@dimen/dp_25"
@@ -179,10 +179,10 @@
                 android:background="@drawable/shape_corner_orange_15dp"
                 android:gravity="center"
                 android:orientation="horizontal"
-                android:paddingBottom="@dimen/dp_5"
                 android:paddingLeft="@dimen/dp_20"
+                android:paddingTop="@dimen/dp_5"
                 android:paddingRight="@dimen/dp_20"
-                android:paddingTop="@dimen/dp_5">
+                android:paddingBottom="@dimen/dp_5">
 
                 <ImageView
                     android:layout_width="@dimen/dp_25"
@@ -203,24 +203,26 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/dp_1"
             android:layout_marginTop="@dimen/dp_10"
+            android:layout_marginBottom="@dimen/dp_1"
             android:background="@color/colorWhite"
             android:gravity="center_vertical"
             android:orientation="horizontal"
-            android:padding="@dimen/dp_10">
+            android:paddingLeft="@dimen/dp_10">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="专家团队（23）"
+                android:text="专家团队"
                 android:textColor="@color/colorBlack"
                 android:textSize="@dimen/sp_15" />
 
             <TextView
+                android:id="@+id/tv_doctor_more"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:padding="@dimen/dp_10"
                 android:text="查看全部"
                 android:textColor="@color/colorBlack_6"
                 android:textSize="@dimen/sp_14" />
@@ -239,19 +241,21 @@
             android:background="@color/colorWhite"
             android:gravity="center_vertical"
             android:orientation="horizontal"
-            android:padding="@dimen/dp_10">
+            android:paddingLeft="@dimen/dp_10">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="植发仪器（223）"
+                android:text="植发仪器"
                 android:textColor="@color/colorBlack"
                 android:textSize="@dimen/sp_15" />
 
             <TextView
+                android:id="@+id/tv_device_more"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:padding="@dimen/dp_10"
                 android:text="查看全部"
                 android:textColor="@color/colorBlack_6"
                 android:textSize="@dimen/sp_14" />
@@ -266,24 +270,26 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/dp_1"
             android:layout_marginTop="@dimen/dp_10"
+            android:layout_marginBottom="@dimen/dp_1"
             android:background="@color/colorWhite"
             android:gravity="center_vertical"
             android:orientation="horizontal"
-            android:padding="@dimen/dp_10">
+            android:paddingLeft="@dimen/dp_10">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="案例日记（23）"
+                android:text="案例日记"
                 android:textColor="@color/colorBlack"
                 android:textSize="@dimen/sp_15" />
 
             <TextView
+                android:id="@+id/tv_diary_more"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:padding="@dimen/dp_10"
                 android:text="查看全部"
                 android:textColor="@color/colorBlack_6"
                 android:textSize="@dimen/sp_14" />
@@ -298,24 +304,25 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/dp_1"
             android:layout_marginTop="@dimen/dp_10"
+            android:layout_marginBottom="@dimen/dp_1"
             android:background="@color/colorWhite"
             android:gravity="center_vertical"
             android:orientation="horizontal"
-            android:padding="@dimen/dp_10">
+            android:paddingLeft="@dimen/dp_10">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="医院信息（23）"
+                android:text="医院信息"
                 android:textColor="@color/colorBlack"
                 android:textSize="@dimen/sp_15" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:padding="@dimen/dp_10"
                 android:text="查看全部"
                 android:textColor="@color/colorBlack_6"
                 android:textSize="@dimen/sp_14" />

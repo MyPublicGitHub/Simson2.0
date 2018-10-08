@@ -44,7 +44,7 @@ public class ExpertPresenter extends BasePresenter<ExpertContract.View> implemen
         Map<String, String> map = new HashMap<>();
         map.put("timestamp", DateUtils.getStringDate());
         map.put("customerId", (String) SPUtils.get(Const.USER_INFO.CUSTOMER_ID, ""));//当前登录人
-        map.put("doctorId", "");//医院id必填
+        map.put("hospitalId", "");//医院id必填
         map.put("pageIndex", mView.getPage() + "");
         map.put("pageSize", Const.PAGE_SIZE);
         String json = new Gson().toJson(map);

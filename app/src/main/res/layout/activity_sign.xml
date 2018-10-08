@@ -104,7 +104,7 @@
                     android:textSize="@dimen/sp_16" />
             </LinearLayout>
 
-            <!--<LinearLayout
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/dp_10"
@@ -123,7 +123,7 @@
                     <ImageView
                         android:layout_width="@dimen/dp_40"
                         android:layout_height="@dimen/dp_40"
-                        android:src="@mipmap/ic_mine_diary" />
+                        android:src="@mipmap/ic_placeholder" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -146,7 +146,7 @@
                     <ImageView
                         android:layout_width="@dimen/dp_40"
                         android:layout_height="@dimen/dp_40"
-                        android:src="@mipmap/ic_mine_integral" />
+                        android:src="@mipmap/ic_placeholder" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -156,7 +156,7 @@
                         android:textColor="@color/colorBlack"
                         android:textSize="@dimen/sp_16" />
                 </LinearLayout>
-            </LinearLayout>-->
+            </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"

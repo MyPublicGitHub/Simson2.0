@@ -51,8 +51,10 @@
                 android:layout_below="@id/tv_name"
                 android:layout_marginLeft="@dimen/dp_10"
                 android:layout_marginTop="@dimen/dp_5"
+                android:maxLines="2"
+                android:ellipsize="end"
                 android:layout_toRightOf="@id/iv_header"
-                android:text="擅长：发际线种植 鬓角种植"
+                android:text="擅长：发际线种植 鬓角种植鬓角种植鬓角种植鬓角种植"
                 android:textColor="@color/colorBlack_6"
                 android:textSize="@dimen/sp_14" />
         </RelativeLayout>
@@ -80,6 +82,7 @@
                 android:textSize="@dimen/sp_14" />
 
             <TextView
+                android:id="@+id/tv_follow"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"

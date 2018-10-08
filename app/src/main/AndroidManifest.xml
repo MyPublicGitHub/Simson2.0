@@ -72,7 +72,8 @@
             android:screenOrientation="behind"
             android:windowSoftInputMode="adjustResize|stateHidden" />
         <activity android:name=".ui.shop.type.ShopTypeActivity" />
-        <activity android:name=".ui.shop.detail.praise.PraiseActivity"></activity>
+        <activity android:name=".ui.shop.detail.praise.PraiseActivity" />
+        <activity android:name=".ui.mine.integral.detail.IntegralDetailActivity"></activity>
     </application>
 
 </manifest>
