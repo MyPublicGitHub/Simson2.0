@@ -1,15 +1,17 @@
 package com.simson.www.ui.home.item;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.simson.www.R;
-import com.simson.www.net.bean.home.HomeItemBean;
+import com.simson.www.net.bean.community.DiaryBean;
 import com.simson.www.ui.adapter.HomeItemAdapter;
 import com.simson.www.ui.base.BasePresenterFragment;
+import com.simson.www.ui.community.diary.detail.DiaryDetailActivity;
 
 import java.util.List;
 
@@ -50,13 +52,18 @@ public class HomeItemFragment extends BasePresenterFragment<HomeItemPresenter, H
         adapter.bindToRecyclerView(recyclerView);
         adapter.setEmptyView(R.layout.list_empty_view);
         adapter.setOnItemChildClickListener((adapter, views, position) -> {
-            List<HomeItemBean> data = (List<HomeItemBean>) adapter.getData();
-            HomeItemBean bean = data.get(position);
+            List<DiaryBean> data = (List<DiaryBean>) adapter.getData();
+            DiaryBean bean = data.get(position);
             switch (views.getId()) {
                 case R.id.tv_follow:
 //mPresenter.follow(bean.);
                     break;
             }
+        });
+        adapter.setOnItemClickListener((adapter, view1, position) -> {
+            List<DiaryBean> bean = (List<DiaryBean>) adapter.getData();
+            String diary_id = bean.get(position).getDiary_id();
+            startActivity(new Intent(getContext(), DiaryDetailActivity.class).putExtra("id", diary_id));
         });
         setRefresh();
         mPage = 1;
@@ -89,7 +96,7 @@ public class HomeItemFragment extends BasePresenterFragment<HomeItemPresenter, H
     }
 
     @Override
-    public void setHomeItemData(List<HomeItemBean> bean) {
+    public void setHomeItemData(List<DiaryBean> bean) {
         if (bean == null) {
             return;
         }

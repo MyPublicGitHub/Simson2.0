@@ -3,7 +3,7 @@ package com.simson.www.ui.home.item;
 
 import com.google.gson.Gson;
 import com.simson.www.common.Const;
-import com.simson.www.net.bean.home.HomeItemBean;
+import com.simson.www.net.bean.community.DiaryBean;
 import com.simson.www.net.callback.RxObserver;
 import com.simson.www.ui.core.model.HomeItemModel;
 import com.simson.www.ui.core.presenter.CommonPresenter;
@@ -26,14 +26,14 @@ public class HomeItemPresenter extends CommonPresenter<HomeItemContract.View> im
     @Override
     public void getHomeItemData() {
         mView = getView();
-        RxObserver<List<HomeItemBean>> observer = new RxObserver<List<HomeItemBean>>(this) {
+        RxObserver<List<DiaryBean>> observer = new RxObserver<List<DiaryBean>>(this) {
             @Override
             protected void onStart() {
 
             }
 
             @Override
-            public void onSuccess(List<HomeItemBean> mData) {
+            public void onSuccess(List<DiaryBean> mData) {
                 mView.setHomeItemData(mData);
             }
 

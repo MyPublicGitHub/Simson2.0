@@ -9,9 +9,11 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.simson.www.R;
+import com.simson.www.common.Const;
 import com.simson.www.net.bean.BaseBean;
 import com.simson.www.net.bean.community.DiaryBean;
 import com.simson.www.net.bean.community.DoctorBean;
+import com.simson.www.net.bean.home.CauseListBean;
 import com.simson.www.net.bean.home.HospitalDetailBean;
 import com.simson.www.net.bean.home.HospitalDeviceBean;
 import com.simson.www.ui.adapter.HDACaseDiaryAdapter;
@@ -19,7 +21,9 @@ import com.simson.www.ui.adapter.HDAExpertAdapter;
 import com.simson.www.ui.adapter.HDAHospitalInfoAdapter;
 import com.simson.www.ui.adapter.HDAInstrumentAdapter;
 import com.simson.www.ui.base.BasePresenterActivity;
+import com.simson.www.ui.community.knowledge.detail.WebViewActivity;
 import com.simson.www.ui.home.expert.ExpertActivity;
+import com.simson.www.ui.home.hospital.device.DeviceActivity;
 import com.simson.www.utils.GlideImageLoader;
 import com.simson.www.utils.GlideUtils;
 import com.simson.www.utils.ToastUtils;
@@ -100,6 +104,15 @@ public class HospitalDetailActivity extends BasePresenterActivity<HospitalDetail
         mHDAInstrumentAdapter.bindToRecyclerView(rvInstrument);
         mHDAInstrumentAdapter.setEmptyView(R.layout.list_empty_view);
         rvInstrument.setAdapter(mHDAInstrumentAdapter);
+        mHDAInstrumentAdapter.setOnItemClickListener((adapter, view1, position) -> {
+            List<HospitalDeviceBean> bean = (List<HospitalDeviceBean>) adapter.getData();
+            String link = bean.get(position).getDevice_link();
+            String id = bean.get(position).getDevice_id();
+            String url = link + "?json={deviceId:" + id + "}";
+            startActivity(new Intent(this, WebViewActivity.class)
+                    .putExtra(Const.WEB_VIEW_TITLE, bean.get(position).getDevice_name()+"")
+                    .putExtra(Const.WEB_VIEW_URL, url));
+        });
 
         mHDACaseDiaryAdapter = new HDACaseDiaryAdapter(null);
         rvCaseDiary.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
@@ -168,6 +181,7 @@ public class HospitalDetailActivity extends BasePresenterActivity<HospitalDetail
                 startActivity(new Intent(this, ExpertActivity.class));
                 break;
             case R.id.tv_device_more:
+                startActivity(new Intent(this, DeviceActivity.class));
                 break;
             case R.id.tv_diary_more:
                 break;
@@ -186,11 +200,11 @@ public class HospitalDetailActivity extends BasePresenterActivity<HospitalDetail
     @Override
     public void follow(BaseBean bean) {
         if (bean.result == 0) {
-            ToastUtils.showToast("关注成功");
+            ToastUtils.showToast("成功");
             isFollow = !isFollow;
             initMethod();
         } else {
-            ToastUtils.showToast("关注失败");
+            ToastUtils.showToast("失败");
         }
     }
 

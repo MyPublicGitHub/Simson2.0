@@ -1,4 +1,4 @@
-package com.simson.www.ui.mine.collect;
+package com.simson.www.ui.home.hospital.device;
 
 import android.content.Intent;
 import android.support.v7.widget.LinearLayoutManager;
@@ -6,59 +6,63 @@ import android.support.v7.widget.RecyclerView;
 
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.simson.www.R;
-import com.simson.www.net.bean.home.CauseListBean;
+import com.simson.www.common.Const;
+import com.simson.www.net.bean.home.HospitalDeviceBean;
 import com.simson.www.net.bean.shop.ShopListBean;
-import com.simson.www.ui.adapter.IntegralDetailAdapter;
+import com.simson.www.ui.adapter.DeviceAdapter;
 import com.simson.www.ui.adapter.ShopCommodityAdapter;
 import com.simson.www.ui.base.BasePresenterActivity;
-import com.simson.www.ui.home.cause.CauseContract;
+import com.simson.www.ui.community.knowledge.detail.WebViewActivity;
 import com.simson.www.ui.shop.detail.CommodityDetailActivity;
 
 import java.util.List;
 
 import butterknife.BindView;
 
-public class CollectActivity extends BasePresenterActivity<CollectPresenter, CollectContract.View> implements CollectContract.View {
+public class DeviceActivity extends BasePresenterActivity<DevicePresenter, DeviceContract.View>
+        implements DeviceContract.View {
     @BindView(R.id.recyclerView)
     RecyclerView recyclerView;
     @BindView(R.id.refresh_layout)
     SmartRefreshLayout mRefreshLayout;
     private int mPage = 1;
-    private ShopCommodityAdapter adapter;
+    private DeviceAdapter adapter;
 
     @Override
     protected int getLayoutId() {
-        return R.layout.activity_collect;
+        return R.layout.activity_device;
     }
-
     @Override
     protected void initViews() {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        adapter = new ShopCommodityAdapter(null);
+        adapter = new DeviceAdapter(null);
         recyclerView.setAdapter(adapter);
         adapter.bindToRecyclerView(recyclerView);
         adapter.setEmptyView(R.layout.list_empty_view);
         recyclerView.setNestedScrollingEnabled(false);
         recyclerView.setFocusable(false);
         adapter.setOnItemClickListener((adapter, view1, position) -> {
-                    List<ShopListBean> data = (List<ShopListBean>) adapter.getData();
-                    ShopListBean shopListBean = data.get(position);
-                    startActivity(new Intent(this, CommodityDetailActivity.class)
-                            .putExtra("id", shopListBean.getItem_id()));
-                }
-        );
+            List<HospitalDeviceBean> bean = (List<HospitalDeviceBean>) adapter.getData();
+            String link = bean.get(position).getDevice_link();
+            String id = bean.get(position).getDevice_id();
+            String url = link + "?json={deviceId:" + id + "}";
+            startActivity(new Intent(this, WebViewActivity.class)
+                    .putExtra(Const.WEB_VIEW_TITLE, bean.get(position).getDevice_name()+"")
+                    .putExtra(Const.WEB_VIEW_URL, url));
+        });
         setRefresh();
     }
 
     @Override
     protected void initData() {
-        mPresenter.itemCollectList();
+        mPresenter.getHospitalDeviceList();
     }
 
     @Override
-    protected CollectPresenter createPresenter() {
-        return new CollectPresenter();
+    protected DevicePresenter createPresenter() {
+        return new DevicePresenter();
     }
+
 
     @Override
     public String pageIndex() {
@@ -66,7 +70,7 @@ public class CollectActivity extends BasePresenterActivity<CollectPresenter, Col
     }
 
     @Override
-    public void itemCollectList(List<ShopListBean> bean) {
+    public void getHospitalDeviceList(List<HospitalDeviceBean> bean) {
         if (bean == null) {
             return;
         }
@@ -84,20 +88,20 @@ public class CollectActivity extends BasePresenterActivity<CollectPresenter, Col
     private void setRefresh() {
         mRefreshLayout.setOnRefreshListener(refreshLayout -> {
             mPage = 1;
-            mPresenter.itemCollectList();
+            mPresenter.getHospitalDeviceList();
             mRefreshLayout.setNoMoreData(false);
             refreshLayout.finishRefresh();
         });
         mRefreshLayout.setOnLoadMoreListener(refreshLayout -> {
             mPage++;
-            mPresenter.itemCollectList();
+            mPresenter.getHospitalDeviceList();
             refreshLayout.finishLoadMore();
         });
     }
 
     @Override
     protected boolean initToolbar() {
-        mTitle.setText("收藏");
+        mTitle.setText("植发仪器");
         return true;
     }
 }

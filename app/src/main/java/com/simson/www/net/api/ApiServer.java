@@ -13,7 +13,6 @@ import com.simson.www.net.bean.home.CauseListBean;
 import com.simson.www.net.bean.home.CityListBean;
 import com.simson.www.net.bean.home.DoctorDetailBean;
 import com.simson.www.net.bean.home.HomeBannerBean;
-import com.simson.www.net.bean.home.HomeItemBean;
 import com.simson.www.net.bean.home.HospitalDetailBean;
 import com.simson.www.net.bean.home.HospitalDeviceBean;
 import com.simson.www.net.bean.home.HospitalItemBean;
@@ -26,7 +25,6 @@ import com.simson.www.net.bean.mine.CaseBean;
 import com.simson.www.net.bean.mine.CustomerBean;
 import com.simson.www.net.bean.mine.CustomerInfoBean;
 import com.simson.www.net.bean.mine.IntegralDetailBean;
-import com.simson.www.net.bean.mine.ItemCollectBean;
 import com.simson.www.net.bean.mine.OrderBean;
 import com.simson.www.net.bean.mine.PaymentOrderBean;
 import com.simson.www.net.bean.mine.ShopCartBean;
@@ -76,7 +74,7 @@ public interface ApiServer {
 
     //首页列表
     @POST(UrlConstainer.HOME_ITEM)
-    Observable<BaseBean<List<HomeItemBean>>> getHomeItemData(@Query("json") String json);
+    Observable<BaseBean<List<DiaryBean>>> getHomeItemData(@Query("json") String json);
 
     @POST("itemController/itemList")
     Observable<BaseBean<List<ShopListBean>>> getShopList(@Query("json") String json);

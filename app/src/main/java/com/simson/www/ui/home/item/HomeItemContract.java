@@ -1,6 +1,6 @@
 package com.simson.www.ui.home.item;
 
-import com.simson.www.net.bean.home.HomeItemBean;
+import com.simson.www.net.bean.community.DiaryBean;
 import com.simson.www.ui.core.view.IView;
 
 import java.util.List;
@@ -13,7 +13,7 @@ public interface HomeItemContract {
 
     interface View extends IView {
 
-        void setHomeItemData(List<HomeItemBean> bean);
+        void setHomeItemData(List<DiaryBean> bean);
 
         int getPage();
         String getType();

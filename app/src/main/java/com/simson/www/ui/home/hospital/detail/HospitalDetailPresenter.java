@@ -8,6 +8,7 @@ import com.simson.www.net.bean.community.DoctorBean;
 import com.simson.www.net.bean.home.HospitalDetailBean;
 import com.simson.www.net.bean.home.HospitalDeviceBean;
 import com.simson.www.net.callback.RxObserver;
+import com.simson.www.ui.core.model.DeviceModel;
 import com.simson.www.ui.core.model.DiaryItemModel;
 import com.simson.www.ui.core.model.ExpertModel;
 import com.simson.www.ui.core.model.HospitalDetailModel;
@@ -24,12 +25,14 @@ public class HospitalDetailPresenter extends CommonPresenter<HospitalDetailContr
     private HospitalDetailModel mModel;
     private ExpertModel mDoctorModel;
     private DiaryItemModel mDiaryModel;
+    private DeviceModel mDeviceModel;
     private HospitalDetailContract.View mView;
 
     public HospitalDetailPresenter() {
         this.mModel = new HospitalDetailModel();
         this.mDoctorModel = new ExpertModel();
         this.mDiaryModel = new DiaryItemModel();
+        this.mDeviceModel = new DeviceModel();
     }
 
     @Override
@@ -84,7 +87,7 @@ public class HospitalDetailPresenter extends CommonPresenter<HospitalDetailContr
         map.put("pageIndex", "1");
         map.put("pageSize", Const.PAGE_SIZE);
         String json = new Gson().toJson(map);
-        mModel.getHospitalDeviceList(json, observer);
+        mDeviceModel.getHospitalDeviceList(json, observer);
         addDisposable(observer);
     }
 

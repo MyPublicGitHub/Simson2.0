@@ -5,19 +5,19 @@ import android.support.annotation.Nullable;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.simson.www.R;
-import com.simson.www.net.bean.home.HomeItemBean;
+import com.simson.www.net.bean.community.DiaryBean;
 import com.simson.www.utils.GlideUtils;
 
 import java.util.List;
 
-public class HomeItemAdapter extends BaseQuickAdapter<HomeItemBean, BaseViewHolder> {
+public class HomeItemAdapter extends BaseQuickAdapter<DiaryBean, BaseViewHolder> {
 
-    public HomeItemAdapter(@Nullable List<HomeItemBean> data) {
+    public HomeItemAdapter(@Nullable List<DiaryBean> data) {
         super(R.layout.item_hda_case_diary, data);
     }
 
     @Override
-    protected void convert(BaseViewHolder helper, HomeItemBean item) {
+    protected void convert(BaseViewHolder helper, DiaryBean item) {
 
         GlideUtils.with(item.getCustomer_head(), helper.getView(R.id.iv_header));
         helper.setText(R.id.tv_name, item.getCustomer_name());

@@ -2,17 +2,18 @@ package com.simson.www.net.bean.mine;
 
 public class CustomerBean {
 
+
     /**
-     * customer_id : 2018083115357026708136689
-     * customer_name : 131****1285
-     * customer_head : http://58.213.14.195:8081/upload/user.jpg
+     * customer_id : 2018090115357871316905625
+     * customer_name : 176****7732
+     * customer_head : http://58.213.14.195:8081/upload/customer/201810/jl1fnb5EWl8dZFFJ.png
      * card_amount : 0.00
-     * points : 1
+     * points : 5
      * follows : 0
      * fans : 0
      * subscribes : 0
-     * diarys : 1
-     * unreads : 4
+     * diarys : 0
+     * unreads : 0
      */
 
     private String customer_id;

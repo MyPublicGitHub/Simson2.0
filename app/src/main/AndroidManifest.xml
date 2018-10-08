@@ -74,7 +74,8 @@
         <activity android:name=".ui.shop.type.ShopTypeActivity" />
         <activity android:name=".ui.shop.detail.praise.PraiseActivity" />
         <activity android:name=".ui.mine.integral.detail.IntegralDetailActivity" />
-        <activity android:name=".ui.mine.collect.CollectActivity"></activity>
+        <activity android:name=".ui.mine.collect.CollectActivity" />
+        <activity android:name=".ui.home.hospital.device.DeviceActivity"></activity>
     </application>
 
 </manifest>

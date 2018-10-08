@@ -55,6 +55,7 @@ public class MineFragment extends BasePresenterFragment<MinePresenter, MineContr
     protected void initViews(View view) {
         GlideUtils.with(SPUtils.get(Const.USER_INFO.CUSTOMER_HEAD, ""), ivHeader);
         tvUserName.setText((String) SPUtils.get(Const.USER_INFO.CUSTOMER_NICK_NAME, ""));
+        mPresenter.getCustomer();
     }
 
 
@@ -70,15 +71,16 @@ public class MineFragment extends BasePresenterFragment<MinePresenter, MineContr
         tvUserName.setText(bean.getCustomer_name() + "");
         tvFans.setText("粉丝：" + bean.getFans());
         tvFollow.setText("关注：" + bean.getFollows());
+        tvPost.setText(bean.getSubscribes() + "");
         tvDiary.setText(bean.getDiarys() + "");
         tvMessage.setText(bean.getUnreads() + "");
-
+        tvIntegral.setText(bean.getPoints() + "");
     }
 
     @OnClick({R.id.iv_setting, R.id.ll_user_info, R.id.ll_integral_mall, R.id.ll_sign_in, R.id.ll_invitation,
             R.id.ll_diary, R.id.ll_message, R.id.ll_integral, R.id.ll_post, R.id.ll_pending_payment,
             R.id.ll_pending_delivery, R.id.ll_already_shipped, R.id.ll_evaluate, R.id.ll_refund,
-            R.id.ll_shop_card,R.id.ll_collect})
+            R.id.ll_shop_card, R.id.ll_collect})
     public void onViewClicked(View view) {
         if (TextUtils.isEmpty((String) SPUtils.get(Const.USER_INFO.CUSTOMER_ID, ""))) {
             startActivity(new Intent(getActivity(), LoginActivity.class));

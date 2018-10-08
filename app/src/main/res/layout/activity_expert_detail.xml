@@ -161,14 +161,14 @@
                 </LinearLayout>
             </RelativeLayout>
 
-            <ImageView
+            <com.simson.www.widget.CircleImageView
                 android:id="@+id/iv_header"
                 android:layout_width="@dimen/dp_100"
                 android:layout_height="@dimen/dp_100"
                 android:layout_centerHorizontal="true"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="35dp"
-                android:background="@mipmap/ic_placeholder" />
+                android:src="@mipmap/ic_placeholder" />
 
             <ImageView
                 android:id="@+id/ic_back"

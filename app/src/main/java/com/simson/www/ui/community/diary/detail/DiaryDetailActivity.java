@@ -89,21 +89,14 @@ public class DiaryDetailActivity extends BasePresenterActivity<DiaryDetailPresen
         recyclerView.setAdapter(adapter);
         recyclerView.setNestedScrollingEnabled(false);
 
-        adapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
-            @Override
-            public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-                startActivity(new Intent(DiaryDetailActivity.this, AppendDiaryDetailActivity.class));
-            }
-        });
+        adapter.setOnItemClickListener((adapter, view, position) ->
+                startActivity(new Intent(DiaryDetailActivity.this, AppendDiaryDetailActivity.class)));
         adapterRecommend = new DiaryDetailRecommendAdapter(null);
         rvRecommend.setLayoutManager(new GridLayoutManager(this,2));
         rvRecommend.setAdapter(adapterRecommend);
 
-        adapterRecommend.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
-            @Override
-            public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-                //startActivity(new Intent(DiaryDetailActivity.this, AppendDiaryDetailActivity.class));
-            }
+        adapterRecommend.setOnItemClickListener((adapter, view, position) -> {
+            //startActivity(new Intent(DiaryDetailActivity.this, AppendDiaryDetailActivity.class));
         });
 
         mPresenter.getDiaryDetail();

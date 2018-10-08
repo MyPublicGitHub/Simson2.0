@@ -8,10 +8,11 @@ import com.simson.www.net.callback.RxObserver;
 
 import java.util.List;
 
-public class HospitalDetailModel extends BaseModel {
-    public void getHospitalDetail(String json, RxObserver<HospitalDetailBean> rxObserver) {
+public class DeviceModel extends BaseModel {
+
+    public void getHospitalDeviceList(String json, RxObserver<List<HospitalDeviceBean>> rxObserver) {
         doRxRequest().
-                getHospitalDetail(json)
+                getHospitalDeviceList(json)
                 .compose(RxSchedulers.io_main())
                 .subscribe(rxObserver);
     }
