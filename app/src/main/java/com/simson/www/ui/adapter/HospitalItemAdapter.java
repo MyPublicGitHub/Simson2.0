@@ -18,18 +18,6 @@ public class HospitalItemAdapter extends BaseQuickAdapter<HospitalItemBean, Base
 
     @Override
     protected void convert(BaseViewHolder helper, HospitalItemBean item) {
-        /**
-         * hospital_id : 3
-         * hospital_name : 福州新生植发
-         * hospital_star : 5
-         * hospital_icon : http://58.213.14.195:8081/upload/hospital/logo@2x.png
-         * consulting_phone : 400-666-7272
-         * hospital_address : 福建省福州市晋安区福新中路58号
-         * is_authentication : 1
-         * hospital_longitude : 119.328857
-         * hospital_latitude : 26.087056
-         * subscribes : 0
-         */
 
         GlideUtils.with(item.getHospital_icon(), helper.getView(R.id.iv_header));
         helper.setText(R.id.tv_name, item.getHospital_name() + "");

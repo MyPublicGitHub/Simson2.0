@@ -77,11 +77,10 @@
             android:layout_toRightOf="@+id/tv_present"
             android:ellipsize="end"
             android:text="￥25000"
-            android:textColor="@color/colorBlack"
+            android:textColor="@color/colorBlack_4"
             android:textSize="@dimen/sp_12" />
 
         <TextView
-            android:id="@+id/tv_instructions"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignBottom="@+id/iv_image"
@@ -93,18 +92,19 @@
             android:paddingLeft="@dimen/dp_6"
             android:paddingRight="@dimen/dp_6"
             android:paddingTop="@dimen/dp_2"
-            android:text="促销"
+            android:text="保险"
             android:textColor="@color/colorWhite"
             android:textSize="@dimen/sp_10" />
 
-        <TextView
-            android:id="@+id/tv_buy"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignBottom="@id/iv_image"
-            android:layout_alignParentRight="true"
-            android:textColor="@color/colorBlack"
-            android:textSize="@dimen/sp_12" />
+        <!--<TextView-->
+        <!--android:id="@+id/tv_buy"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_alignBottom="@id/iv_image"-->
+        <!--android:layout_alignParentRight="true"-->
+        <!--android:text="123"-->
+        <!--android:textColor="@color/colorBlack"-->
+        <!--android:textSize="@dimen/sp_12" />-->
     </RelativeLayout>
 
 </LinearLayout>

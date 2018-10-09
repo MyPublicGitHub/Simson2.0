@@ -13,10 +13,10 @@ import com.simson.www.utils.GlideUtils;
 
 import java.util.List;
 
-public class HospitalFragmentAdapter extends BaseQuickAdapter<ShopListBean, BaseViewHolder> {
+public class ShopCommodityAdapter extends BaseQuickAdapter<ShopListBean, BaseViewHolder> {
 
-    public HospitalFragmentAdapter(@Nullable List<ShopListBean> data) {
-        super(R.layout.item_hospital, data);
+    public ShopCommodityAdapter(@Nullable List<ShopListBean> data) {
+        super(R.layout.item_shop_commodity, data);
     }
 
     @Override
@@ -29,6 +29,4 @@ public class HospitalFragmentAdapter extends BaseQuickAdapter<ShopListBean, Base
         TextView textView = helper.getView(R.id.tv_original);
         textView.getPaint().setFlags(Paint.STRIKE_THRU_TEXT_FLAG);
     }
-
-
 }

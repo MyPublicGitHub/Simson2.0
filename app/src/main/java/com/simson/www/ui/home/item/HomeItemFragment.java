@@ -8,6 +8,7 @@ import android.support.v7.widget.RecyclerView;
 
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.simson.www.R;
+import com.simson.www.net.bean.BaseBean;
 import com.simson.www.net.bean.community.DiaryBean;
 import com.simson.www.ui.adapter.HomeItemAdapter;
 import com.simson.www.ui.base.BasePresenterFragment;
@@ -40,6 +41,7 @@ public class HomeItemFragment extends BasePresenterFragment<HomeItemPresenter, H
     }
 
     HomeItemAdapter adapter;
+    int mPosition;
 
     @Override
     protected void initViews(android.view.View view) {
@@ -52,11 +54,14 @@ public class HomeItemFragment extends BasePresenterFragment<HomeItemPresenter, H
         adapter.bindToRecyclerView(recyclerView);
         adapter.setEmptyView(R.layout.list_empty_view);
         adapter.setOnItemChildClickListener((adapter, views, position) -> {
+            mPosition = position;
             List<DiaryBean> data = (List<DiaryBean>) adapter.getData();
             DiaryBean bean = data.get(position);
+            mFollowMethod = bean.getIs_follow() == 0 ? "save" : "delete";
+            mFollowCustomerId = bean.getCustomer_id();
             switch (views.getId()) {
                 case R.id.tv_follow:
-//mPresenter.follow(bean.);
+                    mPresenter.follow();
                     break;
             }
         });
@@ -69,6 +74,14 @@ public class HomeItemFragment extends BasePresenterFragment<HomeItemPresenter, H
         mPage = 1;
 
         mPresenter.getHomeItemData();
+    }
+
+    @Override
+    public void follow(BaseBean bean) {
+        List<DiaryBean> data = adapter.getData();
+        DiaryBean beans = data.get(mPosition);
+        beans.setIs_follow(beans.getIs_follow() == 0 ? 1 : 0);
+        adapter.notifyItemChanged(mPosition,beans);
     }
 
     @Override
@@ -113,7 +126,7 @@ public class HomeItemFragment extends BasePresenterFragment<HomeItemPresenter, H
     }
 
     private int mPage = 1;
-    private String mItemType, mType = "";
+    private String mItemType, mType = "", mFollowCustomerId, mFollowMethod;
 
     @Override
     public int getPage() {
@@ -128,5 +141,15 @@ public class HomeItemFragment extends BasePresenterFragment<HomeItemPresenter, H
     @Override
     public String getItemType() {
         return mItemType;
+    }
+
+    @Override
+    public String getFollowCustomerId() {
+        return mFollowCustomerId;
+    }
+
+    @Override
+    public String getFollowMethod() {
+        return mFollowMethod;
     }
 }

@@ -48,5 +48,4 @@ public class HospitalItemPresenter extends BasePresenter<HospitalItemContract.Vi
         mModel.getHospital(json, observer);
         addDisposable(observer);
     }
-
 }

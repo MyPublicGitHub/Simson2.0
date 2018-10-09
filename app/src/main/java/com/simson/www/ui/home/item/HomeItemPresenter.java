@@ -43,7 +43,7 @@ public class HomeItemPresenter extends CommonPresenter<HomeItemContract.View> im
             }
         };
         Map map = new HashMap();
-        map.put("customerId", SPUtils.get(Const.USER_INFO.CUSTOMER_ID,""));
+        map.put("customerId", SPUtils.get(Const.USER_INFO.CUSTOMER_ID, ""));
         map.put("itemTypeId", mView.getItemType());//项目类型
         map.put("type", mView.getType());//1推荐，2关注，空不传是全部
         map.put("search", "");
@@ -52,8 +52,11 @@ public class HomeItemPresenter extends CommonPresenter<HomeItemContract.View> im
         map.put("timestamp", DateUtils.getStringDate());
         Gson gson = new Gson();
         String json = gson.toJson(map);
-        mHomeItemModel.getHomeItemData(json,observer);
+        mHomeItemModel.getHomeItemData(json, observer);
         addDisposable(observer);
     }
 
+    public void follow() {
+        follow(mView.getFollowCustomerId(), mView.getFollowMethod(), Const.FOLLOW_TYPE.USER);
+    }
 }

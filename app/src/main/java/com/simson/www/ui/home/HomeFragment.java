@@ -18,7 +18,9 @@ import com.simson.www.ui.home.cases.CaseActivity;
 import com.simson.www.ui.home.cause.CauseActivity;
 import com.simson.www.ui.home.expert.ExpertActivity;
 import com.simson.www.ui.home.hospital.HospitalActivity;
+import com.simson.www.ui.home.subscribe.NewSubscribeActivity;
 import com.simson.www.ui.main.MainActivity;
+import com.simson.www.ui.mine.sign.SignActivity;
 import com.simson.www.utils.GlideImageLoader;
 import com.simson.www.utils.GlideUtils;
 import com.youth.banner.Banner;
@@ -58,13 +60,9 @@ public class HomeFragment extends BasePresenterFragment<HomePresenter, HomeContr
         initBanner();
         mPresenter.getBanner();
         mPresenter.getItemType();
-        ivSign.setOnClickListener(v -> {
-            mPresenter.getBanner();
-            mPresenter.getItemType();
-        });
     }
 
-    @OnClick({R.id.iv_menu, R.id.tv_hospital, R.id.tv_expert, R.id.tv_case, R.id.rl_cause})
+    @OnClick({R.id.iv_menu, R.id.tv_hospital, R.id.tv_expert, R.id.tv_case, R.id.rl_cause, R.id.rv_subscribe, R.id.iv_sign})
     public void onViewClicked(android.view.View view) {
         switch (view.getId()) {
             case R.id.iv_menu:
@@ -82,6 +80,12 @@ public class HomeFragment extends BasePresenterFragment<HomePresenter, HomeContr
                 break;
             case R.id.rl_cause:
                 startActivity(new Intent(getActivity(), CauseActivity.class));
+                break;
+            case R.id.rv_subscribe:
+                startActivity(new Intent(getActivity(), NewSubscribeActivity.class));
+                break;
+            case R.id.iv_sign:
+                startActivity(new Intent(getActivity(), SignActivity.class));
                 break;
         }
     }

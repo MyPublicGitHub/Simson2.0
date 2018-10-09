@@ -110,3 +110,9 @@
 -keep class com.ta.utdid2.** { *;}
 -keep class com.ut.device.** { *;}
 # alipay
+
+# 高德地图
+-keep   class com.amap.api.maps.**{*;}
+-keep   class com.autonavi.**{*;}
+-keep   class com.amap.api.trace.**{*;}
+# 高德地图

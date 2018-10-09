@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorWhiteBg"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@mipmap/ic_bg_wallet"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="账户余额(元)"
+            android:textColor="@color/white"
+            android:textSize="@dimen/dp_16" />
+
+        <TextView
+            android:id="@+id/tv_wallet"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="1000000.00"
+            android:textColor="@color/white"
+            android:textSize="@dimen/dp_56" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_recharge"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="@dimen/dp_10">
+
+        <ImageView
+            android:layout_width="@dimen/dp_25"
+            android:layout_height="@dimen/dp_25"
+            android:src="@mipmap/ic_wallet_recharge" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp_20"
+            android:layout_weight="1"
+            android:drawableRight="@mipmap/ic_open"
+            android:text="充值"
+            android:textColor="@color/black"
+            android:textSize="@dimen/dp_16" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_log"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_1"
+        android:background="@color/white"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="@dimen/dp_10">
+
+        <ImageView
+            android:layout_width="@dimen/dp_25"
+            android:layout_height="@dimen/dp_25"
+            android:src="@mipmap/ic_wallet_log" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp_20"
+            android:layout_weight="1"
+            android:drawableRight="@mipmap/ic_open"
+            android:text="交易记录"
+            android:textColor="@color/black"
+            android:textSize="@dimen/dp_16" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_help"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_1"
+        android:background="@color/white"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="@dimen/dp_10">
+
+        <ImageView
+            android:layout_width="@dimen/dp_25"
+            android:layout_height="@dimen/dp_25"
+            android:src="@mipmap/ic_wallet_help" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp_20"
+            android:layout_weight="1"
+            android:drawableRight="@mipmap/ic_open"
+            android:text="帮助与客服"
+            android:textColor="@color/black"
+            android:textSize="@dimen/dp_16" />
+    </LinearLayout>
+</LinearLayout>

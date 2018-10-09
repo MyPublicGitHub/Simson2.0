@@ -18,6 +18,8 @@ public interface HomeItemContract {
         int getPage();
         String getType();
         String getItemType();
+        String getFollowCustomerId();
+        String getFollowMethod();
 
     }
 }

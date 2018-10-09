@@ -114,4 +114,7 @@ dependencies {
     api files('libs/alipaySdk-20180403.jar')
     //wechatpay
     api 'com.tencent.mm.opensdk:wechat-sdk-android-without-mta:+'
+
+    //3D地图so及jar
+    implementation 'com.amap.api:3dmap:latest.integration'
 }

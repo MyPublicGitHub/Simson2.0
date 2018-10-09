@@ -31,6 +31,7 @@ import com.simson.www.net.bean.mine.ShopCartBean;
 import com.simson.www.net.bean.mine.SignBean;
 import com.simson.www.net.bean.mine.SignPageBean;
 import com.simson.www.net.bean.mine.SubmitOrderBean;
+import com.simson.www.net.bean.mine.TransactionRecordBean;
 import com.simson.www.net.bean.shop.CommentBean;
 import com.simson.www.net.bean.shop.CommodityDetailBean;
 import com.simson.www.net.bean.shop.CommodityDetailPraiseBean;
@@ -49,6 +50,17 @@ import retrofit2.http.Query;
  */
 
 public interface ApiServer {
+    //交易记录
+    @POST("transaction/rechargeOrderList")
+    Observable<BaseBean<List<TransactionRecordBean>>> rechargeOrderList(@Query("json") String json);
+
+    //充值
+    @POST("transaction/paymentRechargeOrder")
+    Observable<BaseBean> paymentRechargeOrder(@Query("json") String json);
+
+    //新增预约
+    @POST("subscribeController/saveSubscribe")
+    Observable<BaseBean<BaseBean>> saveSubscribe(@Query("json") String json);
 
     //脱发原因列表
     @POST("alopeciaCauseController/alopeciaCauseList")

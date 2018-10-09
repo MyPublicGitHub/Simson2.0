@@ -24,6 +24,7 @@ import com.simson.www.ui.mine.post.MyPostActivity;
 import com.simson.www.ui.mine.set.SettingActivity;
 import com.simson.www.ui.mine.sign.SignActivity;
 import com.simson.www.ui.mine.user.UserInfoActivity;
+import com.simson.www.ui.mine.wallet.WalletActivity;
 import com.simson.www.utils.GlideUtils;
 import com.simson.www.utils.SPUtils;
 import com.simson.www.widget.CircleImageView;
@@ -80,7 +81,7 @@ public class MineFragment extends BasePresenterFragment<MinePresenter, MineContr
     @OnClick({R.id.iv_setting, R.id.ll_user_info, R.id.ll_integral_mall, R.id.ll_sign_in, R.id.ll_invitation,
             R.id.ll_diary, R.id.ll_message, R.id.ll_integral, R.id.ll_post, R.id.ll_pending_payment,
             R.id.ll_pending_delivery, R.id.ll_already_shipped, R.id.ll_evaluate, R.id.ll_refund,
-            R.id.ll_shop_card, R.id.ll_collect})
+            R.id.ll_shop_card, R.id.ll_collect, R.id.ll_wallet})
     public void onViewClicked(View view) {
         if (TextUtils.isEmpty((String) SPUtils.get(Const.USER_INFO.CUSTOMER_ID, ""))) {
             startActivity(new Intent(getActivity(), LoginActivity.class));
@@ -132,6 +133,9 @@ public class MineFragment extends BasePresenterFragment<MinePresenter, MineContr
                 break;
             case R.id.ll_collect:
                 startActivity(new Intent(getActivity(), CollectActivity.class));
+                break;
+            case R.id.ll_wallet:
+                startActivity(new Intent(getActivity(), WalletActivity.class));
                 break;
         }
     }

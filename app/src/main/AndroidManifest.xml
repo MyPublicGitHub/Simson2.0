@@ -75,7 +75,18 @@
         <activity android:name=".ui.shop.detail.praise.PraiseActivity" />
         <activity android:name=".ui.mine.integral.detail.IntegralDetailActivity" />
         <activity android:name=".ui.mine.collect.CollectActivity" />
-        <activity android:name=".ui.home.hospital.device.DeviceActivity"></activity>
+        <activity android:name=".ui.home.hospital.device.DeviceActivity" />
+        <activity android:name=".ui.home.subscribe.NewSubscribeActivity" />
+        <!-- 高德地图 -->
+        <!-- 5.0SDK不在需要<service android:name="com.amap.api.location.APSService"></service> -->
+        <meta-data
+            android:name="com.amap.api.v2.apikey"
+            android:value="b3a87204a943dc457be778b003648076" />
+        <!-- 高德地图 -->
+        <activity android:name=".ui.home.hospital.select.SelectHospitalActivity" />
+        <activity android:name=".ui.mine.wallet.WalletActivity" />
+        <activity android:name=".ui.mine.wallet.log.TransactionRecordActivity" />
+        <activity android:name=".ui.mine.wallet.recharge.RechargeActivity"></activity>
     </application>
 
 </manifest>
