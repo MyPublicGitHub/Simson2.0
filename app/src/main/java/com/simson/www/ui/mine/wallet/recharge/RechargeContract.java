@@ -1,20 +1,23 @@
-package com.simson.www.ui.mine.wallet;
+package com.simson.www.ui.mine.wallet.recharge;
 
 import com.simson.www.net.bean.BaseBean;
-import com.simson.www.net.bean.mine.CustomerInfoBean;
 import com.simson.www.ui.core.view.IView;
 
-public interface WalletContract {
+public interface RechargeContract {
     interface Presenter {
 
-        void getCustomerInfo();
+        void paymentRechargeOrder();
 
 
     }
 
     interface View extends IView {
 
-        void showCustomerInfo(CustomerInfoBean bean);
+        String transactionMoney();
+
+        String paymentType();
+
+        void paymentRechargeOrder(BaseBean bean);
 
     }
 }
