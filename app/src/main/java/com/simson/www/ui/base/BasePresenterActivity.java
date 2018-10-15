@@ -33,7 +33,8 @@ public abstract class BasePresenterActivity<P extends BasePresenter<V>, V extend
     }
 
     @Override
-    protected void getIntent(Intent intent) {}
+    protected void getIntent(Intent intent) {
+    }
 
     protected abstract P createPresenter();
 
@@ -72,13 +73,20 @@ public abstract class BasePresenterActivity<P extends BasePresenter<V>, V extend
     }
 
     @Override
-    protected void initViews() {}
+    protected void initViews() {
+    }
 
     @Override
-    protected void initData() {}
+    protected void initData() {
+    }
+
     @Override
     public void showLoading(String msg) {
         showLoadingDialog(msg);
+    }
+
+    public void showLoading() {
+        showLoadingDialog();
     }
 
     @Override
@@ -92,13 +100,16 @@ public abstract class BasePresenterActivity<P extends BasePresenter<V>, V extend
     }
 
     @Override
-    public void showError() {}
+    public void showError() {
+    }
 
     @Override
-    public void showEmpty() {}
+    public void showEmpty() {
+    }
 
     @Override
-    protected void receiveEvent(Object object) {}
+    protected void receiveEvent(Object object) {
+    }
 
     @Override
     protected String registerEvent() {
@@ -106,7 +117,8 @@ public abstract class BasePresenterActivity<P extends BasePresenter<V>, V extend
     }
 
     @Override
-    public void setItemType(List<ItemTypeBean> bean) {}
+    public void setItemType(List<ItemTypeBean> bean) {
+    }
 
     @Override
     public void collect(BaseBean bean) {

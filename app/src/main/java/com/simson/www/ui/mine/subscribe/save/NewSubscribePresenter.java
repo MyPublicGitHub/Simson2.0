@@ -1,4 +1,4 @@
-package com.simson.www.ui.home.subscribe;
+package com.simson.www.ui.mine.subscribe.save;
 
 
 import android.text.TextUtils;
@@ -6,12 +6,9 @@ import android.text.TextUtils;
 import com.google.gson.Gson;
 import com.simson.www.common.Const;
 import com.simson.www.net.bean.BaseBean;
-import com.simson.www.net.bean.home.HomeBannerBean;
 import com.simson.www.net.callback.RxObserver;
-import com.simson.www.ui.core.model.HomeModel;
 import com.simson.www.ui.core.model.NewSubscribeModel;
 import com.simson.www.ui.core.presenter.CommonPresenter;
-import com.simson.www.ui.home.HomeContract;
 import com.simson.www.utils.DateUtils;
 import com.simson.www.utils.SPUtils;
 import com.simson.www.utils.ToastUtils;

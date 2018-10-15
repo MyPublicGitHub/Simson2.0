@@ -135,7 +135,7 @@ public abstract class BaseActivity extends AppCompatActivity {
     protected void showLoadingDialog(String title) {
         createLoadingDialog();
         loadingDialog.setMessage(title);
-        if (!loadingDialog.isShowing()) {
+        if (!loadingDialog.isShowing() && !BaseActivity.this.isFinishing()) {
             loadingDialog.show();
         }
     }
@@ -145,7 +145,7 @@ public abstract class BaseActivity extends AppCompatActivity {
      */
     protected void showLoadingDialog() {
         createLoadingDialog();
-        if (!loadingDialog.isShowing())
+        if (!loadingDialog.isShowing() && !BaseActivity.this.isFinishing())
             loadingDialog.show();
     }
 

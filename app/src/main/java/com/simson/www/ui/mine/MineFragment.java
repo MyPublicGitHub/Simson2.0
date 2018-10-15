@@ -15,6 +15,7 @@ import com.simson.www.ui.main.login.LoginActivity;
 import com.simson.www.ui.mine.cart.ShopCartActivity;
 import com.simson.www.ui.mine.collect.CollectActivity;
 import com.simson.www.ui.mine.diary.MyDiaryActivity;
+import com.simson.www.ui.mine.feed.FeedBackActivity;
 import com.simson.www.ui.mine.integral.IntegralActivity;
 import com.simson.www.ui.mine.integral.mall.IntegralMallActivity;
 import com.simson.www.ui.mine.invitation.InvitationActivity;
@@ -23,6 +24,7 @@ import com.simson.www.ui.mine.order.OrderActivity;
 import com.simson.www.ui.mine.post.MyPostActivity;
 import com.simson.www.ui.mine.set.SettingActivity;
 import com.simson.www.ui.mine.sign.SignActivity;
+import com.simson.www.ui.mine.subscribe.SubscribeActivity;
 import com.simson.www.ui.mine.user.UserInfoActivity;
 import com.simson.www.ui.mine.wallet.WalletActivity;
 import com.simson.www.utils.GlideUtils;
@@ -81,7 +83,7 @@ public class MineFragment extends BasePresenterFragment<MinePresenter, MineContr
     @OnClick({R.id.iv_setting, R.id.ll_user_info, R.id.ll_integral_mall, R.id.ll_sign_in, R.id.ll_invitation,
             R.id.ll_diary, R.id.ll_message, R.id.ll_integral, R.id.ll_post, R.id.ll_pending_payment,
             R.id.ll_pending_delivery, R.id.ll_already_shipped, R.id.ll_evaluate, R.id.ll_refund,
-            R.id.ll_shop_card, R.id.ll_collect, R.id.ll_wallet})
+            R.id.ll_shop_card, R.id.ll_collect, R.id.ll_wallet,R.id.ll_feed_back})
     public void onViewClicked(View view) {
         if (TextUtils.isEmpty((String) SPUtils.get(Const.USER_INFO.CUSTOMER_ID, ""))) {
             startActivity(new Intent(getActivity(), LoginActivity.class));
@@ -113,7 +115,8 @@ public class MineFragment extends BasePresenterFragment<MinePresenter, MineContr
                 startActivity(new Intent(getActivity(), IntegralActivity.class));
                 break;
             case R.id.ll_post:
-                startActivity(new Intent(getActivity(), MyPostActivity.class));
+                //startActivity(new Intent(getActivity(), MyPostActivity.class));
+                startActivity(new Intent(getActivity(), SubscribeActivity.class));
                 break;
             case R.id.ll_pending_payment://status：1待支付；2已支付；空全部
                 startActivity(new Intent(getActivity(), OrderActivity.class).putExtra("status", "1"));
@@ -136,6 +139,9 @@ public class MineFragment extends BasePresenterFragment<MinePresenter, MineContr
                 break;
             case R.id.ll_wallet:
                 startActivity(new Intent(getActivity(), WalletActivity.class));
+                break;
+            case R.id.ll_feed_back:
+                startActivity(new Intent(getActivity(), FeedBackActivity.class));
                 break;
         }
     }

@@ -22,7 +22,8 @@ public class ExpertAdapter extends BaseQuickAdapter<DoctorBean.DoctorItemBean, B
         GlideUtils.with(item.getDoctor_head(), helper.getView(R.id.iv_header));
         helper.setText(R.id.tv_name, item.getDoctor_name() + "");
         helper.setText(R.id.tv_post, item.getPosition() + "");
+        helper.setText(R.id.tv_hospital_name, item.getHospital_name() + "");
         helper.setRating(R.id.rate, item.getDoctor_star());
-        helper.setText(R.id.tv_reserve, "擅长：" + item.getPosition());
+        helper.setText(R.id.tv_reserve, "擅长：" + item.getBe_good_at());
     }
 }

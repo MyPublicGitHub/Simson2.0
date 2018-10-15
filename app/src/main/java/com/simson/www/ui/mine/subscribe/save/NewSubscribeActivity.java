@@ -1,4 +1,4 @@
-package com.simson.www.ui.home.subscribe;
+package com.simson.www.ui.mine.subscribe.save;
 
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
@@ -15,6 +15,7 @@ import com.simson.www.net.bean.BaseBean;
 import com.simson.www.ui.base.BasePresenterActivity;
 import com.simson.www.ui.home.hospital.select.SelectHospitalActivity;
 import com.simson.www.utils.CommonUtils;
+import com.simson.www.utils.ToastUtils;
 import com.simson.www.widget.CommonPopupWindow;
 
 import java.util.Calendar;
@@ -96,8 +97,8 @@ public class NewSubscribeActivity extends BasePresenterActivity<NewSubscribePres
                         //.setAnimationStyle(R.style.AnimDown) //设置动画
                         .setBackGroundLevel(0.5f) //设置背景颜色，取值范围0.0f-1.0f 值越小越暗 1.0f为透明
                         .setViewOnclickListener((view1, layoutResId) -> {
-                            view1.findViewById(R.id.tv_photo).setOnClickListener(onClickListener);
-                            view1.findViewById(R.id.tv_camera).setOnClickListener(onClickListener);
+                            view1.findViewById(R.id.tv_yes).setOnClickListener(onClickListener);
+                            view1.findViewById(R.id.tv_no).setOnClickListener(onClickListener);
                             view1.findViewById(R.id.tv_cancel).setOnClickListener(onClickListener);
                         })
                         .setOutsideTouchable(true) //设置外部是否可点击 默认是true
@@ -144,8 +145,8 @@ public class NewSubscribeActivity extends BasePresenterActivity<NewSubscribePres
     String hospitalId, subscribeType, isCar = "0";
 
     @Override
-    public void onActivityReenter(int resultCode, Intent data) {
-        super.onActivityReenter(resultCode, data);
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
         if (data == null) return;
         if (resultCode == 1001) {
             hospitalId = data.getStringExtra("hospitalId");
@@ -155,7 +156,8 @@ public class NewSubscribeActivity extends BasePresenterActivity<NewSubscribePres
 
     @Override
     public void saveSubscribe(BaseBean bean) {
-
+        ToastUtils.showToast("预约成功");
+        finish();
     }
 
     @Override
@@ -170,7 +172,7 @@ public class NewSubscribeActivity extends BasePresenterActivity<NewSubscribePres
 
     @Override
     public String itemTypeId() {
-        return null;
+        return "0";
     }
 
     @Override
@@ -229,12 +231,12 @@ public class NewSubscribeActivity extends BasePresenterActivity<NewSubscribePres
         public void onClick(View v) {
             switch (v.getId()) {
                 case R.id.tv_photo:
-                    tvType.setText("项目预约");
-                    subscribeType = "1";
-                    break;
-                case R.id.tv_camera:
                     tvType.setText("脱发检测预约");
                     subscribeType = "2";
+                    break;
+                case R.id.tv_camera:
+                    tvType.setText("项目预约");
+                    subscribeType = "1";
                     break;
                 case R.id.tv_yes:
                     tvCar.setText("是");

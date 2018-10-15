@@ -1,47 +1,63 @@
-package com.simson.www.ui.mine.integral.detail;
+package com.simson.www.ui.mine.subscribe;
 
+import android.content.Intent;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.simson.www.R;
-import com.simson.www.net.bean.mine.IntegralDetailBean;
-import com.simson.www.ui.adapter.IntegralDetailAdapter;
+import com.simson.www.net.bean.community.DiaryBean;
+import com.simson.www.net.bean.mine.SubscribeListBean;
+import com.simson.www.ui.adapter.HomeItemAdapter;
+import com.simson.www.ui.adapter.SubscribeAdapter;
 import com.simson.www.ui.base.BasePresenterActivity;
+import com.simson.www.ui.community.diary.detail.DiaryDetailActivity;
 
 import java.util.List;
 
 import butterknife.BindView;
 
-public class IntegralDetailActivity extends BasePresenterActivity<IntegralDetailPresenter, IntegralDetailContract.View>
-        implements IntegralDetailContract.View {
+public class SubscribeActivity extends BasePresenterActivity<SubscribePresenter, SubscribeContract.View>
+        implements SubscribeContract.View {
     @BindView(R.id.recyclerView)
     RecyclerView recyclerView;
     @BindView(R.id.refresh_layout)
     SmartRefreshLayout mRefreshLayout;
-    private int mPage = 1;
-    private IntegralDetailAdapter adapter;
+    int mPage = 1;
 
     @Override
     protected int getLayoutId() {
-        return R.layout.activity_integral_detail;
+        return R.layout.activity_subscribe;
     }
+
+    SubscribeAdapter adapter;
 
     @Override
     protected void initViews() {
+
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        adapter = new IntegralDetailAdapter(null);
+        adapter = new SubscribeAdapter(null);
         recyclerView.setAdapter(adapter);
-        adapter.bindToRecyclerView(recyclerView);
-        adapter.setEmptyView(R.layout.list_empty_view);
         recyclerView.setNestedScrollingEnabled(false);
         recyclerView.setFocusable(false);
+        adapter.bindToRecyclerView(recyclerView);
+        adapter.setEmptyView(R.layout.list_empty_view);
+        adapter.setOnItemClickListener((adapter, view1, position) -> {
+            List<SubscribeListBean> bean = (List<SubscribeListBean>) adapter.getData();
+            String id = bean.get(position).getSubscribe_id();
+            //startActivity(new Intent(this, SubscribeDetailActivity.class).putExtra("id", id));
+        });
         setRefresh();
     }
 
     @Override
     protected void initData() {
-        mPresenter.pointList();
+        mPresenter.subscribeList();
+    }
+
+    @Override
+    public String subscribeType() {
+        return null;
     }
 
     @Override
@@ -50,7 +66,7 @@ public class IntegralDetailActivity extends BasePresenterActivity<IntegralDetail
     }
 
     @Override
-    public void pointList(List<IntegralDetailBean> bean) {
+    public void subscribeList(List<SubscribeListBean> bean) {
         if (bean == null) {
             return;
         }
@@ -67,26 +83,27 @@ public class IntegralDetailActivity extends BasePresenterActivity<IntegralDetail
     }
 
     @Override
-    protected IntegralDetailPresenter createPresenter() {
-        return new IntegralDetailPresenter();
+    protected boolean initToolbar() {
+        mTitle.setText("我的预约");
+        return true;
     }
+
+    @Override
+    protected SubscribePresenter createPresenter() {
+        return new SubscribePresenter();
+    }
+
     private void setRefresh() {
         mRefreshLayout.setOnRefreshListener(refreshLayout -> {
             mPage = 1;
-            mPresenter.pointList();
+            mPresenter.subscribeList();
             mRefreshLayout.setNoMoreData(false);
             refreshLayout.finishRefresh();
         });
         mRefreshLayout.setOnLoadMoreListener(refreshLayout -> {
             mPage++;
-            mPresenter.pointList();
+            mPresenter.subscribeList();
             refreshLayout.finishLoadMore();
         });
-    }
-
-    @Override
-    protected boolean initToolbar() {
-        mTitle.setText("积分明细");
-        return true;
     }
 }

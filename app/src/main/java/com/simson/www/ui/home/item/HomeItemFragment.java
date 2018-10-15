@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
 
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.simson.www.R;
@@ -44,7 +45,7 @@ public class HomeItemFragment extends BasePresenterFragment<HomeItemPresenter, H
     int mPosition;
 
     @Override
-    protected void initViews(android.view.View view) {
+    protected void initViews(View view) {
 
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         adapter = new HomeItemAdapter(null);

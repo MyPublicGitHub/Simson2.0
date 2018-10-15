@@ -18,7 +18,7 @@ import com.simson.www.ui.home.cases.CaseActivity;
 import com.simson.www.ui.home.cause.CauseActivity;
 import com.simson.www.ui.home.expert.ExpertActivity;
 import com.simson.www.ui.home.hospital.HospitalActivity;
-import com.simson.www.ui.home.subscribe.NewSubscribeActivity;
+import com.simson.www.ui.mine.subscribe.save.NewSubscribeActivity;
 import com.simson.www.ui.main.MainActivity;
 import com.simson.www.ui.mine.sign.SignActivity;
 import com.simson.www.utils.GlideImageLoader;
@@ -60,6 +60,7 @@ public class HomeFragment extends BasePresenterFragment<HomePresenter, HomeContr
         initBanner();
         mPresenter.getBanner();
         mPresenter.getItemType();
+        //mPresenter.indexSynchysis();
     }
 
     @OnClick({R.id.iv_menu, R.id.tv_hospital, R.id.tv_expert, R.id.tv_case, R.id.rl_cause, R.id.rv_subscribe, R.id.iv_sign})

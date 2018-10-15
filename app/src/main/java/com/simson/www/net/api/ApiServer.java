@@ -16,6 +16,7 @@ import com.simson.www.net.bean.home.HomeBannerBean;
 import com.simson.www.net.bean.home.HospitalDetailBean;
 import com.simson.www.net.bean.home.HospitalDeviceBean;
 import com.simson.www.net.bean.home.HospitalItemBean;
+import com.simson.www.net.bean.home.IndexSynchysisBean;
 import com.simson.www.net.bean.main.CodeBean;
 import com.simson.www.net.bean.main.ItemTypeBean;
 import com.simson.www.net.bean.main.LoginBean;
@@ -31,6 +32,7 @@ import com.simson.www.net.bean.mine.ShopCartBean;
 import com.simson.www.net.bean.mine.SignBean;
 import com.simson.www.net.bean.mine.SignPageBean;
 import com.simson.www.net.bean.mine.SubmitOrderBean;
+import com.simson.www.net.bean.mine.SubscribeListBean;
 import com.simson.www.net.bean.mine.TransactionRecordBean;
 import com.simson.www.net.bean.shop.CommentBean;
 import com.simson.www.net.bean.shop.CommodityDetailBean;
@@ -62,6 +64,10 @@ public interface ApiServer {
     @POST("subscribeController/saveSubscribe")
     Observable<BaseBean<BaseBean>> saveSubscribe(@Query("json") String json);
 
+    //预约list
+    @POST("subscribeController/subscribeList")
+    Observable<BaseBean<List<SubscribeListBean>>> subscribeList(@Query("json") String json);
+
     //脱发原因列表
     @POST("alopeciaCauseController/alopeciaCauseList")
     Observable<BaseBean<List<CauseListBean>>> getCauseList(@Query("json") String json);
@@ -82,7 +88,11 @@ public interface ApiServer {
 
     //获取Banner信息
     @POST("indexController/menuPicture")
-    Observable<BaseBean<HomeBannerBean>> getHomeBannerData(@Query("json") String json);
+    Observable<BaseBean<List<HomeBannerBean>>> getHomeBannerData(@Query("json") String json);
+
+    //首页混排数据列表
+    @POST("indexController/indexSynchysis")
+    Observable<BaseBean<IndexSynchysisBean>> indexSynchysis(@Query("json") String json);
 
     //首页列表
     @POST(UrlConstainer.HOME_ITEM)
@@ -252,4 +262,9 @@ public interface ApiServer {
     //收藏
     @POST("itemController/itemCollectList")
     Observable<BaseBean<List<ShopListBean>>> itemCollectList(@Query("json") String json);
+
+    //
+    @FormUrlEncoded
+    @POST("customerController/feedback")
+    Observable<BaseBean> feedback(@Field("json") String json);
 }

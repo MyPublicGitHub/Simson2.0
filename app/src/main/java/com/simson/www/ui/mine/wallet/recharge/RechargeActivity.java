@@ -58,6 +58,7 @@ public class RechargeActivity extends BasePresenterActivity<RechargePresenter, R
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.tv_commit:
+                mPresenter.paymentRechargeOrder();
                 break;
         }
     }

@@ -1,94 +1,87 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
     android:background="@color/colorWhiteBg"
-    android:orientation="vertical">
+    android:layout_height="match_parent">
 
-
-    <ScrollView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/et_content"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_150"
+            android:background="@color/colorWhite"
+            android:gravity="top"
+            android:hint="请输入如您的建议或意见"
+            android:padding="@dimen/dp_10"
+            android:textColor="@color/colorBlack"
+            android:textSize="@dimen/sp_16" />
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:layout_height="wrap_content"
+            android:background="@color/colorWhite"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:padding="@dimen/dp_10">
 
-            <EditText
-                android:id="@+id/et_feed_back"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/dp_150"
-                android:background="@color/colorWhite"
-                android:gravity="top"
-                android:hint="请输入如您的建议或意见"
-                android:padding="@dimen/dp_10"
+            <cn.bingoogolapple.photopicker.widget.BGASortableNinePhotoLayout
+                android:id="@+id/snpl_add_photos"
+                style="@style/WrapWrap"
+                android:layout_margin="10dp"
+                app:bga_snpl_deleteDrawable="@mipmap/bga_pp_ic_delete"
+                app:bga_snpl_deleteDrawableOverlapQuarter="false"
+                app:bga_snpl_editable="true"
+                app:bga_snpl_itemCornerRadius="0dp"
+                app:bga_snpl_itemSpanCount="3"
+                app:bga_snpl_itemWhiteSpacing="4dp"
+                app:bga_snpl_itemWidth="0dp"
+                app:bga_snpl_maxItemCount="9"
+                app:bga_snpl_otherWhiteSpacing="100dp"
+                app:bga_snpl_placeholderDrawable="@mipmap/bga_pp_ic_holder_light"
+                app:bga_snpl_plusDrawable="@mipmap/bga_pp_ic_plus"
+                app:bga_snpl_plusEnable="true"
+                app:bga_snpl_sortable="true" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_10"
+            android:background="@color/colorWhite"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dp_10"
+                android:text="联系电话"
                 android:textColor="@color/colorBlack"
                 android:textSize="@dimen/sp_16" />
 
-            <LinearLayout
+            <EditText
+                android:id="@+id/et_phone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/colorWhite"
-                android:gravity="center_vertical"
-                android:orientation="horizontal"
-                android:padding="@dimen/dp_10">
-
-                <cn.bingoogolapple.photopicker.widget.BGASortableNinePhotoLayout
-                    android:id="@+id/snpl_add_photos"
-                    style="@style/WrapWrap"
-                    android:layout_margin="10dp"
-                    app:bga_snpl_deleteDrawable="@mipmap/bga_pp_ic_delete"
-                    app:bga_snpl_deleteDrawableOverlapQuarter="false"
-                    app:bga_snpl_editable="true"
-                    app:bga_snpl_itemCornerRadius="0dp"
-                    app:bga_snpl_itemSpanCount="3"
-                    app:bga_snpl_itemWhiteSpacing="4dp"
-                    app:bga_snpl_itemWidth="0dp"
-                    app:bga_snpl_maxItemCount="9"
-                    app:bga_snpl_otherWhiteSpacing="100dp"
-                    app:bga_snpl_placeholderDrawable="@mipmap/bga_pp_ic_holder_light"
-                    app:bga_snpl_plusDrawable="@mipmap/bga_pp_ic_plus"
-                    app:bga_snpl_plusEnable="true"
-                    app:bga_snpl_sortable="true" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/dp_10"
-                android:background="@color/colorWhite"
-                android:gravity="center_vertical"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/dp_10"
-                    android:text="联系电话"
-                    android:textColor="@color/colorBlack"
-                    android:textSize="@dimen/sp_16" />
-
-                <EditText
-                    android:id="@+id/et_contact"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@color/colorWhite"
-                    android:hint="请输入您的联系方式"
-                    android:padding="@dimen/dp_15"
-                    android:textColor="@color/colorBlack"
-                    android:textSize="@dimen/sp_16" />
-            </LinearLayout>
-
-            <Button
-                android:id="@+id/submission"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="@dimen/dp_10"
-                android:background="@drawable/shape_corner_btn_bg"
-                android:text="提交"
-                android:textColor="@color/colorWhite" />
+                android:hint="请输入您的联系方式"
+                android:padding="@dimen/dp_15"
+                android:textColor="@color/colorBlack"
+                android:textSize="@dimen/sp_16" />
         </LinearLayout>
-    </ScrollView>
-</LinearLayout>
+
+        <Button
+            android:id="@+id/btn_commit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/dp_20"
+            android:background="@drawable/shape_corner_btn_bg"
+            android:text="提交"
+            android:textColor="@color/colorWhite" />
+    </LinearLayout>
+</android.support.v4.widget.NestedScrollView>

@@ -1,4 +1,4 @@
-package com.simson.www.ui.home.subscribe;
+package com.simson.www.ui.mine.subscribe.save;
 
 import com.simson.www.net.bean.BaseBean;
 import com.simson.www.ui.core.view.IView;

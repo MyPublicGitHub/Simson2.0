@@ -76,7 +76,7 @@
         <activity android:name=".ui.mine.integral.detail.IntegralDetailActivity" />
         <activity android:name=".ui.mine.collect.CollectActivity" />
         <activity android:name=".ui.home.hospital.device.DeviceActivity" />
-        <activity android:name=".ui.home.subscribe.NewSubscribeActivity" />
+        <activity android:name=".ui.mine.subscribe.save.NewSubscribeActivity" />
         <!-- 高德地图 -->
         <!-- 5.0SDK不在需要<service android:name="com.amap.api.location.APSService"></service> -->
         <meta-data
@@ -86,7 +86,8 @@
         <activity android:name=".ui.home.hospital.select.SelectHospitalActivity" />
         <activity android:name=".ui.mine.wallet.WalletActivity" />
         <activity android:name=".ui.mine.wallet.log.TransactionRecordActivity" />
-        <activity android:name=".ui.mine.wallet.recharge.RechargeActivity"></activity>
+        <activity android:name=".ui.mine.wallet.recharge.RechargeActivity" />
+        <activity android:name=".ui.mine.subscribe.SubscribeActivity"></activity>
     </application>
 
 </manifest>

@@ -75,7 +75,6 @@ public class MainActivity extends BasePresenterActivity {
 
 //        TextView textView = helper.getView(R.id.tv_original);
 //        textView.getPaint().setFlags(Paint.STRIKE_THRU_TEXT_FLAG);
-        SPUtils.put(Const.USER_INFO.CUSTOMER_ID, "2018090115357871316905625");
         initButton();
         initFragment();
     }

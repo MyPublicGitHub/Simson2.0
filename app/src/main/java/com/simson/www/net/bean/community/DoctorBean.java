@@ -4,14 +4,15 @@ import java.util.List;
 
 public class DoctorBean {
 
-    private List<?> recommend;
+
+    private List<RecommendBean> recommend;
     private List<DoctorItemBean> list;
 
-    public List<?> getRecommend() {
+    public List<RecommendBean> getRecommend() {
         return recommend;
     }
 
-    public void setRecommend(List<?> recommend) {
+    public void setRecommend(List<RecommendBean> recommend) {
         this.recommend = recommend;
     }
 
@@ -23,13 +24,39 @@ public class DoctorBean {
         this.list = list;
     }
 
+    public static class RecommendBean {
+        /**
+         * doctor_id : 111105
+         * doctor_picture : http://58.213.14.195:8081/upload/doctor/picture/yangzhenqian.jpg
+         */
+
+        private String doctor_id;
+        private String doctor_picture;
+
+        public String getDoctor_id() {
+            return doctor_id;
+        }
+
+        public void setDoctor_id(String doctor_id) {
+            this.doctor_id = doctor_id;
+        }
+
+        public String getDoctor_picture() {
+            return doctor_picture;
+        }
+
+        public void setDoctor_picture(String doctor_picture) {
+            this.doctor_picture = doctor_picture;
+        }
+    }
+
     public static class DoctorItemBean {
         /**
-         * doctor_id : 55550
+         * doctor_id : 111300
          * hospital_id : 3
          * hospital_name : 福州新生植发
          * doctor_name : 陈男男
-         * doctor_head : http://58.213.14.195:8081/upload/doctor/head/chennannan@2x.png
+         * doctor_head : http://58.213.14.195:8081/upload/doctor/head/fuzhou/chennannan.png
          * position : 主任医师
          * be_good_at : 毛发种植
          * doctor_star : 5
