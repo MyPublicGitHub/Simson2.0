@@ -31,6 +31,7 @@ public class ImageUtils {
             if (file != null) {
                 String absolutePath = file.getAbsolutePath();
                 imageToBase64 = imageToBase64(absolutePath);
+                LogUtils.e("imageToBase64:::::"+imageToBase64);
             }
         } else {
             LogUtils.e("文件转换bitmap出错");

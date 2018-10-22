@@ -10,7 +10,10 @@ import android.view.View;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.simson.www.R;
 import com.simson.www.common.Const;
+import com.simson.www.net.bean.BaseBean;
+import com.simson.www.net.bean.community.DiaryBean;
 import com.simson.www.net.bean.community.PopularizationBean;
+import com.simson.www.net.bean.home.IndexSynchysisBean;
 import com.simson.www.ui.adapter.KnowledgeItemAdapter;
 import com.simson.www.ui.base.BasePresenterFragment;
 import com.simson.www.ui.community.knowledge.detail.WebViewActivity;
@@ -41,18 +44,35 @@ public class KnowledgeItemFragment extends BasePresenterFragment<KnowledgeItemPr
         adapter.setEmptyView(R.layout.list_empty_view);
         adapter.setOnItemClickListener((adapter, view1, position) -> {
             List<PopularizationBean> bean = (List<PopularizationBean>) adapter.getData();
-            String popularizationLink = bean.get(position).getPopularization_link();
+            String popularizationLink = bean.get(position).getLink_url();
             String popularizationId = bean.get(position).getPopularization_id();
             String url = popularizationLink + "?json={popularizationId:" + popularizationId + "}";
             startActivity(new Intent(getContext(), WebViewActivity.class)
                     .putExtra(Const.WEB_VIEW_TITLE, "科普详情")
                     .putExtra(Const.WEB_VIEW_URL,url));
         });
+        adapter.setOnItemChildClickListener((adapter, views, position) -> {
+            mPosition = position;
+            PopularizationBean bean = (PopularizationBean) adapter.getData().get(position);
+            String mFollowMethod = bean.getIs_follow() == 0 ? "save" : "delete";
+            switch (views.getId()) {
+                case R.id.tv_follow:
+                    mPresenter.follow(bean.getHospital_id(), mFollowMethod, Const.FOLLOW_TYPE.HOSPITAL);
+                    break;
+            }
+        });
         setRefresh();
         //?json={"timestamp":"2018-09-26 01:38:17","popularizationId":"123123"}
         mPresenter.getPopularizationList();
     }
-
+    int mPosition;
+    @Override
+    public void follow(BaseBean bean) {
+        List<PopularizationBean> data = adapter.getData();
+        PopularizationBean beans = data.get(mPosition);
+        beans.setIs_follow(beans.getIs_follow() == 0 ? 1 : 0);
+        adapter.notifyItemChanged(mPosition,beans);
+    }
     @Override
     public void showPopularizationList(List<PopularizationBean> bean) {
         if (bean == null) {
@@ -104,8 +124,13 @@ public class KnowledgeItemFragment extends BasePresenterFragment<KnowledgeItemPr
     }
 
     @Override
-    public void goToLogin() {
-        startActivity(new Intent(getActivity(), LoginActivity.class));
+    public String itemTypeId() {
+        return null;
+    }
+
+    @Override
+    public String search() {
+        return null;
     }
 
     @Override

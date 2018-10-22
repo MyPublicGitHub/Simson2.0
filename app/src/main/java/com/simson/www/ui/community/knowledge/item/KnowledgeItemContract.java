@@ -16,7 +16,9 @@ public interface KnowledgeItemContract {
 
         String getType();
 
-        void goToLogin();
+        String itemTypeId();
+
+        String search();
 
         void showPopularizationList(List<PopularizationBean> bean);
 

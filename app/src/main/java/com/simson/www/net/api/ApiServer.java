@@ -7,12 +7,16 @@ import com.simson.www.net.bean.community.DiaryDetailAppendBean;
 import com.simson.www.net.bean.community.DiaryDetailBean;
 import com.simson.www.net.bean.community.DiaryDetailRecommendBean;
 import com.simson.www.net.bean.community.DoctorBean;
+import com.simson.www.net.bean.community.FriendsCircleBean;
+import com.simson.www.net.bean.community.FriendsCircleCommentBean;
+import com.simson.www.net.bean.community.FriendsCircleDetailBean;
 import com.simson.www.net.bean.community.PopularizationBean;
 import com.simson.www.net.bean.community.QuestionsBean;
 import com.simson.www.net.bean.home.CauseListBean;
 import com.simson.www.net.bean.home.CityListBean;
 import com.simson.www.net.bean.home.DoctorDetailBean;
 import com.simson.www.net.bean.home.HomeBannerBean;
+import com.simson.www.net.bean.home.HospitalBean;
 import com.simson.www.net.bean.home.HospitalDetailBean;
 import com.simson.www.net.bean.home.HospitalDeviceBean;
 import com.simson.www.net.bean.home.HospitalItemBean;
@@ -22,9 +26,12 @@ import com.simson.www.net.bean.main.ItemTypeBean;
 import com.simson.www.net.bean.main.LoginBean;
 import com.simson.www.net.bean.mine.AddressBean;
 import com.simson.www.net.bean.mine.AddressDetailBean;
+import com.simson.www.net.bean.mine.AlopeciaBean;
 import com.simson.www.net.bean.mine.CaseBean;
 import com.simson.www.net.bean.mine.CustomerBean;
 import com.simson.www.net.bean.mine.CustomerInfoBean;
+import com.simson.www.net.bean.mine.FansBean;
+import com.simson.www.net.bean.mine.FollowBean;
 import com.simson.www.net.bean.mine.IntegralDetailBean;
 import com.simson.www.net.bean.mine.OrderBean;
 import com.simson.www.net.bean.mine.PaymentOrderBean;
@@ -42,8 +49,6 @@ import com.simson.www.net.bean.shop.ShopListBean;
 import java.util.List;
 
 import io.reactivex.Observable;
-import retrofit2.http.Field;
-import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.POST;
 import retrofit2.http.Query;
 
@@ -92,7 +97,7 @@ public interface ApiServer {
 
     //首页混排数据列表
     @POST("indexController/indexSynchysis")
-    Observable<BaseBean<IndexSynchysisBean>> indexSynchysis(@Query("json") String json);
+    Observable<BaseBean<List<IndexSynchysisBean>>> indexSynchysis(@Query("json") String json);
 
     //首页列表
     @POST(UrlConstainer.HOME_ITEM)
@@ -104,8 +109,10 @@ public interface ApiServer {
     @POST("itemController/itemDetail")
     Observable<BaseBean<CommodityDetailBean>> getCommodityDetail(@Query("json") String json);
 
+
     @POST("itemController/iemDetailPicture")
     Observable<BaseBean<CommodityDetailBean>> getCommodityDetailPicture(@Query("json") String json);
+
 
     @POST("itemController/getItemPraise")
     Observable<BaseBean<CommodityDetailPraiseBean>> getCommodityDetailPraise(@Query("json") String json);
@@ -121,6 +128,26 @@ public interface ApiServer {
     //日记列表
     @POST("diaryController/diaryList")
     Observable<BaseBean<List<DiaryBean>>> getDiaryList(@Query("json") String json);
+
+    //朋友圈列表
+    @POST("friendsCircle/friendsCircleList")
+    Observable<BaseBean<List<FriendsCircleBean>>> friendsCircleList(@Query("json") String json);
+
+    //朋友圈详情
+    @POST("friendsCircle/getFriendsCircle")
+    Observable<BaseBean<FriendsCircleDetailBean>> getFriendsCircle(@Query("json") String json);
+
+    //发朋友圈
+    @POST("friendsCircle/saveFriendsCircle")
+    Observable<BaseBean> saveFriendsCircle(@Query("json") String json);
+
+    //朋友圈评论列表
+    @POST("friendsCircle/fiendsCircleCommentList")
+    Observable<BaseBean<List<FriendsCircleCommentBean>>> fiendsCircleCommentList(@Query("json") String json);
+
+    //添加朋友圈评论
+    @POST("friendsCircle/saveFriendsCircleComment")
+    Observable<BaseBean> saveFriendsCircleComment(@Query("json") String json);
 
     //日记详情
     @POST("diaryController/diaryDetail")
@@ -141,6 +168,10 @@ public interface ApiServer {
     //专家问答
     @POST("questionsAnswer/questionsList")
     Observable<BaseBean<List<QuestionsBean>>> getQuestionsList(@Query("json") String json);
+
+    //专家问答
+    @POST("questionsAnswer/questions")
+    Observable<BaseBean> questions(@Query("json") String json);
 
     //医生列表
     @POST("doctorController/doctorList")
@@ -218,6 +249,10 @@ public interface ApiServer {
     @POST("hospitalController/cityList")
     Observable<BaseBean<List<CityListBean>>> getCityList(@Query("json") String json);
 
+    //医院下拉列表
+    @POST("hospitalController/getHospitalList")
+    Observable<BaseBean<List<HospitalBean>>> getHospitalList(@Query("json") String json);
+
     //医院列表
     @POST("hospitalController/hospitalList")
     Observable<BaseBean<List<HospitalItemBean>>> getHospital(@Query("json") String json);
@@ -235,9 +270,8 @@ public interface ApiServer {
     Observable<BaseBean<CustomerInfoBean>> getCustomerInfo(@Query("json") String json);
 
     //个人信息
-    @FormUrlEncoded
     @POST("customerController/updateCustomerInfo")
-    Observable<BaseBean> updateCustomerInfo(@Field("json") String json);
+    Observable<BaseBean> updateCustomerInfo(@Query("json") String json);
 
     //重置密码获取短信
     @POST("customerController/pwdCode")
@@ -264,7 +298,18 @@ public interface ApiServer {
     Observable<BaseBean<List<ShopListBean>>> itemCollectList(@Query("json") String json);
 
     //
-    @FormUrlEncoded
     @POST("customerController/feedback")
-    Observable<BaseBean> feedback(@Field("json") String json);
+    Observable<BaseBean> feedback(@Query("json") String json);
+
+    //粉丝
+    @POST("customerController/queryMyFansList")
+    Observable<BaseBean<List<FansBean>>> queryMyFansList(@Query("json") String json);
+
+
+    @POST("customerController/queryMyFollowList")
+    Observable<BaseBean<List<FollowBean>>> queryMyFollowList(@Query("json") String json);
+
+    //脱发检测列表
+    @POST("alopeciaTesting/alopeciaTestingList")
+    Observable<BaseBean<List<AlopeciaBean>>> alopeciaTestingList(@Query("json") String json);
 }

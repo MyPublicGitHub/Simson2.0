@@ -14,6 +14,8 @@ import com.simson.www.R;
 import com.simson.www.net.bean.BaseBean;
 import com.simson.www.ui.base.BasePresenterActivity;
 import com.simson.www.ui.home.hospital.select.SelectHospitalActivity;
+import com.simson.www.ui.mine.subscribe.save.select.SelectFriendActivity;
+import com.simson.www.ui.mine.subscribe.select.SelectItemTypeActivity;
 import com.simson.www.utils.CommonUtils;
 import com.simson.www.utils.ToastUtils;
 import com.simson.www.widget.CommonPopupWindow;
@@ -46,8 +48,6 @@ public class NewSubscribeActivity extends BasePresenterActivity<NewSubscribePres
     LinearLayout llCar;
     @BindView(R.id.ll_friend)
     LinearLayout llFriend;
-    @BindView(R.id.tv_location)
-    TextView tvLocation;
     @BindView(R.id.et_phone)
     EditText etPhone;
     @BindView(R.id.et_remake)
@@ -62,24 +62,11 @@ public class NewSubscribeActivity extends BasePresenterActivity<NewSubscribePres
 
     CommonPopupWindow popupWindow;
 
-    @OnClick({R.id.tv_type, R.id.tv_hospital, R.id.ll_date, R.id.ll_time, R.id.ll_car, R.id.ll_friend, R.id.tv_location, R.id.tv_commit})
+    @OnClick({R.id.tv_type, R.id.tv_hospital, R.id.ll_date, R.id.ll_time, R.id.ll_car, R.id.ll_friend, R.id.tv_commit})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.tv_type:
-                //设置PopupWindow里的子View及点击事件
-                popupWindow = new CommonPopupWindow.Builder(this)
-                        .setView(R.layout.pop_project_type) //设置PopupWindow布局
-                        .setWidthAndHeight(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT) //设置宽高
-                        //.setAnimationStyle(R.style.AnimDown) //设置动画
-                        .setBackGroundLevel(0.5f) //设置背景颜色，取值范围0.0f-1.0f 值越小越暗 1.0f为透明
-                        .setViewOnclickListener((view1, layoutResId) -> {
-                            view1.findViewById(R.id.tv_photo).setOnClickListener(onClickListener);
-                            view1.findViewById(R.id.tv_camera).setOnClickListener(onClickListener);
-                            view1.findViewById(R.id.tv_cancel).setOnClickListener(onClickListener);
-                        })
-                        .setOutsideTouchable(true) //设置外部是否可点击 默认是true
-                        .create(); //开始构建
-                popupWindow.showAsDropDown(tvType);//弹出PopupWindow
+                startActivityForResult(new Intent(this, SelectItemTypeActivity.class), 1002);
                 break;
             case R.id.tv_hospital:
                 startActivityForResult(new Intent(this, SelectHospitalActivity.class), 1001);
@@ -106,6 +93,7 @@ public class NewSubscribeActivity extends BasePresenterActivity<NewSubscribePres
                 popupWindow.showAsDropDown(tvCar);//弹出PopupWindow
                 break;
             case R.id.ll_friend:
+                startActivityForResult(new Intent(this, SelectFriendActivity.class), 1003);
                 break;
             case R.id.tv_location:
                 break;
@@ -142,7 +130,7 @@ public class NewSubscribeActivity extends BasePresenterActivity<NewSubscribePres
 
     }
 
-    String hospitalId, subscribeType, isCar = "0";
+    String hospitalId, subscribeType, isCar = "0",accompanyFriends;
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -151,6 +139,14 @@ public class NewSubscribeActivity extends BasePresenterActivity<NewSubscribePres
         if (resultCode == 1001) {
             hospitalId = data.getStringExtra("hospitalId");
             tvHospital.setText(data.getStringExtra("hospitalName") + "");
+        }
+        if (resultCode == 1002) {
+            subscribeType = data.getStringExtra("itemTypeId");
+            tvType.setText(data.getStringExtra("itemTypeName") + "");
+        }
+        if (resultCode == 1003) {
+            accompanyFriends = data.getStringExtra("data");
+            tvFriend.setText(data.getStringExtra("dataSize") + "人");
         }
     }
 
@@ -192,7 +188,7 @@ public class NewSubscribeActivity extends BasePresenterActivity<NewSubscribePres
 
     @Override
     public String accompanyFriends() {
-        return null;
+        return accompanyFriends;
     }
 
     @Override
@@ -207,7 +203,7 @@ public class NewSubscribeActivity extends BasePresenterActivity<NewSubscribePres
 
     @Override
     public String detailedAddress() {
-        return tvLocation.getText().toString();
+        return null;
     }
 
     @Override
@@ -230,14 +226,6 @@ public class NewSubscribeActivity extends BasePresenterActivity<NewSubscribePres
         @Override
         public void onClick(View v) {
             switch (v.getId()) {
-                case R.id.tv_photo:
-                    tvType.setText("脱发检测预约");
-                    subscribeType = "2";
-                    break;
-                case R.id.tv_camera:
-                    tvType.setText("项目预约");
-                    subscribeType = "1";
-                    break;
                 case R.id.tv_yes:
                     tvCar.setText("是");
                     isCar = "1";

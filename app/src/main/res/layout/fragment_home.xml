@@ -1,31 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
 
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/recycler_view"
+        android:id="@+id/recycler_view_header"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
-    <android.support.v4.widget.NestedScrollView
+    <com.scwang.smartrefresh.layout.SmartRefreshLayout
+        android:id="@+id/refresh_layout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/colorWhiteBg"
-        android:scrollbars="none">
+        android:layout_height="match_parent">
 
-        <LinearLayout
+        <android.support.v4.widget.NestedScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:background="@color/colorWhiteBg"
+            android:scrollbars="none">
 
-            <com.scwang.smartrefresh.layout.SmartRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                android:id="@+id/refresh_layout"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -114,6 +113,7 @@
                         android:background="@color/colorWhiteBg" />
 
                     <RelativeLayout
+                        android:id="@+id/rv_subscribe_test"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -155,6 +155,7 @@
                     android:orientation="horizontal">
 
                     <RelativeLayout
+                        android:id="@+id/rl_consultation"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -228,9 +229,11 @@
                 </LinearLayout>
 
                 <ImageView
-                    android:id="@+id/iv_sign"
+                    android:id="@+id/iv_test"
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/dp_120"
+                    android:src="@mipmap/ic_bg_home_test"
+                    android:scaleType="centerCrop"
+                    android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/dp_10" />
 
                 <LinearLayout
@@ -251,7 +254,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="@dimen/dp_10"
-                        android:text="蜕变日记"
+                        android:text="推荐科普"
                         android:textColor="@color/colorBlack"
                         android:textSize="@dimen/sp_16" />
 
@@ -262,31 +265,13 @@
                         android:background="@color/colorBlack_2" />
                 </LinearLayout>
 
-
-                <android.support.design.widget.AppBarLayout
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/recycler_view"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
 
-                    <android.support.design.widget.TabLayout
-                        android:id="@+id/tab_layout"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="@color/colorWhite"
-                        android:elevation="4dp"
-                        app:tabIndicatorColor="@color/colorMain"
-                        app:tabMode="scrollable"
-                        app:tabSelectedTextColor="@color/colorMain"
-                        app:tabTextColor="@color/colorBlack_6" />
+        </android.support.v4.widget.NestedScrollView>
+    </com.scwang.smartrefresh.layout.SmartRefreshLayout>
 
-                </android.support.design.widget.AppBarLayout>
-
-                <com.simson.www.widget.ViewPagerForScrollView
-                    android:id="@+id/view_pager"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1" />
-            </com.scwang.smartrefresh.layout.SmartRefreshLayout>
-        </LinearLayout>
-
-    </android.support.v4.widget.NestedScrollView>
 </LinearLayout>

@@ -8,15 +8,11 @@ import com.simson.www.common.Const;
 import com.simson.www.net.NetConfig;
 import com.simson.www.net.bean.BaseBean;
 import com.simson.www.net.bean.main.CodeBean;
-import com.simson.www.net.bean.mine.CustomerInfoBean;
 import com.simson.www.net.callback.RxBaseObserver;
 import com.simson.www.net.callback.RxObserver;
 import com.simson.www.ui.core.model.ResetPasswordModel;
-import com.simson.www.ui.core.model.UserInfoModel;
 import com.simson.www.ui.core.presenter.BasePresenter;
-import com.simson.www.ui.mine.user.UserInfoContract;
 import com.simson.www.utils.DateUtils;
-import com.simson.www.utils.LogUtils;
 import com.simson.www.utils.SPUtils;
 import com.simson.www.utils.ToastUtils;
 
@@ -35,19 +31,19 @@ public class ResetPasswordPresenter extends BasePresenter<ResetPasswordContract.
     @Override
     public void updateCustomerPwd() {
         mView = getView();
-        if (TextUtils.isEmpty(mView.mobile())){
+        if (TextUtils.isEmpty(mView.mobile())) {
             ToastUtils.showToast("手机号不能为空");
             return;
         }
-        if (TextUtils.isEmpty(mView.code())){
+        if (TextUtils.isEmpty(mView.code())) {
             ToastUtils.showToast("验证码不能为空");
             return;
         }
-        if (TextUtils.isEmpty(mView.newPwd())){
+        if (TextUtils.isEmpty(mView.newPwd())) {
             ToastUtils.showToast("密码不能为空");
             return;
         }
-        if (mView.newPwd().length()<16){
+        if (mView.newPwd().length() < 16) {
             ToastUtils.showToast("密码不能小于16位");
             return;
         }
@@ -77,7 +73,7 @@ public class ResetPasswordPresenter extends BasePresenter<ResetPasswordContract.
     @Override
     public void pwdCode() {
         mView = getView();
-        if (TextUtils.isEmpty(mView.mobile())){
+        if (TextUtils.isEmpty(mView.mobile())) {
             ToastUtils.showToast("手机号不能为空");
             return;
         }

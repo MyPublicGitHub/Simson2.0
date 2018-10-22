@@ -62,7 +62,7 @@ public class FeedBackPresenter extends BasePresenter<FeedBackContract.View> impl
         map.put("customerId",SPUtils.get(Const.USER_INFO.CUSTOMER_ID, ""));//当前登录人
         map.put("mobile", mView.mobile());
         map.put("content", mView.content());
-        map.put("pictures", codeList);
+        map.put("pictures", "");
         String json = new Gson().toJson(map);
         mModel.feedback(json, observer);
         addDisposable(observer);

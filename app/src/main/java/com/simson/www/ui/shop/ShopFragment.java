@@ -3,6 +3,7 @@ package com.simson.www.ui.shop;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -12,10 +13,13 @@ import android.widget.TextView;
 
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.simson.www.R;
+import com.simson.www.net.bean.main.ItemTypeBean;
 import com.simson.www.net.bean.shop.ShopListBean;
+import com.simson.www.ui.adapter.ItemTypeGradeAdapter;
 import com.simson.www.ui.adapter.ShopCommodityAdapter;
 import com.simson.www.ui.adapter.ShopIntegralAdapter;
 import com.simson.www.ui.base.BasePresenterFragment;
+import com.simson.www.ui.community.knowledge.type.KnowledgeTypeActivity;
 import com.simson.www.ui.shop.detail.CommodityDetailActivity;
 import com.simson.www.ui.shop.type.ShopTypeActivity;
 import com.youth.banner.Banner;
@@ -30,7 +34,8 @@ import butterknife.Unbinder;
 
 public class ShopFragment extends BasePresenterFragment<ShopPresenter, ShopContract.View> implements ShopContract.View {
 
-
+    @BindView(R.id.recyclerView)
+    RecyclerView recyclerView;
     @BindView(R.id.rv_integral)
     RecyclerView rvIntegral;
     @BindView(R.id.rv_commodity)
@@ -38,10 +43,6 @@ public class ShopFragment extends BasePresenterFragment<ShopPresenter, ShopContr
 
     ShopIntegralAdapter mShopIntegralAdapter;
     ShopCommodityAdapter mShopCommodityAdapter;
-    @BindView(R.id.banner)
-    Banner banner;
-    @BindView(R.id.tv_city)
-    TextView tvCity;
     @BindView(R.id.tv_search)
     TextView tvSearch;
     @BindView(R.id.srl_integral)
@@ -49,7 +50,7 @@ public class ShopFragment extends BasePresenterFragment<ShopPresenter, ShopContr
     @BindView(R.id.refresh_layout)
     SmartRefreshLayout refreshLayout;
     private int mPageCommodity = 1, mPageIntegral = 1;
-
+    ItemTypeGradeAdapter adapter;
 
     @Override
     protected int getLayoutId() {
@@ -58,6 +59,18 @@ public class ShopFragment extends BasePresenterFragment<ShopPresenter, ShopContr
 
     @Override
     protected void initViews(View view) {
+        recyclerView.setLayoutManager(new GridLayoutManager(getContext(),5));
+        adapter = new ItemTypeGradeAdapter(null);
+        recyclerView.setAdapter(adapter);
+        recyclerView.setNestedScrollingEnabled(false);
+        recyclerView.setFocusable(false);
+        //adapter.bindToRecyclerView(recyclerView);
+        //adapter.setEmptyView(R.layout.list_empty_view);
+        adapter.setOnItemClickListener((adapter, view1, position) -> {
+            List<ItemTypeBean> bean = (List<ItemTypeBean>) adapter.getData();
+            String id = bean.get(position).getItemTypeId();
+            startActivity(new Intent(getActivity(),ShopTypeActivity.class).putExtra("itemTypeId",id));
+        });
 
         mShopIntegralAdapter = new ShopIntegralAdapter(null);
         rvIntegral.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false));
@@ -86,20 +99,19 @@ public class ShopFragment extends BasePresenterFragment<ShopPresenter, ShopContr
 
         setRefresh();
 
+        mPresenter.getItemType();
         mPresenter.getShopList();
         mPresenter.getShopIntegralList();
     }
 
-
-
-    @OnClick({R.id.ll_hair,})
-    public void onViewClicked(View view) {
-        switch (view.getId()) {
-            case R.id.ll_hair:
-                startActivity(new Intent(getActivity(), ShopTypeActivity.class));
-                break;
+    @Override
+    public void setItemType(List<ItemTypeBean> bean) {
+        if (bean == null) {
+            return;
         }
+        adapter.replaceData(bean);
     }
+
     @Override
     public void setShopListResponse(List<ShopListBean> bean) {
         if (bean == null) {

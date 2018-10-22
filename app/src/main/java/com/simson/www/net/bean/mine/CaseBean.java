@@ -5,18 +5,18 @@ import java.util.List;
 public class CaseBean {
 
     /**
-     * case_id : 123
-     * case_link : http://58.213.14.195:8081/simson/webview/case/case.jsp
-     * case_name : 张先生
-     * item_name : 发际线种植
-     * hair_follicles_number : 2500U
-     * hair_planting_technique : FUE
+     * case_id : 50d657c5fcca435d98345bd8773217f3
+     * link_url : http://58.213.14.195:8082/userfiles/24bf2ba294c2fcca9f415adc990734b4/case/201810/50d657c5fcca435d98345bd8773217f3.html
+     * case_name : 疤痕植发的优点有哪些
+     * item_name : 疤痕种植
+     * hair_follicles_number : 500U
+     * hair_planting_technique : TDDP-E
      * browse : 0
-     * pictures : ["https://images.maofa.com/userfiles/24bf2ba294c2fcca9f415adc990734b4/images/popularization/files/2018/08/35b9fa9c.jpg"]
+     * pictures : ["http://58.213.14.195:8082/userfiles/24bf2ba294c2fcca9f415adc990734b4/images/case/picture/2018/10/242ffb31.jpg","http://58.213.14.195:8082/userfiles/24bf2ba294c2fcca9f415adc990734b4/images/case/picture/2018/10/242ffb31.jpg"]
      */
 
     private String case_id;
-    private String case_link;
+    private String link_url;
     private String case_name;
     private String item_name;
     private String hair_follicles_number;
@@ -32,12 +32,12 @@ public class CaseBean {
         this.case_id = case_id;
     }
 
-    public String getCase_link() {
-        return case_link;
+    public String getLink_url() {
+        return link_url;
     }
 
-    public void setCase_link(String case_link) {
-        this.case_link = case_link;
+    public void setLink_url(String link_url) {
+        this.link_url = link_url;
     }
 
     public String getCase_name() {

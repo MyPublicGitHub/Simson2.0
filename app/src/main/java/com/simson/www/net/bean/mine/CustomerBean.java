@@ -1,55 +1,23 @@
 package com.simson.www.net.bean.mine;
 
 public class CustomerBean {
-
-
     /**
-     * customer_id : 2018090115357871316905625
-     * customer_name : 176****7732
-     * customer_head : http://58.213.14.195:8081/upload/customer/201810/jl1fnb5EWl8dZFFJ.png
      * card_amount : 0.00
-     * points : 5
+     * points : 10
      * follows : 0
-     * fans : 0
-     * subscribes : 0
-     * diarys : 0
+     * fans : 2
+     * subscribes : 1
+     * alopecias : 1
      * unreads : 0
      */
 
-    private String customer_id;
-    private String customer_name;
-    private String customer_head;
     private String card_amount;
     private int points;
     private int follows;
     private int fans;
     private int subscribes;
-    private int diarys;
+    private int alopecias;
     private int unreads;
-
-    public String getCustomer_id() {
-        return customer_id;
-    }
-
-    public void setCustomer_id(String customer_id) {
-        this.customer_id = customer_id;
-    }
-
-    public String getCustomer_name() {
-        return customer_name;
-    }
-
-    public void setCustomer_name(String customer_name) {
-        this.customer_name = customer_name;
-    }
-
-    public String getCustomer_head() {
-        return customer_head;
-    }
-
-    public void setCustomer_head(String customer_head) {
-        this.customer_head = customer_head;
-    }
 
     public String getCard_amount() {
         return card_amount;
@@ -91,12 +59,12 @@ public class CustomerBean {
         this.subscribes = subscribes;
     }
 
-    public int getDiarys() {
-        return diarys;
+    public int getAlopecias() {
+        return alopecias;
     }
 
-    public void setDiarys(int diarys) {
-        this.diarys = diarys;
+    public void setAlopecias(int alopecias) {
+        this.alopecias = alopecias;
     }
 
     public int getUnreads() {

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="@dimen/dp_1"
+    android:background="@color/colorWhite"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    android:padding="@dimen/dp_10">
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="好友的手机号码:"
+        android:textColor="@color/colorBlack"
+        android:textSize="@dimen/sp_14" />
+
+    <EditText
+        android:id="@+id/et_phone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/dp_10"
+        android:background="@color/colorWhiteBg"
+        android:hint="请输入"
+        android:padding="@dimen/dp_10"
+        android:textColor="@color/colorBlack_6"
+        android:textSize="@dimen/sp_14" />
+
+
+</LinearLayout>
+

@@ -11,6 +11,7 @@ import android.view.View;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.simson.www.R;
 import com.simson.www.net.bean.community.DoctorBean;
+import com.simson.www.net.bean.home.HospitalBean;
 import com.simson.www.ui.adapter.ExpertCommunityAdapter;
 import com.simson.www.ui.adapter.TabViewPagerAdapter;
 import com.simson.www.ui.adapter.TabViewPagerAdapterItem;
@@ -82,6 +83,11 @@ public class ExpertFragment extends BasePresenterFragment<ExpertPresenter, Exper
         }
     }
 
+    @Override
+    public void getHospitalList(List<HospitalBean> bean) {
+
+    }
+
     private void setRefresh() {
         mRefreshLayout.setOnRefreshListener(refreshLayout -> {
             mPage = 1;
@@ -104,6 +110,11 @@ public class ExpertFragment extends BasePresenterFragment<ExpertPresenter, Exper
     @Override
     public int getPage() {
         return mPage;
+    }
+
+    @Override
+    public String hospitalId() {
+        return null;
     }
 
 

@@ -1,10 +1,13 @@
 package com.simson.www.ui.core.presenter;
 
 
+import android.text.TextUtils;
+
 import com.google.gson.Gson;
 import com.simson.www.common.Const;
 import com.simson.www.net.NetConfig;
 import com.simson.www.net.bean.BaseBean;
+import com.simson.www.net.bean.home.CityListBean;
 import com.simson.www.net.bean.main.ItemTypeBean;
 import com.simson.www.net.callback.RxBaseObserver;
 import com.simson.www.net.callback.RxObserver;
@@ -12,6 +15,7 @@ import com.simson.www.ui.core.model.CommonModel;
 import com.simson.www.ui.core.view.IView;
 import com.simson.www.utils.DateUtils;
 import com.simson.www.utils.SPUtils;
+import com.simson.www.utils.ToastUtils;
 
 import java.util.HashMap;
 import java.util.List;
@@ -24,6 +28,26 @@ public class CommonPresenter<V extends IView> extends BasePresenter<V> implement
         this.mModel = new CommonModel();
     }
 
+    @Override
+    public void cityList() {
+        RxObserver<List<CityListBean>> mObserver = new RxObserver<List<CityListBean>>(this) {
+
+            @Override
+            public void onSuccess(List<CityListBean> mData) {
+                view.cityList(mData);
+            }
+
+            @Override
+            public void onFail(int code, String errorMsg) {
+                view.showFail(errorMsg);
+            }
+        };
+        Map<String, String> map = new HashMap<>();
+        map.put("timestamp", DateUtils.getStringDate());
+        String json = new Gson().toJson(map);
+        mModel.cityList(json, mObserver);
+        addDisposable(mObserver);
+    }
 
     @Override
     public void getItemType() {
@@ -44,12 +68,12 @@ public class CommonPresenter<V extends IView> extends BasePresenter<V> implement
         Map<String, String> map = new HashMap<>();
         map.put("timestamp", DateUtils.getStringDate());
         String json = new Gson().toJson(map);
-        mModel.getItemType(json,mObserver);
+        mModel.getItemType(json, mObserver);
         addDisposable(mObserver);
     }
 
     @Override
-    public void collect(String bizId,String method,String type) {
+    public void collect(String bizId, String method, String type) {
         RxBaseObserver<BaseBean> mObserver = new RxBaseObserver<BaseBean>(this) {
 
             @Override
@@ -71,12 +95,16 @@ public class CommonPresenter<V extends IView> extends BasePresenter<V> implement
         map.put("method", method);//method：方法 save或者delete
         map.put("type", type);//type： 1：日记；2科普；3问答；4商品
         String json = new Gson().toJson(map);
-        mModel.collect(json,mObserver);
+        mModel.collect(json, mObserver);
         addDisposable(mObserver);
     }
 
     @Override
     public void follow(String followCustomerId, String method, String type) {
+        if (TextUtils.isEmpty((String) SPUtils.get(Const.USER_INFO.CUSTOMER_ID, ""))) {
+            ToastUtils.showToast("您还没登录请先登录");
+            return;
+        }
         RxBaseObserver<BaseBean> mObserver = new RxBaseObserver<BaseBean>(this) {
             @Override
             public void onNext(BaseBean bean) {
@@ -97,7 +125,7 @@ public class CommonPresenter<V extends IView> extends BasePresenter<V> implement
         map.put("method", method);//method：方法 save或者delete
         map.put("type", type);//type：  1：医院；2医生；3顾客；商品
         String json = new Gson().toJson(map);
-        mModel.follow(json,mObserver);
+        mModel.follow(json, mObserver);
         addDisposable(mObserver);
     }
 
@@ -124,7 +152,7 @@ public class CommonPresenter<V extends IView> extends BasePresenter<V> implement
         map.put("method", method);//method：方法 save或者delete
         map.put("type", type);//type： 1：日记；2科普；3问答；4商品
         String json = new Gson().toJson(map);
-        mModel.collect(json,mObserver);
+        mModel.collect(json, mObserver);
         addDisposable(mObserver);
     }
 

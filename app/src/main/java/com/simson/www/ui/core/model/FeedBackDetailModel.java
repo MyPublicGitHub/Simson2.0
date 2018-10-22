@@ -2,17 +2,14 @@ package com.simson.www.ui.core.model;
 
 
 import com.simson.www.net.RxSchedulers;
-import com.simson.www.net.bean.mine.IntegralDetailBean;
 import com.simson.www.net.callback.RxBaseObserver;
-import com.simson.www.net.callback.RxObserver;
-
-import java.util.List;
+import com.simson.www.utils.AESUtils;
 
 public class FeedBackDetailModel extends BaseModel {
 
-    public void feedback(String json,RxBaseObserver rxObserver) {
+    public void feedback(String json, RxBaseObserver rxObserver) {
         doRxRequest().
-                feedback(json)
+                feedback(AESUtils.encrypt(json))
                 .compose(RxSchedulers.io_main())
                 .subscribe(rxObserver);
     }

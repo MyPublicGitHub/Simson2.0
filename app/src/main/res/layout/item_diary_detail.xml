@@ -75,7 +75,8 @@
 
             <cn.bingoogolapple.photopicker.widget.BGANinePhotoLayout
                 android:id="@+id/npl_item_moment_photos"
-                style="@style/MatchWrap"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 app:bga_npl_itemCornerRadius="0dp"
                 app:bga_npl_itemSpanCount="3"

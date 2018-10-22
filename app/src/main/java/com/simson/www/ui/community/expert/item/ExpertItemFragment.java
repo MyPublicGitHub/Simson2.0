@@ -9,7 +9,11 @@ import android.view.View;
 
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.simson.www.R;
+import com.simson.www.common.Const;
+import com.simson.www.net.bean.BaseBean;
+import com.simson.www.net.bean.community.DiaryBean;
 import com.simson.www.net.bean.community.QuestionsBean;
+import com.simson.www.net.bean.home.IndexSynchysisBean;
 import com.simson.www.ui.adapter.QuestionAdapter;
 import com.simson.www.ui.base.BasePresenterFragment;
 import com.simson.www.ui.community.expert.detail.QuestionDetailActivity;
@@ -30,7 +34,7 @@ public class ExpertItemFragment extends BasePresenterFragment<ExpertItemPresente
     private String type;
     private int mPage = 1;
     QuestionAdapter adapter;
-
+    int mPosition;
     @Override
     protected void initViews(View view) {
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
@@ -45,10 +49,26 @@ public class ExpertItemFragment extends BasePresenterFragment<ExpertItemPresente
             String questionsId = bean.get(position).getQuestions_id();
             startActivity(new Intent(getContext(), QuestionDetailActivity.class).putExtra("questionsId", questionsId));
         });
+        adapter.setOnItemChildClickListener((adapter, views, position) -> {
+            mPosition = position;
+            QuestionsBean bean = (QuestionsBean) adapter.getData().get(position);
+            String mFollowMethod = bean.getIs_follow() == 0 ? "save" : "delete";
+            switch (views.getId()) {
+                case R.id.tv_follow:
+                    mPresenter.follow(bean.getCustomer_id(), mFollowMethod, Const.FOLLOW_TYPE.USER);
+                    break;
+            }
+        });
         setRefresh();
         mPresenter.getQuestionsList();
     }
-
+    @Override
+    public void follow(BaseBean bean) {
+        List<QuestionsBean> data = adapter.getData();
+        QuestionsBean beans = data.get(mPosition);
+        beans.setIs_follow(beans.getIs_follow() == 0 ? 1 : 0);
+        adapter.notifyItemChanged(mPosition,beans);
+    }
     @Override
     public void showQuestionsList(List<QuestionsBean> bean) {
         if (bean == null) {

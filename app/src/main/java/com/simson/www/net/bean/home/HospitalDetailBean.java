@@ -8,14 +8,16 @@ public class HospitalDetailBean {
      * hospital_id : 1
      * hospital_name : 南京新生植发
      * hospital_star : 5
-     * hospital_icon : http://58.213.14.195:8081/upload/hospital/logo@2x.png
+     * hospital_icon : http://58.213.14.195:8081/upload/hospital/nanjing.png
+     * consulting_phone : 400-666-7272
      * hospital_address : 江苏省南京市鼓楼区福建路31-1号
      * is_authentication : 1
-     * hospital_longitude : 120.188614
-     * hospital_latitude : 30.27042
-     * subscribes : 0
-     * is_follow : 0
-     * doctors : 8
+     * hospital_longitude : 118.764180
+     * hospital_latitude : 32.083646
+     * subscribes : 4
+     * is_follow : 1
+     * doctors : 9
+     * devices : 6
      * pictures : ["http://58.213.14.195:8081/upload/hospital/nanjing/nj1.jpg","http://58.213.14.195:8081/upload/hospital/nanjing/nj2.jpg","http://58.213.14.195:8081/upload/hospital/nanjing/nj3.jpg","http://58.213.14.195:8081/upload/hospital/nanjing/nj4.jpg","http://58.213.14.195:8081/upload/hospital/nanjing/nj5.jpg"]
      */
 
@@ -23,6 +25,7 @@ public class HospitalDetailBean {
     private String hospital_name;
     private int hospital_star;
     private String hospital_icon;
+    private String consulting_phone;
     private String hospital_address;
     private int is_authentication;
     private String hospital_longitude;
@@ -30,6 +33,7 @@ public class HospitalDetailBean {
     private int subscribes;
     private int is_follow;
     private int doctors;
+    private int devices;
     private List<String> pictures;
 
     public String getHospital_id() {
@@ -62,6 +66,14 @@ public class HospitalDetailBean {
 
     public void setHospital_icon(String hospital_icon) {
         this.hospital_icon = hospital_icon;
+    }
+
+    public String getConsulting_phone() {
+        return consulting_phone;
+    }
+
+    public void setConsulting_phone(String consulting_phone) {
+        this.consulting_phone = consulting_phone;
     }
 
     public String getHospital_address() {
@@ -118,6 +130,14 @@ public class HospitalDetailBean {
 
     public void setDoctors(int doctors) {
         this.doctors = doctors;
+    }
+
+    public int getDevices() {
+        return devices;
+    }
+
+    public void setDevices(int devices) {
+        this.devices = devices;
     }
 
     public List<String> getPictures() {

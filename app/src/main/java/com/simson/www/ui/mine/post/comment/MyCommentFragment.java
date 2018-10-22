@@ -9,13 +9,9 @@ import android.view.View;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.simson.www.R;
-import com.simson.www.net.bean.BaseBean;
 import com.simson.www.ui.adapter.DiaryAdapter;
 import com.simson.www.ui.base.BasePresenterFragment;
 import com.simson.www.ui.core.presenter.BasePresenter;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import butterknife.BindView;
 

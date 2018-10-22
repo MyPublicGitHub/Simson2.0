@@ -7,14 +7,18 @@ import com.simson.www.net.bean.shop.ShopListBean;
 import com.simson.www.net.callback.RxObserver;
 import com.simson.www.ui.core.model.ShopModel;
 import com.simson.www.ui.core.presenter.BasePresenter;
+import com.simson.www.ui.core.presenter.CommonPresenter;
+import com.simson.www.utils.AESUtils;
 import com.simson.www.utils.DateUtils;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 
-public class ShopPresenter extends BasePresenter<ShopContract.View> implements ShopContract.Presenter {
+public class ShopPresenter extends CommonPresenter<ShopContract.View> implements ShopContract.Presenter {
     private ShopModel mModel;
     private ShopContract.View mView;
 
@@ -46,6 +50,13 @@ public class ShopPresenter extends BasePresenter<ShopContract.View> implements S
         map.put("pageIndex", mView.getPageCommodity()+"");
         map.put("pageSize", Const.PAGE_SIZE);
         String json = new Gson().toJson(map);
+        String jsonEn = AESUtils.encrypt(json);
+        /*String url = "";
+        try {
+            url = "itemController/itemList?json=" + URLEncoder.encode(jsonEn, "utf-8");
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }*/
         mModel.getShopList(json, observer);
         addDisposable(observer);
     }

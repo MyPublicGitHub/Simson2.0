@@ -46,10 +46,10 @@ public class RechargeActivity extends BasePresenterActivity<RechargePresenter, R
                     payType = "2";
                     tvCommit.setText("微信支付" + etMoney.getText().toString() + "元");
                     break;
-                case R.id.rb_union:
-                    payType = "3";
-                    tvCommit.setText("微信支付" + etMoney.getText().toString() + "元");
-                    break;
+//                case R.id.rb_union:
+//                    payType = "3";
+//                    tvCommit.setText("微信支付" + etMoney.getText().toString() + "元");
+//                    break;
             }
         });
     }

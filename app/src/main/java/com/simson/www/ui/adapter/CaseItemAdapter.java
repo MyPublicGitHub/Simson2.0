@@ -21,7 +21,6 @@ public class CaseItemAdapter extends BaseQuickAdapter<CaseBean, BaseViewHolder> 
 
     @Override
     protected void convert(BaseViewHolder helper, CaseBean item) {
-
         helper.setText(R.id.tv_technique, "种植技术："+item.getHair_planting_technique());
         helper.setText(R.id.tv_title, "项目："+item.getItem_name());
         helper.setText(R.id.tv_content, "毛囊数量："+item.getHair_follicles_number());

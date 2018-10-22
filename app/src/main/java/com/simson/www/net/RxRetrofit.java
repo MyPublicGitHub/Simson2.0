@@ -44,6 +44,8 @@ public class RxRetrofit {
                 //添加缓存拦截器
                 .addInterceptor(new RequestInterceptor())//无网
                 .addNetworkInterceptor(new CacheInterceptor())//有网
+                .sslSocketFactory(TrustAllCerts.createSSLSocketFactory())
+                .hostnameVerifier(new TrustAllCerts.TrustAllHostnameVerifier())
                 .build();
 
         retrofit = new Retrofit.Builder()

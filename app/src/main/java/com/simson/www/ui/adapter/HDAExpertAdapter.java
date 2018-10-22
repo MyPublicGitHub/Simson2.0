@@ -23,8 +23,7 @@ public class HDAExpertAdapter extends BaseQuickAdapter<DoctorBean.DoctorItemBean
         GlideUtils.with(item.getDoctor_head(), helper.getView(R.id.iv_header));
         helper.setText(R.id.tv_name, item.getDoctor_name() + "");
         helper.setText(R.id.tv_post, item.getPosition() + "");
-        helper.setText(R.id.tv_appointment, "擅长：" + item.getPosition());
-        helper.addOnClickListener(R.id.tv_follow);
+        helper.setText(R.id.tv_appointment, "擅长：" + item.getBe_good_at());
     }
 }
 

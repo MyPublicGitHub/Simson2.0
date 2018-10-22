@@ -117,4 +117,6 @@ dependencies {
 
     //3D地图so及jar
     implementation 'com.amap.api:3dmap:latest.integration'
+
+    implementation 'me.jessyan:autosize:1.0.0'//屏幕适配
 }

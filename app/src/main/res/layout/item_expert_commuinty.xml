@@ -5,7 +5,7 @@
     android:background="@color/colorWhiteBg"
     android:gravity="center_vertical"
     android:orientation="horizontal"
-    android:padding="@dimen/dp_10">
+    android:padding="@dimen/dp_5">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -20,8 +20,8 @@
 
             <com.simson.www.widget.CircleImageView
                 android:id="@+id/iv_header"
-                android:layout_width="@dimen/dp_60"
-                android:layout_height="@dimen/dp_60"
+                android:layout_width="@dimen/dp_50"
+                android:layout_height="@dimen/dp_50"
                 android:src="@mipmap/ic_placeholder" />
 
             <TextView
@@ -41,8 +41,8 @@
                 android:layout_marginLeft="@dimen/dp_10"
                 android:layout_toRightOf="@id/tv_name"
                 android:text="新生院长"
-                android:textColor="@color/colorBlack"
-                android:textSize="@dimen/sp_15" />
+                android:textColor="@color/colorBlack_6"
+                android:textSize="@dimen/sp_14" />
 
             <TextView
                 android:id="@+id/tv_appointment"
@@ -53,45 +53,12 @@
                 android:layout_marginTop="@dimen/dp_5"
                 android:layout_toRightOf="@id/iv_header"
                 android:text="擅长：发际线种植 鬓角种植"
+                android:maxLines="2"
+                android:ellipsize="end"
                 android:textColor="@color/colorBlack_6"
-                android:textSize="@dimen/sp_14" />
+                android:textSize="@dimen/sp_12" />
         </RelativeLayout>
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_margin="@dimen/dp_5"
-            android:background="@color/colorGrey" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_vertical"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/tv_name"
-                android:layout_toRightOf="@id/iv_header"
-                android:layout_weight="1"
-                android:text="已有12354人关注"
-                android:textColor="@color/colorBlack_6"
-                android:textSize="@dimen/sp_14" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:background="@drawable/shape_corner_white_main"
-                android:paddingBottom="@dimen/dp_3"
-                android:paddingLeft="@dimen/dp_10"
-                android:paddingRight="@dimen/dp_10"
-                android:paddingTop="@dimen/dp_3"
-                android:text="+ 关注"
-                android:textColor="@color/colorMain"
-                android:textSize="@dimen/sp_14" />
-        </LinearLayout>
     </LinearLayout>
 
 </LinearLayout>

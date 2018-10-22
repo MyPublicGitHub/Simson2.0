@@ -13,7 +13,6 @@ import com.simson.www.common.Const;
 import com.simson.www.net.bean.BaseBean;
 import com.simson.www.net.bean.community.DiaryBean;
 import com.simson.www.net.bean.community.DoctorBean;
-import com.simson.www.net.bean.home.CauseListBean;
 import com.simson.www.net.bean.home.HospitalDetailBean;
 import com.simson.www.net.bean.home.HospitalDeviceBean;
 import com.simson.www.ui.adapter.HDACaseDiaryAdapter;
@@ -23,7 +22,9 @@ import com.simson.www.ui.adapter.HDAInstrumentAdapter;
 import com.simson.www.ui.base.BasePresenterActivity;
 import com.simson.www.ui.community.knowledge.detail.WebViewActivity;
 import com.simson.www.ui.home.expert.ExpertActivity;
+import com.simson.www.ui.home.expert.detail.ExpertDetailActivity;
 import com.simson.www.ui.home.hospital.device.DeviceActivity;
+import com.simson.www.utils.CommonUtils;
 import com.simson.www.utils.GlideImageLoader;
 import com.simson.www.utils.GlideUtils;
 import com.simson.www.utils.ToastUtils;
@@ -98,6 +99,10 @@ public class HospitalDetailActivity extends BasePresenterActivity<HospitalDetail
         mHDAExpertAdapter.bindToRecyclerView(rvExperts);
         mHDAExpertAdapter.setEmptyView(R.layout.list_empty_view);
         rvExperts.setAdapter(mHDAExpertAdapter);
+        mHDAExpertAdapter.setOnItemClickListener((adapter, view, position) -> {
+            DoctorBean.DoctorItemBean bean = (DoctorBean.DoctorItemBean) adapter.getData().get(position);
+            startActivity(new Intent(this, ExpertDetailActivity.class).putExtra("doctorId", bean.getDoctor_id()));
+        });
 
         mHDAInstrumentAdapter = new HDAInstrumentAdapter(null);
         rvInstrument.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
@@ -110,7 +115,7 @@ public class HospitalDetailActivity extends BasePresenterActivity<HospitalDetail
             String id = bean.get(position).getDevice_id();
             String url = link + "?json={deviceId:" + id + "}";
             startActivity(new Intent(this, WebViewActivity.class)
-                    .putExtra(Const.WEB_VIEW_TITLE, bean.get(position).getDevice_name()+"")
+                    .putExtra(Const.WEB_VIEW_TITLE, bean.get(position).getDevice_name() + "")
                     .putExtra(Const.WEB_VIEW_URL, url));
         });
 
@@ -128,6 +133,7 @@ public class HospitalDetailActivity extends BasePresenterActivity<HospitalDetail
         initBanner();
     }
 
+    String phone;
 
     @Override
     public void showHospitalDetail(HospitalDetailBean bean) {
@@ -144,6 +150,8 @@ public class HospitalDetailActivity extends BasePresenterActivity<HospitalDetail
         } else {
             isFollow = true;
         }
+        tvLocation.setText(bean.getHospital_address() + "");
+        phone = bean.getConsulting_phone();
         initMethod();
     }
 
@@ -191,6 +199,7 @@ public class HospitalDetailActivity extends BasePresenterActivity<HospitalDetail
             case R.id.ll_location:
                 break;
             case R.id.ll_call:
+                CommonUtils.callPhone(this, phone);
                 break;
             case R.id.ll_online:
                 break;

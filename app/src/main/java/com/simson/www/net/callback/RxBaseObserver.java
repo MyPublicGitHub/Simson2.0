@@ -85,7 +85,8 @@ public abstract class RxBaseObserver<T> extends DisposableObserver<BaseBean<T>> 
                 || t instanceof JSONException
                 || t instanceof ParseException) {
             //解析错误
-            onException(NetConfig.PARSE_ERROR, context);
+            //onException(NetConfig.PARSE_ERROR, context);
+            //onException(NetConfig.PARSE_ERROR, context);
         } else if (t instanceof SocketTimeoutException) {
             //请求超时
             onException(NetConfig.REQUEST_TIMEOUT, context);

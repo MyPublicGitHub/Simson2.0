@@ -62,7 +62,7 @@ public class CaseItemFragment extends BasePresenterFragment<CaseItemPresenter, C
         adapter.setEmptyView(R.layout.list_empty_view);
         adapter.setOnItemClickListener((adapter, view1, position) -> {
             List<CaseBean> bean = (List<CaseBean>) adapter.getData();
-            String popularizationLink = bean.get(position).getCase_link();
+            String popularizationLink = bean.get(position).getLink_url();
             String popularizationId = bean.get(position).getCase_id();
             String url = popularizationLink + "?json={caseId:" + popularizationId + "}";
             startActivity(new Intent(getContext(), WebViewActivity.class)

@@ -176,35 +176,6 @@
             </LinearLayout>
         </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/dp_10"
-            android:background="@color/white"
-            android:orientation="vertical">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/dp_10"
-                android:layout_marginTop="@dimen/dp_10"
-                android:text="黄金会员专享"
-                android:textColor="@color/colorMain"
-                android:textSize="@dimen/dp_22" />
-
-            <TextView
-                android:id="@+id/tv_location"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/dp_5"
-                android:layout_weight="1"
-                android:drawableRight="@mipmap/ic_open"
-                android:hint="选择地址预约转车"
-                android:padding="@dimen/dp_10"
-                android:textColor="@color/black"
-                android:textSize="@dimen/dp_14" />
-        </LinearLayout>
-
 
         <LinearLayout
             android:layout_width="match_parent"

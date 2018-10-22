@@ -1,6 +1,5 @@
 package com.simson.www.widget;
 
-import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.Bundle;

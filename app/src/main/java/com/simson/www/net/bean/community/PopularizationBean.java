@@ -4,28 +4,29 @@ import java.util.List;
 
 public class PopularizationBean {
 
-
     /**
-     * popularization_id : 123123
-     * item_type_id : 1
+     * popularization_id : 8813b0b2e97d41ed9040ebbb255b1236
+     * item_type_id : 3
+     * hospital_id : 1
      * hospital_name : 南京新生植发
-     * hospital_icon : http://58.213.14.195:8081/upload/hospital/logo@2x.png
-     * title : 了解一下
-     * popularization_link : http://58.213.14.195:8081/simson/webview/popularization/popularization.jsp
-     * create_time : 2018-09-20
-     * browse : 27
+     * hospital_icon : http://58.213.14.195:8081/upload/hospital/nanjing.png
+     * title : 睫毛种植效果效果多久?
+     * link_url : http://58.213.14.195:8082/userfiles/24bf2ba294c2fcca9f415adc990734b4/popularization/201810/8813b0b2e97d41ed9040ebbb255b1236.html
+     * create_time : 2018-10-15
+     * browse : 0
      * collects : 0
      * praises : 0
-     * is_follow : 0
-     * pictures : ["https://images.maofa.com/userfiles/24bf2ba294c2fcca9f415adc990734b4/images/popularization/files/2018/08/35b9fa9c.jpg"]
+     * is_follow : 1
+     * pictures : ["http://58.213.14.195:8082/userfiles/24bf2ba294c2fcca9f415adc990734b4/images/popularization/picture/2018/10/5f7a0c53.jpg"]
      */
 
     private String popularization_id;
     private String item_type_id;
+    private String hospital_id;
     private String hospital_name;
     private String hospital_icon;
     private String title;
-    private String popularization_link;
+    private String link_url;
     private String create_time;
     private int browse;
     private int collects;
@@ -47,6 +48,14 @@ public class PopularizationBean {
 
     public void setItem_type_id(String item_type_id) {
         this.item_type_id = item_type_id;
+    }
+
+    public String getHospital_id() {
+        return hospital_id;
+    }
+
+    public void setHospital_id(String hospital_id) {
+        this.hospital_id = hospital_id;
     }
 
     public String getHospital_name() {
@@ -73,12 +82,12 @@ public class PopularizationBean {
         this.title = title;
     }
 
-    public String getPopularization_link() {
-        return popularization_link;
+    public String getLink_url() {
+        return link_url;
     }
 
-    public void setPopularization_link(String popularization_link) {
-        this.popularization_link = popularization_link;
+    public void setLink_url(String link_url) {
+        this.link_url = link_url;
     }
 
     public String getCreate_time() {

@@ -1,13 +1,11 @@
 package com.simson.www.ui.mine;
 
 
+import android.text.TextUtils;
+
 import com.google.gson.Gson;
 import com.simson.www.common.Const;
-import com.simson.www.net.bean.community.DiaryBean;
-import com.simson.www.net.bean.home.HomeBannerBean;
-import com.simson.www.net.bean.home.HomeDataBean;
 import com.simson.www.net.bean.mine.CustomerBean;
-import com.simson.www.net.callback.RxConsumer;
 import com.simson.www.net.callback.RxObserver;
 import com.simson.www.ui.core.model.MineModel;
 import com.simson.www.ui.core.presenter.BasePresenter;
@@ -15,7 +13,6 @@ import com.simson.www.utils.DateUtils;
 import com.simson.www.utils.SPUtils;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class MinePresenter extends BasePresenter<MineContract.View> implements MineContract.Presenter {
@@ -30,6 +27,9 @@ public class MinePresenter extends BasePresenter<MineContract.View> implements M
     @Override
     public void getCustomer() {
         mView = getView();
+        if (TextUtils.isEmpty((String) SPUtils.get(Const.USER_INFO.CUSTOMER_ID, ""))){
+            return;
+        }
         RxObserver<CustomerBean> observer = new RxObserver<CustomerBean>(this) {
 
             @Override

@@ -1,6 +1,8 @@
 package com.simson.www.ui.core.view;
 
+import com.lljjcoder.bean.CityBean;
 import com.simson.www.net.bean.BaseBean;
+import com.simson.www.net.bean.home.CityListBean;
 import com.simson.www.net.bean.main.ItemTypeBean;
 
 import java.util.List;
@@ -40,6 +42,8 @@ public interface IView {
     void showEmpty();//没有数据
 
     void setItemType(List<ItemTypeBean> bean);
+
+    void cityList(List<CityListBean> bean);
 
     void collect(BaseBean bean);
 

@@ -1,8 +1,7 @@
 package com.simson.www.net.interceptor;
 
-import android.util.Log;
-
 import com.simson.www.common.UrlConstainer;
+import com.simson.www.utils.LogUtils;
 import com.simson.www.utils.SPUtils;
 
 import java.io.IOException;
@@ -32,7 +31,7 @@ public class SaveCookieInterceptor implements Interceptor {
                 sb.append(cookie).append(",");
             }
             SPUtils.put(response.request().url().host(), sb.toString());
-            Log.e(SaveCookieInterceptor.class.getSimpleName(), "intercept: url : " + request.url());
+            LogUtils.e("intercept: url : " + request.url());
         }
         return response;
     }

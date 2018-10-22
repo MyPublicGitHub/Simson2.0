@@ -96,6 +96,7 @@
         android:layout_marginLeft="10dp"
         android:layout_toRightOf="@+id/iv_1"
         android:ellipsize="end"
+        android:maxLines="1"
         android:textColor="@color/colorBlack_6"
         android:text="擅长：发际线种植"
         android:textSize="@dimen/sp_14" />

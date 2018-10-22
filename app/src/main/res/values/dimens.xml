@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <dimen name="banner_height">210dp</dimen>
+    <dimen name="banner_height">170dp</dimen>
 
     <!--尺寸 dp 从小到大-->
     <dimen name="dp_0">0dp</dimen>

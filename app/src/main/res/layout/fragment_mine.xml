@@ -67,7 +67,7 @@
                 android:layout_below="@+id/ll_user_info"
                 android:layout_centerHorizontal="true"
                 android:layout_marginRight="@dimen/dp_10"
-                android:layout_marginTop="5dp"
+                android:padding="@dimen/dp_5"
                 android:layout_toLeftOf="@+id/view_line"
                 android:text="粉丝：0"
                 android:textColor="@color/colorWhite"
@@ -77,10 +77,10 @@
                 android:id="@+id/tv_follow"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:padding="@dimen/dp_5"
                 android:layout_below="@+id/ll_user_info"
                 android:layout_centerHorizontal="true"
                 android:layout_marginLeft="@dimen/dp_10"
-                android:layout_marginTop="5dp"
                 android:layout_toRightOf="@+id/view_line"
                 android:text="关注：0"
                 android:textColor="@color/colorWhite"
@@ -176,9 +176,9 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/dp_6"
-                        android:text="日记"
+                        android:text="脱发检测"
                         android:textColor="@color/colorWhite"
-                        android:textSize="@dimen/sp_16" />
+                        android:textSize="@dimen/sp_14" />
                 </LinearLayout>
 
                 <View
@@ -558,6 +558,7 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/ll_consultation"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"

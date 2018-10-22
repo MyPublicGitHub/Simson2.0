@@ -55,6 +55,7 @@ public class UserInfoPresenter extends BasePresenter<UserInfoContract.View> impl
         mModel.updateCustomerInfo(json, observer);
         addDisposable(observer);
     }
+    //http://58.213.14.195:8081/simson/customerController/feedback?json={%22timestamp%22:%222018-10-17%2001:54:35%22,%22content%22:%221%22,%22customerId%22:%222018090115357871316905625%22,%22pictures%22:%22%22,%22mobile%22:%2217633717732%22}
 //    private String jsonFormat(Map<String,String> map){
 //        for (Map.Entry<String, String> entry : map.entrySet()) {
 //            System.out.println("Key = " + entry.getKey() + ", Value = " + entry.getValue());

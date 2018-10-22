@@ -2,32 +2,32 @@ package com.simson.www.ui.home;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.TabLayout;
-import android.support.v4.view.ViewPager;
-import android.widget.ImageView;
-import android.widget.TextView;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.view.View;
 
+import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.simson.www.R;
-import com.simson.www.net.bean.home.BroadcastsBean;
-import com.simson.www.net.bean.home.HomeBannerBean;
-import com.simson.www.net.bean.main.ItemTypeBean;
-import com.simson.www.ui.adapter.TabViewPagerAdapter;
-import com.simson.www.ui.adapter.TabViewPagerAdapterItem;
+import com.simson.www.common.Const;
+import com.simson.www.net.bean.BaseBean;
+import com.simson.www.net.bean.community.FriendsCircleBean;
+import com.simson.www.net.bean.home.HospitalItemBean;
+import com.simson.www.net.bean.home.IndexSynchysisBean;
+import com.simson.www.ui.adapter.HomeAdapter;
+import com.simson.www.ui.adapter.HomeHeaderAdapter;
 import com.simson.www.ui.base.BasePresenterFragment;
+import com.simson.www.ui.community.circle.detail.FriendCircleDetailActivity;
+import com.simson.www.ui.community.knowledge.detail.WebViewActivity;
 import com.simson.www.ui.home.cases.CaseActivity;
 import com.simson.www.ui.home.cause.CauseActivity;
 import com.simson.www.ui.home.expert.ExpertActivity;
 import com.simson.www.ui.home.hospital.HospitalActivity;
+import com.simson.www.ui.home.hospital.detail.HospitalDetailActivity;
+import com.simson.www.ui.home.test.TestActivity;
 import com.simson.www.ui.mine.subscribe.save.NewSubscribeActivity;
-import com.simson.www.ui.main.MainActivity;
-import com.simson.www.ui.mine.sign.SignActivity;
-import com.simson.www.utils.GlideImageLoader;
-import com.simson.www.utils.GlideUtils;
-import com.youth.banner.Banner;
-import com.youth.banner.BannerConfig;
-import com.youth.banner.Transformer;
+import com.simson.www.ui.mine.subscribe.save.NewSubscribeTestActivity;
+import com.simson.www.utils.CommonUtils;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
@@ -35,20 +35,15 @@ import butterknife.OnClick;
 
 
 public class HomeFragment extends BasePresenterFragment<HomePresenter, HomeContract.View> implements HomeContract.View {
-    @BindView(R.id.tab_layout)
-    TabLayout tabLayout;
-    @BindView(R.id.view_pager)
-    ViewPager viewPager;
-    @BindView(R.id.banner)
-    Banner mBanner;
-    @BindView(R.id.iv_sign)
-    ImageView ivSign;
-    @BindView(R.id.tv_hospital)
-    TextView tvHospital;
-    @BindView(R.id.tv_expert)
-    TextView tvExpert;
-    @BindView(R.id.tv_case)
-    TextView tvCase;
+
+    @BindView(R.id.recycler_view_header)
+    RecyclerView recyclerViewHeader;
+    @BindView(R.id.recycler_view)
+    RecyclerView recyclerView;
+    @BindView(R.id.refresh_layout)
+    SmartRefreshLayout mRefreshLayout;
+    HomeHeaderAdapter homeHeaderAdapter;
+    HomeAdapter adapter;
 
     @Override
     protected int getLayoutId() {
@@ -56,20 +51,67 @@ public class HomeFragment extends BasePresenterFragment<HomePresenter, HomeContr
     }
 
     @Override
-    protected void initViews(android.view.View view) {
-        initBanner();
-        mPresenter.getBanner();
-        mPresenter.getItemType();
-        //mPresenter.indexSynchysis();
+    protected void initViews(View view) {
+        setRefresh();
+        recyclerViewHeader.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
+        homeHeaderAdapter = new HomeHeaderAdapter(null);
+        recyclerViewHeader.setAdapter(homeHeaderAdapter);
+        recyclerViewHeader.setNestedScrollingEnabled(false);
+        recyclerViewHeader.setFocusable(false);
+//        homeHeaderAdapter.bindToRecyclerView(recyclerView);
+//        homeHeaderAdapter.setEmptyView(R.layout.list_empty_view);
+        homeHeaderAdapter.setOnItemClickListener((adapter, view1, position) -> {
+            List<HospitalItemBean> bean = (List<HospitalItemBean>) adapter.getData();
+            String hospitalId = bean.get(position).getHospital_id();
+            startActivity(new Intent(getContext(), HospitalDetailActivity.class)
+                    .putExtra("hospitalId", hospitalId));
+        });
+
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        adapter = new HomeAdapter(null);
+        recyclerView.setAdapter(adapter);
+        recyclerView.setNestedScrollingEnabled(false);
+        recyclerView.setFocusable(false);
+        adapter.bindToRecyclerView(recyclerView);
+        adapter.setEmptyView(R.layout.list_empty_view);
+        adapter.setOnItemClickListener((adapter, view1, position) -> {
+            IndexSynchysisBean bean = (IndexSynchysisBean) adapter.getData().get(position);
+            if ("friendsCircle".equals(bean.getData_status())) {
+                String id = bean.getFriends_circle_id();
+                startActivity(new Intent(getContext(), FriendCircleDetailActivity.class).putExtra("id", id));
+            } else if ("popularization".equals(bean.getData_status())) {
+                String url = bean.getLink_url() + "?json={popularizationId:" + bean.getPopularization_id() + "}";
+                startActivity(new Intent(getContext(), WebViewActivity.class)
+                        .putExtra(Const.WEB_VIEW_TITLE, "科普详情")
+                        .putExtra(Const.WEB_VIEW_URL, url));
+            }
+        });
+        adapter.setOnItemChildClickListener((adapter, views, position) -> {
+            mPosition = position;
+            IndexSynchysisBean bean = (IndexSynchysisBean) adapter.getData().get(position);
+            String mFollowMethod = bean.getIs_follow() == 0 ? "save" : "delete";
+            switch (views.getId()) {
+                case R.id.tv_follow:
+                    mPresenter.follow(bean.getHospital_id(), mFollowMethod, Const.FOLLOW_TYPE.HOSPITAL);
+                    break;
+            }
+        });
+        mPresenter.indexSynchysis();
+        mPresenter.getHospital();
     }
 
-    @OnClick({R.id.iv_menu, R.id.tv_hospital, R.id.tv_expert, R.id.tv_case, R.id.rl_cause, R.id.rv_subscribe, R.id.iv_sign})
-    public void onViewClicked(android.view.View view) {
+    @Override
+    public void follow(BaseBean bean) {
+        IndexSynchysisBean beans = adapter.getData().get(mPosition);
+        beans.setIs_follow(beans.getIs_follow() == 0 ? 1 : 0);
+        adapter.notifyItemChanged(mPosition, beans);
+    }
+
+    int mPosition;
+
+    @OnClick({R.id.tv_hospital, R.id.tv_expert, R.id.tv_case, R.id.rl_cause, R.id.rv_subscribe_test, R.id.rv_subscribe, R.id.iv_test, R.id.rl_consultation})
+    public void onViewClicked(View view) {
         switch (view.getId()) {
-            case R.id.iv_menu:
-                MainActivity activity = (MainActivity) getActivity();
-                activity.drawer();
-                break;
             case R.id.tv_hospital:
                 startActivity(new Intent(getActivity(), HospitalActivity.class));
                 break;
@@ -85,63 +127,16 @@ public class HomeFragment extends BasePresenterFragment<HomePresenter, HomeContr
             case R.id.rv_subscribe:
                 startActivity(new Intent(getActivity(), NewSubscribeActivity.class));
                 break;
-            case R.id.iv_sign:
-                startActivity(new Intent(getActivity(), SignActivity.class));
+            case R.id.rv_subscribe_test:
+                startActivity(new Intent(getActivity(), NewSubscribeTestActivity.class));
+                break;
+            case R.id.iv_test:
+                startActivity(new Intent(getActivity(), TestActivity.class));
+                break;
+            case R.id.rl_consultation:
+                CommonUtils.consultation(getActivity());
                 break;
         }
-    }
-
-    @Override
-    public void setItemType(List<ItemTypeBean> bean) {
-        TabViewPagerAdapter adapter = new TabViewPagerAdapter(getChildFragmentManager(),
-                TabViewPagerAdapterItem.createHomeFragments(bean));
-        viewPager.setOffscreenPageLimit(3);
-        viewPager.setAdapter(adapter);
-        tabLayout.setupWithViewPager(viewPager);
-    }
-
-    @Override
-    public void setBannerData(HomeBannerBean bean) {
-        //List<String> mBannerTitleList = new ArrayList<>();
-        List<String> bannerImageList = new ArrayList<>();
-        List<String> mBannerUrlList = new ArrayList<>();
-        List<BroadcastsBean> bannerDataList = bean.getBroadcasts();
-        for (BroadcastsBean bannerData : bannerDataList) {
-            //mBannerTitleList.add(bannerData.getMenu_title());
-            bannerImageList.add(bannerData.getMenu_picture());
-            mBannerUrlList.add(bannerData.getMenu_link());
-        }
-        mBanner.setImages(bannerImageList);//设置图片集合
-        GlideUtils.with(bean.getSignIns().get(0).getMenu_picture(), ivSign);
-        //mBanner.setBannerTitles(mBannerTitleList);//设置标题集合（当banner样式有显示title时）
-//        mBanner.setOnBannerListener(i ->
-//                startActivity(new Intent(getActivity(), WebViewActivity.class)
-//                        .putExtra(Constants.WEB_VIEW_TITLE, mBannerTitleList.get(i))
-//                        .putExtra(Constants.WEB_VIEW_URL, bannerDataList.get(i).getId())));
-        //banner设置方法全部调用完毕时最后调用
-        mBanner.start();
-    }
-
-    @Override
-    public void onPause() {
-        super.onPause();
-        if (mBanner != null)
-            mBanner.stopAutoPlay();
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        if (mBanner != null)
-            mBanner.startAutoPlay();
-    }
-
-    private void initBanner() {
-        mBanner.setBannerStyle(BannerConfig.CIRCLE_INDICATOR);//设置banner样式
-        mBanner.setImageLoader(new GlideImageLoader());//设置图片加载器
-        mBanner.setBannerAnimation(Transformer.DepthPage);//设置banner动画效果
-        mBanner.setDelayTime(4000);//设置轮播时间
-        mBanner.setIndicatorGravity(BannerConfig.CENTER);//设置指示器位置（当banner模式中有指示器时）
     }
 
     @Override
@@ -152,5 +147,34 @@ public class HomeFragment extends BasePresenterFragment<HomePresenter, HomeContr
     @Override
     protected void getBundle(Bundle bundle) {
 
+    }
+
+    @Override
+    public void indexSynchysis(List<IndexSynchysisBean> bean) {
+        if (bean == null) {
+            return;
+        }
+        adapter.replaceData(bean);
+    }
+
+    @Override
+    public void getHospital(List<HospitalItemBean> bean) {
+        if (bean == null) {
+            return;
+        }
+        homeHeaderAdapter.replaceData(bean);
+    }
+
+    private void setRefresh() {
+        mRefreshLayout.setOnRefreshListener(refreshLayout -> {
+            mPresenter.indexSynchysis();
+            mPresenter.getHospital();
+            mRefreshLayout.setNoMoreData(false);
+            refreshLayout.finishRefresh();
+        });
+        mRefreshLayout.setOnLoadMoreListener(refreshLayout -> {
+            mPresenter.indexSynchysis();
+            refreshLayout.finishLoadMore();
+        });
     }
 }

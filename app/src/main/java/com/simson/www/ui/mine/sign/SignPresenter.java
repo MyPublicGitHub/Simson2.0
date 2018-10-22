@@ -3,19 +3,12 @@ package com.simson.www.ui.mine.sign;
 
 import com.google.gson.Gson;
 import com.simson.www.common.Const;
-import com.simson.www.net.NetConfig;
-import com.simson.www.net.bean.BaseBean;
-import com.simson.www.net.bean.mine.CustomerInfoBean;
 import com.simson.www.net.bean.mine.SignBean;
 import com.simson.www.net.bean.mine.SignPageBean;
-import com.simson.www.net.callback.RxBaseObserver;
 import com.simson.www.net.callback.RxObserver;
 import com.simson.www.ui.core.model.SignModel;
-import com.simson.www.ui.core.model.UserInfoModel;
 import com.simson.www.ui.core.presenter.BasePresenter;
-import com.simson.www.ui.mine.user.UserInfoContract;
 import com.simson.www.utils.DateUtils;
-import com.simson.www.utils.LogUtils;
 import com.simson.www.utils.SPUtils;
 
 import java.util.HashMap;

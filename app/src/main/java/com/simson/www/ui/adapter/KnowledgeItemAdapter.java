@@ -30,6 +30,7 @@ public class KnowledgeItemAdapter extends BaseQuickAdapter<PopularizationBean, B
         }else {
             helper.setText(R.id.tv_follow, "已关注");
         }
+        helper.addOnClickListener(R.id.tv_follow);
         BGANinePhotoLayout ninePhotoLayout = helper.getView(R.id.bga);
         //ninePhotoLayout.setDelegate(delegate);
         ninePhotoLayout.setData((ArrayList<String>) item.getPictures());

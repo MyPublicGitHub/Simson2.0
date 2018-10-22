@@ -7,6 +7,7 @@ import com.simson.www.net.bean.community.QuestionsBean;
 import com.simson.www.net.callback.RxObserver;
 import com.simson.www.ui.core.model.ExpertItemModel;
 import com.simson.www.ui.core.presenter.BasePresenter;
+import com.simson.www.ui.core.presenter.CommonPresenter;
 import com.simson.www.utils.DateUtils;
 import com.simson.www.utils.SPUtils;
 
@@ -14,7 +15,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class ExpertItemPresenter extends BasePresenter<ExpertItemContract.View> implements ExpertItemContract.Presenter {
+public class ExpertItemPresenter extends CommonPresenter<ExpertItemContract.View> implements ExpertItemContract.Presenter {
     private ExpertItemModel mModel;
     private ExpertItemContract.View mView;
 

@@ -1,8 +1,18 @@
 package com.simson.www.utils;
 
+import android.Manifest;
+import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
+import android.net.Uri;
+import android.support.v7.app.AlertDialog;
 import android.text.TextUtils;
 import android.view.View;
+
+import com.simson.www.common.Const;
+import com.simson.www.ui.community.knowledge.detail.WebViewActivity;
+import com.tbruyelle.rxpermissions2.RxPermissions;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
@@ -10,6 +20,38 @@ import java.util.Random;
 
 
 public class CommonUtils {
+    public static void consultation(Context context) {
+        context.startActivity(new Intent(context, WebViewActivity.class)
+                .putExtra(Const.WEB_VIEW_TITLE, "咨询")
+                .putExtra(Const.WEB_VIEW_URL, "http://seo.xsmaofa.com/?link=app"));
+    }
+
+    public static void callPhone(Activity activity, String phone) {
+        if (TextUtils.isEmpty(phone)) {
+            ToastUtils.showToast("呼叫号码为空");
+            return;
+        }
+        RxPermissions rxPermission = new RxPermissions(activity);
+        rxPermission.request(Manifest.permission.CALL_PHONE)
+                .subscribe(garden -> {
+                    if (garden) {
+                        // 用户已经同意该权限
+                        AlertDialog.Builder builder = new AlertDialog.Builder(activity);
+                        builder.setTitle("电话咨询")
+                                .setMessage(phone)
+                                .setNegativeButton("取消", (dialog, which) -> dialog.dismiss())
+                                .setNeutralButton("呼叫", (dialog, which) -> {
+                                    Intent intent = new Intent(Intent.ACTION_CALL);
+                                    Uri data = Uri.parse("tel:" + phone);
+                                    intent.setData(data);
+                                    activity.startActivity(intent);
+                                    dialog.dismiss();
+                                }).show();
+
+                    }
+                });
+    }
+
     public static String getDatePickerToString(int year, int monthOfYear, int dayOfMonth) {
         StringBuffer sb = new StringBuffer();
         sb.append(year);

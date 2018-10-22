@@ -21,7 +21,7 @@ public class NewSubscribePresenter extends CommonPresenter<NewSubscribeContract.
     private NewSubscribeModel mModel;
     private NewSubscribeContract.View mView;
 
-    NewSubscribePresenter() {
+    public NewSubscribePresenter() {
         this.mModel = new NewSubscribeModel();
     }
 

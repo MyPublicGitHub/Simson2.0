@@ -19,6 +19,7 @@ public interface ICommonPresenter {
 
     /**
      * 关注
+     *
      * @param followCustomerId 被关注人的id
      * @param method           方法 save或者delete
      * @param type             1：医院；2医生；3顾客；商品
@@ -27,5 +28,7 @@ public interface ICommonPresenter {
 
 
     void praise(String bizId, String method, String type);
+
+    void cityList();
 
 }

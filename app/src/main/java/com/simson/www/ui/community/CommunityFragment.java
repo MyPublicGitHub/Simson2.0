@@ -1,6 +1,7 @@
 package com.simson.www.ui.community;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -12,10 +13,13 @@ import android.widget.TextView;
 import com.simson.www.R;
 import com.simson.www.ui.adapter.MyViewPageAdapter;
 import com.simson.www.ui.base.BasePresenterFragment;
-import com.simson.www.ui.community.diary.DiaryFragment;
+import com.simson.www.ui.community.circle.FriendCircleFragment;
+import com.simson.www.ui.community.circle.save.SaveFriendCircleActivity;
 import com.simson.www.ui.community.expert.ExpertFragment;
+import com.simson.www.ui.community.expert.save.NewQuestionsActivity;
 import com.simson.www.ui.community.knowledge.KnowledgeFragment;
 import com.simson.www.ui.core.presenter.BasePresenter;
+import com.simson.www.utils.ToastUtils;
 
 import java.util.ArrayList;
 
@@ -25,9 +29,6 @@ import butterknife.OnClick;
 
 public class CommunityFragment extends BasePresenterFragment {
 
-
-    @BindView(R.id.tv_city)
-    TextView tvCity;
     @BindView(R.id.tv_search)
     TextView tvSearch;
     @BindView(R.id.iv_menu)
@@ -37,9 +38,10 @@ public class CommunityFragment extends BasePresenterFragment {
     @BindView(R.id.view_pager)
     ViewPager viewPager;
 
-    @Override
-    protected void getBundle(Bundle bundle) {
 
+    @Override
+    protected int getLayoutId() {
+        return R.layout.fragment_community;
     }
 
     @Override
@@ -48,21 +50,52 @@ public class CommunityFragment extends BasePresenterFragment {
         ArrayList<Fragment> frag = new ArrayList<>();
         frag.add(new KnowledgeFragment());
         frag.add(new ExpertFragment());
-        frag.add(new DiaryFragment());
+        frag.add(new FriendCircleFragment());
         ArrayList<String> titleData = new ArrayList<>();
         titleData.add("科普知识");
         titleData.add("专家提问");
-        titleData.add("蜕变日记");
-        MyViewPageAdapter adapter = new MyViewPageAdapter(getChildFragmentManager(),titleData,frag);
+        titleData.add("发友圈");
+        MyViewPageAdapter adapter = new MyViewPageAdapter(getChildFragmentManager(), titleData, frag);
         viewPager.setOffscreenPageLimit(3);
         viewPager.setAdapter(adapter);
         tabLayout.setupWithViewPager(viewPager);
+        viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
 
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                if (position == 0) {
+                    ivMenu.setImageResource(R.mipmap.ic_search);
+                } else {
+                    ivMenu.setImageResource(R.mipmap.ic_add_picture);
+                }
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
     }
 
-    @Override
-    protected int getLayoutId() {
-        return R.layout.fragment_community;
+    @OnClick({R.id.tv_search, R.id.iv_menu})
+    public void onViewClicked(View view) {
+        switch (view.getId()) {
+            case R.id.tv_search:
+                break;
+            case R.id.iv_menu:
+                if (viewPager.getCurrentItem() == 0) {
+                    ToastUtils.showToast("搜索");
+                } else if (viewPager.getCurrentItem() == 1) {
+                    startActivity(new Intent(getActivity(), NewQuestionsActivity.class));
+                } else if (viewPager.getCurrentItem() == 2) {
+                    startActivity(new Intent(getActivity(), SaveFriendCircleActivity.class));
+                }
+                break;
+        }
     }
 
     @Override
@@ -70,15 +103,9 @@ public class CommunityFragment extends BasePresenterFragment {
         return null;
     }
 
-    @OnClick({R.id.tv_city, R.id.tv_search, R.id.iv_menu})
-    public void onViewClicked(View view) {
-        switch (view.getId()) {
-            case R.id.tv_city:
-                break;
-            case R.id.tv_search:
-                break;
-            case R.id.iv_menu:
-                break;
-        }
+
+    @Override
+    protected void getBundle(Bundle bundle) {
+
     }
 }

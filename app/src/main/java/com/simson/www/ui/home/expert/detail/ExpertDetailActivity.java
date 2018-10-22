@@ -136,7 +136,7 @@ public class ExpertDetailActivity extends BasePresenterActivity<ExpertDetailPres
         adapter.setEmptyView(R.layout.list_empty_view);
         adapter.setOnItemClickListener((adapter, view1, position) -> {
             List<PopularizationBean> bean = (List<PopularizationBean>) adapter.getData();
-            String popularizationLink = bean.get(position).getPopularization_link();
+            String popularizationLink = bean.get(position).getLink_url();
             String popularizationId = bean.get(position).getPopularization_id();
             String url = popularizationLink + "?json={popularizationId:" + popularizationId + "}";
             startActivity(new Intent(this, WebViewActivity.class)

@@ -27,6 +27,13 @@ public class QuestionAdapter extends BaseQuickAdapter<QuestionsBean, BaseViewHol
         } else {
             helper.setText(R.id.tv_answer_content,"");
         }
+        if (item.getIs_follow() == 0) {
+            helper.setText(R.id.tv_follow, "+关注");
+
+        } else {
+            helper.setText(R.id.tv_follow, "已关注");
+        }
+        helper.addOnClickListener(R.id.tv_follow);
         if (item.getPictures() != null && item.getPictures().size() > 0) {
             helper.getView(R.id.iv_image).setVisibility(View.VISIBLE);
             GlideUtils.with(item.getPictures(), helper.getView(R.id.iv_image));
