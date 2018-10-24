@@ -30,8 +30,6 @@ import butterknife.OnClick;
 public class NewSubscribeTestActivity extends BasePresenterActivity<NewSubscribePresenter, NewSubscribeContract.View>
         implements NewSubscribeContract.View {
 
-    @BindView(R.id.tv_type)
-    TextView tvType;
     @BindView(R.id.tv_hospital)
     TextView tvHospital;
     @BindView(R.id.tv_date)
@@ -64,7 +62,7 @@ public class NewSubscribeTestActivity extends BasePresenterActivity<NewSubscribe
 
     CommonPopupWindow popupWindow;
 
-    @OnClick({R.id.tv_type, R.id.tv_hospital, R.id.ll_date, R.id.ll_time, R.id.ll_car, R.id.ll_friend, R.id.tv_commit})
+    @OnClick({ R.id.tv_hospital, R.id.ll_date, R.id.ll_time, R.id.ll_car, R.id.ll_friend, R.id.tv_commit})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.tv_type:
@@ -140,10 +138,10 @@ public class NewSubscribeTestActivity extends BasePresenterActivity<NewSubscribe
             hospitalId = data.getStringExtra("hospitalId");
             tvHospital.setText(data.getStringExtra("hospitalName") + "");
         }
-        if (resultCode == 1002) {
+        /*if (resultCode == 1002) {
             subscribeType = data.getStringExtra("itemTypeId");
             tvType.setText(data.getStringExtra("itemTypeName") + "");
-        }
+        }*/
         if (resultCode == 1003) {
             accompanyFriends = data.getStringExtra("data");
             tvFriend.setText(data.getStringExtra("dataSize") + "人");

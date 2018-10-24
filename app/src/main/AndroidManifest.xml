@@ -45,40 +45,103 @@
         </activity>
         <activity
             android:name=".ui.main.login.LoginActivity"
-            android:launchMode="singleTop" />
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".ui.main.register.RegisterActivity"
-            android:launchMode="singleTop" />
-        <activity android:name=".ui.home.hospital.HospitalActivity" />
-        <activity android:name=".ui.home.hospital.detail.HospitalDetailActivity" />
-        <activity android:name=".ui.main.reset.ResetPasswordActivity" />
-        <activity android:name=".ui.home.expert.ExpertActivity" />
-        <activity android:name=".ui.home.expert.detail.ExpertDetailActivity" />
-        <activity android:name=".ui.shop.detail.CommodityDetailActivity" />
-        <activity android:name=".ui.mine.integral.mall.IntegralMallActivity" />
-        <activity android:name=".ui.mine.integral.IntegralActivity" />
-        <activity android:name=".ui.mine.sign.SignActivity" />
-        <activity android:name=".ui.mine.set.SettingActivity" />
-        <activity android:name=".ui.mine.set.address.AddressActivity" />
-        <activity android:name=".ui.mine.set.address.add.NewAddressActivity" />
-        <activity android:name=".ui.mine.user.UserInfoActivity" />
-        <activity android:name=".ui.mine.invitation.InvitationActivity" />
-        <activity android:name=".ui.mine.feed.FeedBackActivity" />
-        <activity android:name=".ui.mine.diary.MyDiaryActivity" />
-        <activity android:name=".ui.mine.post.MyPostActivity" />
-        <activity android:name=".ui.mine.message.MyMessageActivity" />
-        <activity android:name=".ui.community.diary.detail.DiaryDetailActivity" />
-        <activity android:name=".ui.community.diary.detail.append.AppendDiaryDetailActivity" />
-        <activity android:name=".ui.mine.diary.add.NewDiaryActivity" />
-        <activity android:name=".ui.mine.set.address.detail.AddressDetailActivity" />
-        <activity android:name=".ui.mine.set.address.edit.EditAddressActivity" />
-        <activity android:name=".ui.mine.cart.ShopCartActivity" />
-        <activity android:name=".ui.mine.order.OrderActivity" />
-        <activity android:name=".ui.home.cases.CaseActivity" />
-        <activity android:name=".ui.community.knowledge.detail.WebViewActivity" />
-        <activity android:name=".ui.community.expert.detail.QuestionDetailActivity" />
-        <activity android:name=".ui.home.cause.CauseActivity" />
-        <activity android:name=".ui.mine.pay.PayActivity" />
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.home.hospital.HospitalActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.home.hospital.detail.HospitalDetailActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.main.reset.ResetPasswordActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.home.expert.ExpertActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.home.expert.detail.ExpertDetailActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.shop.detail.CommodityDetailActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.mine.integral.mall.IntegralMallActivity"
+            android:launchMode="singleInstance"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.mine.integral.IntegralActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.mine.sign.SignActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.mine.set.SettingActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.mine.set.address.AddressActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.mine.set.address.add.NewAddressActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.mine.user.UserInfoActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.mine.invitation.InvitationActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.mine.feed.FeedBackActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.mine.diary.MyDiaryActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.mine.post.MyPostActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.mine.message.MyMessageActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.community.diary.detail.DiaryDetailActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.community.diary.detail.append.AppendDiaryDetailActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.mine.diary.add.NewDiaryActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.mine.set.address.detail.AddressDetailActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.mine.set.address.edit.EditAddressActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.mine.cart.ShopCartActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.mine.order.OrderActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.home.cases.CaseActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.community.knowledge.detail.WebViewActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.community.expert.detail.QuestionDetailActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.home.cause.CauseActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.mine.pay.PayActivity"
+            android:screenOrientation="portrait" />
         <activity
             android:name="com.alipay.sdk.app.H5PayActivity"
             android:configChanges="orientation|keyboardHidden|navigation|screenSize"
@@ -91,35 +154,87 @@
             android:exported="false"
             android:screenOrientation="behind"
             android:windowSoftInputMode="adjustResize|stateHidden" />
-        <activity android:name=".ui.shop.type.ShopTypeActivity" />
-        <activity android:name=".ui.shop.detail.praise.PraiseActivity" />
-        <activity android:name=".ui.mine.integral.detail.IntegralDetailActivity" />
-        <activity android:name=".ui.mine.collect.CollectActivity" />
-        <activity android:name=".ui.home.hospital.device.DeviceActivity" />
-        <activity android:name=".ui.mine.subscribe.save.NewSubscribeActivity" />
+        <activity
+            android:name=".ui.shop.type.ShopTypeActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.shop.detail.praise.PraiseActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.mine.integral.detail.IntegralDetailActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.mine.collect.CollectActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.home.hospital.device.DeviceActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.mine.subscribe.save.NewSubscribeActivity"
+            android:screenOrientation="portrait" />
         <!-- 高德地图 -->
         <!-- 5.0SDK不在需要<service android:name="com.amap.api.location.APSService"></service> -->
         <meta-data
             android:name="com.amap.api.v2.apikey"
             android:value="b3a87204a943dc457be778b003648076" />
         <!-- 高德地图 -->
-        <activity android:name=".ui.home.hospital.select.SelectHospitalActivity" />
-        <activity android:name=".ui.mine.wallet.WalletActivity" />
-        <activity android:name=".ui.mine.wallet.log.TransactionRecordActivity" />
-        <activity android:name=".ui.mine.wallet.recharge.RechargeActivity" />
-        <activity android:name=".ui.mine.subscribe.SubscribeActivity" />
-        <activity android:name=".ui.home.test.TestActivity" />
-        <activity android:name=".ui.mine.subscribe.select.SelectItemTypeActivity" />
-        <activity android:name=".ui.community.knowledge.type.KnowledgeTypeActivity" />
-        <activity android:name=".ui.community.expert.save.NewQuestionsActivity" />
-        <activity android:name=".ui.mine.subscribe.save.select.SelectFriendActivity" />
-        <activity android:name=".ui.mine.subscribe.save.NewSubscribeTestActivity" />
-        <activity android:name=".ui.mine.fans.FansActivity" />
-        <activity android:name=".ui.mine.follow.FollowActivity" />
-        <activity android:name=".ui.mine.alopecias.AlopeciaActivity" />
-        <activity android:name=".ui.community.circle.detail.FriendCircleDetailActivity" />
-        <activity android:name=".ui.community.circle.save.SaveFriendCircleActivity" />
-        <activity android:name=".ui.hospital.call.CallActivity"></activity>
+        <activity
+            android:name=".ui.home.hospital.select.SelectHospitalActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.mine.wallet.WalletActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.mine.wallet.log.TransactionRecordActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.mine.wallet.recharge.RechargeActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.mine.subscribe.SubscribeActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.home.test.TestActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.mine.subscribe.select.SelectItemTypeActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.community.knowledge.type.KnowledgeTypeActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.community.expert.save.NewQuestionsActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.mine.subscribe.save.select.SelectFriendActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.mine.subscribe.save.NewSubscribeTestActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.mine.fans.FansActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.mine.follow.FollowActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.mine.alopecias.AlopeciaActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.community.circle.detail.FriendCircleDetailActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.community.circle.save.SaveFriendCircleActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.hospital.call.CallActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.mine.integral.task.IntegralTaskActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.mine.member.MemberActivity"
+            android:screenOrientation="portrait"></activity>
     </application>
 
 </manifest>

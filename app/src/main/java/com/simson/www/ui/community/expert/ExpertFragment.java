@@ -56,7 +56,7 @@ public class ExpertFragment extends BasePresenterFragment<ExpertPresenter, Exper
         ArrayList<String> titleData = new ArrayList<>();
         titleData.add("推荐");
         titleData.add("关注");
-        titleData.add("全部");
+        titleData.add("全部");//1推荐，2关注，空不传是全部
         TabViewPagerAdapter adapter = new TabViewPagerAdapter(getChildFragmentManager(),
                 TabViewPagerAdapterItem.createExpertItemFragments(titleData));
         viewPager.setOffscreenPageLimit(3);

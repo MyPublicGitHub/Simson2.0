@@ -61,13 +61,10 @@ public class CaseItemFragment extends BasePresenterFragment<CaseItemPresenter, C
         adapter.bindToRecyclerView(recyclerView);
         adapter.setEmptyView(R.layout.list_empty_view);
         adapter.setOnItemClickListener((adapter, view1, position) -> {
-            List<CaseBean> bean = (List<CaseBean>) adapter.getData();
-            String popularizationLink = bean.get(position).getLink_url();
-            String popularizationId = bean.get(position).getCase_id();
-            String url = popularizationLink + "?json={caseId:" + popularizationId + "}";
+            CaseBean bean = (CaseBean) adapter.getData().get(position);
             startActivity(new Intent(getContext(), WebViewActivity.class)
                     .putExtra(Const.WEB_VIEW_TITLE, "案例详情")
-                    .putExtra(Const.WEB_VIEW_URL,url));
+                    .putExtra(Const.WEB_VIEW_URL, bean.getLink_url()));
         });
         setRefresh();
         mPage = 1;

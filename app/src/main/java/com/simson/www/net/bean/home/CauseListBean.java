@@ -22,7 +22,7 @@ public class CauseListBean {
     private String hospital_name;
     private String hospital_icon;
     private String title;
-    private String alopecia_cause_link;
+    private String link_url;
     private String create_time;
     private int browse;
     private int collects;
@@ -63,11 +63,11 @@ public class CauseListBean {
     }
 
     public String getAlopecia_cause_link() {
-        return alopecia_cause_link;
+        return link_url;
     }
 
     public void setAlopecia_cause_link(String alopecia_cause_link) {
-        this.alopecia_cause_link = alopecia_cause_link;
+        this.link_url = alopecia_cause_link;
     }
 
     public String getCreate_time() {

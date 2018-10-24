@@ -6,17 +6,19 @@ public class CommodityDetailBean {
 
 
     /**
-     * item_id : 2018007
-     * item_name : 【头顶加密种植】【私信领红包 送保险】无痕种植，个性定制，美丽从"头"做起
-     * present_price : 888.00
-     * original_price : 1065.60
+     * item_id : 2018009
+     * item_name : 【种植睫毛】 【私信领红包 送保险】 无痕种植，效果自然，过程无痛安全
+     * present_price : 23000.00
+     * original_price : 27600.00
      * item_point : 0
+     * hair_follicles_number : 500
      * browse : 0
      * subscribes : 0
      * is_delivery : 0
      * is_point : 0
+     * is_technology : 1
      * is_collect : 0
-     * picture : ["http://58.213.14.195:8081/upload/item/kunmingtoudingjiami/1.jpg","http://58.213.14.195:8081/upload/item/kunmingtoudingjiami/2.jpg","http://58.213.14.195:8081/upload/item/kunmingtoudingjiami/3.jpg","http://58.213.14.195:8081/upload/item/kunmingtoudingjiami/4.jpg"]
+     * picture : ["https://appapi.maofa.com/userfiles/item/kunmingjiemao/kunmingjiemaozhongzhitoutu1.jpg","https://appapi.maofa.com/userfiles/item/kunmingjiemao/kunmingjiemaozhongzhitoutu2.jpg","https://appapi.maofa.com/userfiles/item/kunmingjiemao/kunmingjiemaozhongzhitoutu3.jpg","https://appapi.maofa.com/userfiles/item/kunmingjiemao/kunmingjiemaozhongzhitoutu4.jpg"]
      */
 
     private String item_id;
@@ -24,10 +26,12 @@ public class CommodityDetailBean {
     private double present_price;
     private String original_price;
     private int item_point;
+    private int hair_follicles_number;
     private int browse;
     private int subscribes;
     private int is_delivery;
     private int is_point;
+    private int is_technology;
     private int is_collect;
     private List<String> picture;
     public List<String> pictures;
@@ -72,6 +76,14 @@ public class CommodityDetailBean {
         this.item_point = item_point;
     }
 
+    public int getHair_follicles_number() {
+        return hair_follicles_number;
+    }
+
+    public void setHair_follicles_number(int hair_follicles_number) {
+        this.hair_follicles_number = hair_follicles_number;
+    }
+
     public int getBrowse() {
         return browse;
     }
@@ -102,6 +114,14 @@ public class CommodityDetailBean {
 
     public void setIs_point(int is_point) {
         this.is_point = is_point;
+    }
+
+    public int getIs_technology() {
+        return is_technology;
+    }
+
+    public void setIs_technology(int is_technology) {
+        this.is_technology = is_technology;
     }
 
     public int getIs_collect() {

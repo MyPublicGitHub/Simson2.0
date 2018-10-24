@@ -19,10 +19,9 @@ import com.simson.www.ui.adapter.ItemTypeGradeAdapter;
 import com.simson.www.ui.adapter.ShopCommodityAdapter;
 import com.simson.www.ui.adapter.ShopIntegralAdapter;
 import com.simson.www.ui.base.BasePresenterFragment;
-import com.simson.www.ui.community.knowledge.type.KnowledgeTypeActivity;
+import com.simson.www.ui.mine.integral.mall.IntegralMallActivity;
 import com.simson.www.ui.shop.detail.CommodityDetailActivity;
 import com.simson.www.ui.shop.type.ShopTypeActivity;
-import com.youth.banner.Banner;
 
 import java.util.List;
 
@@ -59,7 +58,7 @@ public class ShopFragment extends BasePresenterFragment<ShopPresenter, ShopContr
 
     @Override
     protected void initViews(View view) {
-        recyclerView.setLayoutManager(new GridLayoutManager(getContext(),5));
+        recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 5));
         adapter = new ItemTypeGradeAdapter(null);
         recyclerView.setAdapter(adapter);
         recyclerView.setNestedScrollingEnabled(false);
@@ -69,7 +68,7 @@ public class ShopFragment extends BasePresenterFragment<ShopPresenter, ShopContr
         adapter.setOnItemClickListener((adapter, view1, position) -> {
             List<ItemTypeBean> bean = (List<ItemTypeBean>) adapter.getData();
             String id = bean.get(position).getItemTypeId();
-            startActivity(new Intent(getActivity(),ShopTypeActivity.class).putExtra("itemTypeId",id));
+            startActivity(new Intent(getActivity(), ShopTypeActivity.class).putExtra("itemTypeId", id));
         });
 
         mShopIntegralAdapter = new ShopIntegralAdapter(null);
@@ -100,8 +99,8 @@ public class ShopFragment extends BasePresenterFragment<ShopPresenter, ShopContr
         setRefresh();
 
         mPresenter.getItemType();
-        mPresenter.getShopList();
-        mPresenter.getShopIntegralList();
+        mPresenter.getShopList(0);
+        mPresenter.getShopList(1);
     }
 
     @Override
@@ -144,9 +143,17 @@ public class ShopFragment extends BasePresenterFragment<ShopPresenter, ShopContr
         }
     }
 
+    String itemTypeId, search;
+
+
     @Override
-    public String getIsPoint() {
-        return "0";
+    public String itemTypeId() {
+        return itemTypeId;
+    }
+
+    @Override
+    public String search() {
+        return search;
     }
 
     @Override
@@ -167,24 +174,24 @@ public class ShopFragment extends BasePresenterFragment<ShopPresenter, ShopContr
     private void setRefresh() {
         refreshLayout.setOnRefreshListener(refreshLayouts -> {
             mPageCommodity = 1;
-            mPresenter.getShopList();
+            mPresenter.getShopList(0);
             refreshLayout.setNoMoreData(false);
             refreshLayouts.finishRefresh();
         });
         refreshLayout.setOnLoadMoreListener(refreshLayouts -> {
             mPageCommodity++;
-            mPresenter.getShopList();
+            mPresenter.getShopList(0);
             refreshLayouts.finishLoadMore();
         });
         srlIntegral.setOnRefreshListener(refreshLayouts -> {
             mPageIntegral = 1;
-            mPresenter.getShopIntegralList();
+            mPresenter.getShopList(1);
             srlIntegral.setNoMoreData(false);
             refreshLayouts.finishRefresh();
         });
         srlIntegral.setOnLoadMoreListener(refreshLayouts -> {
             mPageIntegral++;
-            mPresenter.getShopIntegralList();
+            mPresenter.getShopList(1);
             refreshLayouts.finishLoadMore();
         });
     }
@@ -194,4 +201,14 @@ public class ShopFragment extends BasePresenterFragment<ShopPresenter, ShopContr
         return new ShopPresenter();
     }
 
+
+
+    @OnClick({R.id.iv_mall})
+    public void onViewClicked(View view) {
+        switch (view.getId()) {
+            case R.id.iv_mall:
+                startActivity(new Intent(getActivity(), IntegralMallActivity.class));
+                break;
+        }
+    }
 }

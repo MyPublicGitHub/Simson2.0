@@ -11,18 +11,18 @@ import com.simson.www.common.Const;
 import com.simson.www.event.Event;
 import com.simson.www.net.bean.mine.CustomerBean;
 import com.simson.www.ui.base.BasePresenterFragment;
-import com.simson.www.ui.community.knowledge.detail.WebViewActivity;
 import com.simson.www.ui.main.login.LoginActivity;
 import com.simson.www.ui.mine.alopecias.AlopeciaActivity;
 import com.simson.www.ui.mine.cart.ShopCartActivity;
 import com.simson.www.ui.mine.collect.CollectActivity;
-import com.simson.www.ui.mine.diary.MyDiaryActivity;
 import com.simson.www.ui.mine.fans.FansActivity;
 import com.simson.www.ui.mine.feed.FeedBackActivity;
 import com.simson.www.ui.mine.follow.FollowActivity;
 import com.simson.www.ui.mine.integral.IntegralActivity;
 import com.simson.www.ui.mine.integral.mall.IntegralMallActivity;
+import com.simson.www.ui.mine.integral.task.IntegralTaskActivity;
 import com.simson.www.ui.mine.invitation.InvitationActivity;
+import com.simson.www.ui.mine.member.MemberActivity;
 import com.simson.www.ui.mine.message.MyMessageActivity;
 import com.simson.www.ui.mine.order.OrderActivity;
 import com.simson.www.ui.mine.set.SettingActivity;
@@ -84,9 +84,9 @@ public class MineFragment extends BasePresenterFragment<MinePresenter, MineContr
         tvIntegral.setText(bean.getPoints() + "");
     }
 
-    @OnClick({R.id.tv_follow,R.id.tv_fans,R.id.iv_setting, R.id.ll_user_info, R.id.ll_integral_mall, R.id.ll_sign_in, R.id.ll_invitation,
-            R.id.ll_diary, R.id.ll_message, R.id.ll_integral, R.id.ll_post, R.id.ll_pending_payment,
-            R.id.ll_pending_delivery, R.id.ll_already_shipped, R.id.ll_evaluate, R.id.ll_refund,
+    @OnClick({R.id.tv_follow, R.id.tv_fans, R.id.iv_setting, R.id.ll_user_info, R.id.ll_integral_mall, R.id.ll_sign_in, R.id.ll_invitation,
+            R.id.ll_diary, R.id.ll_message, R.id.ll_integral, R.id.ll_post, R.id.ll_pending_payment, R.id.ll_integral_task,
+            R.id.ll_pending_delivery, R.id.ll_already_shipped, R.id.ll_evaluate, R.id.ll_member,
             R.id.ll_shop_card, R.id.ll_collect, R.id.ll_wallet, R.id.ll_feed_back, R.id.ll_consultation})
     public void onViewClicked(View view) {
         if (TextUtils.isEmpty((String) SPUtils.get(Const.USER_INFO.CUSTOMER_ID, ""))) {
@@ -94,6 +94,9 @@ public class MineFragment extends BasePresenterFragment<MinePresenter, MineContr
             return;
         }
         switch (view.getId()) {
+            case R.id.ll_member:
+                startActivity(new Intent(getActivity(), MemberActivity.class));
+                break;
             case R.id.tv_fans:
                 startActivity(new Intent(getActivity(), FansActivity.class));
                 break;
@@ -105,6 +108,9 @@ public class MineFragment extends BasePresenterFragment<MinePresenter, MineContr
                 break;
             case R.id.ll_integral_mall:
                 startActivity(new Intent(getActivity(), IntegralMallActivity.class));
+                break;
+            case R.id.ll_integral_task:
+                startActivity(new Intent(getActivity(), IntegralTaskActivity.class));
                 break;
             case R.id.ll_sign_in:
                 startActivity(new Intent(getActivity(), SignActivity.class));
@@ -129,17 +135,16 @@ public class MineFragment extends BasePresenterFragment<MinePresenter, MineContr
                 startActivity(new Intent(getActivity(), SubscribeActivity.class));
                 break;
             case R.id.ll_pending_payment://status：1待支付；2已支付；空全部
-                startActivity(new Intent(getActivity(), OrderActivity.class).putExtra("status", "1"));
-                break;
-            case R.id.ll_pending_delivery:
-                startActivity(new Intent(getActivity(), OrderActivity.class).putExtra("status", "2"));
-                break;
-            case R.id.ll_already_shipped:
                 startActivity(new Intent(getActivity(), OrderActivity.class).putExtra("status", ""));
                 break;
-            case R.id.ll_evaluate:
+            case R.id.ll_pending_delivery:
+                startActivity(new Intent(getActivity(), OrderActivity.class).putExtra("status", "1"));
                 break;
-            case R.id.ll_refund:
+            case R.id.ll_already_shipped:
+                startActivity(new Intent(getActivity(), OrderActivity.class).putExtra("status", "2"));
+                break;
+            case R.id.ll_evaluate:
+                startActivity(new Intent(getActivity(), OrderActivity.class).putExtra("status", "3"));
                 break;
             case R.id.ll_shop_card:
                 startActivity(new Intent(getActivity(), ShopCartActivity.class));

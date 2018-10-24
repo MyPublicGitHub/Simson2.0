@@ -39,8 +39,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/colorWhite"
-                android:orientation="horizontal"
-                android:paddingBottom="@dimen/dp_10">
+                android:orientation="horizontal">
 
                 <TextView
                     android:id="@+id/tv_present"
@@ -61,6 +60,15 @@
                     android:textSize="@dimen/sp_14" />
 
                 <TextView
+                    android:id="@+id/tv_point"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/dp_10"
+                    android:text="积分：6600"
+                    android:textColor="@color/colorBlack_4"
+                    android:textSize="@dimen/sp_14" />
+
+                <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/dp_10"
@@ -72,10 +80,20 @@
                     android:textSize="@dimen/sp_12" />
             </LinearLayout>
 
+            <TextView
+                android:id="@+id/tv_unity"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/dp_1"
+                android:background="@color/white"
+                android:padding="@dimen/dp_10"
+                android:text="￥6600.00"
+                android:textColor="@color/colorBlack"
+                android:textSize="@dimen/sp_14" />
+
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/dp_10"
                 android:background="@color/colorWhite"
                 android:padding="@dimen/dp_10">
 
@@ -111,7 +129,6 @@
                     android:text="南京市鼓楼区中山北路246号"
                     android:textColor="@color/colorBlack_4"
                     android:textSize="@dimen/sp_12" />
-
 
             </RelativeLayout>
 

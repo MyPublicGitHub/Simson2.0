@@ -1,12 +1,15 @@
-package com.simson.www.ui.shop.detail.praise;
+package com.simson.www.ui.shop.detail.technology;
 
 
 import com.google.gson.Gson;
 import com.simson.www.common.Const;
+import com.simson.www.net.bean.home.TechnologyBean;
 import com.simson.www.net.bean.shop.CommentBean;
 import com.simson.www.net.callback.RxObserver;
 import com.simson.www.ui.core.model.PraiseModel;
+import com.simson.www.ui.core.model.TechnologyModel;
 import com.simson.www.ui.core.presenter.BasePresenter;
+import com.simson.www.ui.shop.detail.praise.PraiseContract;
 import com.simson.www.utils.DateUtils;
 
 import java.util.HashMap;
@@ -14,23 +17,23 @@ import java.util.List;
 import java.util.Map;
 
 
-public class PraisePresenter extends BasePresenter<PraiseContract.View>
-        implements PraiseContract.Presenter {
-    private PraiseModel mModel;
-    private PraiseContract.View mView;
+public class TechnologyPresenter extends BasePresenter<TechnologyContract.View>
+        implements TechnologyContract.Presenter {
+    private TechnologyModel mModel;
+    private TechnologyContract.View mView;
 
-    PraisePresenter() {
-        this.mModel = new PraiseModel();
+    TechnologyPresenter() {
+        this.mModel = new TechnologyModel();
     }
 
     @Override
-    public void getCommodityQueryItemComment() {
+    public void getPlantingTechnology() {
         mView = getView();
-        RxObserver<List<CommentBean>> observer = new RxObserver<List<CommentBean>>(this) {
+        RxObserver<List<TechnologyBean>> observer = new RxObserver<List<TechnologyBean>>(this) {
 
             @Override
-            public void onSuccess(List<CommentBean> mData) {
-                mView.showCommodityQueryItemComment(mData);
+            public void onSuccess(List<TechnologyBean> mData) {
+                mView.getPlantingTechnology(mData);
             }
 
             @Override
@@ -41,11 +44,9 @@ public class PraisePresenter extends BasePresenter<PraiseContract.View>
 
         Map<String, String> map = new HashMap();
         map.put("timestamp", DateUtils.getStringDate());
-        map.put("itemId", mView.getItemId());
-        map.put("pageIndex", mView.getPageIndex());
-        map.put("pageSize", Const.PAGE_SIZE);
+        map.put("hospitalId", mView.hospitalId());
         String json = new Gson().toJson(map);
-        mModel.getCommodityQueryItemComment(json, observer);
+        mModel.getPlantingTechnology(json, observer);
         addDisposable(observer);
     }
 

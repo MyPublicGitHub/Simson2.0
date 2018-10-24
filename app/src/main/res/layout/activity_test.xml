@@ -43,6 +43,7 @@
                 android:gravity="center">
 
                 <ImageView
+                    android:id="@+id/iv_1"
                     android:layout_width="@dimen/dp_70"
                     android:layout_height="@dimen/dp_70"
                     android:src="@mipmap/ic_add_picture" />
@@ -55,6 +56,7 @@
                 android:gravity="center">
 
                 <ImageView
+                    android:id="@+id/iv_2"
                     android:layout_width="@dimen/dp_70"
                     android:layout_height="@dimen/dp_70"
                     android:src="@mipmap/ic_add_picture" />
@@ -67,6 +69,7 @@
                 android:gravity="center">
 
                 <ImageView
+                    android:id="@+id/iv_3"
                     android:layout_width="@dimen/dp_70"
                     android:layout_height="@dimen/dp_70"
                     android:src="@mipmap/ic_add_picture" />
@@ -79,6 +82,7 @@
                 android:gravity="center">
 
                 <ImageView
+                    android:id="@+id/iv_4"
                     android:layout_width="@dimen/dp_70"
                     android:layout_height="@dimen/dp_70"
                     android:src="@mipmap/ic_add_picture" />

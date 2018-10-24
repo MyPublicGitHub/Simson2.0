@@ -1,25 +1,20 @@
-package com.simson.www.ui.community.expert.save;
+package com.simson.www.ui.community.expert.detail;
 
-import com.simson.www.net.bean.BaseBean;
+import com.simson.www.net.bean.community.QuestionsDetailBean;
 import com.simson.www.ui.core.view.IView;
 
-import java.util.List;
 
-
-public interface NewQuestionContract {
+public interface QuestionDetailContract {
     interface Presenter {
 
-        void questions();
+        void questionsDetail();
     }
 
     interface View extends IView {
-        int is_display();
 
-        String content();
+        String questionsId();
 
-        List<String> pictures();
-
-        void questions(BaseBean bean);
+        void questionsDetail(QuestionsDetailBean bean);
 
     }
 }

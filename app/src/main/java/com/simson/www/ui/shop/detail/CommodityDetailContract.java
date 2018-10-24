@@ -1,10 +1,11 @@
 package com.simson.www.ui.shop.detail;
 
 import com.simson.www.net.bean.BaseBean;
+import com.simson.www.net.bean.home.LatelyHospitalBean;
 import com.simson.www.net.bean.mine.SubmitOrderBean;
 import com.simson.www.net.bean.shop.CommodityDetailBean;
 import com.simson.www.net.bean.shop.CommodityDetailPraiseBean;
-import com.simson.www.ui.core.view.IView;
+import com.simson.www.ui.shop.detail.technology.TechnologyContract;
 
 
 public interface CommodityDetailContract {
@@ -15,6 +16,8 @@ public interface CommodityDetailContract {
 
         void getCommodityDetailPraise();
 
+        void getLatelyHospital();
+
         void saveShopCart();
 
         void submitOrder();
@@ -22,7 +25,7 @@ public interface CommodityDetailContract {
         void collect();
     }
 
-    interface View extends IView {
+    interface View extends TechnologyContract.View {
 
         String getItemId();
 
@@ -32,7 +35,19 @@ public interface CommodityDetailContract {
 
         String getBuyNum();
 
+        String hospitalId();
+
+        String technologyId();
+
+        String subscribeDate();
+
+        String longitude();
+
+        String latitude();
+
         void showCommodityDetail(CommodityDetailBean bean);
+
+        void getLatelyHospital(LatelyHospitalBean bean);
 
         void showCommodityDetailPicture(CommodityDetailBean bean);
 

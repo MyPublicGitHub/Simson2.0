@@ -31,6 +31,6 @@ public class CaseItemAdapter extends BaseQuickAdapter<CaseBean, BaseViewHolder> 
         BGANinePhotoLayout ninePhotoLayout = helper.getView(R.id.npl_item_moment_photos);
         ninePhotoLayout.setData((ArrayList<String>) item.getPictures());
 
-        //GlideUtils.with(item.);
+        GlideUtils.with(item.getPictures().get(0),helper.getView(R.id.iv_header));
     }
 }

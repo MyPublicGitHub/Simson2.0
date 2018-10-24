@@ -23,6 +23,13 @@ public class ShopListBean {
     private String item_icon;
     private int browse;
     private int subscribes;
+    /**
+     * hair_follicles_number : 500
+     * is_technology : 1
+     */
+
+    private int hair_follicles_number;
+    private int is_technology;
 
     public String getItem_id() {
         return item_id;
@@ -94,5 +101,21 @@ public class ShopListBean {
 
     public void setSubscribes(int subscribes) {
         this.subscribes = subscribes;
+    }
+
+    public int getHair_follicles_number() {
+        return hair_follicles_number;
+    }
+
+    public void setHair_follicles_number(int hair_follicles_number) {
+        this.hair_follicles_number = hair_follicles_number;
+    }
+
+    public int getIs_technology() {
+        return is_technology;
+    }
+
+    public void setIs_technology(int is_technology) {
+        this.is_technology = is_technology;
     }
 }

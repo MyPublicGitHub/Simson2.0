@@ -40,9 +40,7 @@ public class ShopCartAdapter extends BaseQuickAdapter<ShopCartBean, BaseViewHold
 
 
         CheckBox checkBox = helper.getView(R.id.checkbox);
-        checkBox.setOnCheckedChangeListener((compoundButton, isCheck) -> {
-            item.isCheck = isCheck;
-        });
+        checkBox.setOnCheckedChangeListener((compoundButton, isCheck) -> item.isCheck = isCheck);
         checkBox.setChecked(item.isCheck);
         helper.addOnClickListener(R.id.tv_reduce);
         helper.addOnClickListener(R.id.tv_add);

@@ -20,8 +20,8 @@
                 android:layout_width="@dimen/dp_25"
                 android:layout_height="@dimen/dp_25"
                 android:layout_alignParentRight="true"
-                android:layout_marginRight="@dimen/dp_10"
                 android:layout_marginTop="@dimen/dp_15"
+                android:layout_marginRight="@dimen/dp_10"
                 android:background="@mipmap/ic_mine_setting"
                 android:padding="@dimen/dp_5" />
 
@@ -44,10 +44,10 @@
                     android:id="@+id/tv_user_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:padding="@dimen/dp_5"
-                    android:textColorHint="@color/colorWhiteBg"
                     android:hint="@string/sign_in_or_register"
+                    android:padding="@dimen/dp_5"
                     android:textColor="@color/colorWhite"
+                    android:textColorHint="@color/colorWhiteBg"
                     android:textSize="@dimen/sp_16" />
             </LinearLayout>
 
@@ -67,8 +67,8 @@
                 android:layout_below="@+id/ll_user_info"
                 android:layout_centerHorizontal="true"
                 android:layout_marginRight="@dimen/dp_10"
-                android:padding="@dimen/dp_5"
                 android:layout_toLeftOf="@+id/view_line"
+                android:padding="@dimen/dp_5"
                 android:text="粉丝：0"
                 android:textColor="@color/colorWhite"
                 android:textSize="@dimen/sp_16" />
@@ -77,11 +77,11 @@
                 android:id="@+id/tv_follow"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="@dimen/dp_5"
                 android:layout_below="@+id/ll_user_info"
                 android:layout_centerHorizontal="true"
                 android:layout_marginLeft="@dimen/dp_10"
                 android:layout_toRightOf="@+id/view_line"
+                android:padding="@dimen/dp_5"
                 android:text="关注：0"
                 android:textColor="@color/colorWhite"
                 android:textSize="@dimen/sp_16" />
@@ -95,10 +95,10 @@
                 android:background="@drawable/shape_corner_mine_sing_in"
                 android:gravity="center_vertical"
                 android:orientation="horizontal"
-                android:paddingBottom="@dimen/dp_7"
                 android:paddingLeft="@dimen/dp_15"
+                android:paddingTop="@dimen/dp_7"
                 android:paddingRight="@dimen/dp_12"
-                android:paddingTop="@dimen/dp_7">
+                android:paddingBottom="@dimen/dp_7">
 
                 <ImageView
                     android:layout_width="@dimen/dp_26"
@@ -115,15 +115,15 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/ll_post"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/tv_fans"
                 android:layout_marginTop="@dimen/dp_1"
-                android:id="@+id/ll_post"
                 android:gravity="center_vertical"
                 android:orientation="horizontal"
-                android:paddingBottom="@dimen/dp_10"
-                android:paddingTop="@dimen/dp_10">
+                android:paddingTop="@dimen/dp_10"
+                android:paddingBottom="@dimen/dp_10">
 
                 <LinearLayout
                     android:layout_width="0dp"
@@ -156,10 +156,10 @@
                     android:background="@color/colorWhiteBg" />
 
                 <LinearLayout
+                    android:id="@+id/ll_diary"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:id="@+id/ll_diary"
                     android:gravity="center"
                     android:orientation="vertical">
 
@@ -262,8 +262,8 @@
             android:layout_marginTop="@dimen/dp_1"
             android:background="@color/colorWhite"
             android:orientation="horizontal"
-            android:paddingBottom="@dimen/dp_10"
-            android:paddingTop="@dimen/dp_10">
+            android:paddingTop="@dimen/dp_10"
+            android:paddingBottom="@dimen/dp_10">
 
             <LinearLayout
                 android:id="@+id/ll_pending_payment"
@@ -282,7 +282,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/dp_3"
-                    android:text="@string/pending_payment"
+                    android:text="全部"
                     android:textColor="@color/colorBlack"
                     android:textSize="@dimen/sp_14" />
             </LinearLayout>
@@ -304,7 +304,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/dp_3"
-                    android:text="@string/pending_delivery"
+                    android:text="已付款"
                     android:textColor="@color/colorBlack"
                     android:textSize="@dimen/sp_14" />
             </LinearLayout>
@@ -320,13 +320,13 @@
                 <ImageView
                     android:layout_width="@dimen/dp_40"
                     android:layout_height="@dimen/dp_40"
-                    android:src="@mipmap/ic_mine_already_shipped" />
+                    android:src="@mipmap/ic_mine_refund" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/dp_3"
-                    android:text="@string/already_shipped"
+                    android:text="未付款"
                     android:textColor="@color/colorBlack"
                     android:textSize="@dimen/sp_14" />
             </LinearLayout>
@@ -353,28 +353,6 @@
                     android:textSize="@dimen/sp_14" />
             </LinearLayout>
 
-            <LinearLayout
-                android:id="@+id/ll_refund"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:orientation="vertical">
-
-                <ImageView
-                    android:layout_width="@dimen/dp_40"
-                    android:layout_height="@dimen/dp_40"
-                    android:src="@mipmap/ic_mine_refund" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/dp_3"
-                    android:text="@string/refund"
-                    android:textColor="@color/colorBlack"
-                    android:textSize="@dimen/sp_14" />
-            </LinearLayout>
-
         </LinearLayout>
 
         <LinearLayout
@@ -383,10 +361,11 @@
             android:layout_marginTop="@dimen/dp_10"
             android:background="@color/colorWhite"
             android:orientation="horizontal"
-            android:paddingBottom="@dimen/dp_10"
-            android:paddingTop="@dimen/dp_10">
+            android:paddingTop="@dimen/dp_10"
+            android:paddingBottom="@dimen/dp_10">
 
             <LinearLayout
+                android:id="@+id/ll_integral_task"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -408,11 +387,11 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/ll_integral_mall"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:id="@+id/ll_integral_mall"
                 android:orientation="horizontal">
 
                 <ImageView
@@ -436,8 +415,8 @@
             android:layout_marginTop="@dimen/dp_10"
             android:background="@color/colorWhite"
             android:orientation="horizontal"
-            android:paddingBottom="@dimen/dp_10"
-            android:paddingTop="@dimen/dp_10">
+            android:paddingTop="@dimen/dp_10"
+            android:paddingBottom="@dimen/dp_10">
 
             <LinearLayout
                 android:id="@+id/ll_shop_card"
@@ -488,6 +467,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
+                android:id="@+id/ll_member"
                 android:orientation="vertical">
 
                 <ImageView
@@ -527,20 +507,21 @@
             </LinearLayout>
 
         </LinearLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/colorWhite"
             android:orientation="horizontal"
-            android:paddingBottom="@dimen/dp_10"
-            android:paddingTop="@dimen/dp_10">
+            android:paddingTop="@dimen/dp_10"
+            android:paddingBottom="@dimen/dp_10">
 
             <LinearLayout
+                android:id="@+id/ll_invitation"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:id="@+id/ll_invitation"
                 android:orientation="vertical">
 
                 <ImageView
@@ -606,8 +587,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:orientation="vertical">
-            </LinearLayout>
+                android:orientation="vertical"></LinearLayout>
 
         </LinearLayout>
     </LinearLayout>

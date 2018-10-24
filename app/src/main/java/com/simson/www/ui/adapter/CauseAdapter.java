@@ -21,19 +21,7 @@ public class CauseAdapter extends BaseQuickAdapter<CauseListBean, BaseViewHolder
 
     @Override
     protected void convert(BaseViewHolder helper, CauseListBean item) {
-/**
- * alopecia_cause_id : 123
- * hospital_name : 南京新生植发
- * hospital_icon : http://58.213.14.195:8081/upload/hospital/logo@2x.png
- * title : 了解一下
- * alopecia_cause_link : http://58.213.14.195:8081/simson/webview/alopeciaCause/alopeciaCause.jsp
- * create_time : 2018-09-27
- * browse : 7
- * collects : 0
- * praises : 0
- * is_follow : 0
- * pictures : ["https://images.maofa.com/userfiles/24bf2ba294c2fcca9f415adc990734b4/images/popularization/files/2018/08/35b9fa9c.jpg"]
- */
+
         GlideUtils.with(item.getHospital_icon(), helper.getView(R.id.iv_header));
         helper.setText(R.id.tv_name, item.getHospital_name() + "");
         helper.setText(R.id.tv_date, item.getCreate_time() + "");

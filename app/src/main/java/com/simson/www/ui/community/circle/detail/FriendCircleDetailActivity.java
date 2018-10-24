@@ -75,7 +75,7 @@ public class FriendCircleDetailActivity extends BasePresenterActivity<FriendCirc
             startActivity(new Intent(this, FriendCircleDetailActivity.class).putExtra("id", id));
         });
         setRefresh();
-        etContent.setFocusable(false);
+        btnCommit.setFocusable(true);
     }
 
     @Override

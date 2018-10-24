@@ -12,6 +12,7 @@ import com.simson.www.net.bean.community.FriendsCircleCommentBean;
 import com.simson.www.net.bean.community.FriendsCircleDetailBean;
 import com.simson.www.net.bean.community.PopularizationBean;
 import com.simson.www.net.bean.community.QuestionsBean;
+import com.simson.www.net.bean.community.QuestionsDetailBean;
 import com.simson.www.net.bean.home.CauseListBean;
 import com.simson.www.net.bean.home.CityListBean;
 import com.simson.www.net.bean.home.DoctorDetailBean;
@@ -21,6 +22,8 @@ import com.simson.www.net.bean.home.HospitalDetailBean;
 import com.simson.www.net.bean.home.HospitalDeviceBean;
 import com.simson.www.net.bean.home.HospitalItemBean;
 import com.simson.www.net.bean.home.IndexSynchysisBean;
+import com.simson.www.net.bean.home.LatelyHospitalBean;
+import com.simson.www.net.bean.home.TechnologyBean;
 import com.simson.www.net.bean.main.CodeBean;
 import com.simson.www.net.bean.main.ItemTypeBean;
 import com.simson.www.net.bean.main.LoginBean;
@@ -41,6 +44,7 @@ import com.simson.www.net.bean.mine.SignPageBean;
 import com.simson.www.net.bean.mine.SubmitOrderBean;
 import com.simson.www.net.bean.mine.SubscribeListBean;
 import com.simson.www.net.bean.mine.TransactionRecordBean;
+import com.simson.www.net.bean.mine.VIPBean;
 import com.simson.www.net.bean.shop.CommentBean;
 import com.simson.www.net.bean.shop.CommodityDetailBean;
 import com.simson.www.net.bean.shop.CommodityDetailPraiseBean;
@@ -63,7 +67,7 @@ public interface ApiServer {
 
     //充值
     @POST("transaction/paymentRechargeOrder")
-    Observable<BaseBean> paymentRechargeOrder(@Query("json") String json);
+    Observable<BaseBean<PaymentOrderBean>> paymentRechargeOrder(@Query("json") String json);
 
     //新增预约
     @POST("subscribeController/saveSubscribe")
@@ -109,6 +113,8 @@ public interface ApiServer {
     @POST("itemController/itemDetail")
     Observable<BaseBean<CommodityDetailBean>> getCommodityDetail(@Query("json") String json);
 
+    @POST("hospitalController/getLatelyHospital")
+    Observable<BaseBean<LatelyHospitalBean>> getLatelyHospital(@Query("json") String json);
 
     @POST("itemController/iemDetailPicture")
     Observable<BaseBean<CommodityDetailBean>> getCommodityDetailPicture(@Query("json") String json);
@@ -124,6 +130,10 @@ public interface ApiServer {
     //评价列表
     @POST("itemController/queryItemComment")
     Observable<BaseBean<List<CommentBean>>> getCommodityQueryItemComment(@Query("json") String json);
+
+    //评价列表
+    @POST("hospitalController/getPlantingTechnology")
+    Observable<BaseBean<List<TechnologyBean>>> getPlantingTechnology(@Query("json") String json);
 
     //日记列表
     @POST("diaryController/diaryList")
@@ -173,6 +183,10 @@ public interface ApiServer {
     @POST("questionsAnswer/questions")
     Observable<BaseBean> questions(@Query("json") String json);
 
+    //专家问答
+    @POST("questionsAnswer/questionsDetail")
+    Observable<BaseBean<QuestionsDetailBean>> questionsDetail(@Query("json") String json);
+
     //医生列表
     @POST("doctorController/doctorList")
     Observable<BaseBean<DoctorBean>> getDoctorList(@Query("json") String json);
@@ -204,6 +218,10 @@ public interface ApiServer {
     //购物车列表
     @POST("shoppingCart/shoppingCartList")
     Observable<BaseBean<List<ShopCartBean>>> getShopCart(@Query("json") String json);
+
+    //购物车列表
+    @POST("customerController/getCustomerVIP")
+    Observable<BaseBean<VIPBean>> getCustomerVIP(@Query("json") String json);
 
     //移除购物车
     @POST("shoppingCart/removeShoppingCart")

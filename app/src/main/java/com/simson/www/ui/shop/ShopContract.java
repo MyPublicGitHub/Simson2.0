@@ -8,16 +8,15 @@ import java.util.List;
 
 public interface ShopContract {
     interface Presenter {
-        void getShopList();
+        void getShopList(int isPoint);
     }
 
     interface View extends IView {
         int getPageCommodity();
 
-        String getIsPoint();
-
+        String itemTypeId();
+        String search();
         int getPageIntegral();
-
         void setShopListResponse(List<ShopListBean> bean);
         void setShopIntegralListResponse(List<ShopListBean> bean);
 

@@ -67,15 +67,15 @@ public class HospitalDetailActivity extends BasePresenterActivity<HospitalDetail
     LinearLayout llOnline;
     private HDAExpertAdapter mHDAExpertAdapter;
     private HDAInstrumentAdapter mHDAInstrumentAdapter;
-    private HDACaseDiaryAdapter mHDACaseDiaryAdapter;
+    //private HDACaseDiaryAdapter mHDACaseDiaryAdapter;
     private HDAHospitalInfoAdapter mHDAHospitalInfoAdapter;
 
     @BindView(R.id.rv_experts)
     RecyclerView rvExperts;
     @BindView(R.id.rv_instrument)
     RecyclerView rvInstrument;
-    @BindView(R.id.rv_case_diary)
-    RecyclerView rvCaseDiary;
+//    @BindView(R.id.rv_case_diary)
+//    RecyclerView rvCaseDiary;
     @BindView(R.id.rv_hospital_info)
     RecyclerView rvHospitalInfo;
     String hospitalId, mMethod;
@@ -119,11 +119,11 @@ public class HospitalDetailActivity extends BasePresenterActivity<HospitalDetail
                     .putExtra(Const.WEB_VIEW_URL, url));
         });
 
-        mHDACaseDiaryAdapter = new HDACaseDiaryAdapter(null);
-        rvCaseDiary.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
-        mHDACaseDiaryAdapter.bindToRecyclerView(rvCaseDiary);
-        mHDACaseDiaryAdapter.setEmptyView(R.layout.list_empty_view);
-        rvCaseDiary.setAdapter(mHDACaseDiaryAdapter);
+//        mHDACaseDiaryAdapter = new HDACaseDiaryAdapter(null);
+//        rvCaseDiary.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
+//        mHDACaseDiaryAdapter.bindToRecyclerView(rvCaseDiary);
+//        mHDACaseDiaryAdapter.setEmptyView(R.layout.list_empty_view);
+//        rvCaseDiary.setAdapter(mHDACaseDiaryAdapter);
 
         mHDAHospitalInfoAdapter = new HDAHospitalInfoAdapter(null);
         rvHospitalInfo.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
@@ -138,13 +138,15 @@ public class HospitalDetailActivity extends BasePresenterActivity<HospitalDetail
     @Override
     public void showHospitalDetail(HospitalDetailBean bean) {
         if (bean == null) return;
+       
         mBanner.setImages(bean.getPictures());//设置图片集合
         mBanner.start();
         GlideUtils.with(bean.getHospital_icon(), ivHeader);
         tvName.setText("" + bean.getHospital_name());
         rate.setRating(bean.getHospital_star());
         tvAppointment.setText("预约：" + bean.getSubscribes());
-        tvCase.setText("专家：" + bean.getDoctors());
+        tvCase.setText("设备：" + bean.getDevices());
+        tvExpert.setText("专家：" + bean.getDoctors());
         if (bean.getIs_follow() == 0) {
             isFollow = false;
         } else {
@@ -178,7 +180,7 @@ public class HospitalDetailActivity extends BasePresenterActivity<HospitalDetail
         if (beans == null) {
             return;
         }
-        mHDACaseDiaryAdapter.replaceData(beans);
+        //mHDACaseDiaryAdapter.replaceData(beans);
     }
 
     @OnClick({R.id.tv_doctor_more, R.id.tv_device_more, R.id.tv_diary_more,

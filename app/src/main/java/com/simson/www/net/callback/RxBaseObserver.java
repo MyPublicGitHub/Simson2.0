@@ -7,6 +7,7 @@ import com.simson.www.R;
 import com.simson.www.application.AppContext;
 import com.simson.www.net.NetConfig;
 import com.simson.www.net.bean.BaseBean;
+import com.simson.www.ui.core.presenter.BasePresenter;
 import com.simson.www.ui.core.view.IView;
 import com.simson.www.utils.LogUtils;
 import com.simson.www.utils.NetworkUtils;
@@ -30,19 +31,19 @@ public abstract class RxBaseObserver<T> extends DisposableObserver<BaseBean<T>> 
 
     protected IView view;
 
-    public RxBaseObserver(com.simson.www.ui.core.presenter.BasePresenter mPresenter) {
+    public RxBaseObserver(BasePresenter mPresenter) {
         this.view = mPresenter.getView();
     }
 
 
     @Override
     protected void onStart() {
-        super.onStart();
         //显示loading
         if (!NetworkUtils.isAvailable(AppContext.getContext())) {
             ToastUtils.showToast("网络异常，请检查您的网络连接");
             return;
         }
+        super.onStart();
         showLoading();
     }
 
@@ -54,6 +55,10 @@ public abstract class RxBaseObserver<T> extends DisposableObserver<BaseBean<T>> 
     public void onError(Throwable e) {
         //隐藏loading
         hideLoading();
+        if (!NetworkUtils.isAvailable(AppContext.getContext())) {
+            ToastUtils.showToast("网络异常，请检查您的网络连接");
+            return;
+        }
         //处理异常
         dealException(AppContext.getContext(), e);
     }

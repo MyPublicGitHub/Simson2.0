@@ -23,7 +23,7 @@ public class ShopCommodityAdapter extends BaseQuickAdapter<ShopListBean, BaseVie
     protected void convert(BaseViewHolder helper, ShopListBean item) {
         GlideUtils.with(item.getItem_icon(),helper.getView(R.id.iv_image));
         helper.setText(R.id.tv_title,item.getItem_name()+"");
-        //helper.setText(R.id.tv_content,"");
+        helper.setText(R.id.tv_subscribes,"已预约："+item.getSubscribes());
         helper.setText(R.id.tv_present,"￥"+item.getPresent_price());
         helper.setText(R.id.tv_original,"￥"+item.getOriginal_price());
         TextView textView = helper.getView(R.id.tv_original);

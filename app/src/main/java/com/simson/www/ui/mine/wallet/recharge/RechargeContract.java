@@ -1,6 +1,7 @@
 package com.simson.www.ui.mine.wallet.recharge;
 
 import com.simson.www.net.bean.BaseBean;
+import com.simson.www.net.bean.mine.PaymentOrderBean;
 import com.simson.www.ui.core.view.IView;
 
 public interface RechargeContract {
@@ -17,7 +18,7 @@ public interface RechargeContract {
 
         String paymentType();
 
-        void paymentRechargeOrder(BaseBean bean);
+        void paymentRechargeOrder(PaymentOrderBean bean);
 
     }
 }

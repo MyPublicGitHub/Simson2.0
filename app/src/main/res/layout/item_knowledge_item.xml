@@ -4,6 +4,7 @@
     style="@style/MatchWrap"
     android:background="@color/colorWhite"
     android:orientation="vertical"
+    android:layout_marginBottom="@dimen/dp_1"
     android:padding="@dimen/dp_10">
 
     <RelativeLayout

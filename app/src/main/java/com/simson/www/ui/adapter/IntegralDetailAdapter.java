@@ -16,8 +16,7 @@ public class IntegralDetailAdapter extends BaseQuickAdapter<IntegralDetailBean, 
 
     @Override
     protected void convert(BaseViewHolder helper, IntegralDetailBean item) {
-//        helper.setText(R.id.name, item.getName());
-//        helper.setText(R.id.point, item.getPoint());
-//        helper.setText(R.id.tv_date, item.getCreate_time());
+        helper.setText(R.id.point, item.getRecord_name() + "：" + item.getPoint());
+        helper.setText(R.id.tv_date, item.getCreate_time());
     }
 }

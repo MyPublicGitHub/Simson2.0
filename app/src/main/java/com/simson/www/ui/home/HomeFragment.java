@@ -80,10 +80,9 @@ public class HomeFragment extends BasePresenterFragment<HomePresenter, HomeContr
                 String id = bean.getFriends_circle_id();
                 startActivity(new Intent(getContext(), FriendCircleDetailActivity.class).putExtra("id", id));
             } else if ("popularization".equals(bean.getData_status())) {
-                String url = bean.getLink_url() + "?json={popularizationId:" + bean.getPopularization_id() + "}";
                 startActivity(new Intent(getContext(), WebViewActivity.class)
                         .putExtra(Const.WEB_VIEW_TITLE, "科普详情")
-                        .putExtra(Const.WEB_VIEW_URL, url));
+                        .putExtra(Const.WEB_VIEW_URL, bean.getLink_url()));
             }
         });
         adapter.setOnItemChildClickListener((adapter, views, position) -> {

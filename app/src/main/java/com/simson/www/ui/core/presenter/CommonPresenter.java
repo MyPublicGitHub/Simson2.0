@@ -74,6 +74,18 @@ public class CommonPresenter<V extends IView> extends BasePresenter<V> implement
 
     @Override
     public void collect(String bizId, String method, String type) {
+        if (TextUtils.isEmpty((String) SPUtils.get(Const.USER_INFO.CUSTOMER_ID, ""))) {
+            ToastUtils.showToast("您还没登录请先登录");
+            return;
+        }
+        if (TextUtils.isEmpty(method)) {
+            ToastUtils.showToast("关注失败");
+            return;
+        }
+        if (TextUtils.isEmpty(type)) {
+            ToastUtils.showToast("关注失败");
+            return;
+        }
         RxBaseObserver<BaseBean> mObserver = new RxBaseObserver<BaseBean>(this) {
 
             @Override
@@ -105,6 +117,18 @@ public class CommonPresenter<V extends IView> extends BasePresenter<V> implement
             ToastUtils.showToast("您还没登录请先登录");
             return;
         }
+        if (TextUtils.isEmpty(followCustomerId)) {
+            ToastUtils.showToast("关注失败");
+            return;
+        }
+        if (TextUtils.isEmpty(method)) {
+            ToastUtils.showToast("关注失败");
+            return;
+        }
+        if (TextUtils.isEmpty(type)) {
+            ToastUtils.showToast("关注失败");
+            return;
+        }
         RxBaseObserver<BaseBean> mObserver = new RxBaseObserver<BaseBean>(this) {
             @Override
             public void onNext(BaseBean bean) {
@@ -131,6 +155,22 @@ public class CommonPresenter<V extends IView> extends BasePresenter<V> implement
 
     @Override
     public void praise(String bizId, String method, String type) {
+        if (TextUtils.isEmpty((String) SPUtils.get(Const.USER_INFO.CUSTOMER_ID, ""))) {
+            ToastUtils.showToast("您还没登录请先登录");
+            return;
+        }
+        if (TextUtils.isEmpty(bizId)) {
+            ToastUtils.showToast("关注失败");
+            return;
+        }
+        if (TextUtils.isEmpty(method)) {
+            ToastUtils.showToast("关注失败");
+            return;
+        }
+        if (TextUtils.isEmpty(type)) {
+            ToastUtils.showToast("关注失败");
+            return;
+        }
         RxBaseObserver<BaseBean> mObserver = new RxBaseObserver<BaseBean>(this) {
             @Override
             public void onNext(BaseBean bean) {

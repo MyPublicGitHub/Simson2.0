@@ -267,7 +267,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
-        <LinearLayout
+        <!--<LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/dp_10"
@@ -299,7 +299,7 @@
         <android.support.v7.widget.RecyclerView
             android:id="@+id/rv_case_diary"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content" />-->
 
         <LinearLayout
             android:layout_width="match_parent"

@@ -44,12 +44,9 @@ public class KnowledgeItemFragment extends BasePresenterFragment<KnowledgeItemPr
         adapter.setEmptyView(R.layout.list_empty_view);
         adapter.setOnItemClickListener((adapter, view1, position) -> {
             List<PopularizationBean> bean = (List<PopularizationBean>) adapter.getData();
-            String popularizationLink = bean.get(position).getLink_url();
-            String popularizationId = bean.get(position).getPopularization_id();
-            String url = popularizationLink + "?json={popularizationId:" + popularizationId + "}";
             startActivity(new Intent(getContext(), WebViewActivity.class)
                     .putExtra(Const.WEB_VIEW_TITLE, "科普详情")
-                    .putExtra(Const.WEB_VIEW_URL,url));
+                    .putExtra(Const.WEB_VIEW_URL,bean.get(position).getLink_url()));
         });
         adapter.setOnItemChildClickListener((adapter, views, position) -> {
             mPosition = position;

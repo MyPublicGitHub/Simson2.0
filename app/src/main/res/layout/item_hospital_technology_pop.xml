@@ -1,24 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
+    android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:background="@color/colorWhite"
+    android:layout_margin="@dimen/dp_5"
+    android:background="@drawable/shape_corner_white_main"
     android:gravity="center_vertical"
-    android:orientation="vertical">
+    android:orientation="horizontal"
+    android:paddingLeft="@dimen/dp_10"
+    android:paddingTop="@dimen/dp_5"
+    android:paddingRight="@dimen/dp_10"
+    android:paddingBottom="@dimen/dp_5">
 
 
     <TextView
-        android:id="@+id/tv_name"
+        android:id="@+id/tv_technology"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="@dimen/dp_10"
-        android:text="张俊杰"
-        android:textColor="@color/colorBlack"
-        android:textSize="@dimen/sp_15" />
+        android:text="FUT/"
+        android:textColor="@color/colorBlue"
+        android:textSize="@dimen/sp_12" />
 
-    <View
+    <TextView
+        android:id="@+id/tv_price"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/dp_1"
-        android:background="@color/colorWhiteBg" />
-
+        android:layout_height="wrap_content"
+        android:text="1.00元"
+        android:textColor="@color/colorRed"
+        android:textSize="@dimen/sp_12" />
 </LinearLayout>

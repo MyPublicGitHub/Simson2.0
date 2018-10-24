@@ -1,21 +1,20 @@
-package com.simson.www.ui.mine.order.item;
+package com.simson.www.ui.mine.member;
 
 import com.simson.www.net.bean.mine.OrderBean;
+import com.simson.www.net.bean.mine.VIPBean;
 import com.simson.www.ui.core.view.IView;
 
 import java.util.List;
 
-public interface OrderContract {
+public interface MemberContract {
     interface Presenter {
 
-        void getOrder();
+        void getCustomerVIP();
 
     }
 
     interface View extends IView {
-        String getPage();
-        String getStatus();
 
-        void showOrder(List<OrderBean> bean);
+        void getCustomerVIP(VIPBean bean);
     }
 }

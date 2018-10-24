@@ -1,26 +1,24 @@
-package com.simson.www.ui.shop.detail.praise;
+package com.simson.www.ui.shop.detail.technology;
 
-import com.simson.www.net.bean.shop.CommentBean;
-import com.simson.www.net.bean.shop.CommodityDetailBean;
+import com.simson.www.net.bean.home.TechnologyBean;
 import com.simson.www.ui.core.view.IView;
 
 import java.util.List;
 
 
-public interface PraiseContract {
+public interface TechnologyContract {
     interface Presenter {
 
-        void getCommodityQueryItemComment();
+        void getPlantingTechnology();
 
     }
 
     interface View extends IView {
 
-        String getItemId();
 
-        String getPageIndex();
+        String hospitalId();
 
-        void showCommodityQueryItemComment(List<CommentBean> bean);
+        void getPlantingTechnology(List<TechnologyBean> bean);
 
     }
 }

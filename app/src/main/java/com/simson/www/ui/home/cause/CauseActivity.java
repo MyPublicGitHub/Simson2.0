@@ -28,7 +28,9 @@ public class CauseActivity extends BasePresenterActivity<CausePresenter, CauseCo
     protected int getLayoutId() {
         return R.layout.activity_cause;
     }
+
     CauseAdapter adapter;
+
     @Override
     protected void initViews() {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -40,12 +42,9 @@ public class CauseActivity extends BasePresenterActivity<CausePresenter, CauseCo
         adapter.setEmptyView(R.layout.list_empty_view);
         adapter.setOnItemClickListener((adapter, view1, position) -> {
             List<CauseListBean> bean = (List<CauseListBean>) adapter.getData();
-            String link = bean.get(position).getAlopecia_cause_link();
-            String id = bean.get(position).getAlopecia_cause_id();
-            String url = link + "?json={caseId:" + id + "}";
             startActivity(new Intent(this, WebViewActivity.class)
                     .putExtra(Const.WEB_VIEW_TITLE, "脱发原因")
-                    .putExtra(Const.WEB_VIEW_URL, url));
+                    .putExtra(Const.WEB_VIEW_URL, bean.get(position).getAlopecia_cause_link()));
         });
         setRefresh();
     }
