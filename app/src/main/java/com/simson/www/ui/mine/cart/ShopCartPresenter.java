@@ -6,7 +6,7 @@ import com.simson.www.common.Const;
 import com.simson.www.net.NetConfig;
 import com.simson.www.net.bean.BaseBean;
 import com.simson.www.net.bean.mine.ShopCartBean;
-import com.simson.www.net.bean.mine.SubmitOrderBean;
+import com.simson.www.net.bean.mine.SubmitShoppCartBean;
 import com.simson.www.net.callback.RxBaseObserver;
 import com.simson.www.net.callback.RxObserver;
 import com.simson.www.ui.core.model.ShopCartModel;
@@ -110,10 +110,10 @@ public class ShopCartPresenter extends BasePresenter<ShopCartContract.View> impl
     @Override
     public void submitOrder() {
         mView = getView();
-        RxObserver<SubmitOrderBean> observer = new RxObserver<SubmitOrderBean>(this) {
+        RxObserver<SubmitShoppCartBean> observer = new RxObserver<SubmitShoppCartBean>(this) {
 
             @Override
-            public void onSuccess(SubmitOrderBean mData) {
+            public void onSuccess(SubmitShoppCartBean mData) {
                 mView.showSubmitOrder(mData);
             }
 
@@ -126,10 +126,11 @@ public class ShopCartPresenter extends BasePresenter<ShopCartContract.View> impl
         Map<String, String> map = new HashMap<>();
         map.put("timestamp", DateUtils.getStringDate());
         map.put("customerId", (String) SPUtils.get(Const.USER_INFO.CUSTOMER_ID, ""));//当前登录人
-        map.put("itemIds", mView.getItemIds());//itemIds：项目id多个逗号隔开必填
-        map.put("buyNums", mView.getBuyNums());//buyNums：购买数量多个逗号隔开必填
+        //map.put("itemIds", mView.getItemIds());//itemIds：项目id多个逗号隔开必填
+        //map.put("buyNums", mView.getBuyNums());//buyNums：购买数量多个逗号隔开必填
+        map.put("ids", mView.getCartId());//cartId：购物车id必填
         String json = new Gson().toJson(map);
-        mModel.submitOrder(json, observer);
+        mModel.submitShoppingCartOrder(json, observer);
         addDisposable(observer);
     }
 

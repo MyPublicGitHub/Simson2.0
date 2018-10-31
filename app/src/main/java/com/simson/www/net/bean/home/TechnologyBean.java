@@ -8,11 +8,11 @@ public class TechnologyBean {
      * technology_name : FUE
      * unit_price : 1.00
      */
-
+    public boolean isCheck;
     private String technology_id;
     private String hospital_id;
     private String technology_name;
-    private String unit_price;
+    private double unit_price;
 
     public String getTechnology_id() {
         return technology_id;
@@ -38,11 +38,11 @@ public class TechnologyBean {
         this.technology_name = technology_name;
     }
 
-    public String getUnit_price() {
+    public double getUnit_price() {
         return unit_price;
     }
 
-    public void setUnit_price(String unit_price) {
+    public void setUnit_price(double unit_price) {
         this.unit_price = unit_price;
     }
 }

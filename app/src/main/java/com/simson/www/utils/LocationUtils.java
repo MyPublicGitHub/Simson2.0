@@ -15,8 +15,6 @@ import java.util.List;
 
 /**
  * 位置信息的Utils
- *
- * @author zsl
  */
 public class LocationUtils {
     String TAG = "FLY.LocationUtils";
@@ -70,8 +68,8 @@ public class LocationUtils {
         Location location = locationManager.getLastKnownLocation(locationProvider);
         if (location != null) {
             setLocation(location);
-        } // 监视地理位置变化，第二个和第三个参数分别为更新的最短时间minTime和最短距离minDistace
-        locationManager.requestLocationUpdates(locationProvider, 5000, 3, locationListener);
+        } //如果开启了，请在onDestroy中remove 监视地理位置变化，第二个和第三个参数分别为更新的最短时间minTime和最短距离minDistace
+        //locationManager.requestLocationUpdates(locationProvider, 5000, 3, locationListener);
     }
 
     private void setLocation(Location location) {
@@ -119,7 +117,7 @@ public class LocationUtils {
         /** * 手机位置发生变动 */
         @Override
         public void onLocationChanged(Location location) {
-            location.getAccuracy();//
+            location.getAccuracy();//TODO
             // 精确度
             setLocation(location);
         }

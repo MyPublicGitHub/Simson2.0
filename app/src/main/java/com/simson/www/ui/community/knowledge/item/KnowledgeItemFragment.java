@@ -104,12 +104,6 @@ public class KnowledgeItemFragment extends BasePresenterFragment<KnowledgeItemPr
             refreshLayout.finishLoadMore();
         });
     }
-
-    @Override
-    protected KnowledgeItemPresenter createPresenter() {
-        return new KnowledgeItemPresenter();
-    }
-
     @Override
     public int getPage() {
         return mPage;
@@ -129,6 +123,11 @@ public class KnowledgeItemFragment extends BasePresenterFragment<KnowledgeItemPr
     public String search() {
         return null;
     }
+    @Override
+    protected KnowledgeItemPresenter createPresenter() {
+        return new KnowledgeItemPresenter();
+    }
+
 
     @Override
     protected void getBundle(Bundle bundle) {

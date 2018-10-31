@@ -14,8 +14,8 @@
 
         <com.simson.www.widget.CircleImageView
             android:id="@+id/iv_header"
-            android:layout_width="@dimen/dp_50"
-            android:layout_height="@dimen/dp_50"
+            android:layout_width="@dimen/dp_40"
+            android:layout_height="@dimen/dp_40"
             android:src="@mipmap/ic_placeholder" />
 
         <TextView
@@ -23,7 +23,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/dp_10"
-            android:layout_marginTop="@dimen/dp_5"
             android:layout_toRightOf="@id/iv_header"
             android:text="张俊杰"
             android:textColor="@color/colorBlack"
@@ -35,11 +34,11 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/tv_name"
             android:layout_marginLeft="@dimen/dp_10"
-            android:layout_marginTop="@dimen/dp_5"
+            android:layout_marginTop="@dimen/dp_2"
             android:layout_toRightOf="@id/iv_header"
             android:text="2018-08-09"
             android:textColor="@color/colorBlack_6"
-            android:textSize="@dimen/sp_14" />
+            android:textSize="@dimen/sp_12" />
 
         <TextView
             android:id="@+id/tv_follow"
@@ -54,7 +53,7 @@
             android:paddingTop="@dimen/dp_3"
             android:text="+ 关注"
             android:textColor="@color/colorMain"
-            android:textSize="@dimen/sp_15" />
+            android:textSize="@dimen/sp_14" />
     </RelativeLayout>
     <TextView
         android:id="@+id/tv_title"
@@ -63,7 +62,7 @@
         android:layout_marginTop="@dimen/dp_10"
         android:text="张俊杰"
         android:textColor="@color/colorBlack"
-        android:textSize="@dimen/sp_15" />
+        android:textSize="@dimen/sp_14" />
 
     <!--<TextView
         android:id="@+id/tv_content"
@@ -88,15 +87,12 @@
         app:bga_npl_placeholderDrawable="@mipmap/bga_pp_ic_holder_light"
         app:bga_npl_showAsLargeWhenOnlyOne="true" />
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/dp_1"
-        android:background="@color/colorWhiteBg" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_vertical"
+        android:layout_marginTop="@dimen/dp_5"
         android:orientation="horizontal">
 
         <TextView
@@ -105,10 +101,9 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="left"
-            android:padding="@dimen/dp_10"
             android:text="526已看"
             android:textColor="@color/colorBlack_4"
-            android:textSize="@dimen/sp_15" />
+            android:textSize="@dimen/sp_12" />
 
 
         <TextView
@@ -117,10 +112,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="right"
-            android:padding="@dimen/dp_10"
             android:text="152赞"
             android:textColor="@color/colorBlack_4"
-            android:textSize="@dimen/sp_15" />
-
+            android:textSize="@dimen/sp_12" />
     </LinearLayout>
 </LinearLayout>

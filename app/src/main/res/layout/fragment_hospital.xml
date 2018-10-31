@@ -1,296 +1,296 @@
-<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<com.scwang.smartrefresh.layout.SmartRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/refresh_layout"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/colorWhiteBg"
-    tools:context="com.simson.www.ui.shop.ShopFragment">
+    android:layout_height="match_parent">
 
-    <LinearLayout
+    <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
-
-
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/dp_170"
-            android:background="@mipmap/ic_bg_hospital" />
-
+        android:background="@color/colorWhiteBg"
+        tools:context="com.simson.www.ui.shop.ShopFragment">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/colorWhite"
-            android:orientation="horizontal"
-            android:padding="@dimen/dp_5">
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_170"
+                android:background="@mipmap/ic_bg_hospital" />
+
 
             <LinearLayout
-                android:id="@+id/ll_expert"
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/dp_5"
-                android:layout_weight="1"
-                android:background="@mipmap/ic_bg_expert"
-                android:gravity="center"
-                android:orientation="vertical">
+                android:background="@color/colorWhite"
+                android:orientation="horizontal"
+                android:padding="@dimen/dp_5">
 
-                <TextView
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:id="@+id/ll_expert"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:text="专家问诊"
-                    android:textColor="@color/colorWhite"
-                    android:textSize="@dimen/sp_16"
-                    android:textStyle="bold" />
+                    android:layout_margin="@dimen/dp_5"
+                    android:layout_weight="1"
+                    android:background="@mipmap/ic_bg_expert"
+                    android:gravity="center"
+                    android:orientation="vertical">
 
-                <TextView
-                    android:layout_width="wrap_content"
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="专家问诊"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="@dimen/sp_16"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/dp_5"
+                        android:text="专家坐镇问诊"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="@dimen/sp_14" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/ll_storage_value"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/dp_5"
-                    android:text="专家坐镇问诊"
-                    android:textColor="@color/colorWhite"
-                    android:textSize="@dimen/sp_14" />
+                    android:layout_margin="@dimen/dp_5"
+                    android:layout_weight="1"
+                    android:background="@mipmap/ic_bg_storage"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="储值充卡"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="@dimen/sp_16"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/dp_5"
+                        android:text="更多折扣优惠"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="@dimen/sp_14" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/ll_consultation"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/dp_5"
+                    android:layout_weight="1"
+                    android:background="@mipmap/ic_bg_consultation"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="电话咨询"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="@dimen/sp_16"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/dp_5"
+                        android:text="全天候极速响应"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="@dimen/sp_14" />
+                </LinearLayout>
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/ll_storage_value"
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/dp_5"
-                android:layout_weight="1"
-                android:background="@mipmap/ic_bg_storage"
-                android:gravity="center"
-                android:orientation="vertical">
+                android:layout_marginTop="@dimen/dp_10"
+                android:background="@color/colorWhite"
+                android:orientation="horizontal">
 
-                <TextView
-                    android:layout_width="wrap_content"
+                <RelativeLayout
+                    android:id="@+id/rl_cause"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:text="储值充卡"
-                    android:textColor="@color/colorWhite"
-                    android:textSize="@dimen/sp_16"
-                    android:textStyle="bold" />
+                    android:layout_weight="1"
+                    android:padding="@dimen/dp_10">
 
-                <TextView
-                    android:layout_width="wrap_content"
+                    <TextView
+                        android:id="@+id/tv1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="脱发原因"
+                        android:textColor="@color/colorBlack"
+                        android:textSize="@dimen/sp_15" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/tv1"
+                        android:layout_marginTop="@dimen/dp_5"
+                        android:gravity="center"
+                        android:text="了解原因 根治脱发"
+                        android:textColor="@color/colorBlack_6"
+                        android:textSize="@dimen/sp_12" />
+
+                    <ImageView
+                        android:layout_width="@dimen/dp_50"
+                        android:layout_height="@dimen/dp_50"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:src="@mipmap/ic_home_cause" />
+                </RelativeLayout>
+
+                <View
+                    android:layout_width="@dimen/dp_1"
+                    android:layout_height="match_parent"
+                    android:background="@color/colorWhiteBg" />
+
+                <RelativeLayout
+                    android:id="@+id/rv_subscribe_test"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/dp_5"
-                    android:text="更多折扣优惠"
-                    android:textColor="@color/colorWhite"
-                    android:textSize="@dimen/sp_14" />
+                    android:layout_weight="1"
+                    android:padding="@dimen/dp_10">
+
+                    <TextView
+                        android:id="@+id/tv2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="毛囊检测"
+                        android:textColor="@color/colorBlack"
+                        android:textSize="@dimen/sp_15" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/tv2"
+                        android:layout_marginTop="@dimen/dp_5"
+                        android:gravity="center"
+                        android:text="在线检测 预约检测"
+                        android:textColor="@color/colorBlack_6"
+                        android:textSize="@dimen/sp_12" />
+
+                    <ImageView
+                        android:layout_width="@dimen/dp_50"
+                        android:layout_height="@dimen/dp_50"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:src="@mipmap/ic_home_test" />
+                </RelativeLayout>
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/ll_consultation"
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/dp_5"
-                android:layout_weight="1"
-                android:background="@mipmap/ic_bg_consultation"
-                android:gravity="center"
-                android:orientation="vertical">
+                android:layout_marginTop="@dimen/dp_1"
+                android:background="@color/colorWhite"
+                android:orientation="horizontal">
 
-                <TextView
-                    android:layout_width="wrap_content"
+                <RelativeLayout
+                    android:id="@+id/rl_consultation"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:text="电话咨询"
-                    android:textColor="@color/colorWhite"
-                    android:textSize="@dimen/sp_16"
-                    android:textStyle="bold" />
+                    android:layout_weight="1"
+                    android:padding="@dimen/dp_10">
 
-                <TextView
-                    android:layout_width="wrap_content"
+                    <TextView
+                        android:id="@+id/tv3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="咨询医生"
+                        android:textColor="@color/colorBlack"
+                        android:textSize="@dimen/sp_15" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/tv3"
+                        android:layout_marginTop="@dimen/dp_5"
+                        android:gravity="center"
+                        android:text="在线咨询 电话咨询"
+                        android:textColor="@color/colorBlack_6"
+                        android:textSize="@dimen/sp_12" />
+
+                    <ImageView
+                        android:layout_width="@dimen/dp_50"
+                        android:layout_height="@dimen/dp_50"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:src="@mipmap/ic_home_consultation" />
+                </RelativeLayout>
+
+                <View
+                    android:layout_width="@dimen/dp_1"
+                    android:layout_height="match_parent"
+                    android:background="@color/colorWhiteBg" />
+
+                <RelativeLayout
+                    android:id="@+id/rv_subscribe"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/dp_5"
-                    android:text="全天候极速响应"
-                    android:textColor="@color/colorWhite"
-                    android:textSize="@dimen/sp_14" />
+                    android:layout_weight="1"
+                    android:padding="@dimen/dp_10">
+
+                    <TextView
+                        android:id="@+id/tv4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="线上预约"
+                        android:textColor="@color/colorBlack"
+                        android:textSize="@dimen/sp_15" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/tv4"
+                        android:layout_marginTop="@dimen/dp_5"
+                        android:gravity="center"
+                        android:text="无需排队 在线预约"
+                        android:textColor="@color/colorBlack_6"
+                        android:textSize="@dimen/sp_12" />
+
+                    <ImageView
+                        android:layout_width="@dimen/dp_50"
+                        android:layout_height="@dimen/dp_50"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:src="@mipmap/ic_home_online_reservation" />
+                </RelativeLayout>
             </LinearLayout>
-        </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/dp_10"
-            android:background="@color/colorWhite"
-            android:orientation="horizontal">
-
-            <RelativeLayout
-                android:id="@+id/rl_cause"
-                android:layout_width="0dp"
+            <TextView
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_10"
+                android:layout_marginBottom="@dimen/dp_1"
                 android:layout_weight="1"
-                android:padding="@dimen/dp_10">
-
-                <TextView
-                    android:id="@+id/tv1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:text="脱发原因"
-                    android:textColor="@color/colorBlack"
-                    android:textSize="@dimen/sp_15" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/tv1"
-                    android:layout_marginTop="@dimen/dp_5"
-                    android:gravity="center"
-                    android:text="了解原因 根治脱发"
-                    android:textColor="@color/colorBlack_6"
-                    android:textSize="@dimen/sp_12" />
-
-                <ImageView
-                    android:layout_width="@dimen/dp_50"
-                    android:layout_height="@dimen/dp_50"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:src="@mipmap/ic_home_cause" />
-            </RelativeLayout>
-
-            <View
-                android:layout_width="@dimen/dp_1"
-                android:layout_height="match_parent"
-                android:background="@color/colorWhiteBg" />
-
-            <RelativeLayout
-                android:id="@+id/rv_subscribe_test"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:padding="@dimen/dp_10">
-
-                <TextView
-                    android:id="@+id/tv2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:text="毛囊检测"
-                    android:textColor="@color/colorBlack"
-                    android:textSize="@dimen/sp_15" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/tv2"
-                    android:layout_marginTop="@dimen/dp_5"
-                    android:gravity="center"
-                    android:text="在线检测 预约检测"
-                    android:textColor="@color/colorBlack_6"
-                    android:textSize="@dimen/sp_12" />
-
-                <ImageView
-                    android:layout_width="@dimen/dp_50"
-                    android:layout_height="@dimen/dp_50"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:src="@mipmap/ic_home_test" />
-            </RelativeLayout>
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/dp_1"
-            android:background="@color/colorWhite"
-            android:orientation="horizontal">
-
-            <RelativeLayout
-                android:id="@+id/rl_consultation"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:padding="@dimen/dp_10">
-
-                <TextView
-                    android:id="@+id/tv3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:text="咨询医生"
-                    android:textColor="@color/colorBlack"
-                    android:textSize="@dimen/sp_15" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/tv3"
-                    android:layout_marginTop="@dimen/dp_5"
-                    android:gravity="center"
-                    android:text="在线咨询 电话咨询"
-                    android:textColor="@color/colorBlack_6"
-                    android:textSize="@dimen/sp_12" />
-
-                <ImageView
-                    android:layout_width="@dimen/dp_50"
-                    android:layout_height="@dimen/dp_50"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:src="@mipmap/ic_home_consultation" />
-            </RelativeLayout>
-
-            <View
-                android:layout_width="@dimen/dp_1"
-                android:layout_height="match_parent"
-                android:background="@color/colorWhiteBg" />
-
-            <RelativeLayout
-                android:id="@+id/rv_subscribe"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:padding="@dimen/dp_10">
-
-                <TextView
-                    android:id="@+id/tv4"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:text="线上预约"
-                    android:textColor="@color/colorBlack"
-                    android:textSize="@dimen/sp_15" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/tv4"
-                    android:layout_marginTop="@dimen/dp_5"
-                    android:gravity="center"
-                    android:text="无需排队 在线预约"
-                    android:textColor="@color/colorBlack_6"
-                    android:textSize="@dimen/sp_12" />
-
-                <ImageView
-                    android:layout_width="@dimen/dp_50"
-                    android:layout_height="@dimen/dp_50"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:src="@mipmap/ic_home_online_reservation" />
-            </RelativeLayout>
-        </LinearLayout>
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/dp_10"
-            android:layout_marginBottom="@dimen/dp_1"
-            android:layout_weight="1"
-            android:background="@color/colorWhite"
-            android:padding="@dimen/dp_10"
-            android:text="猜你喜欢"
-            android:textColor="@color/colorBlack"
-            android:textSize="@dimen/sp_14" />
-
-        <com.scwang.smartrefresh.layout.SmartRefreshLayout
-            android:id="@+id/refresh_layout"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+                android:background="@color/colorWhite"
+                android:padding="@dimen/dp_10"
+                android:text="猜你喜欢"
+                android:textColor="@color/colorBlack"
+                android:textSize="@dimen/sp_14" />
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/recycler_view"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/dp_1" />
-        </com.scwang.smartrefresh.layout.SmartRefreshLayout>
-    </LinearLayout>
+        </LinearLayout>
 
-</android.support.v4.widget.NestedScrollView>
+    </android.support.v4.widget.NestedScrollView>
+</com.scwang.smartrefresh.layout.SmartRefreshLayout>

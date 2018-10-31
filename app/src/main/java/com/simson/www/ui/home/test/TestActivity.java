@@ -18,7 +18,7 @@ public class TestActivity extends BasePresenterActivity {
 
     @Override
     protected boolean initToolbar() {
-        mTitle.setText("毛囊检测");
+        mTitle.setText("脱发检测");
         return true;
     }
 }

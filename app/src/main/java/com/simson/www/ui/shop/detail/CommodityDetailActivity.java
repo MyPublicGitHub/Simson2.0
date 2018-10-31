@@ -5,11 +5,17 @@ import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.graphics.Paint;
 import android.location.Location;
+import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.Editable;
 import android.text.TextUtils;
+import android.text.TextWatcher;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -31,6 +37,7 @@ import com.simson.www.ui.base.BasePresenterActivity;
 import com.simson.www.ui.home.hospital.detail.HospitalDetailActivity;
 import com.simson.www.ui.home.hospital.select.SelectHospitalActivity;
 import com.simson.www.ui.mine.pay.PayActivity;
+import com.simson.www.ui.mine.pay.point.PayPointActivity;
 import com.simson.www.ui.shop.detail.detail.DetailFragment;
 import com.simson.www.ui.shop.detail.praise.PraiseActivity;
 import com.simson.www.ui.shop.detail.procedure.ProcedureFragment;
@@ -155,24 +162,18 @@ public class CommodityDetailActivity extends BasePresenterActivity<CommodityDeta
         tvPoint.setText("积分：" + bean.getItem_point());
         tvUnity.setText("毛囊单位：" + bean.getHair_follicles_number() + "U");
         point = bean.getItem_point();
-        money = bean.getPresent_price();
+        isPoint = bean.getIs_point() == 0 ? false : true;
+        //money = bean.getPresent_price();
+        pointUnityPrice = bean.getItem_point();
         initMethod(bean.getIs_collect() == 0 ? false : true);
     }
 
+    boolean isPoint;
     LatelyHospitalBean latelyHospitalBean;
 
     @Override
     public void getLatelyHospital(LatelyHospitalBean bean) {
         latelyHospitalBean = bean;
-/**
- * hospital_id : 1
- * hospital_name : 南京新生植发
- * hospital_icon : https://appapi.maofa.com/userfiles/hospital/nanjing.png
- * hospital_address : 江苏省南京市鼓楼区福建路31-1号
- * consulting_phone : 400-666-7272
- * hospital_longitude : 118.764180
- * hospital_latitude : 32.083646
- */
         if (bean == null) return;
         GlideUtils.with(bean.getHospital_icon(), ivHospitalImg);
         tvHospitalName.setText("" + bean.getHospital_name());
@@ -224,16 +225,26 @@ public class CommodityDetailActivity extends BasePresenterActivity<CommodityDeta
     }
 
     double money;
-    int point;
+    int point, pointUnityPrice;
 
     @Override
     public void showSubmitOrder(SubmitOrderBean bean) {
         if (bean.getOrderId() != null) {
-            Intent intent = new Intent(this, PayActivity.class);
+            Intent intent;
+            if (isPoint) {
+                intent = new Intent(this, PayPointActivity.class);
+            } else {
+                intent = new Intent(this, PayActivity.class);
+            }
             intent.putExtra("transactionMoney", money);
             intent.putExtra("transactionPoint", point);
+            intent.putExtra("isPoint", isPoint);
+            intent.putExtra("CommodityDetailBean", beans);
+            intent.putExtra("unityPrice", unityPrice);
+            intent.putExtra("buyNum", getBuyNum());
             intent.putExtra("orderId", bean.getOrderId());
             startActivity(intent);
+            finish();
         }
     }
 
@@ -247,7 +258,7 @@ public class CommodityDetailActivity extends BasePresenterActivity<CommodityDeta
         initMethod(!isCollect);
     }
 
-    CommonPopupWindow popupWindow;
+    CommonPopupWindow popupWindow, popupWindowPoint;
 
     @OnClick({R.id.ll_consultation, R.id.ll_collection, R.id.tv_save_shop, R.id.tv_pay_now, R.id.tv_more, R.id.phone_btn, R.id.hospital_btn})
     public void onViewClicked(View view) {
@@ -271,45 +282,229 @@ public class CommodityDetailActivity extends BasePresenterActivity<CommodityDeta
                 mPresenter.saveShopCart();
                 break;
             case R.id.tv_pay_now:
-                //mPresenter.submitOrder();
                 if (beans == null) return;
-                popupWindow = new CommonPopupWindow.Builder(this)
-                        .setView(R.layout.pop_shop_detail) //设置PopupWindow布局
-                        .setWidthAndHeight(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT) //设置宽高
-                        //.setAnimationStyle(R.style.AnimDown) //设置动画
-                        .setBackGroundLevel(0.5f) //设置背景颜色，取值范围0.0f-1.0f 值越小越暗 1.0f为透明
-                        .setViewOnclickListener((view1, layoutResId) -> {
-                            RecyclerView recyclerView = view1.findViewById(R.id.recycler_view);
-                            hospitalTechnologyAdapter = new HospitalTechnologyAdapter(null);
-                            recyclerView.setLayoutManager(new GridLayoutManager(this, 3));
-                            //hospitalTechnologyAdapter.bindToRecyclerView(recyclerView);
-                            //hospitalTechnologyAdapter.setEmptyView(R.layout.list_empty_view);
-                            recyclerView.setAdapter(hospitalTechnologyAdapter);
-                            hospitalTechnologyAdapter.setOnItemClickListener(onItemClickListener);
-                            ImageView iv_image = view1.findViewById(R.id.iv_image);
-                            TextView tv_title = view1.findViewById(R.id.tv_title);
-                            TextView tv_present = view1.findViewById(R.id.tv_present);
-                            TextView tv_unity = view1.findViewById(R.id.tv_unity);
-                            tv_number = view1.findViewById(R.id.tv_number);
-                            tv_hospital_name = view1.findViewById(R.id.tv_hospital_name);
-                            tv_date = view1.findViewById(R.id.tv_date);
-                            view1.findViewById(R.id.tv_reduce).setOnClickListener(onClickListener);
-                            view1.findViewById(R.id.tv_add).setOnClickListener(onClickListener);
-                            view1.findViewById(R.id.btn_commit).setOnClickListener(onClickListener);
-                            tv_hospital_name.setOnClickListener(onClickListener);
-                            tv_date.setOnClickListener(onClickListener);
-                            GlideUtils.with(beans.getPicture().get(0), iv_image);
-                            tv_title.setText("" + beans.getItem_name());
-                            tv_present.setText("￥" + beans.getPresent_price());
-                            tv_unity.setText("毛囊单位：" + beans.getHair_follicles_number() + "U");
-
-                        })
-                        .setOutsideTouchable(true) //设置外部是否可点击 默认是true
-                        .create(); //开始构建
-                popupWindow.showAsDropDown(mTitle);//弹出PopupWindow
+                if (isPoint) {
+                    showBuyPoint();
+                } else {
+                    showNoPoint();
+                }
                 break;
         }
     }
+
+    private void showBuyPoint() {
+        if (popupWindowPoint == null) {
+            popupWindowPoint = new CommonPopupWindow.Builder(this)
+                    .setView(R.layout.pop_shop_detail_point) //设置PopupWindow布局
+                    .setWidthAndHeight(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT) //设置宽高
+                    //.setAnimationStyle(R.style.AnimDown) //设置动画
+                    .setBackGroundLevel(0.5f) //设置背景颜色，取值范围0.0f-1.0f 值越小越暗 1.0f为透明
+                    .setViewOnclickListener((view1, layoutResId) -> {
+                        ImageView iv_image = view1.findViewById(R.id.iv_image);
+                        TextView tv_title = view1.findViewById(R.id.tv_title);
+                        tv_present_point = view1.findViewById(R.id.tv_present);
+                        tv_number_point = view1.findViewById(R.id.tv_number);
+                        tv_reduce_point = view1.findViewById(R.id.tv_reduce);
+                        tv_add_point = view1.findViewById(R.id.tv_add);
+                        view1.findViewById(R.id.btn_commit).setOnClickListener(onClickListener);
+                        tv_present_point.setText("￥" + beans.getItem_point());
+                        GlideUtils.with(beans.getPicture().get(0), iv_image);
+                        tv_title.setText("" + beans.getItem_name());
+                        tv_present_point.setText("￥" + beans.getItem_point());
+                        tv_number_point.addTextChangedListener(new TextWatcher() {
+                            @Override
+                            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+                            }
+
+                            @Override
+                            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+                            }
+
+                            @Override
+                            public void afterTextChanged(Editable editable) {
+                                int number = Integer.parseInt(editable.toString());
+                                point = number * pointUnityPrice;
+                                tv_present_point.setText("￥" + point);
+                                LogUtils.d("point:" + point);
+                            }
+                        });
+                        tv_reduce_point.setOnTouchListener(onTouchListener);
+                        tv_add_point.setOnTouchListener(onTouchListener);
+
+                    })
+                    .setOutsideTouchable(true) //设置外部是否可点击 默认是true
+                    .create(); //开始构建
+        }
+        popupWindowPoint.showAsDropDown(mTitle);//弹出PopupWindow
+    }
+
+    private void showNoPoint() {
+        if (popupWindow == null) {
+            popupWindow = new CommonPopupWindow.Builder(this)
+                    .setView(R.layout.pop_shop_detail) //设置PopupWindow布局
+                    .setWidthAndHeight(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT) //设置宽高
+                    //.setAnimationStyle(R.style.AnimDown) //设置动画
+                    .setBackGroundLevel(0.5f) //设置背景颜色，取值范围0.0f-1.0f 值越小越暗 1.0f为透明
+                    .setViewOnclickListener((view1, layoutResId) -> {
+                        RecyclerView recyclerView = view1.findViewById(R.id.recycler_view);
+                        hospitalTechnologyAdapter = new HospitalTechnologyAdapter(null);
+                        recyclerView.setLayoutManager(new GridLayoutManager(this, 3));
+                        //hospitalTechnologyAdapter.bindToRecyclerView(recyclerView);
+                        //hospitalTechnologyAdapter.setEmptyView(R.layout.list_empty_view);
+                        recyclerView.setAdapter(hospitalTechnologyAdapter);
+                        hospitalTechnologyAdapter.setOnItemClickListener(onItemClickListener);
+                        ImageView iv_image = view1.findViewById(R.id.iv_image);
+                        TextView tv_title = view1.findViewById(R.id.tv_title);
+                        tv_present = view1.findViewById(R.id.tv_present);
+                        TextView tv_unity = view1.findViewById(R.id.tv_unity);
+                        tv_number = view1.findViewById(R.id.tv_number);
+                        tv_hospital_name = view1.findViewById(R.id.tv_hospital_name);
+                        tv_date = view1.findViewById(R.id.tv_date);
+                        tv_reduce = view1.findViewById(R.id.tv_reduce);
+                        tv_add = view1.findViewById(R.id.tv_add);
+                        view1.findViewById(R.id.btn_commit).setOnClickListener(onClickListener);
+                        tv_hospital_name.setOnClickListener(onClickListener);
+                        tv_date.setOnClickListener(onClickListener);
+                        GlideUtils.with(beans.getPicture().get(0), iv_image);
+                        tv_title.setText("" + beans.getItem_name());
+                        tv_unity.setText("毛囊单位：" + beans.getHair_follicles_number() + "U");
+                        tv_number.addTextChangedListener(new TextWatcher() {
+                            @Override
+                            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+                            }
+
+                            @Override
+                            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+                            }
+
+                            @Override
+                            public void afterTextChanged(Editable editable) {
+                                int number = Integer.parseInt(editable.toString());
+                                money = number * unityPrice;
+                                tv_present.setText("￥" + money);
+                                LogUtils.d("number:" + number);
+                            }
+                        });
+                        tv_reduce.setOnTouchListener(onTouchListener);
+                        tv_add.setOnTouchListener(onTouchListener);
+
+                    })
+                    .setOutsideTouchable(true) //设置外部是否可点击 默认是true
+                    .create(); //开始构建
+        }
+        popupWindow.showAsDropDown(mTitle);//弹出PopupWindow
+    }
+
+    View.OnTouchListener onTouchListener = new View.OnTouchListener() {
+        @Override
+        public boolean onTouch(View v, MotionEvent event) {
+            longClicked = true;
+            if (event.getAction() == MotionEvent.ACTION_DOWN) {
+                Thread t = new Thread() {
+                    @Override
+                    public void run() {
+                        while (longClicked) {
+                            Bundle bundle = new Bundle();
+                            if (v.getId() == R.id.tv_add) {
+                                bundle.putBoolean("add", true);
+                            } else {
+                                bundle.putBoolean("add", false);
+                            }
+                            Message message = new Message();
+                            message.setData(bundle);
+                            mHandler.sendMessage(message);
+                            try {
+                                Thread.sleep(150);
+                            } catch (InterruptedException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    }
+                };
+                t.start();
+            } else if (event.getAction() == MotionEvent.ACTION_UP) {
+                longClicked = false;
+            }
+            return true;
+        }
+    };
+
+    private void handleMessagePint(Message msg) {
+        String trim = tv_number_point.getText().toString().trim();
+        int num = Integer.parseInt(trim);
+        Bundle bundle = msg.getData();
+        if (bundle.getBoolean("add")) {
+            num = num + 1;
+        } else {
+            num = num - 1;
+        }
+        if (num <= 1) {
+            tv_number_point.setText("1");
+            tv_reduce_point.setBackgroundColor(tv_reduce_point.getContext().getResources().getColor(R.color.colorBlack_6));
+            tv_reduce_point.setClickable(false);
+            tv_add_point.setBackgroundColor(tv_reduce_point.getContext().getResources().getColor(R.color.colorPrimary));
+            tv_add_point.setClickable(true);
+        } else if (num >= maxValue) {
+            tv_number_point.setText(maxValue + "");
+            tv_reduce_point.setBackgroundColor(tv_reduce_point.getContext().getResources().getColor(R.color.colorPrimary));
+            tv_reduce_point.setClickable(true);
+            tv_add_point.setBackgroundColor(tv_reduce_point.getContext().getResources().getColor(R.color.colorBlack_6));
+            tv_add_point.setClickable(false);
+        } else {
+            tv_number_point.setText(num + "");
+            tv_reduce_point.setBackgroundColor(tv_reduce_point.getContext().getResources().getColor(R.color.colorPrimary));
+            tv_reduce_point.setClickable(true);
+            tv_add_point.setBackgroundColor(tv_reduce_point.getContext().getResources().getColor(R.color.colorPrimary));
+            tv_add_point.setClickable(true);
+        }
+    }
+
+    private void handleMessageNoPint(Message msg) {
+        String trim = tv_number.getText().toString().trim();
+        int num = Integer.parseInt(trim);
+        Bundle bundle = msg.getData();
+        if (bundle.getBoolean("add")) {
+            num = num + 1;
+        } else {
+            num = num - 1;
+        }
+        if (num <= 1) {
+            tv_number.setText("1");
+            tv_reduce.setBackgroundColor(tv_reduce.getContext().getResources().getColor(R.color.colorBlack_6));
+            tv_reduce.setClickable(false);
+            tv_add.setBackgroundColor(tv_reduce.getContext().getResources().getColor(R.color.colorPrimary));
+            tv_add.setClickable(true);
+        } else if (num > maxValue) {
+            tv_number.setText(maxValue + "");
+            tv_reduce.setBackgroundColor(tv_reduce.getContext().getResources().getColor(R.color.colorPrimary));
+            tv_reduce.setClickable(true);
+            tv_add.setBackgroundColor(tv_reduce.getContext().getResources().getColor(R.color.colorBlack_6));
+            tv_add.setClickable(false);
+        } else {
+            tv_number.setText(num + "");
+            tv_reduce.setBackgroundColor(tv_reduce.getContext().getResources().getColor(R.color.colorPrimary));
+            tv_reduce.setClickable(true);
+            tv_add.setBackgroundColor(tv_reduce.getContext().getResources().getColor(R.color.colorPrimary));
+            tv_add.setClickable(true);
+        }
+    }
+
+    boolean longClicked;
+    int maxValue = 10000;
+    private Handler mHandler = new Handler() {
+        public void handleMessage(Message msg) {
+
+            if (isPoint) {
+                handleMessagePint(msg);
+            } else {
+                handleMessageNoPint(msg);
+            }
+        }
+    };
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -322,24 +517,12 @@ public class CommodityDetailActivity extends BasePresenterActivity<CommodityDeta
         }
     }
 
-    TextView tv_number, tv_hospital_name, tv_date;
+    TextView tv_number, tv_hospital_name, tv_date, tv_present, tv_reduce, tv_add,
+            tv_present_point, tv_number_point, tv_reduce_point, tv_add_point;
     HospitalTechnologyAdapter hospitalTechnologyAdapter;
     View.OnClickListener onClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-            if (tv_number != null) {
-                String trim = tv_number.getText().toString().trim();
-                int num = Integer.parseInt(trim);
-                switch (view.getId()) {
-                    case R.id.tv_reduce:
-                        num = num - 1;
-                        break;
-                    case R.id.tv_add:
-                        num = num + 1;
-                        break;
-                }
-                tv_number.setText(num + "");
-            }
             switch (view.getId()) {
                 case R.id.tv_hospital_name:
                     startActivityForResult(new Intent(CommodityDetailActivity.this, SelectHospitalActivity.class), 1001);
@@ -348,21 +531,25 @@ public class CommodityDetailActivity extends BasePresenterActivity<CommodityDeta
                     showDatePickerDialog();
                     break;
                 case R.id.btn_commit:
-                    if (TextUtils.isEmpty(tv_number.getText().toString())) {
-                        ToastUtils.showToast("请选择购买数量");
-                        return;
-                    }
-                    if (TextUtils.isEmpty(tv_date.getText().toString())) {
-                        ToastUtils.showToast("请选择到院时间");
-                        return;
-                    }
-                    if (TextUtils.isEmpty(hospitalId)) {
-                        ToastUtils.showToast("请选择就诊医院");
-                        return;
-                    }
-                    if (TextUtils.isEmpty(technologyId)) {
-                        ToastUtils.showToast("请选择植发技术");
-                        return;
+                    if (isPoint) {
+
+                    } else {
+                        if (TextUtils.isEmpty(tv_number.getText().toString())) {
+                            ToastUtils.showToast("请选择购买数量");
+                            return;
+                        }
+                        if (TextUtils.isEmpty(tv_date.getText().toString())) {
+                            ToastUtils.showToast("请选择到院时间");
+                            return;
+                        }
+                        if (TextUtils.isEmpty(hospitalId)) {
+                            ToastUtils.showToast("请选择就诊医院");
+                            return;
+                        }
+                        if (TextUtils.isEmpty(technologyId)) {
+                            ToastUtils.showToast("请选择植发技术");
+                            return;
+                        }
                     }
                     mPresenter.submitOrder();
                     break;
@@ -381,14 +568,29 @@ public class CommodityDetailActivity extends BasePresenterActivity<CommodityDeta
         datePickerDialog.show();
     }
 
+    double unityPrice;
+
     BaseQuickAdapter.OnItemClickListener onItemClickListener = new BaseQuickAdapter.OnItemClickListener() {
         @Override
         public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
             TechnologyBean beans = (TechnologyBean) adapter.getData().get(position);
             technologyId = beans.getTechnology_id();
+            unityPrice = beans.getUnit_price();
+            String trim = tv_number.getText().toString().trim();
+            int num = Integer.parseInt(trim);
+            money = num * unityPrice;
+            tv_present.setText("￥" + money);
+            for (int i = 0; i < adapter.getData().size(); i++) {
+                TechnologyBean bean = (TechnologyBean) adapter.getData().get(i);
+                if (i == position) {
+                    bean.isCheck = true;
+                } else {
+                    bean.isCheck = false;
+                }
+            }
+            hospitalTechnologyAdapter.notifyDataSetChanged();
         }
     };
-
 
     @Override
     public String getItemId() {
@@ -409,6 +611,9 @@ public class CommodityDetailActivity extends BasePresenterActivity<CommodityDeta
 
     @Override
     public String getBuyNum() {
+        if (isPoint) {
+            return tv_number_point == null ? "" : tv_number_point.getText().toString();
+        }
         return tv_number == null ? "" : tv_number.getText().toString();
     }
 
@@ -458,11 +663,11 @@ public class CommodityDetailActivity extends BasePresenterActivity<CommodityDeta
             mBanner.startAutoPlay();
     }
 
-    @Override
+    /*@Override
     protected void onDestroy() {
         super.onDestroy();
         LocationUtils.getInstance(this).removeLocationUpdatesListener();
-    }
+    }*/
 
     private void initBanner() {
         mBanner.setBannerStyle(BannerConfig.CIRCLE_INDICATOR);//设置banner样式

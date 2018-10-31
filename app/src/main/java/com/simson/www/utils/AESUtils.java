@@ -2,6 +2,8 @@ package com.simson.www.utils;
 
 import android.util.Base64;
 
+import com.simson.www.BuildConfig;
+
 import java.net.URLEncoder;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
@@ -29,6 +31,7 @@ public class AESUtils {
      * @throws Exception
      */
     public static String encrypt(String encryptSrc) {
+        if (BuildConfig.DEBUG) return encryptSrc;//本地服务器暂时没有加密，直接返回
         try {
             Cipher cipher = Cipher.getInstance("AES/CBC/PKCS5Padding");
             byte[] raw = sKey.getBytes();
@@ -38,7 +41,7 @@ public class AESUtils {
             byte[] encrypted = cipher.doFinal(encryptSrc.getBytes("utf-8"));
             //return new BASE64Encoder().encode(encrypted);// 此处使用BASE64做转码。
             //return Base64.encodeToString(encrypted, Base64.DEFAULT);
-            return URLEncoder.encode(Base64.encodeToString(encrypted, Base64.DEFAULT),"utf-8");
+            return URLEncoder.encode(Base64.encodeToString(encrypted, Base64.DEFAULT), "utf-8");
         } catch (NoSuchAlgorithmException e) {
             e.printStackTrace();
         } catch (NoSuchPaddingException e) {

@@ -22,7 +22,7 @@ public class SubscribePresenter extends BasePresenter<SubscribeContract.View> im
     private SubscribeModel mModel;
     private SubscribeContract.View mView;
 
-    SubscribePresenter() {
+    public SubscribePresenter() {
         this.mModel = new SubscribeModel();
     }
 

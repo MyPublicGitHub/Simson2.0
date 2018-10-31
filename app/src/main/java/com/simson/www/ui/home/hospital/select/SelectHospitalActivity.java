@@ -7,9 +7,8 @@ import android.support.v7.widget.RecyclerView;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.simson.www.R;
 import com.simson.www.net.bean.home.HospitalItemBean;
-import com.simson.www.ui.adapter.HospitalItemAdapter;
+import com.simson.www.ui.adapter.SelectHospitalAdapter;
 import com.simson.www.ui.base.BasePresenterActivity;
-import com.simson.www.ui.home.hospital.detail.HospitalDetailActivity;
 import com.simson.www.ui.home.hospital.item.HospitalItemContract;
 import com.simson.www.ui.home.hospital.item.HospitalItemPresenter;
 
@@ -29,12 +28,12 @@ public class SelectHospitalActivity extends BasePresenterActivity<HospitalItemPr
         return R.layout.activity_select_hospital;
     }
 
-    HospitalItemAdapter adapter;
+    SelectHospitalAdapter adapter;
 
     @Override
     protected void initViews() {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        adapter = new HospitalItemAdapter(null);
+        adapter = new SelectHospitalAdapter(null);
         recyclerView.setAdapter(adapter);
         recyclerView.setNestedScrollingEnabled(false);
         recyclerView.setFocusable(false);

@@ -18,6 +18,7 @@ import com.simson.www.ui.community.circle.save.SaveFriendCircleActivity;
 import com.simson.www.ui.community.expert.ExpertFragment;
 import com.simson.www.ui.community.expert.save.NewQuestionsActivity;
 import com.simson.www.ui.community.knowledge.KnowledgeFragment;
+import com.simson.www.ui.community.knowledge.search.SearchKnowledgeActivity;
 import com.simson.www.ui.core.presenter.BasePresenter;
 import com.simson.www.utils.ToastUtils;
 
@@ -70,7 +71,7 @@ public class CommunityFragment extends BasePresenterFragment {
                 if (position == 0) {
                     ivMenu.setImageResource(R.mipmap.ic_search);
                 } else {
-                    ivMenu.setImageResource(R.mipmap.ic_add_picture);
+                    ivMenu.setImageResource(R.drawable.ic_camera_white_24dp);
                 }
             }
 
@@ -81,10 +82,12 @@ public class CommunityFragment extends BasePresenterFragment {
         });
     }
 
-    @OnClick({R.id.tv_search, R.id.iv_menu})
+    @OnClick({R.id.tv_search, R.id.iv_menu, R.id.ll_search})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.tv_search:
+            case R.id.ll_search:
+                startActivity(new Intent(getContext(),SearchKnowledgeActivity.class));
                 break;
             case R.id.iv_menu:
                 if (viewPager.getCurrentItem() == 0) {

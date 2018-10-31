@@ -21,6 +21,6 @@ public class ShopIntegralAdapter extends BaseQuickAdapter<ShopListBean, BaseView
     protected void convert(BaseViewHolder helper, ShopListBean item) {
         GlideUtils.with(item.getItem_icon(),helper.getView(R.id.iv_image));
         helper.setText(R.id.tv_title,item.getItem_name()+"");
-        helper.setText(R.id.tv_integral,item.getItem_point()+"");
+        helper.setText(R.id.tv_integral,"积分:"+item.getItem_point()+"");
     }
 }

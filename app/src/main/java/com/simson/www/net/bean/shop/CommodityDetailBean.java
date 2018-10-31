@@ -1,8 +1,9 @@
 package com.simson.www.net.bean.shop;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class CommodityDetailBean {
+public class CommodityDetailBean implements Serializable {
 
 
     /**

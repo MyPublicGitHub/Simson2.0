@@ -13,7 +13,7 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/colorMain">
+            android:background="@mipmap/ic_bg_mine">
 
             <ImageView
                 android:id="@+id/iv_setting"
@@ -42,13 +42,14 @@
 
                 <TextView
                     android:id="@+id/tv_user_name"
+                    android:gravity="center"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:hint="@string/sign_in_or_register"
                     android:padding="@dimen/dp_5"
                     android:textColor="@color/colorWhite"
                     android:textColorHint="@color/colorWhiteBg"
-                    android:textSize="@dimen/sp_16" />
+                    android:textSize="@dimen/sp_15" />
             </LinearLayout>
 
             <View
@@ -71,7 +72,7 @@
                 android:padding="@dimen/dp_5"
                 android:text="粉丝：0"
                 android:textColor="@color/colorWhite"
-                android:textSize="@dimen/sp_16" />
+                android:textSize="@dimen/sp_15" />
 
             <TextView
                 android:id="@+id/tv_follow"
@@ -84,7 +85,7 @@
                 android:padding="@dimen/dp_5"
                 android:text="关注：0"
                 android:textColor="@color/colorWhite"
-                android:textSize="@dimen/sp_16" />
+                android:textSize="@dimen/sp_15" />
 
             <LinearLayout
                 android:id="@+id/ll_sign_in"
@@ -101,8 +102,8 @@
                 android:paddingBottom="@dimen/dp_7">
 
                 <ImageView
-                    android:layout_width="@dimen/dp_26"
-                    android:layout_height="@dimen/dp_26"
+                    android:layout_width="@dimen/dp_25"
+                    android:layout_height="@dimen/dp_25"
                     android:src="@mipmap/ic_mine_sign_in" />
 
                 <TextView
@@ -139,7 +140,7 @@
                         android:layout_marginTop="@dimen/dp_3"
                         android:text="0"
                         android:textColor="@color/colorWhite"
-                        android:textSize="@dimen/sp_14" />
+                        android:textSize="@dimen/sp_15" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -170,7 +171,7 @@
                         android:layout_marginTop="@dimen/dp_3"
                         android:text="0"
                         android:textColor="@color/colorWhite"
-                        android:textSize="@dimen/sp_16" />
+                        android:textSize="@dimen/sp_15" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -201,7 +202,7 @@
                         android:layout_marginTop="@dimen/dp_3"
                         android:text="0"
                         android:textColor="@color/colorWhite"
-                        android:textSize="@dimen/sp_16" />
+                        android:textSize="@dimen/sp_15" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -209,7 +210,7 @@
                         android:layout_marginTop="@dimen/dp_6"
                         android:text="消息"
                         android:textColor="@color/colorWhite"
-                        android:textSize="@dimen/sp_16" />
+                        android:textSize="@dimen/sp_14" />
                 </LinearLayout>
 
                 <View
@@ -232,7 +233,7 @@
                         android:layout_marginTop="@dimen/dp_3"
                         android:text="0"
                         android:textColor="@color/colorWhite"
-                        android:textSize="@dimen/sp_16" />
+                        android:textSize="@dimen/sp_15" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -240,7 +241,7 @@
                         android:layout_marginTop="@dimen/dp_6"
                         android:text="积分"
                         android:textColor="@color/colorWhite"
-                        android:textSize="@dimen/sp_16" />
+                        android:textSize="@dimen/sp_14" />
                 </LinearLayout>
             </LinearLayout>
         </RelativeLayout>
@@ -249,12 +250,11 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/dp_10"
             android:background="@color/colorWhite"
             android:padding="@dimen/dp_10"
             android:text="我的订单"
             android:textColor="@color/colorBlack"
-            android:textSize="@dimen/sp_16" />
+            android:textSize="@dimen/sp_14" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -274,8 +274,8 @@
                 android:orientation="vertical">
 
                 <ImageView
-                    android:layout_width="@dimen/dp_40"
-                    android:layout_height="@dimen/dp_40"
+                    android:layout_width="@dimen/dp_35"
+                    android:layout_height="@dimen/dp_35"
                     android:src="@mipmap/ic_mine_pending_payment" />
 
                 <TextView
@@ -284,7 +284,7 @@
                     android:layout_marginTop="@dimen/dp_3"
                     android:text="全部"
                     android:textColor="@color/colorBlack"
-                    android:textSize="@dimen/sp_14" />
+                    android:textSize="@dimen/sp_13" />
             </LinearLayout>
 
             <LinearLayout
@@ -296,8 +296,8 @@
                 android:orientation="vertical">
 
                 <ImageView
-                    android:layout_width="@dimen/dp_40"
-                    android:layout_height="@dimen/dp_40"
+                    android:layout_width="@dimen/dp_35"
+                    android:layout_height="@dimen/dp_35"
                     android:src="@mipmap/ic_mine_pending_delivery" />
 
                 <TextView
@@ -306,7 +306,7 @@
                     android:layout_marginTop="@dimen/dp_3"
                     android:text="已付款"
                     android:textColor="@color/colorBlack"
-                    android:textSize="@dimen/sp_14" />
+                    android:textSize="@dimen/sp_13" />
             </LinearLayout>
 
             <LinearLayout
@@ -318,8 +318,8 @@
                 android:orientation="vertical">
 
                 <ImageView
-                    android:layout_width="@dimen/dp_40"
-                    android:layout_height="@dimen/dp_40"
+                    android:layout_width="@dimen/dp_35"
+                    android:layout_height="@dimen/dp_35"
                     android:src="@mipmap/ic_mine_refund" />
 
                 <TextView
@@ -328,7 +328,7 @@
                     android:layout_marginTop="@dimen/dp_3"
                     android:text="未付款"
                     android:textColor="@color/colorBlack"
-                    android:textSize="@dimen/sp_14" />
+                    android:textSize="@dimen/sp_13" />
             </LinearLayout>
 
             <LinearLayout
@@ -340,8 +340,8 @@
                 android:orientation="vertical">
 
                 <ImageView
-                    android:layout_width="@dimen/dp_40"
-                    android:layout_height="@dimen/dp_40"
+                    android:layout_width="@dimen/dp_35"
+                    android:layout_height="@dimen/dp_35"
                     android:src="@mipmap/ic_mine_evaluate" />
 
                 <TextView
@@ -350,7 +350,7 @@
                     android:layout_marginTop="@dimen/dp_3"
                     android:text="@string/evaluate"
                     android:textColor="@color/colorBlack"
-                    android:textSize="@dimen/sp_14" />
+                    android:textSize="@dimen/sp_13" />
             </LinearLayout>
 
         </LinearLayout>
@@ -427,8 +427,8 @@
                 android:orientation="vertical">
 
                 <ImageView
-                    android:layout_width="@dimen/dp_40"
-                    android:layout_height="@dimen/dp_40"
+                    android:layout_width="@dimen/dp_35"
+                    android:layout_height="@dimen/dp_35"
                     android:src="@mipmap/ic_mine_shop_cart" />
 
                 <TextView
@@ -437,7 +437,7 @@
                     android:layout_marginTop="@dimen/dp_3"
                     android:text="购物车"
                     android:textColor="@color/colorBlack"
-                    android:textSize="@dimen/sp_14" />
+                    android:textSize="@dimen/sp_13" />
             </LinearLayout>
 
             <LinearLayout
@@ -449,8 +449,8 @@
                 android:orientation="vertical">
 
                 <ImageView
-                    android:layout_width="@dimen/dp_40"
-                    android:layout_height="@dimen/dp_40"
+                    android:layout_width="@dimen/dp_35"
+                    android:layout_height="@dimen/dp_35"
                     android:src="@mipmap/ic_mine_collection" />
 
                 <TextView
@@ -459,7 +459,7 @@
                     android:layout_marginTop="@dimen/dp_3"
                     android:text="收藏"
                     android:textColor="@color/colorBlack"
-                    android:textSize="@dimen/sp_14" />
+                    android:textSize="@dimen/sp_13" />
             </LinearLayout>
 
             <LinearLayout
@@ -471,8 +471,8 @@
                 android:orientation="vertical">
 
                 <ImageView
-                    android:layout_width="@dimen/dp_40"
-                    android:layout_height="@dimen/dp_40"
+                    android:layout_width="@dimen/dp_35"
+                    android:layout_height="@dimen/dp_35"
                     android:src="@mipmap/ic_mine_membership_card" />
 
                 <TextView
@@ -481,7 +481,7 @@
                     android:layout_marginTop="@dimen/dp_3"
                     android:text="会员卡"
                     android:textColor="@color/colorBlack"
-                    android:textSize="@dimen/sp_14" />
+                    android:textSize="@dimen/sp_13" />
             </LinearLayout>
 
             <LinearLayout
@@ -493,8 +493,8 @@
                 android:orientation="vertical">
 
                 <ImageView
-                    android:layout_width="@dimen/dp_40"
-                    android:layout_height="@dimen/dp_40"
+                    android:layout_width="@dimen/dp_35"
+                    android:layout_height="@dimen/dp_35"
                     android:src="@mipmap/ic_mine_wallet" />
 
                 <TextView
@@ -503,7 +503,7 @@
                     android:layout_marginTop="@dimen/dp_3"
                     android:text="新生钱包"
                     android:textColor="@color/colorBlack"
-                    android:textSize="@dimen/sp_14" />
+                    android:textSize="@dimen/sp_13" />
             </LinearLayout>
 
         </LinearLayout>
@@ -525,8 +525,8 @@
                 android:orientation="vertical">
 
                 <ImageView
-                    android:layout_width="@dimen/dp_40"
-                    android:layout_height="@dimen/dp_40"
+                    android:layout_width="@dimen/dp_35"
+                    android:layout_height="@dimen/dp_35"
                     android:src="@mipmap/ic_mine_invite" />
 
                 <TextView
@@ -535,7 +535,7 @@
                     android:layout_marginTop="@dimen/dp_3"
                     android:text="邀请好友"
                     android:textColor="@color/colorBlack"
-                    android:textSize="@dimen/sp_14" />
+                    android:textSize="@dimen/sp_13" />
             </LinearLayout>
 
             <LinearLayout
@@ -547,8 +547,8 @@
                 android:orientation="vertical">
 
                 <ImageView
-                    android:layout_width="@dimen/dp_40"
-                    android:layout_height="@dimen/dp_40"
+                    android:layout_width="@dimen/dp_35"
+                    android:layout_height="@dimen/dp_35"
                     android:src="@mipmap/ic_mine_customer" />
 
                 <TextView
@@ -557,7 +557,7 @@
                     android:layout_marginTop="@dimen/dp_3"
                     android:text="客服"
                     android:textColor="@color/colorBlack"
-                    android:textSize="@dimen/sp_14" />
+                    android:textSize="@dimen/sp_13" />
             </LinearLayout>
 
             <LinearLayout
@@ -569,8 +569,8 @@
                 android:orientation="vertical">
 
                 <ImageView
-                    android:layout_width="@dimen/dp_40"
-                    android:layout_height="@dimen/dp_40"
+                    android:layout_width="@dimen/dp_35"
+                    android:layout_height="@dimen/dp_35"
                     android:src="@mipmap/ic_mine_feedback" />
 
                 <TextView
@@ -579,7 +579,7 @@
                     android:layout_marginTop="@dimen/dp_3"
                     android:text="意见反馈"
                     android:textColor="@color/colorBlack"
-                    android:textSize="@dimen/sp_14" />
+                    android:textSize="@dimen/sp_13" />
             </LinearLayout>
 
             <LinearLayout

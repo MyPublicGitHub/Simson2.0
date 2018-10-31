@@ -23,9 +23,9 @@
             android:id="@+id/tv_wallet"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="1000000.00"
+            android:text="0.00"
             android:textColor="@color/white"
-            android:textSize="@dimen/dp_56" />
+            android:textSize="@dimen/dp_48" />
     </LinearLayout>
 
     <LinearLayout

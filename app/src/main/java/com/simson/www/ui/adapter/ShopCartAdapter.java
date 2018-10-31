@@ -30,6 +30,29 @@ public class ShopCartAdapter extends BaseQuickAdapter<ShopCartBean, BaseViewHold
 
     @Override
     protected void convert(BaseViewHolder helper, ShopCartBean item) {
+        /**
+         * transaction_money : 0.0
+         * transaction_point : 0
+         * cart_id : 372a4fd9b3fc43679ebe29b8ce7d5d15
+         * item_id : 2018007
+         * item_name : 【头顶加密种植】【私信领红包 送保险】无痕种植，个性定制，美丽从"头"做起
+         * item_icon : http://58.213.14.195:8081/upload/item/kunmingtoudingjiami/1.jpg
+         * buy_num : 3
+         * original_price : 1065.60
+         * present_price : 888.00
+         * item_point : 0
+         * is_point : 0
+         * is_technology : 1
+         * hair_follicles_number : 500
+         * create_time : 2018-09-11
+         * hospital_id :
+         * hospital_name :
+         * technology_id :
+         * technology_name :
+         * subscribe_date :
+         * subscribe_time :
+         * is_off : 1
+         */
         TextView tvNumber = helper.getView(R.id.tv_number);
         TextView tvReduce = helper.getView(R.id.tv_reduce);
 
@@ -85,15 +108,12 @@ public class ShopCartAdapter extends BaseQuickAdapter<ShopCartBean, BaseViewHold
         } else {
             tvNumber.setText(item.getBuy_num() + "");
         }
-        checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                item.isCheck = b;
-                if (b == false) {
-                    mActivity.setCheckAll(false);
-                    mActivity.isCheckAll = false;
-                }
-                mActivity.money();
+        checkBox.setOnCheckedChangeListener((compoundButton, b) -> {
+            item.isCheck = b;
+            if (b == false) {
+                mActivity.setCheckAll(false);
+                mActivity.isCheckAll = false;
             }
+            mActivity.money();
         });    }
 }

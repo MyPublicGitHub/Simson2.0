@@ -1,6 +1,5 @@
 package com.simson.www.ui.mine.cart;
 
-import android.content.Intent;
 import android.support.v7.widget.LinearLayoutManager;
 import android.text.TextUtils;
 import android.view.View;
@@ -12,10 +11,9 @@ import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.simson.www.R;
 import com.simson.www.net.bean.BaseBean;
 import com.simson.www.net.bean.mine.ShopCartBean;
-import com.simson.www.net.bean.mine.SubmitOrderBean;
+import com.simson.www.net.bean.mine.SubmitShoppCartBean;
 import com.simson.www.ui.adapter.ShopCartAdapter;
 import com.simson.www.ui.base.BasePresenterActivity;
-import com.simson.www.ui.mine.pay.PayActivity;
 import com.simson.www.utils.LogUtils;
 import com.simson.www.utils.ToastUtils;
 import com.yanzhenjie.recyclerview.swipe.SwipeMenu;
@@ -123,15 +121,15 @@ public class ShopCartActivity extends BasePresenterActivity<ShopCartPresenter, S
     }
 
     @Override
-    public void showSubmitOrder(SubmitOrderBean bean) {
-        if (bean.getOrderId() != null) {
+    public void showSubmitOrder(SubmitShoppCartBean bean) {
+        /*if (bean.getOrderId() != null) {
             Intent intent = new Intent(this, PayActivity.class);
             intent.putExtra("transactionMoney", money);
             intent.putExtra("transactionPoint", point);
             intent.putExtra("orderId", bean.getOrderId());
             startActivity(intent);
             finish();
-        }
+        }*/
     }
 
     @OnClick({R.id.tv_settlement, R.id.iv_check_all})
@@ -156,6 +154,11 @@ public class ShopCartActivity extends BasePresenterActivity<ShopCartPresenter, S
                             buyNums = data.get(i).getBuy_num() + "";
                         } else {
                             buyNums = buyNums + "," + data.get(i).getBuy_num();
+                        }
+                        if (TextUtils.isEmpty(cardId)) {
+                            cardId = data.get(i).getCart_id() + "";
+                        } else {
+                            cardId = cardId + "," + data.get(i).getCart_id();
                         }
                     }
                 }

@@ -12,8 +12,8 @@ android {
         javaCompileOptions { annotationProcessorOptions { includeCompileClasspath = true } }
         multiDexEnabled true
         vectorDrawables.useSupportLibrary = true
-        //manifestPlaceholders = [qqappid: "tencent100424468"]
         manifestPlaceholders = [
+                qqappid: "tencent100424468",//友盟分享
                 JPUSH_PKGNAME: "com.simson.www",
                 JPUSH_APPKEY : "9a3bd399dad9968d6792d1a6", //JPush 上注册的包名对应的 Appkey.
                 //JPUSH_APPKEY : "0fa6d308abab72ad12f5ce7c", //JPush 上注册的包名对应的 Appkey.
@@ -50,6 +50,20 @@ android {
             jniLibs.srcDirs = ['libs']
         }
 
+    }
+    signingConfigs {
+        debug {
+            storeFile file("simson_debug.jks")
+            storePassword "88888888"
+            keyAlias "simson"
+            keyPassword "88888888"
+        }
+        release {
+            storeFile file("simson_release.jks")
+            storePassword "88888888"
+            keyAlias "simson"
+            keyPassword "88888888"
+        }
     }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
@@ -113,10 +127,19 @@ dependencies {
     //alipay
     api files('libs/alipaySdk-20180403.jar')
     //wechatpay
-    api 'com.tencent.mm.opensdk:wechat-sdk-android-without-mta:+'
+    //api 'com.tencent.mm.opensdk:wechat-sdk-android-without-mta:+'//友盟包含
 
     //3D地图so及jar
-    implementation 'com.amap.api:3dmap:latest.integration'
+    //implementation 'com.amap.api:3dmap:latest.integration'
 
     implementation 'me.jessyan:autosize:1.0.0'//屏幕适配
+    //----------------------友盟-----------------------
+    implementation 'com.umeng.sdk:common:1.5.0'
+    implementation 'com.umeng.sdk:share-core:latest.integration'
+    implementation 'com.umeng.sdk:share-qq:latest.integration'
+    implementation 'com.umeng.sdk:share-wechat:latest.integration'
+    implementation 'com.umeng.sdk:share-sina:latest.integration'
+    //如果使用了分享面板，需要添加
+    implementation 'com.umeng.sdk:shareboard-widget:latest.integration'
+    //----------------------友盟-----------------------
 }

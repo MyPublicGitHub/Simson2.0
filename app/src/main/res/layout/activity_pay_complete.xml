@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_horizontal"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_150"
+        android:text="支付成功"
+        android:textColor="@color/black"
+        android:textSize="@dimen/dp_16" />
+
+    <TextView
+        android:id="@+id/tv_order"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_30"
+        android:background="@drawable/shape_corner_btn_bg"
+        android:paddingLeft="@dimen/dp_30"
+        android:paddingTop="@dimen/dp_10"
+        android:paddingRight="@dimen/dp_30"
+        android:paddingBottom="@dimen/dp_10"
+        android:text="查看订单"
+        android:textColor="@color/white"
+        android:textSize="@dimen/dp_16" />
+</LinearLayout>

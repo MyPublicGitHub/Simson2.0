@@ -3,7 +3,7 @@ package com.simson.www.ui.core.model;
 
 import com.simson.www.net.RxSchedulers;
 import com.simson.www.net.bean.mine.ShopCartBean;
-import com.simson.www.net.bean.mine.SubmitOrderBean;
+import com.simson.www.net.bean.mine.SubmitShoppCartBean;
 import com.simson.www.net.callback.RxBaseObserver;
 import com.simson.www.net.callback.RxObserver;
 import com.simson.www.utils.AESUtils;
@@ -33,9 +33,9 @@ public class ShopCartModel extends BaseModel {
                 .subscribe(rxObserver);
     }
 
-    public void submitOrder(String json, RxObserver<SubmitOrderBean> rxObserver) {
+    public void submitShoppingCartOrder(String json, RxObserver<SubmitShoppCartBean> rxObserver) {
         doRxRequest().
-                submitOrder(AESUtils.encrypt(json))
+                submitShoppingCartOrder(AESUtils.encrypt(json))
                 .compose(RxSchedulers.io_main())
                 .subscribe(rxObserver);
     }

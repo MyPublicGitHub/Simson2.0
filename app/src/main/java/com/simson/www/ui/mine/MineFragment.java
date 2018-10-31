@@ -74,8 +74,8 @@ public class MineFragment extends BasePresenterFragment<MinePresenter, MineContr
     @Override
     public void showCustomer(CustomerBean bean) {
         if (bean == null) return;
-        //GlideUtils.with(bean.get(), ivHeader);
-        //tvUserName.setText(bean.getCustomer_name() + "");
+        GlideUtils.with(bean.getCustomer_head(), ivHeader);
+        tvUserName.setText(bean.getCustomer_name() + "");
         tvFans.setText("粉丝：" + bean.getFans());
         tvFollow.setText("关注：" + bean.getFollows());
         tvPost.setText(bean.getSubscribes() + "");
@@ -94,7 +94,7 @@ public class MineFragment extends BasePresenterFragment<MinePresenter, MineContr
             return;
         }
         switch (view.getId()) {
-            case R.id.ll_member:
+            case R.id.ll_member://会员卡
                 startActivity(new Intent(getActivity(), MemberActivity.class));
                 break;
             case R.id.tv_fans:
@@ -143,22 +143,22 @@ public class MineFragment extends BasePresenterFragment<MinePresenter, MineContr
             case R.id.ll_already_shipped:
                 startActivity(new Intent(getActivity(), OrderActivity.class).putExtra("status", "2"));
                 break;
-            case R.id.ll_evaluate:
+            case R.id.ll_evaluate://
                 startActivity(new Intent(getActivity(), OrderActivity.class).putExtra("status", "3"));
                 break;
-            case R.id.ll_shop_card:
+            case R.id.ll_shop_card://购物车
                 startActivity(new Intent(getActivity(), ShopCartActivity.class));
                 break;
-            case R.id.ll_collect:
+            case R.id.ll_collect://收藏
                 startActivity(new Intent(getActivity(), CollectActivity.class));
                 break;
-            case R.id.ll_wallet:
+            case R.id.ll_wallet://
                 startActivity(new Intent(getActivity(), WalletActivity.class));
                 break;
-            case R.id.ll_feed_back:
+            case R.id.ll_feed_back://
                 startActivity(new Intent(getActivity(), FeedBackActivity.class));
                 break;
-            case R.id.ll_consultation:
+            case R.id.ll_consultation://客服
                 CommonUtils.consultation(getActivity());
                 break;
         }

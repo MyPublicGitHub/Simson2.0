@@ -2,6 +2,7 @@ package com.simson.www.ui.core.presenter;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Handler;
 import android.os.Message;
 
@@ -9,6 +10,7 @@ import com.alipay.sdk.app.PayTask;
 import com.simson.www.common.Const;
 import com.simson.www.net.bean.mine.AliPayResult;
 import com.simson.www.ui.core.view.IView;
+import com.simson.www.ui.mine.pay.PayCompleteActivity;
 import com.simson.www.utils.LogUtils;
 import com.simson.www.utils.ToastUtils;
 import com.tencent.mm.opensdk.constants.Build;
@@ -84,13 +86,15 @@ public class BasePresenter<V extends IView> implements IPresenter<V> {
             ToastUtils.showToast("您未安装最新版本微信，不支持微信支付，请安装或升级微信版本");
             return;
         }
-        boolean b = api.sendReq(request);
-        LogUtils.d("b:" + b + ";wechat");
+        api.registerApp(Const.WE_CHAT_APP_ID); //注册app到威信
+        api.sendReq(request); //拉起微信
+        LogUtils.e("b:" + api.sendReq(request) + ";wechat");
     }
-
-    public void alipay(Activity activity, String orderInfo) {
+    Activity activity;
+    public void alipay(Activity activitys, String orderInfo) {
+        activity =activitys;
         Runnable payRunnable = () -> {
-            PayTask alipay = new PayTask(activity);
+            PayTask alipay = new PayTask(activitys);
             Map<String, String> result = alipay.payV2(orderInfo, true);
 
             Message msg = new Message();
@@ -109,6 +113,8 @@ public class BasePresenter<V extends IView> implements IPresenter<V> {
             switch (payResult.getResultStatus()) {
                 case "9000":
                     ToastUtils.showToast("支付成功");
+                    activity.startActivity(new Intent(activity,PayCompleteActivity.class));
+                    activity.finish();
                     break;
                 case "8000":
                     ToastUtils.showToast("正在处理中");

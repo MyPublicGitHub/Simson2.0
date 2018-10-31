@@ -31,10 +31,12 @@ import com.simson.www.net.bean.mine.AddressBean;
 import com.simson.www.net.bean.mine.AddressDetailBean;
 import com.simson.www.net.bean.mine.AlopeciaBean;
 import com.simson.www.net.bean.mine.CaseBean;
+import com.simson.www.net.bean.mine.CustomerBasicBean;
 import com.simson.www.net.bean.mine.CustomerBean;
 import com.simson.www.net.bean.mine.CustomerInfoBean;
 import com.simson.www.net.bean.mine.FansBean;
 import com.simson.www.net.bean.mine.FollowBean;
+import com.simson.www.net.bean.mine.HospitalTestBean;
 import com.simson.www.net.bean.mine.IntegralDetailBean;
 import com.simson.www.net.bean.mine.OrderBean;
 import com.simson.www.net.bean.mine.PaymentOrderBean;
@@ -42,6 +44,7 @@ import com.simson.www.net.bean.mine.ShopCartBean;
 import com.simson.www.net.bean.mine.SignBean;
 import com.simson.www.net.bean.mine.SignPageBean;
 import com.simson.www.net.bean.mine.SubmitOrderBean;
+import com.simson.www.net.bean.mine.SubmitShoppCartBean;
 import com.simson.www.net.bean.mine.SubscribeListBean;
 import com.simson.www.net.bean.mine.TransactionRecordBean;
 import com.simson.www.net.bean.mine.VIPBean;
@@ -53,6 +56,8 @@ import com.simson.www.net.bean.shop.ShopListBean;
 import java.util.List;
 
 import io.reactivex.Observable;
+import retrofit2.http.Field;
+import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.POST;
 import retrofit2.http.Query;
 
@@ -76,6 +81,14 @@ public interface ApiServer {
     //预约list
     @POST("subscribeController/subscribeList")
     Observable<BaseBean<List<SubscribeListBean>>> subscribeList(@Query("json") String json);
+
+    //到院检测list
+    @POST("hospitalTesting/hospitalTestingList")
+    Observable<BaseBean<List<HospitalTestBean>>> hospitalTestingList(@Query("json") String json);
+
+    //新增到院检测list
+    @POST("hospitalTesting/saveHospitalTesting")
+    Observable<BaseBean> saveHospitalTesting(@Query("json") String json);
 
     //脱发原因列表
     @POST("alopeciaCauseController/alopeciaCauseList")
@@ -231,6 +244,9 @@ public interface ApiServer {
     @POST("shoppingCart/updateShoppingCart")
     Observable<BaseBean> updateShopCart(@Query("json") String json);
 
+    //购物车提交订单
+    @POST("transaction/submitShoppingCartOrder")
+    Observable<BaseBean<SubmitShoppCartBean>> submitShoppingCartOrder(@Query("json") String json);
     //提交订单
     @POST("transaction/submitOrder")
     Observable<BaseBean<SubmitOrderBean>> submitOrder(@Query("json") String json);
@@ -246,6 +262,10 @@ public interface ApiServer {
     //订单支付
     @POST("transaction/paymentOrder")
     Observable<BaseBean<PaymentOrderBean>> paymentOrder(@Query("json") String json);
+
+    //订单支付
+    @POST("customerController/getCustomerBasicInfo")
+    Observable<BaseBean<CustomerBasicBean>> getCustomerBasicInfo(@Query("json") String json);
 
     //收藏
     @POST("customerController/collect")
@@ -288,8 +308,9 @@ public interface ApiServer {
     Observable<BaseBean<CustomerInfoBean>> getCustomerInfo(@Query("json") String json);
 
     //个人信息
+    @FormUrlEncoded
     @POST("customerController/updateCustomerInfo")
-    Observable<BaseBean> updateCustomerInfo(@Query("json") String json);
+    Observable<BaseBean> updateCustomerInfo(@Field("json") String json);
 
     //重置密码获取短信
     @POST("customerController/pwdCode")

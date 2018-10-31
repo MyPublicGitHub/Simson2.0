@@ -8,6 +8,7 @@ import android.util.Log;
 
 import com.simson.www.R;
 import com.simson.www.common.Const;
+import com.simson.www.utils.LogUtils;
 import com.simson.www.utils.ToastUtils;
 import com.tencent.mm.opensdk.constants.ConstantsAPI;
 import com.tencent.mm.opensdk.modelbase.BaseReq;
@@ -17,8 +18,6 @@ import com.tencent.mm.opensdk.openapi.IWXAPIEventHandler;
 import com.tencent.mm.opensdk.openapi.WXAPIFactory;
 
 public class WXPayEntryActivity extends Activity implements IWXAPIEventHandler {
-
-    private static final String TAG = "WXPayEntryActivity";
 
     private IWXAPI api;
 
@@ -39,18 +38,18 @@ public class WXPayEntryActivity extends Activity implements IWXAPIEventHandler {
 
     @Override
     public void onReq(BaseReq req) {
-        Log.d(TAG, "onReq, req = " + req.openId);
+        LogUtils.e("onReq, req = " + req.openId);
     }
 
     @Override
     public void onResp(BaseResp resp) {
-        Log.d(TAG, "onPayFinish, errCode = " + resp.errCode);
-        if (resp.getType() == ConstantsAPI.COMMAND_PAY_BY_WX) {
+        LogUtils.e("onPayFinish, errCode = " + resp.errCode);
+        /*if (resp.getType() == ConstantsAPI.COMMAND_PAY_BY_WX) {
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
             builder.setTitle(R.string.app_name);
             builder.setMessage(String.valueOf(resp.errCode+resp.errStr));
             builder.show();
-        }
+        }*/
         switch (resp.errCode) {
             case BaseResp.ErrCode.ERR_OK:
                 ToastUtils.showToast("支付成功");
@@ -59,7 +58,7 @@ public class WXPayEntryActivity extends Activity implements IWXAPIEventHandler {
                 ToastUtils.showToast("取消支付");
                 break;
            default:
-
+               ToastUtils.showToast("支付失败");
                break;
         }
     }

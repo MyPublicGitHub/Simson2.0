@@ -5,22 +5,17 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.simson.www.R;
-import com.simson.www.common.Const;
 import com.simson.www.net.bean.shop.ShopListBean;
 import com.simson.www.ui.adapter.HospitalFragmentAdapter;
 import com.simson.www.ui.base.BasePresenterFragment;
-import com.simson.www.ui.community.knowledge.detail.WebViewActivity;
 import com.simson.www.ui.home.cause.CauseActivity;
-import com.simson.www.ui.home.test.TestActivity;
 import com.simson.www.ui.hospital.call.CallActivity;
 import com.simson.www.ui.mine.subscribe.save.NewSubscribeActivity;
-import com.simson.www.ui.mine.subscribe.save.NewSubscribeTestActivity;
+import com.simson.www.ui.mine.test.save.NewHospitalTestActivity;
 import com.simson.www.ui.mine.wallet.recharge.RechargeActivity;
 import com.simson.www.ui.shop.detail.CommodityDetailActivity;
 import com.simson.www.utils.CommonUtils;
@@ -28,9 +23,7 @@ import com.simson.www.utils.CommonUtils;
 import java.util.List;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
-import butterknife.Unbinder;
 
 public class HospitalFragment extends BasePresenterFragment<HospitalPresenter, HospitalContract.View>
         implements HospitalContract.View {
@@ -131,7 +124,7 @@ public class HospitalFragment extends BasePresenterFragment<HospitalPresenter, H
                 startActivity(new Intent(getActivity(), NewSubscribeActivity.class));
                 break;
             case R.id.rv_subscribe_test:
-                startActivity(new Intent(getActivity(), NewSubscribeTestActivity.class));
+                startActivity(new Intent(getActivity(), NewHospitalTestActivity.class));
                 break;
             case R.id.rl_consultation:
                 CommonUtils.consultation(getActivity());

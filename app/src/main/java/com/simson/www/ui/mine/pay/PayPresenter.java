@@ -1,28 +1,17 @@
 package com.simson.www.ui.mine.pay;
 
 
-import android.app.Activity;
-import android.content.Context;
-import android.os.Handler;
-import android.os.Message;
 import android.text.TextUtils;
 
-import com.alipay.sdk.app.PayTask;
 import com.google.gson.Gson;
 import com.simson.www.common.Const;
-import com.simson.www.net.bean.mine.AliPayResult;
 import com.simson.www.net.bean.mine.PaymentOrderBean;
 import com.simson.www.net.callback.RxObserver;
 import com.simson.www.ui.core.model.PayModel;
 import com.simson.www.ui.core.presenter.BasePresenter;
 import com.simson.www.utils.DateUtils;
-import com.simson.www.utils.LogUtils;
 import com.simson.www.utils.SPUtils;
 import com.simson.www.utils.ToastUtils;
-import com.tencent.mm.opensdk.constants.Build;
-import com.tencent.mm.opensdk.modelpay.PayReq;
-import com.tencent.mm.opensdk.openapi.IWXAPI;
-import com.tencent.mm.opensdk.openapi.WXAPIFactory;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -32,10 +21,9 @@ public class PayPresenter extends BasePresenter<PayContract.View> implements Pay
     private PayModel mModel;
     private PayContract.View mView;
 
-    PayPresenter() {
+    public PayPresenter() {
         this.mModel = new PayModel();
     }
-
 
 
     @Override

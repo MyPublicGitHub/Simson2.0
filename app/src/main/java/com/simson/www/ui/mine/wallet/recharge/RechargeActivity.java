@@ -90,6 +90,7 @@ public class RechargeActivity extends BasePresenterActivity<RechargePresenter, R
     @Override
     public void paymentRechargeOrder(PaymentOrderBean beans) {
         //生成支付信息成功，发起支付
+        LogUtils.e("beans:"+beans);
         if ("1".equals(payType)) {
             if (beans == null || TextUtils.isEmpty(beans.getSingn())) {
                 LogUtils.d("生成支付信息失败");

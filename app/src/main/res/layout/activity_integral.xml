@@ -36,9 +36,8 @@
                         android:id="@+id/mine_integral"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/dp_5"
                         android:textColor="@color/colorMain"
-                        android:textSize="@dimen/sp_36"
+                        android:textSize="@dimen/sp_24"
                         android:textStyle="bold" />
 
                     <TextView
@@ -46,7 +45,7 @@
                         android:layout_height="wrap_content"
                         android:text="我的积分"
                         android:textColor="@color/colorBlack"
-                        android:textSize="@dimen/sp_16" />
+                        android:textSize="@dimen/sp_14" />
 
                 </LinearLayout>
 
@@ -72,7 +71,7 @@
                 android:layout_height="wrap_content"
                 android:text="前往积分商城"
                 android:textColor="@color/colorBlack"
-                android:textSize="@dimen/sp_16" />
+                android:textSize="@dimen/sp_15" />
         </LinearLayout>
 
         <LinearLayout
@@ -95,7 +94,7 @@
                 android:layout_height="wrap_content"
                 android:text="查看积分明细"
                 android:textColor="@color/colorBlack"
-                android:textSize="@dimen/sp_16" />
+                android:textSize="@dimen/sp_15" />
 
             <LinearLayout
                 android:layout_width="match_parent"

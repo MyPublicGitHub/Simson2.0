@@ -6,232 +6,199 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/colorWhiteBg"
         android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/dp_10"
-            android:background="@color/white"
-            android:orientation="horizontal"
-            android:padding="@dimen/dp_10">
+            android:layout_height="@dimen/dp_50"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="@dimen/dp_100"
                 android:layout_height="wrap_content"
-                android:text="选择要预约的医院："
+                android:gravity="center"
+                android:text="选择院部"
                 android:textColor="@color/black"
                 android:textSize="@dimen/dp_14" />
 
             <TextView
                 android:id="@+id/tv_hospital"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/dp_5"
-                android:layout_weight="1"
-                android:hint="请选择"
+                android:layout_marginRight="@dimen/dp_10"
+                android:background="@drawable/shape_corner_white_main"
+                android:padding="@dimen/dp_10"
                 android:textColor="@color/black"
                 android:textSize="@dimen/dp_14" />
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/dp_10"
-            android:background="@color/white"
-            android:orientation="horizontal">
-
-            <LinearLayout
-                android:id="@+id/ll_date"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:orientation="vertical"
-                android:padding="@dimen/dp_10">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="到院日期"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/dp_16" />
-
-                <TextView
-                    android:id="@+id/tv_date"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/dp_10"
-                    android:hint="请选择"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/dp_14" />
-            </LinearLayout>
-
-            <View
-                android:layout_width="1dp"
-                android:layout_height="match_parent"
-                android:background="@color/colorWhiteBg" />
-
-            <LinearLayout
-                android:id="@+id/ll_time"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:orientation="vertical"
-                android:padding="@dimen/dp_10">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="到院时间"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/dp_16" />
-
-                <TextView
-                    android:id="@+id/tv_time"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/dp_10"
-                    android:hint="请选择"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/dp_14" />
-            </LinearLayout>
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/ll_friend"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/dp_10"
-            android:background="@color/white"
-            android:orientation="horizontal">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:orientation="vertical"
-                android:padding="@dimen/dp_10">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="有无好友陪同？"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/dp_16" />
-
-                <TextView
-                    android:id="@+id/tv_friend"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/dp_10"
-                    android:hint="无"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/dp_14" />
-            </LinearLayout>
-
-            <View
-                android:layout_width="1dp"
-                android:layout_height="match_parent"
-                android:background="@color/colorWhiteBg" />
-
-            <LinearLayout
-                android:id="@+id/ll_car"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:orientation="vertical"
-                android:padding="@dimen/dp_10">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="是否开车过来"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/dp_16" />
-
-                <TextView
-                    android:id="@+id/tv_car"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/dp_10"
-                    android:hint="否"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/dp_14" />
-            </LinearLayout>
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/dp_10"
-            android:background="@color/white"
+            android:layout_height="@dimen/dp_50"
+            android:gravity="center_vertical"
             android:orientation="horizontal">
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="@dimen/dp_100"
                 android:layout_height="wrap_content"
-                android:paddingLeft="@dimen/dp_10"
-                android:text="请输入手机号："
+                android:gravity="center"
+                android:text="到院时间"
+                android:textColor="@color/black"
+                android:textSize="@dimen/dp_14" />
+
+            <TextView
+                android:id="@+id/tv_date"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="@dimen/dp_10"
+                android:background="@drawable/shape_corner_white_main"
+                android:padding="@dimen/dp_10"
+                android:textColor="@color/black"
+                android:textSize="@dimen/dp_14" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_50"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="@dimen/dp_100"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="姓          名"
+                android:textColor="@color/black"
+                android:textSize="@dimen/dp_14" />
+
+            <EditText
+                android:id="@+id/et_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="@dimen/dp_10"
+                android:background="@drawable/shape_corner_white_main"
+                android:padding="@dimen/dp_10"
+                android:textColor="@color/black"
+                android:textSize="@dimen/dp_14" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_50"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="@dimen/dp_100"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="手          机"
                 android:textColor="@color/black"
                 android:textSize="@dimen/dp_14" />
 
             <EditText
                 android:id="@+id/et_phone"
-                android:layout_width="wrap_content"
+                android:inputType="number"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/dp_5"
-                android:layout_weight="1"
-                android:hint="请输入手机号"
-                android:background="@color/white"
+                android:layout_marginRight="@dimen/dp_10"
+                android:background="@drawable/shape_corner_white_main"
                 android:padding="@dimen/dp_10"
                 android:textColor="@color/black"
-                android:textSize="@dimen/dp_16" />
+                android:textSize="@dimen/dp_14" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_50"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="@dimen/dp_100"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="性         别"
+                android:textColor="@color/black"
+                android:textSize="@dimen/dp_14" />
+
+            <TextView
+                android:id="@+id/tv_sex"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="@dimen/dp_10"
+                android:background="@drawable/shape_corner_white_main"
+                android:padding="@dimen/dp_10"
+                android:textColor="@color/black"
+                android:textSize="@dimen/dp_14" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_50"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="@dimen/dp_100"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="年          龄"
+                android:textColor="@color/black"
+                android:textSize="@dimen/dp_14" />
+
+            <EditText
+                android:id="@+id/et_age"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="@dimen/dp_10"
+                android:inputType="number"
+                android:background="@drawable/shape_corner_white_main"
+                android:padding="@dimen/dp_10"
+                android:textColor="@color/black"
+                android:textSize="@dimen/dp_14" />
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/dp_10"
-            android:background="@color/white"
-            android:orientation="vertical">
+            android:orientation="horizontal">
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="@dimen/dp_100"
+                android:layout_height="match_parent"
+                android:gravity="top|center"
+                android:text="备          注"
                 android:layout_marginTop="@dimen/dp_10"
-                android:paddingLeft="@dimen/dp_10"
-                android:text="个人预约偏好："
                 android:textColor="@color/black"
                 android:textSize="@dimen/dp_14" />
 
             <EditText
                 android:id="@+id/et_remake"
-                android:background="@color/white"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="请输入您的就诊需求"
-                android:gravity="top"
                 android:minHeight="@dimen/dp_100"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="@dimen/dp_10"
+                android:hint="请输入您的要求"
+                android:gravity="top"
+                android:background="@drawable/shape_corner_white_main"
                 android:padding="@dimen/dp_10"
                 android:textColor="@color/black"
-                android:textSize="@dimen/dp_16" />
+                android:textSize="@dimen/dp_14" />
         </LinearLayout>
+
         <TextView
             android:id="@+id/tv_commit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/dp_10"
-            android:gravity="center"
             android:layout_margin="@dimen/dp_20"
+            android:layout_marginTop="@dimen/dp_10"
+            android:background="@drawable/shape_corner_btn_bg"
+            android:gravity="center"
             android:padding="@dimen/dp_10"
             android:text="提交预约"
-            android:background="@drawable/shape_corner_btn_bg"
             android:textColor="@color/white"
-            android:textSize="@dimen/dp_16" />
+            android:textSize="@dimen/dp_14" />
     </LinearLayout>
 </android.support.v4.widget.NestedScrollView>

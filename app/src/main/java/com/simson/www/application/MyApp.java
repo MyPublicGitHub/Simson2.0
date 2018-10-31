@@ -7,9 +7,12 @@ import android.support.multidex.MultiDex;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.footer.ClassicsFooter;
 import com.scwang.smartrefresh.layout.header.ClassicsHeader;
+import com.simson.www.BuildConfig;
 import com.simson.www.R;
 import com.squareup.leakcanary.LeakCanary;
 import com.squareup.leakcanary.RefWatcher;
+import com.umeng.commonsdk.UMConfigure;
+import com.umeng.socialize.PlatformConfig;
 
 import cn.jpush.android.api.JPushInterface;
 
@@ -25,8 +28,20 @@ public class MyApp extends Application {
 
         JPushInterface.setDebugMode(true);//极光推送
         JPushInterface.init(this);
+        initUM();
     }
+    private void initUM() {
+        /**
+         * 设置组件化的Log开关
+         * 参数: boolean 默认为false，如需查看LOG设置为true
+         */
+        UMConfigure.setLogEnabled(BuildConfig.DEBUG);
+        UMConfigure.init(this, "5af56b9cf43e4855a9000053", "umeng", UMConfigure.DEVICE_TYPE_PHONE, "");//友盟分享
+        PlatformConfig.setWeixin("wxdc1e388c3822c80b", "3baf1193c85774b3fd9d18447d76cab0");
+        PlatformConfig.setSinaWeibo("3921700954", "04b48b094faeb16683c32669824ebdad", "http://sns.whalecloud.com");
+        PlatformConfig.setQQZone("100424468", "c7394704798a158208a74ab60104f0ba");
 
+    }
     private RefWatcher setupLeakCanary() {
         if (LeakCanary.isInAnalyzerProcess(this)) {
             return RefWatcher.DISABLED;

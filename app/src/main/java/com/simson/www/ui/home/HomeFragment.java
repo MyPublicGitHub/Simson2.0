@@ -10,7 +10,6 @@ import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.simson.www.R;
 import com.simson.www.common.Const;
 import com.simson.www.net.bean.BaseBean;
-import com.simson.www.net.bean.community.FriendsCircleBean;
 import com.simson.www.net.bean.home.HospitalItemBean;
 import com.simson.www.net.bean.home.IndexSynchysisBean;
 import com.simson.www.ui.adapter.HomeAdapter;
@@ -25,7 +24,7 @@ import com.simson.www.ui.home.hospital.HospitalActivity;
 import com.simson.www.ui.home.hospital.detail.HospitalDetailActivity;
 import com.simson.www.ui.home.test.TestActivity;
 import com.simson.www.ui.mine.subscribe.save.NewSubscribeActivity;
-import com.simson.www.ui.mine.subscribe.save.NewSubscribeTestActivity;
+import com.simson.www.ui.mine.test.save.NewHospitalTestActivity;
 import com.simson.www.utils.CommonUtils;
 
 import java.util.List;
@@ -123,13 +122,13 @@ public class HomeFragment extends BasePresenterFragment<HomePresenter, HomeContr
             case R.id.rl_cause:
                 startActivity(new Intent(getActivity(), CauseActivity.class));
                 break;
-            case R.id.rv_subscribe:
+            case R.id.rv_subscribe://线上预约
                 startActivity(new Intent(getActivity(), NewSubscribeActivity.class));
                 break;
-            case R.id.rv_subscribe_test:
-                startActivity(new Intent(getActivity(), NewSubscribeTestActivity.class));
+            case R.id.rv_subscribe_test://到院检测
+                startActivity(new Intent(getActivity(), NewHospitalTestActivity.class));
                 break;
-            case R.id.iv_test:
+            case R.id.iv_test://脱发检测
                 startActivity(new Intent(getActivity(), TestActivity.class));
                 break;
             case R.id.rl_consultation:

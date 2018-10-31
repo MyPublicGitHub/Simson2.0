@@ -138,7 +138,7 @@ public class HospitalDetailActivity extends BasePresenterActivity<HospitalDetail
     @Override
     public void showHospitalDetail(HospitalDetailBean bean) {
         if (bean == null) return;
-       
+
         mBanner.setImages(bean.getPictures());//设置图片集合
         mBanner.start();
         GlideUtils.with(bean.getHospital_icon(), ivHeader);
@@ -183,7 +183,7 @@ public class HospitalDetailActivity extends BasePresenterActivity<HospitalDetail
         //mHDACaseDiaryAdapter.replaceData(beans);
     }
 
-    @OnClick({R.id.tv_doctor_more, R.id.tv_device_more, R.id.tv_diary_more,
+    @OnClick({R.id.tv_doctor_more, R.id.tv_device_more,
             R.id.tv_follow, R.id.ll_location, R.id.ll_call, R.id.ll_online})
     public void onViewClicked(View view) {
         switch (view.getId()) {
@@ -193,8 +193,8 @@ public class HospitalDetailActivity extends BasePresenterActivity<HospitalDetail
             case R.id.tv_device_more:
                 startActivity(new Intent(this, DeviceActivity.class));
                 break;
-            case R.id.tv_diary_more:
-                break;
+            /*case R.id.tv_diary_more:
+                break;*/
             case R.id.tv_follow:
                 mPresenter.followHospital();
                 break;

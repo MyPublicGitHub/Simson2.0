@@ -6,10 +6,7 @@ import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.TextView;
 
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.simson.www.R;
@@ -21,14 +18,13 @@ import com.simson.www.ui.adapter.ShopIntegralAdapter;
 import com.simson.www.ui.base.BasePresenterFragment;
 import com.simson.www.ui.mine.integral.mall.IntegralMallActivity;
 import com.simson.www.ui.shop.detail.CommodityDetailActivity;
+import com.simson.www.ui.shop.search.SearchShopActivity;
 import com.simson.www.ui.shop.type.ShopTypeActivity;
 
 import java.util.List;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
-import butterknife.Unbinder;
 
 
 public class ShopFragment extends BasePresenterFragment<ShopPresenter, ShopContract.View> implements ShopContract.View {
@@ -42,8 +38,7 @@ public class ShopFragment extends BasePresenterFragment<ShopPresenter, ShopContr
 
     ShopIntegralAdapter mShopIntegralAdapter;
     ShopCommodityAdapter mShopCommodityAdapter;
-    @BindView(R.id.tv_search)
-    TextView tvSearch;
+
     @BindView(R.id.srl_integral)
     SmartRefreshLayout srlIntegral;
     @BindView(R.id.refresh_layout)
@@ -202,10 +197,12 @@ public class ShopFragment extends BasePresenterFragment<ShopPresenter, ShopContr
     }
 
 
-
-    @OnClick({R.id.iv_mall})
+    @OnClick({R.id.iv_mall, R.id.ll_search})
     public void onViewClicked(View view) {
         switch (view.getId()) {
+            case R.id.ll_search:
+                startActivity(new Intent(getActivity(), SearchShopActivity.class));
+                break;
             case R.id.iv_mall:
                 startActivity(new Intent(getActivity(), IntegralMallActivity.class));
                 break;

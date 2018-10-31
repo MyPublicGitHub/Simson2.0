@@ -20,7 +20,7 @@
     <application
         android:name=".application.MyApp"
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/ic_logo"
         android:label="@string/app_name"
         android:networkSecurityConfig="@xml/network_security_config"
         android:roundIcon="@mipmap/ic_launcher_round"
@@ -75,6 +75,7 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".ui.mine.integral.IntegralActivity"
+            android:launchMode="singleInstance"
             android:screenOrientation="portrait" />
         <activity
             android:name=".ui.mine.sign.SignActivity"
@@ -209,7 +210,7 @@
             android:name=".ui.mine.subscribe.save.select.SelectFriendActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ui.mine.subscribe.save.NewSubscribeTestActivity"
+            android:name=".ui.mine.test.save.NewHospitalTestActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".ui.mine.fans.FansActivity"
@@ -234,7 +235,24 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".ui.mine.member.MemberActivity"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.mine.pay.point.PayPointActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.mine.pay.PayCompleteActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.community.knowledge.search.SearchKnowledgeActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".ui.shop.search.SearchShopActivity" />
+
+        <!--微信支付-->
+        <activity
+            android:name=".wxapi.WXPayEntryActivity"
+            android:exported="true"
+            android:launchMode="singleTop" />
+        <!--微信支付-->
     </application>
 
 </manifest>

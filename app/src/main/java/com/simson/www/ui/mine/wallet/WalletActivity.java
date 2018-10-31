@@ -6,15 +6,17 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.simson.www.R;
+import com.simson.www.net.bean.mine.CustomerBasicBean;
 import com.simson.www.ui.base.BasePresenterActivity;
-import com.simson.www.ui.core.presenter.BasePresenter;
 import com.simson.www.ui.mine.wallet.log.TransactionRecordActivity;
 import com.simson.www.ui.mine.wallet.recharge.RechargeActivity;
+import com.simson.www.utils.CommonUtils;
 
 import butterknife.BindView;
 import butterknife.OnClick;
 
-public class WalletActivity extends BasePresenterActivity {
+public class WalletActivity extends BasePresenterActivity<WalletPresenter, WalletContract.View>
+        implements WalletContract.View {
     @BindView(R.id.tv_wallet)
     TextView tvWallet;
     @BindView(R.id.ll_recharge)
@@ -33,19 +35,31 @@ public class WalletActivity extends BasePresenterActivity {
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.ll_recharge:
-                startActivity(new Intent(this,RechargeActivity.class));
+                startActivity(new Intent(this, RechargeActivity.class));
                 break;
             case R.id.ll_log:
-                startActivity(new Intent(this,TransactionRecordActivity.class));
+                startActivity(new Intent(this, TransactionRecordActivity.class));
                 break;
             case R.id.ll_help:
+                CommonUtils.consultation(this);
                 break;
         }
     }
 
     @Override
-    protected BasePresenter createPresenter() {
-        return null;
+    protected void initData() {
+        mPresenter.getCustomerBasicInfo();
+    }
+
+    @Override
+    public void getCustomerBasicInfo(CustomerBasicBean bean) {
+        if (bean == null) return;
+        tvWallet.setText(""+bean.getCard_amount());
+    }
+
+    @Override
+    protected WalletPresenter createPresenter() {
+        return new WalletPresenter();
     }
 
     @Override
