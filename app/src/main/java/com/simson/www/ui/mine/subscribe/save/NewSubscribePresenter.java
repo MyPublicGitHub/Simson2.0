@@ -28,12 +28,24 @@ public class NewSubscribePresenter extends CommonPresenter<NewSubscribeContract.
     @Override
     public void saveSubscribe() {
         mView = getView();
-        if (TextUtils.isEmpty(mView.subscribeType())){
+        if (TextUtils.isEmpty(mView.subscribeType())) {
             ToastUtils.showToast("请选择预约类型");
             return;
         }
-        if (TextUtils.isEmpty(mView.hospitalId())){
+        if (TextUtils.isEmpty(mView.hospitalId())) {
             ToastUtils.showToast("请选择预约医院");
+            return;
+        }
+        if (TextUtils.isEmpty(mView.subscribeDate())) {
+            ToastUtils.showToast("请选择到院日期");
+            return;
+        }
+        if (TextUtils.isEmpty(mView.subscribeTime())) {
+            ToastUtils.showToast("请选择到院时间");
+            return;
+        }
+        if (TextUtils.isEmpty(mView.mobile())) {
+            ToastUtils.showToast("请输入您的手机号");
             return;
         }
         RxObserver<BaseBean> observer = new RxObserver<BaseBean>(this) {
@@ -63,7 +75,7 @@ public class NewSubscribePresenter extends CommonPresenter<NewSubscribeContract.
         map.put("remark", mView.remark());//备注
         map.put("timestamp", DateUtils.getStringDate());
         String json = new Gson().toJson(map);
-        mModel.saveSubscribe(json,observer);
+        mModel.saveSubscribe(json, observer);
         addDisposable(observer);
     }
 

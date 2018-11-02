@@ -13,7 +13,7 @@ android {
         multiDexEnabled true
         vectorDrawables.useSupportLibrary = true
         manifestPlaceholders = [
-                qqappid: "tencent100424468",//友盟分享
+                qqappid      : "tencent100424468",//友盟分享
                 JPUSH_PKGNAME: "com.simson.www",
                 JPUSH_APPKEY : "9a3bd399dad9968d6792d1a6", //JPush 上注册的包名对应的 Appkey.
                 //JPUSH_APPKEY : "0fa6d308abab72ad12f5ce7c", //JPush 上注册的包名对应的 Appkey.

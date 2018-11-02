@@ -69,7 +69,7 @@ public class LocationUtils {
         if (location != null) {
             setLocation(location);
         } //如果开启了，请在onDestroy中remove 监视地理位置变化，第二个和第三个参数分别为更新的最短时间minTime和最短距离minDistace
-        //locationManager.requestLocationUpdates(locationProvider, 5000, 3, locationListener);
+        locationManager.requestLocationUpdates(locationProvider, 5000, 3, locationListener);
     }
 
     private void setLocation(Location location) {

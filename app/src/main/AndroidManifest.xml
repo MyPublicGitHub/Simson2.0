@@ -237,9 +237,6 @@
             android:name=".ui.mine.member.MemberActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ui.mine.pay.point.PayPointActivity"
-            android:screenOrientation="portrait" />
-        <activity
             android:name=".ui.mine.pay.PayCompleteActivity"
             android:screenOrientation="portrait" />
         <activity
@@ -247,12 +244,15 @@
             android:screenOrientation="portrait" />
         <activity android:name=".ui.shop.search.SearchShopActivity" />
 
-        <!--微信支付-->
+        <!-- 微信支付 -->
         <activity
             android:name=".wxapi.WXPayEntryActivity"
             android:exported="true"
             android:launchMode="singleTop" />
-        <!--微信支付-->
+        <!-- 微信支付 -->
+        <activity
+            android:name=".ui.home.test.TestSplashActivity"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

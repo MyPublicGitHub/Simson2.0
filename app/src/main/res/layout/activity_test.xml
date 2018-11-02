@@ -2,7 +2,7 @@
 <android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorWhiteBg">
+    android:background="@mipmap/ic_bg_test">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -10,297 +10,109 @@
         android:orientation="vertical">
 
         <LinearLayout
+            android:visibility="gone"
+            android:id="@+id/ll_commit"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/colorWhite"
-            android:orientation="horizontal"
-            android:padding="@dimen/dp_10">
+            android:layout_height="match_parent"
+            android:background="@mipmap/ic_bg_test_camera"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/iv_back"
+                android:layout_width="@dimen/dp_40"
+                android:layout_height="@dimen/dp_40"
+                android:layout_margin="@dimen/dp_15"
+                android:padding="@dimen/dp_10"
+                android:src="@drawable/ic_back" />
+
+            <com.simson.www.widget.CircleImageView
+                android:id="@+id/iv_camera"
+                android:layout_width="@dimen/dp_150"
+                android:layout_height="@dimen/dp_150"
+                android:layout_gravity="center_horizontal"
+                android:padding="@dimen/dp_10"
+                android:src="@mipmap/ic_test_camera" />
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="近期照片："
-                android:textColor="@color/black"
-                android:textSize="@dimen/dp_16" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="（上传照片评估会更加准确）"
-                android:textSize="@dimen/dp_12" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/colorWhite"
-            android:orientation="horizontal">
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center">
-
-                <ImageView
-                    android:id="@+id/iv_1"
-                    android:layout_width="@dimen/dp_70"
-                    android:layout_height="@dimen/dp_70"
-                    android:src="@mipmap/ic_add_picture" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center">
-
-                <ImageView
-                    android:id="@+id/iv_2"
-                    android:layout_width="@dimen/dp_70"
-                    android:layout_height="@dimen/dp_70"
-                    android:src="@mipmap/ic_add_picture" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center">
-
-                <ImageView
-                    android:id="@+id/iv_3"
-                    android:layout_width="@dimen/dp_70"
-                    android:layout_height="@dimen/dp_70"
-                    android:src="@mipmap/ic_add_picture" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center">
-
-                <ImageView
-                    android:id="@+id/iv_4"
-                    android:layout_width="@dimen/dp_70"
-                    android:layout_height="@dimen/dp_70"
-                    android:src="@mipmap/ic_add_picture" />
-            </LinearLayout>
-
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/colorWhite"
-            android:orientation="horizontal"
-            android:paddingTop="@dimen/dp_10"
-            android:paddingBottom="@dimen/dp_10">
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="头顶"
-                android:textColor="@color/black"
-                android:textSize="@dimen/dp_14" />
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="左侧面"
-                android:textColor="@color/black"
-                android:textSize="@dimen/dp_14" />
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="右侧面"
-                android:textColor="@color/black"
-                android:textSize="@dimen/dp_14" />
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="后面"
-                android:textColor="@color/black"
-                android:textSize="@dimen/dp_14" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/dp_10"
-            android:background="@color/colorWhite"
-            android:gravity="center_vertical"
-            android:orientation="horizontal"
-            android:padding="@dimen/dp_10">
-
-            <TextView
-                android:layout_width="@dimen/dp_100"
-                android:layout_height="wrap_content"
-                android:gravity="right"
-                android:text="遗传性脱发:"
-                android:textColor="@color/black"
-                android:textSize="@dimen/dp_16" />
-
-            <RadioGroup
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="拍照上传照片专家评估会更加准确"
+                android:textColor="@color/white"
+                android:textSize="@dimen/dp_14" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/dp_20"
+                android:background="@drawable/shape_corner_30dp"
+
+                android:gravity="center_vertical"
                 android:orientation="horizontal">
 
-                <RadioButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="是" />
+                <ImageView
+                    android:layout_width="@dimen/dp_24"
+                    android:layout_height="@dimen/dp_24"
+                    android:layout_marginLeft="@dimen/dp_10"
+                    android:src="@mipmap/ic_test_phone" />
 
-                <RadioButton
-                    android:layout_width="wrap_content"
+                <EditText
+                    android:id="@+id/et_phone"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:checked="true"
-                    android:text="否" />
-            </RadioGroup>
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/colorWhite"
-            android:gravity="center_vertical"
-            android:orientation="horizontal"
-            android:padding="@dimen/dp_10">
+                    android:layout_marginRight="@dimen/dp_15"
+                    android:background="@color/white"
+                    android:inputType="number"
+                    android:hint="请输入手机号"
+                    android:padding="@dimen/dp_10"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/dp_15" />
+            </LinearLayout>
 
             <TextView
-                android:layout_width="@dimen/dp_100"
-                android:layout_height="wrap_content"
-                android:gravity="right"
-                android:text="是否掉发:"
-                android:textColor="@color/black"
-                android:textSize="@dimen/dp_16" />
-
-            <RadioGroup
+                android:id="@+id/tv_commit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <RadioButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="是" />
-
-                <RadioButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:checked="true"
-                    android:text="否" />
-            </RadioGroup>
+                android:layout_margin="@dimen/dp_20"
+                android:background="@drawable/shape_corner_30dp"
+                android:gravity="center"
+                android:padding="@dimen/dp_10"
+                android:text="提交"
+                android:textColor="@color/black"
+                android:textSize="@dimen/dp_15" />
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/ll_quest"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/colorWhite"
-            android:gravity="center_vertical"
-            android:orientation="horizontal"
-            android:padding="@dimen/dp_10">
-
-            <TextView
-                android:layout_width="@dimen/dp_100"
-                android:layout_height="wrap_content"
-                android:gravity="right"
-                android:text="有无植发史:"
-                android:textColor="@color/black"
-                android:textSize="@dimen/dp_16" />
-
-            <RadioGroup
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <RadioButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="是" />
-
-                <RadioButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:checked="true"
-                    android:text="否" />
-            </RadioGroup>
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/dp_10"
-            android:background="@color/colorWhite"
-            android:orientation="horizontal"
-            android:padding="@dimen/dp_10">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="请输入手机号："
-                android:textColor="@color/black"
-                android:textSize="@dimen/dp_16" />
-
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="请输入手机号"
-                android:textSize="@dimen/dp_16" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/dp_10"
-            android:background="@color/colorWhite"
             android:orientation="vertical"
-            android:padding="@dimen/dp_10">
+            >
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="个人预约偏好："
-                android:textColor="@color/black"
-                android:textSize="@dimen/dp_16" />
-
-            <EditText
+                android:id="@+id/tv_question"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/dp_5"
-                android:background="@color/white"
-                android:gravity="top"
-                android:hint="请输入您的其他描述"
-                android:minHeight="@dimen/dp_100"
-                android:textSize="@dimen/dp_16" />
-        </LinearLayout>
+                android:layout_margin="@dimen/dp_10"
+                android:background="@mipmap/ic_test_question"
+                android:gravity="center"
+                android:minHeight="@dimen/dp_170"
+                android:textColor="@color/white"
+                android:textSize="@dimen/dp_20" />
 
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/dp_10"
-            android:background="@drawable/shape_corner_btn_bg"
-            android:padding="@dimen/dp_10"
-            android:text="提交"
-            android:textColor="@color/white"
-            android:textSize="@dimen/dp_16" />
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+            <ImageView
+                android:visibility="gone"
+                android:id="@+id/iv_test_back"
+                android:layout_width="@dimen/dp_40"
+                android:layout_height="@dimen/dp_40"
+                android:padding="@dimen/dp_5"
+                android:layout_marginLeft="@dimen/dp_10"
+                android:src="@mipmap/ic_test_back" />
+        </LinearLayout>
     </LinearLayout>
 </android.support.v4.widget.NestedScrollView>

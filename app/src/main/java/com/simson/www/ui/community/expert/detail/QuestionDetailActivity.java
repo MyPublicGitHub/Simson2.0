@@ -1,6 +1,8 @@
 package com.simson.www.ui.community.expert.detail;
 
+import android.Manifest;
 import android.content.Intent;
+import android.os.Environment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -13,12 +15,17 @@ import com.simson.www.net.bean.community.QuestionsDetailBean;
 import com.simson.www.ui.adapter.QuestDetailAdapter;
 import com.simson.www.ui.base.BasePresenterActivity;
 import com.simson.www.utils.GlideUtils;
+import com.simson.www.utils.LogUtils;
 import com.simson.www.widget.CircleImageView;
+import com.tbruyelle.rxpermissions2.RxPermissions;
 
+import java.io.File;
 import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.OnClick;
+import cn.bingoogolapple.photopicker.activity.BGAPhotoPreviewActivity;
 import cn.bingoogolapple.photopicker.widget.BGANinePhotoLayout;
 
 public class QuestionDetailActivity extends BasePresenterActivity<QuestionDetailPresenter, QuestionDetailContract.View>
@@ -81,40 +88,63 @@ public class QuestionDetailActivity extends BasePresenterActivity<QuestionDetail
 
     @Override
     public void questionsDetail(QuestionsDetailBean bean) {
-        /**
-         * questions_id : 1111
-         * customer_id : 2018090115357871316905625
-         * customer_name : 176****7732
-         * customer_head : http://58.213.14.195:8081/upload/customer/201810/M7nnxi0yWKYR1xL0.png
-         * questions_content : 如何保养头发
-         * browse : 0
-         * create_time : 2018-09-27
-         * is_display : 0
-         * is_follow : 0
-         * praises : 0
-         * answerCount : 1
-         * pictures : ["http://58.213.14.195:8081/upload/questions/f271c674.jpg"]
-         * pictureSize : 1
-         * answers : [{"answer_id":"113","answer_content":"黑芝麻泡水喝可以保养头发","doctor_id":"111401","doctor_name":"吴望月","doctor_head":"https://appapi.maofa.com/userfiles/doctor/head/guangzhou/wuwangyue.png","position":"医师","create_time":"2018-09-27 10:49"}]
-         */
+
         GlideUtils.with(bean.getCustomer_head(), ivHeader);
         tvName.setText(bean.getCustomer_name() + "");
         bga.setData((ArrayList<String>) bean.getPictures());
+        bga.setDelegate(delegate);
         tvDate.setText(bean.getCreate_time() + "");
         tvContent.setText(bean.getQuestions_content() + "");
         tvComments.setText(bean.getAnswerCount() + "回答");
         tvPraises.setText(bean.getPraises() + "赞");
-        tvFollow.setText(isFollow==true?"已关注":"+ 关注");
+        tvFollow.setText(isFollow == true ? "已关注" : "+ 关注");
         adapter.replaceData(bean.getAnswers());
         id = bean.getCustomer_id();
         isFollow = bean.getIs_follow() == 0 ? false : true;
+    }
+
+    //bga.setDelegate(delegate);
+    private BGANinePhotoLayout mCurrentClickNpl;
+    BGANinePhotoLayout.Delegate delegate = new BGANinePhotoLayout.Delegate() {
+        @Override
+        public void onClickNinePhotoItem(BGANinePhotoLayout ninePhotoLayout, View view, int position, String model, List<String> models) {
+            mCurrentClickNpl = ninePhotoLayout;
+            photoPreviewWrapper();
+        }
+    };
+
+    private void photoPreviewWrapper() {
+        if (mCurrentClickNpl == null) {
+            return;
+        }
+        RxPermissions rxPermission = new RxPermissions(this);
+        rxPermission.request(Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                .subscribe(granted -> {
+                    if (granted) {
+                        File downloadDir = new File(Environment.getExternalStorageDirectory(), "SimsonDownload");
+                        BGAPhotoPreviewActivity.IntentBuilder photoPreviewIntentBuilder = new BGAPhotoPreviewActivity.IntentBuilder(this)
+                                .saveImgDir(downloadDir); // 保存图片的目录，如果传 null，则没有保存图片功能
+
+                        if (mCurrentClickNpl.getItemCount() == 1) {
+                            // 预览单张图片
+                            photoPreviewIntentBuilder.previewPhoto(mCurrentClickNpl.getCurrentClickItem());
+                        } else if (mCurrentClickNpl.getItemCount() > 1) {
+                            // 预览多张图片
+                            photoPreviewIntentBuilder.previewPhotos(mCurrentClickNpl.getData())
+                                    .currentPosition(mCurrentClickNpl.getCurrentClickItemPosition()); // 当前预览图片的索引
+                        }
+                        startActivity(photoPreviewIntentBuilder.build());
+                    } else {
+                        LogUtils.e("权限被拒绝");
+                    }
+                });
     }
 
     boolean isFollow = false;
 
     @Override
     public void follow(BaseBean bean) {
-        tvFollow.setText(isFollow==true?"已关注":"+ 关注");
+        tvFollow.setText(isFollow == true ? "已关注" : "+ 关注");
         isFollow = !isFollow;
     }
 

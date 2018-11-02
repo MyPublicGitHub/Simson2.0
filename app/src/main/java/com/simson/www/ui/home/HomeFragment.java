@@ -22,7 +22,7 @@ import com.simson.www.ui.home.cause.CauseActivity;
 import com.simson.www.ui.home.expert.ExpertActivity;
 import com.simson.www.ui.home.hospital.HospitalActivity;
 import com.simson.www.ui.home.hospital.detail.HospitalDetailActivity;
-import com.simson.www.ui.home.test.TestActivity;
+import com.simson.www.ui.home.test.TestSplashActivity;
 import com.simson.www.ui.mine.subscribe.save.NewSubscribeActivity;
 import com.simson.www.ui.mine.test.save.NewHospitalTestActivity;
 import com.simson.www.utils.CommonUtils;
@@ -129,7 +129,7 @@ public class HomeFragment extends BasePresenterFragment<HomePresenter, HomeContr
                 startActivity(new Intent(getActivity(), NewHospitalTestActivity.class));
                 break;
             case R.id.iv_test://脱发检测
-                startActivity(new Intent(getActivity(), TestActivity.class));
+                startActivity(new Intent(getActivity(), TestSplashActivity.class));
                 break;
             case R.id.rl_consultation:
                 CommonUtils.consultation(getActivity());

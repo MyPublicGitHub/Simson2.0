@@ -1,20 +1,34 @@
 package com.simson.www.ui.home.test;
 
-import com.simson.www.net.bean.home.HospitalItemBean;
-import com.simson.www.net.bean.home.IndexSynchysisBean;
+import com.simson.www.net.bean.home.AlopeciaTestBean;
+import com.simson.www.net.bean.home.QuestionBean;
 import com.simson.www.ui.core.view.IView;
-
-import java.util.List;
 
 
 public interface TestContract {
     interface Presenter {
-        void indexSynchysis();
+        void getQuestion();
+
+        void saveAlopeciaTesting();
 
     }
 
     interface View extends IView {
-        void indexSynchysis(List<IndexSynchysisBean> bean);
+        void getQuestion(QuestionBean bean);
+
+        void saveAlopeciaTesting(AlopeciaTestBean bean);
+
+        String correspondingId();
+
+        String optionId();
+
+        String deviceToken();
+
+        String[] questions();
+
+        String[] options();
+
+        String[] pictures();
 
     }
 }

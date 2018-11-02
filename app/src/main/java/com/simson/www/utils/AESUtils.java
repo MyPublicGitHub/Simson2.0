@@ -3,6 +3,7 @@ package com.simson.www.utils;
 import android.util.Base64;
 
 import com.simson.www.BuildConfig;
+import com.simson.www.common.UrlConstainer;
 
 import java.net.URLEncoder;
 import java.security.InvalidKeyException;
@@ -31,7 +32,7 @@ public class AESUtils {
      * @throws Exception
      */
     public static String encrypt(String encryptSrc) {
-        if (BuildConfig.DEBUG) return encryptSrc;//本地服务器暂时没有加密，直接返回
+        if (UrlConstainer.DEBUG) return encryptSrc;//本地服务器暂时没有加密，直接返回
         try {
             Cipher cipher = Cipher.getInstance("AES/CBC/PKCS5Padding");
             byte[] raw = sKey.getBytes();

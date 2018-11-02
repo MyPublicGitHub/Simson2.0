@@ -1,16 +1,13 @@
 package com.simson.www.wxapi;
 
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 
-import com.simson.www.R;
 import com.simson.www.common.Const;
+import com.simson.www.ui.mine.pay.PayCompleteActivity;
 import com.simson.www.utils.LogUtils;
 import com.simson.www.utils.ToastUtils;
-import com.tencent.mm.opensdk.constants.ConstantsAPI;
 import com.tencent.mm.opensdk.modelbase.BaseReq;
 import com.tencent.mm.opensdk.modelbase.BaseResp;
 import com.tencent.mm.opensdk.openapi.IWXAPI;
@@ -53,13 +50,15 @@ public class WXPayEntryActivity extends Activity implements IWXAPIEventHandler {
         switch (resp.errCode) {
             case BaseResp.ErrCode.ERR_OK:
                 ToastUtils.showToast("支付成功");
+                startActivity(new Intent(this, PayCompleteActivity.class));
                 break;
             case BaseResp.ErrCode.ERR_USER_CANCEL:
                 ToastUtils.showToast("取消支付");
                 break;
-           default:
-               ToastUtils.showToast("支付失败");
-               break;
+            default:
+                ToastUtils.showToast("支付失败");
+                break;
         }
+        finish();
     }
 }

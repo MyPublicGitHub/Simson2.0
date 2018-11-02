@@ -45,22 +45,22 @@ public class OrderAdapter extends BaseQuickAdapter<OrderBean, BaseViewHolder> {
          *  Already_Paid = 2;//已支付
          *  To_Be_Evaluated = 4;//待评价
          */
-        if (item.getTransaction_type() == 1) {
+        if (item.getTransaction_status() == 1) {//显示付款
             helper.getView(R.id.tv_remind_shipments).setVisibility(View.GONE);
             helper.getView(R.id.tv_logistics).setVisibility(View.GONE);
             helper.getView(R.id.tv_evaluate).setVisibility(View.GONE);
             helper.getView(R.id.tv_payment).setVisibility(View.VISIBLE);
-        } else if (item.getTransaction_type() == 2) {
+        } else if (item.getTransaction_status() == 2) {//显示使用
             helper.getView(R.id.tv_remind_shipments).setVisibility(View.GONE);
             helper.getView(R.id.tv_logistics).setVisibility(View.VISIBLE);
             helper.getView(R.id.tv_evaluate).setVisibility(View.GONE);
             helper.getView(R.id.tv_payment).setVisibility(View.GONE);
-        } else if (item.getTransaction_type() == 4) {
+        } else if (item.getTransaction_status() == 3) {//显示评价
             helper.getView(R.id.tv_remind_shipments).setVisibility(View.GONE);
             helper.getView(R.id.tv_logistics).setVisibility(View.GONE);
             helper.getView(R.id.tv_evaluate).setVisibility(View.VISIBLE);
             helper.getView(R.id.tv_payment).setVisibility(View.GONE);
-        } else {
+        } else {//
             helper.getView(R.id.tv_remind_shipments).setVisibility(View.GONE);
             helper.getView(R.id.tv_logistics).setVisibility(View.GONE);
             helper.getView(R.id.tv_evaluate).setVisibility(View.GONE);

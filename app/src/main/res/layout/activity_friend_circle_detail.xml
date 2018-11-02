@@ -6,10 +6,10 @@
     android:layout_height="match_parent">
 
     <android.support.v4.widget.NestedScrollView
-        android:fillViewport="true"
         android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:background="@color/colorWhiteBg"
-        android:layout_height="match_parent">
+        android:fillViewport="true">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -19,23 +19,24 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center_vertical">
+                android:background="@color/white"
+                android:gravity="center_vertical"
+                android:padding="@dimen/dp_10">
 
                 <com.simson.www.widget.CircleImageView
                     android:id="@+id/iv_header"
-                    android:layout_width="@dimen/dp_50"
-                    android:layout_height="@dimen/dp_50"/>
+                    android:layout_width="@dimen/dp_40"
+                    android:layout_height="@dimen/dp_40" />
 
                 <TextView
                     android:id="@+id/tv_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/dp_10"
-                    android:layout_marginTop="@dimen/dp_5"
                     android:layout_toRightOf="@id/iv_header"
                     android:text="张俊杰"
                     android:textColor="@color/colorBlack"
-                    android:textSize="@dimen/sp_15" />
+                    android:textSize="@dimen/sp_14" />
 
                 <TextView
                     android:id="@+id/tv_date"
@@ -43,11 +44,11 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@id/tv_name"
                     android:layout_marginLeft="@dimen/dp_10"
-                    android:layout_marginTop="@dimen/dp_5"
+                    android:layout_marginTop="@dimen/dp_2"
                     android:layout_toRightOf="@id/iv_header"
                     android:text="2018-08-09"
                     android:textColor="@color/colorBlack_6"
-                    android:textSize="@dimen/sp_14" />
+                    android:textSize="@dimen/sp_12" />
 
             </RelativeLayout>
 
@@ -57,14 +58,17 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom"
+                android:background="@color/white"
+                android:padding="@dimen/dp_10"
                 android:textColor="@color/colorBlack"
-                android:textSize="@dimen/sp_15" />
+                android:textSize="@dimen/sp_14" />
 
             <cn.bingoogolapple.photopicker.widget.BGANinePhotoLayout
                 android:id="@+id/bga"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
+                android:background="@color/white"
                 app:bga_npl_itemCornerRadius="0dp"
                 app:bga_npl_itemSpanCount="3"
                 app:bga_npl_itemWhiteSpacing="4dp"
@@ -73,16 +77,13 @@
                 app:bga_npl_placeholderDrawable="@mipmap/bga_pp_ic_holder_light"
                 app:bga_npl_showAsLargeWhenOnlyOne="true" />
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/dp_1"
-                android:background="@color/colorWhiteBg" />
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@color/white"
                 android:gravity="center_vertical"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:padding="@dimen/dp_10">
 
                 <TextView
                     android:id="@+id/tv_comments"
@@ -90,10 +91,9 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="left"
-                    android:padding="@dimen/dp_10"
                     android:text="23评论"
                     android:textColor="@color/colorBlack_4"
-                    android:textSize="@dimen/sp_15" />
+                    android:textSize="@dimen/sp_12" />
 
                 <TextView
                     android:id="@+id/tv_praises"
@@ -101,17 +101,16 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="right"
-                    android:padding="@dimen/dp_10"
                     android:text="152赞"
                     android:textColor="@color/colorBlack_4"
-                    android:textSize="@dimen/sp_15" />
+                    android:textSize="@dimen/sp_12" />
             </LinearLayout>
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/recyclerView"
-                android:layout_weight="1"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+                android:layout_height="match_parent"
+                android:layout_weight="1" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -127,7 +126,8 @@
                     android:layout_weight="1"
                     android:background="@color/colorWhiteBg"
                     android:hint="请输入您的评论"
-                    android:padding="@dimen/dp_10" />
+                    android:padding="@dimen/dp_8"
+                    android:textSize="@dimen/dp_14" />
 
                 <Button
                     android:id="@+id/btn_commit"
@@ -138,7 +138,7 @@
                     android:background="@drawable/shape_corner_btn_bg"
                     android:text="完成"
                     android:textColor="@color/white"
-                    android:textSize="@dimen/dp_16" />
+                    android:textSize="@dimen/dp_14" />
             </LinearLayout>
         </LinearLayout>
     </android.support.v4.widget.NestedScrollView>

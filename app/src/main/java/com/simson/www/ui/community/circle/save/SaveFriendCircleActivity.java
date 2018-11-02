@@ -46,7 +46,7 @@ public class SaveFriendCircleActivity extends BasePresenterActivity<SaveFriendCi
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.btn_commit:
-                mPresenter.saveFriendsCircle();
+                mPresenter.initImage();
                 break;
         }
     }
@@ -122,7 +122,7 @@ public class SaveFriendCircleActivity extends BasePresenterActivity<SaveFriendCi
 
     @Override
     public List<String> pictures() {
-        return null;
+        return snplAddPhotos.getData();
     }
 
     @Override

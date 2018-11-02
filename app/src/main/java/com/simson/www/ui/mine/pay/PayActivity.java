@@ -1,9 +1,12 @@
 package com.simson.www.ui.mine.pay;
 
 import android.content.Intent;
+import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.View;
-import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
@@ -12,15 +15,17 @@ import com.simson.www.R;
 import com.simson.www.common.Const;
 import com.simson.www.net.bean.mine.PaymentOrderBean;
 import com.simson.www.net.bean.shop.CommodityDetailBean;
+import com.simson.www.ui.adapter.PayAdapter;
 import com.simson.www.ui.base.BasePresenterActivity;
-import com.simson.www.utils.GlideUtils;
 import com.simson.www.utils.LogUtils;
 import com.simson.www.utils.ToastUtils;
 import com.tencent.mm.opensdk.modelpay.PayReq;
 
 import java.text.DecimalFormat;
+import java.util.ArrayList;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class PayActivity extends BasePresenterActivity<PayPresenter, PayContract.View> implements PayContract.View {
@@ -35,33 +40,51 @@ public class PayActivity extends BasePresenterActivity<PayPresenter, PayContract
     RadioGroup radioGroup;
     @BindView(R.id.tv_pay_now)
     TextView tvPayNow;
-    @BindView(R.id.iv_image)
-    ImageView ivImage;
-    @BindView(R.id.tv_title)
-    TextView tvTitle;
-    @BindView(R.id.tv_number)
-    TextView tvNumber;
-    @BindView(R.id.tv_unity_price)
-    TextView tvUnityPrice;
-    @BindView(R.id.rb_union)
-    RadioButton rbUnion;
-    private String points, money, orderId, buyNum, payType;//支付类型：1支付宝；2微信；3银联；4 Apple Pay；5卡支付；6积分 必填
+    @BindView(R.id.recyclerView)
+    RecyclerView recyclerView;
+    @BindView(R.id.ll_alipay)
+    LinearLayout llAlipay;
+    @BindView(R.id.ll_wechat_pay)
+    LinearLayout llWechatPay;
+    @BindView(R.id.ll_balance)
+    LinearLayout llBalance;
+    @BindView(R.id.ll_point)
+    LinearLayout llPoint;
+    @BindView(R.id.rb_balance)
+    RadioButton rbBalance;
+    @BindView(R.id.rb_point)
+    RadioButton rbPoint;
+    private String points, money, orderId,payType;//支付类型：1支付宝；2微信；3银联；4 Apple Pay；5卡支付；6积分 必填
     boolean isPoint;
-    double unityPrice;
-    CommodityDetailBean beans;
+    ArrayList<CommodityDetailBean> datas;
 
     @Override
     protected int getLayoutId() {
         return R.layout.activity_pay;
     }
 
+    PayAdapter adapter;
+
     @Override
     protected void initViews() {
-        GlideUtils.with(beans.getPicture().get(0), ivImage);
-        tvTitle.setText(beans.getItem_name() + "");
-        tvMoney.setText(money + "");
-        tvNumber.setText("X" + buyNum);
-        tvUnityPrice.setText("￥" + unityPrice);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        adapter = new PayAdapter(datas);
+        recyclerView.setAdapter(adapter);
+        recyclerView.setNestedScrollingEnabled(false);
+        recyclerView.setFocusable(false);
+        if (isPoint) {
+            tvMoney.setText(points + "积分");
+            llAlipay.setVisibility(View.GONE);
+            llWechatPay.setVisibility(View.GONE);
+            llBalance.setVisibility(View.GONE);
+            rbAlipay.setVisibility(View.GONE);
+            rbWeChat.setVisibility(View.GONE);
+            rbBalance.setVisibility(View.GONE);
+        } else {
+            tvMoney.setText("合计：" + money + "");
+            llPoint.setVisibility(View.GONE);
+            rbPoint.setVisibility(View.GONE);
+        }
         radioGroup.setOnCheckedChangeListener((radioGroup, i) -> {
             switch (radioGroup.getCheckedRadioButtonId()) {
                 case R.id.rb_alipay://1支付宝；2微信；3银联；4 Apple Pay；5卡支付；6积分 必填
@@ -72,9 +95,13 @@ public class PayActivity extends BasePresenterActivity<PayPresenter, PayContract
                     payType = "2";
                     tvPayNow.setText("微信支付" + money + "元");
                     break;
-                case R.id.rb_union:
+                case R.id.rb_balance:
                     payType = "5";
                     tvPayNow.setText("余额支付" + money + "元");
+                    break;
+                case R.id.rb_point:
+                    payType = "6";
+                    tvPayNow.setText("支付" + points + "积分");
                     break;
             }
         });
@@ -108,9 +135,9 @@ public class PayActivity extends BasePresenterActivity<PayPresenter, PayContract
             request.timeStamp = beans.getTimestamp();
             request.sign = beans.getSign();
             mPresenter.wechatPay(this, request);
-        } else if ("5".equals(payType)) {
+        } else {
             ToastUtils.showToast("支付成功");
-            startActivity(new Intent(this,PayCompleteActivity.class));
+            startActivity(new Intent(this, PayCompleteActivity.class));
             finish();
         }
     }
@@ -120,10 +147,8 @@ public class PayActivity extends BasePresenterActivity<PayPresenter, PayContract
         money = getTwoDecimal(getIntent().getDoubleExtra("transactionMoney", 0.00));
         points = getIntent().getIntExtra("transactionPoint", 0) + "";
         orderId = getIntent().getStringExtra("orderId");
-        buyNum = getIntent().getStringExtra("buyNum");
-        unityPrice = getIntent().getDoubleExtra("unityPrice", 0.00);
         isPoint = getIntent().getBooleanExtra("isPoint", false);
-        beans = (CommodityDetailBean) getIntent().getSerializableExtra("CommodityDetailBean");
+        datas = getIntent().getParcelableArrayListExtra("CommodityDetailBean");
         LogUtils.e("----------------money:" + money);
     }
 

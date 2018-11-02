@@ -6,6 +6,7 @@ import com.simson.www.BuildConfig;
  * Api接口地址
  */
 public class UrlConstainer {
+    public static final boolean DEBUG = BuildConfig.DEBUG;
     public static final String baseUrl_DEBUG = "http://58.213.14.195:8081/simson/";
     //public static final String baseUrl_DEBUG = "https://appapi.maofa.com/simson/";
     public static final String baseUrl_RELEASE = "https://appapi.maofa.com/simson/";
@@ -17,7 +18,7 @@ public class UrlConstainer {
     public static final String HOME_ITEM = "diaryController/diaryList";
 
     public static String getBaseUrl() {
-        if (BuildConfig.DEBUG) {
+        if (DEBUG) {
             return baseUrl_DEBUG;
         } else {
             return baseUrl_RELEASE;

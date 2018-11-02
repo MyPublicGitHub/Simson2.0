@@ -20,7 +20,7 @@
         android:layout_marginTop="@dimen/dp_5"
         android:maxLines="1"
         android:ellipsize="end"
-        android:textSize="@dimen/sp_14"
+        android:textSize="@dimen/sp_12"
         android:textColor="@color/colorBlack"
         android:layout_height="wrap_content" />
     <TextView
@@ -30,7 +30,7 @@
         android:maxLines="1"
         android:ellipsize="end"
         android:layout_marginTop="@dimen/dp_2"
-        android:textSize="@dimen/sp_12"
+        android:textSize="@dimen/sp_10"
         android:textColor="@color/colorRed"
         android:layout_height="wrap_content" />
 </LinearLayout>

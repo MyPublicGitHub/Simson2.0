@@ -11,7 +11,7 @@ import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.simson.www.R;
 import com.simson.www.net.bean.BaseBean;
 import com.simson.www.net.bean.mine.ShopCartBean;
-import com.simson.www.net.bean.mine.SubmitShoppCartBean;
+import com.simson.www.net.bean.mine.SubmitShopCartBean;
 import com.simson.www.ui.adapter.ShopCartAdapter;
 import com.simson.www.ui.base.BasePresenterActivity;
 import com.simson.www.utils.LogUtils;
@@ -121,7 +121,7 @@ public class ShopCartActivity extends BasePresenterActivity<ShopCartPresenter, S
     }
 
     @Override
-    public void showSubmitOrder(SubmitShoppCartBean bean) {
+    public void showSubmitOrder(SubmitShopCartBean bean) {
         /*if (bean.getOrderId() != null) {
             Intent intent = new Intent(this, PayActivity.class);
             intent.putExtra("transactionMoney", money);

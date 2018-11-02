@@ -41,6 +41,10 @@ public interface CommodityDetailContract {
 
         String subscribeDate();
 
+        String subscribeDateSave();
+
+        String getBuyNumSave();
+
         String longitude();
 
         String latitude();

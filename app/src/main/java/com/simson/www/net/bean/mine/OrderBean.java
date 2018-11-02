@@ -18,7 +18,7 @@ public class OrderBean {
 
     private String order_id;
     private String customer_id;
-    private String transaction_money;
+    private double transaction_money;
     private int transaction_point;
     private int transaction_type;
     private int transaction_status;
@@ -42,11 +42,11 @@ public class OrderBean {
         this.customer_id = customer_id;
     }
 
-    public String getTransaction_money() {
+    public double getTransaction_money() {
         return transaction_money;
     }
 
-    public void setTransaction_money(String transaction_money) {
+    public void setTransaction_money(double transaction_money) {
         this.transaction_money = transaction_money;
     }
 
@@ -122,6 +122,13 @@ public class OrderBean {
         private String original_price;
         private String present_price;
         private int is_delivery;
+        /**
+         * order_item_id : 9e7b249dc12c432eaa820e3a48694d07
+         * is_technology : 1
+         */
+
+        private String order_item_id;
+        private int is_technology;
 
         public String getItem_id() {
             return item_id;
@@ -201,6 +208,22 @@ public class OrderBean {
 
         public void setIs_delivery(int is_delivery) {
             this.is_delivery = is_delivery;
+        }
+
+        public String getOrder_item_id() {
+            return order_item_id;
+        }
+
+        public void setOrder_item_id(String order_item_id) {
+            this.order_item_id = order_item_id;
+        }
+
+        public int getIs_technology() {
+            return is_technology;
+        }
+
+        public void setIs_technology(int is_technology) {
+            this.is_technology = is_technology;
         }
     }
 }

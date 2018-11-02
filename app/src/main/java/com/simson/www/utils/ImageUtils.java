@@ -31,7 +31,29 @@ public class ImageUtils {
             if (file != null) {
                 String absolutePath = file.getAbsolutePath();
                 imageToBase64 = imageToBase64(absolutePath);
-                LogUtils.e("imageToBase64:::::"+imageToBase64);
+                LogUtils.e("imageToBase64:::::" + imageToBase64);
+            }
+        } else {
+            LogUtils.e("文件转换bitmap出错");
+        }
+        return imageToBase64;
+
+    }
+
+    /**
+     * 压缩图片并且转码成base64
+     *
+     * @param bitmap
+     * @return
+     */
+    public static String compressedPicture(Bitmap bitmap) {
+        String imageToBase64 = null;
+        if (bitmap != null) {
+            File file = qualtiy(bitmap);
+            if (file != null) {
+                String absolutePath = file.getAbsolutePath();
+                imageToBase64 = imageToBase64(absolutePath);
+                LogUtils.e("imageToBase64:::::" + imageToBase64);
             }
         } else {
             LogUtils.e("文件转换bitmap出错");

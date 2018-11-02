@@ -1,6 +1,8 @@
 package com.simson.www.ui.mine.feed;
 
 
+import android.os.Handler;
+import android.os.Message;
 import android.text.TextUtils;
 
 import com.google.gson.Gson;
@@ -20,6 +22,7 @@ import com.simson.www.utils.ImageUtils;
 import com.simson.www.utils.SPUtils;
 import com.simson.www.utils.ToastUtils;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -62,25 +65,42 @@ public class FeedBackPresenter extends BasePresenter<FeedBackContract.View> impl
         map.put("customerId",SPUtils.get(Const.USER_INFO.CUSTOMER_ID, ""));//当前登录人
         map.put("mobile", mView.mobile());
         map.put("content", mView.content());
-        map.put("pictures", "");
+        if (mView.pictures() != null && mView.pictures().size() > 0) {
+            map.put("pictures", codeList1.toArray(new String[codeList1.size()]));
+        } else {
+            //map.put("pictures", "");
+        }
         String json = new Gson().toJson(map);
         mModel.feedback(json, observer);
         addDisposable(observer);
     }
-    String[] codeList ;
+
+    List<String> codeList1;
+
     //开启子线程处理图片压缩转码
     public void initImage() {
-        mView =getView();
-        mView.showLoading("图片处理中...");
+        mView = getView();
+        if (mView.pictures() == null || mView.pictures().size() == 0) {
+            feedback();
+            return;
+        }
         new Thread(() -> {
-            codeList = new String[4];
+            codeList1 = new ArrayList<>();
             for (int i = 0; i < mView.pictures().size(); i++) {
                 String imgCode = ImageUtils.compressedPicture(mView.pictures().get(i));
                 if (!imgCode.equals("")) {
-                    codeList[i] = imgCode;
+                    codeList1.add(imgCode);
                 }
             }
-            feedback();
+            Message message = new Message();
+            mHandler.sendMessage(message);
         }).start();
+
     }
+
+    private Handler mHandler = new Handler() {
+        public void handleMessage(Message msg) {
+            feedback();
+        }
+    };
 }

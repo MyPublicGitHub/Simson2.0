@@ -7,8 +7,7 @@ import android.widget.TextView;
 import com.simson.www.R;
 import com.simson.www.net.bean.mine.CustomerBasicBean;
 import com.simson.www.ui.base.BasePresenterActivity;
-import com.simson.www.ui.core.presenter.BasePresenter;
-import com.simson.www.ui.home.test.TestActivity;
+import com.simson.www.ui.home.test.TestSplashActivity;
 import com.simson.www.ui.mine.integral.detail.IntegralDetailActivity;
 import com.simson.www.ui.mine.integral.mall.IntegralMallActivity;
 import com.simson.www.ui.mine.invitation.InvitationActivity;
@@ -50,17 +49,18 @@ public class IntegralActivity extends BasePresenterActivity<WalletPresenter, Wal
             case R.id.btn_new_diary:
                 break;
             case R.id.btn_test:
-                startActivity(new Intent(this, TestActivity.class));
+                startActivity(new Intent(this, TestSplashActivity.class));
                 break;
             case R.id.btn_friend:
                 startActivity(new Intent(this, InvitationActivity.class));
                 break;
         }
     }
+
     @Override
     public void getCustomerBasicInfo(CustomerBasicBean bean) {
         if (bean == null) return;
-        mineIntegral.setText(""+bean.getPoints());
+        mineIntegral.setText("" + bean.getPoints());
     }
 
     @Override

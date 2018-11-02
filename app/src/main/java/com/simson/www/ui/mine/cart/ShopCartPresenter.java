@@ -6,7 +6,7 @@ import com.simson.www.common.Const;
 import com.simson.www.net.NetConfig;
 import com.simson.www.net.bean.BaseBean;
 import com.simson.www.net.bean.mine.ShopCartBean;
-import com.simson.www.net.bean.mine.SubmitShoppCartBean;
+import com.simson.www.net.bean.mine.SubmitShopCartBean;
 import com.simson.www.net.callback.RxBaseObserver;
 import com.simson.www.net.callback.RxObserver;
 import com.simson.www.ui.core.model.ShopCartModel;
@@ -110,10 +110,10 @@ public class ShopCartPresenter extends BasePresenter<ShopCartContract.View> impl
     @Override
     public void submitOrder() {
         mView = getView();
-        RxObserver<SubmitShoppCartBean> observer = new RxObserver<SubmitShoppCartBean>(this) {
+        RxObserver<SubmitShopCartBean> observer = new RxObserver<SubmitShopCartBean>(this) {
 
             @Override
-            public void onSuccess(SubmitShoppCartBean mData) {
+            public void onSuccess(SubmitShopCartBean mData) {
                 mView.showSubmitOrder(mData);
             }
 

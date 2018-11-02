@@ -26,7 +26,7 @@ public class MyApp extends Application {
         refWatcher = setupLeakCanary();//初始化内存泄漏检测工具
         AppContext.initialize(this);//初始化App配置
 
-        JPushInterface.setDebugMode(true);//极光推送
+        JPushInterface.setDebugMode(BuildConfig.DEBUG);//极光推送
         JPushInterface.init(this);
         initUM();
     }

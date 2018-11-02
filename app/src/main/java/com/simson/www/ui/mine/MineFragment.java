@@ -121,7 +121,7 @@ public class MineFragment extends BasePresenterFragment<MinePresenter, MineContr
             case R.id.ll_invitation:
                 startActivity(new Intent(getActivity(), InvitationActivity.class));
                 break;
-            case R.id.ll_diary:
+            case R.id.ll_diary://脱发检测
                 startActivity(new Intent(getActivity(), AlopeciaActivity.class));
                 break;
             case R.id.ll_message:

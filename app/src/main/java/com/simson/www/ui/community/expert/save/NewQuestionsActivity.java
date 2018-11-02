@@ -53,7 +53,7 @@ public class NewQuestionsActivity extends BasePresenterActivity<NewQuestionPrese
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.btn_commit:
-                mPresenter.questions();
+                mPresenter.initImage();
                 break;
         }
     }
@@ -68,9 +68,9 @@ public class NewQuestionsActivity extends BasePresenterActivity<NewQuestionPrese
                         File takePhotoDir = new File(Environment.getExternalStorageDirectory(), "SimsonPhoto");
                         Intent photoPickerIntent = new BGAPhotoPickerActivity.IntentBuilder(this)
                                 .cameraFileDir(takePhotoDir) // 拍照后照片的存放目录，改成你自己拍照后要存放照片的目录。如果不传递该参数的话则不开启图库里的拍照功能
-                                .maxChooseCount(snplAddPhotos.getMaxItemCount()) // 图片选择张数的最大值
+                                .maxChooseCount(4) // 图片选择张数的最大值
                                 .selectedPhotos(snplAddPhotos.getData()) // 当前已选中的图片路径集合
-                                .pauseOnScroll(false) // 滚动列表时是否暂停加载图片
+                                .pauseOnScroll(true) // 滚动列表时是否暂停加载图片
                                 .build();
                         startActivityForResult(photoPickerIntent, RC_CHOOSE_PHOTO);
                     } else {

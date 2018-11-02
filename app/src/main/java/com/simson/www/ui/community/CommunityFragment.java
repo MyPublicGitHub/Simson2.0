@@ -20,7 +20,6 @@ import com.simson.www.ui.community.expert.save.NewQuestionsActivity;
 import com.simson.www.ui.community.knowledge.KnowledgeFragment;
 import com.simson.www.ui.community.knowledge.search.SearchKnowledgeActivity;
 import com.simson.www.ui.core.presenter.BasePresenter;
-import com.simson.www.utils.ToastUtils;
 
 import java.util.ArrayList;
 
@@ -30,8 +29,6 @@ import butterknife.OnClick;
 
 public class CommunityFragment extends BasePresenterFragment {
 
-    @BindView(R.id.tv_search)
-    TextView tvSearch;
     @BindView(R.id.iv_menu)
     ImageView ivMenu;
     @BindView(R.id.tab_layout)
@@ -69,7 +66,7 @@ public class CommunityFragment extends BasePresenterFragment {
             @Override
             public void onPageSelected(int position) {
                 if (position == 0) {
-                    ivMenu.setImageResource(R.mipmap.ic_search);
+                    ivMenu.setImageResource(R.drawable.ic_search_white_24dp);
                 } else {
                     ivMenu.setImageResource(R.drawable.ic_camera_white_24dp);
                 }
@@ -82,16 +79,15 @@ public class CommunityFragment extends BasePresenterFragment {
         });
     }
 
-    @OnClick({R.id.tv_search, R.id.iv_menu, R.id.ll_search})
+    @OnClick({ R.id.iv_menu, R.id.ll_search})
     public void onViewClicked(View view) {
         switch (view.getId()) {
-            case R.id.tv_search:
             case R.id.ll_search:
-                startActivity(new Intent(getContext(),SearchKnowledgeActivity.class));
+                startActivity(new Intent(getContext(), SearchKnowledgeActivity.class));
                 break;
             case R.id.iv_menu:
                 if (viewPager.getCurrentItem() == 0) {
-                    ToastUtils.showToast("搜索");
+                    startActivity(new Intent(getContext(), SearchKnowledgeActivity.class));
                 } else if (viewPager.getCurrentItem() == 1) {
                     startActivity(new Intent(getActivity(), NewQuestionsActivity.class));
                 } else if (viewPager.getCurrentItem() == 2) {

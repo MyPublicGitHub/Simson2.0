@@ -16,14 +16,8 @@ import com.simson.www.utils.SPUtils;
 public class AppConfig {
 
     static void init(Context context){
-        String baseUrl;
-        if (BuildConfig.DEBUG){
-            baseUrl = UrlConstainer.baseUrl_DEBUG;
-        }else {
-            baseUrl = UrlConstainer.baseUrl_RELEASE;
-        }
         //初始化网络框架
-        RxRetrofit.getInstance().initRxRetrofit(context, baseUrl);
+        RxRetrofit.getInstance().initRxRetrofit(context, UrlConstainer.getBaseUrl());
         //初始化缓存
         SPUtils.init(context);
     }

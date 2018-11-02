@@ -1,6 +1,8 @@
 package com.simson.www.ui.community.expert.save;
 
 
+import android.os.Handler;
+import android.os.Message;
 import android.text.TextUtils;
 
 import com.google.gson.Gson;
@@ -56,8 +58,8 @@ public class NewQuestionPresenter extends BasePresenter<NewQuestionContract.View
         map.put("customerId", SPUtils.get(Const.USER_INFO.CUSTOMER_ID, ""));//当前登录人
         map.put("content", mView.content());
         map.put("is_display", mView.is_display());
-        if (mView.pictures().size() == 0) {
-            //map.put("pictures", "");
+        if (mView.pictures() != null && mView.pictures().size() > 0) {
+            map.put("pictures", codeList1.toArray(new String[codeList1.size()]));
         } else {
             //map.put("pictures", "");
         }
@@ -66,26 +68,32 @@ public class NewQuestionPresenter extends BasePresenter<NewQuestionContract.View
         addDisposable(observer);
     }
 
-    String[] codeList;
     List<String> codeList1;
 
     //开启子线程处理图片压缩转码
     public void initImage() {
         mView = getView();
-        if (mView.pictures() == null) return;
-        //mView.showLoading("图片处理中...");
+        if (mView.pictures() == null || mView.pictures().size() == 0) {
+            questions();
+            return;
+        }
         new Thread(() -> {
-            codeList = new String[4];
             codeList1 = new ArrayList<>();
             for (int i = 0; i < mView.pictures().size(); i++) {
                 String imgCode = ImageUtils.compressedPicture(mView.pictures().get(i));
                 if (!imgCode.equals("")) {
-                    codeList[i] = imgCode;
                     codeList1.add(imgCode);
                 }
             }
-            //mView.hideLoading();
-            questions();
+            Message message = new Message();
+            mHandler.sendMessage(message);
         }).start();
+
     }
+
+    private Handler mHandler = new Handler() {
+        public void handleMessage(Message msg) {
+            questions();
+        }
+    };
 }

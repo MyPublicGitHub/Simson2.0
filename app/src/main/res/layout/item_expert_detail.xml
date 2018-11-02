@@ -19,8 +19,8 @@
 
             <com.simson.www.widget.CircleImageView
                 android:id="@+id/iv_header"
-                android:layout_width="@dimen/dp_50"
-                android:layout_height="@dimen/dp_50"
+                android:layout_width="@dimen/dp_40"
+                android:layout_height="@dimen/dp_40"
                 android:src="@mipmap/ic_placeholder" />
 
             <TextView
@@ -28,7 +28,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/dp_10"
-                android:layout_marginTop="@dimen/dp_5"
                 android:layout_toRightOf="@id/iv_header"
                 android:text="张俊杰"
                 android:textColor="@color/colorBlack"
@@ -51,7 +50,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/tv_name"
                 android:layout_marginLeft="@dimen/dp_10"
-                android:layout_marginTop="@dimen/dp_5"
+                android:layout_marginTop="@dimen/dp_2"
                 android:layout_toRightOf="@id/iv_header"
                 android:text="2018-09-09"
                 android:textColor="@color/colorBlack_6"
@@ -67,7 +66,7 @@
                 android:padding="@dimen/dp_3"
                 android:text="问"
                 android:textColor="@color/colorWhite"
-                android:textSize="@dimen/sp_15" />
+                android:textSize="@dimen/sp_14" />
 
             <TextView
                 android:id="@+id/tv_question_content"
@@ -81,7 +80,7 @@
                 android:layout_toRightOf="@id/tv_question"
                 android:text="我这样的脱发严重吗？"
                 android:textColor="@color/colorBlack"
-                android:textSize="@dimen/sp_15" />
+                android:textSize="@dimen/sp_14" />
 
             <TextView
                 android:id="@+id/tv_answer"
@@ -93,7 +92,7 @@
                 android:padding="@dimen/dp_3"
                 android:text="答"
                 android:textColor="@color/colorWhite"
-                android:textSize="@dimen/sp_15" />
+                android:textSize="@dimen/sp_14" />
 
             <TextView
                 android:id="@+id/tv_answer_content"
@@ -101,13 +100,13 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/tv_question"
                 android:layout_marginLeft="@dimen/dp_10"
-                android:layout_marginTop="@dimen/dp_10"
+                android:layout_marginTop="@dimen/dp_8"
                 android:layout_toRightOf="@id/tv_question"
                 android:ellipsize="end"
                 android:maxLines="3"
                 android:text="已经明显发际线三一收到货幅度为电视剧换个几个肺结核就恢复本基金的时间的话收"
                 android:textColor="@color/colorBlack"
-                android:textSize="@dimen/sp_15" />
+                android:textSize="@dimen/sp_13" />
 
         </RelativeLayout>
 
@@ -130,14 +129,14 @@
                 android:paddingBottom="@dimen/dp_3"
                 android:text="+ 关注"
                 android:textColor="@color/colorMain"
-                android:textSize="@dimen/sp_15" />
+                android:textSize="@dimen/sp_13" />
 
             <ImageView
                 android:id="@+id/iv_image"
                 android:layout_width="@dimen/dp_100"
                 android:layout_height="@dimen/dp_100"
                 android:layout_marginLeft="@dimen/dp_5"
-                android:layout_marginTop="@dimen/dp_20"
+                android:layout_marginTop="@dimen/dp_10"
                 android:background="@mipmap/ic_placeholder" />
         </LinearLayout>
     </LinearLayout>
@@ -163,7 +162,7 @@
             android:padding="@dimen/dp_5"
             android:text="526已看"
             android:textColor="@color/colorBlack_6"
-            android:textSize="@dimen/sp_14" />
+            android:textSize="@dimen/sp_12" />
 
         <TextView
             android:layout_width="0dp"
@@ -173,7 +172,7 @@
             android:padding="@dimen/dp_5"
             android:text="23评论"
             android:textColor="@color/colorBlack_6"
-            android:textSize="@dimen/sp_14" />
+            android:textSize="@dimen/sp_12" />
 
         <TextView
             android:id="@+id/tv_praises"
@@ -184,7 +183,7 @@
             android:padding="@dimen/dp_5"
             android:text="152赞"
             android:textColor="@color/colorBlack_6"
-            android:textSize="@dimen/sp_14" />
+            android:textSize="@dimen/sp_12" />
 
     </LinearLayout>
 </LinearLayout>

@@ -44,7 +44,7 @@
                         android:layout_height="wrap_content"
                         android:text="专家问诊"
                         android:textColor="@color/colorWhite"
-                        android:textSize="@dimen/sp_16"
+                        android:textSize="@dimen/sp_14"
                         android:textStyle="bold" />
 
                     <TextView
@@ -53,7 +53,7 @@
                         android:layout_marginTop="@dimen/dp_5"
                         android:text="专家坐镇问诊"
                         android:textColor="@color/colorWhite"
-                        android:textSize="@dimen/sp_14" />
+                        android:textSize="@dimen/sp_12" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -71,7 +71,7 @@
                         android:layout_height="wrap_content"
                         android:text="储值充卡"
                         android:textColor="@color/colorWhite"
-                        android:textSize="@dimen/sp_16"
+                        android:textSize="@dimen/sp_14"
                         android:textStyle="bold" />
 
                     <TextView
@@ -80,7 +80,7 @@
                         android:layout_marginTop="@dimen/dp_5"
                         android:text="更多折扣优惠"
                         android:textColor="@color/colorWhite"
-                        android:textSize="@dimen/sp_14" />
+                        android:textSize="@dimen/sp_12" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -98,7 +98,7 @@
                         android:layout_height="wrap_content"
                         android:text="电话咨询"
                         android:textColor="@color/colorWhite"
-                        android:textSize="@dimen/sp_16"
+                        android:textSize="@dimen/sp_14"
                         android:textStyle="bold" />
 
                     <TextView
@@ -107,7 +107,7 @@
                         android:layout_marginTop="@dimen/dp_5"
                         android:text="全天候极速响应"
                         android:textColor="@color/colorWhite"
-                        android:textSize="@dimen/sp_14" />
+                        android:textSize="@dimen/sp_12" />
                 </LinearLayout>
             </LinearLayout>
 
@@ -132,7 +132,7 @@
                         android:gravity="center"
                         android:text="脱发原因"
                         android:textColor="@color/colorBlack"
-                        android:textSize="@dimen/sp_15" />
+                        android:textSize="@dimen/sp_14" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -171,7 +171,7 @@
                         android:gravity="center"
                         android:text="毛囊检测"
                         android:textColor="@color/colorBlack"
-                        android:textSize="@dimen/sp_15" />
+                        android:textSize="@dimen/sp_14" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -213,7 +213,7 @@
                         android:gravity="center"
                         android:text="咨询医生"
                         android:textColor="@color/colorBlack"
-                        android:textSize="@dimen/sp_15" />
+                        android:textSize="@dimen/sp_14" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -252,7 +252,7 @@
                         android:gravity="center"
                         android:text="线上预约"
                         android:textColor="@color/colorBlack"
-                        android:textSize="@dimen/sp_15" />
+                        android:textSize="@dimen/sp_14" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -283,7 +283,7 @@
                 android:padding="@dimen/dp_10"
                 android:text="猜你喜欢"
                 android:textColor="@color/colorBlack"
-                android:textSize="@dimen/sp_14" />
+                android:textSize="@dimen/sp_12" />
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/recycler_view"

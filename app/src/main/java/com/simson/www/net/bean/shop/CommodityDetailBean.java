@@ -1,9 +1,12 @@
 package com.simson.www.net.bean.shop;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import java.io.Serializable;
 import java.util.List;
 
-public class CommodityDetailBean implements Serializable {
+public class CommodityDetailBean implements Parcelable {
 
 
     /**
@@ -21,7 +24,8 @@ public class CommodityDetailBean implements Serializable {
      * is_collect : 0
      * picture : ["https://appapi.maofa.com/userfiles/item/kunmingjiemao/kunmingjiemaozhongzhitoutu1.jpg","https://appapi.maofa.com/userfiles/item/kunmingjiemao/kunmingjiemaozhongzhitoutu2.jpg","https://appapi.maofa.com/userfiles/item/kunmingjiemao/kunmingjiemaozhongzhitoutu3.jpg","https://appapi.maofa.com/userfiles/item/kunmingjiemao/kunmingjiemaozhongzhitoutu4.jpg"]
      */
-
+    public String buyNumber;
+    public double unityPrice;
     private String item_id;
     private String item_name;
     private double present_price;
@@ -140,4 +144,63 @@ public class CommodityDetailBean implements Serializable {
     public void setPicture(List<String> picture) {
         this.picture = picture;
     }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(this.buyNumber);
+        dest.writeDouble(this.unityPrice);
+        dest.writeString(this.item_id);
+        dest.writeString(this.item_name);
+        dest.writeDouble(this.present_price);
+        dest.writeString(this.original_price);
+        dest.writeInt(this.item_point);
+        dest.writeInt(this.hair_follicles_number);
+        dest.writeInt(this.browse);
+        dest.writeInt(this.subscribes);
+        dest.writeInt(this.is_delivery);
+        dest.writeInt(this.is_point);
+        dest.writeInt(this.is_technology);
+        dest.writeInt(this.is_collect);
+        dest.writeStringList(this.picture);
+        dest.writeStringList(this.pictures);
+    }
+
+    public CommodityDetailBean() {
+    }
+
+    protected CommodityDetailBean(Parcel in) {
+        this.buyNumber = in.readString();
+        this.unityPrice = in.readDouble();
+        this.item_id = in.readString();
+        this.item_name = in.readString();
+        this.present_price = in.readDouble();
+        this.original_price = in.readString();
+        this.item_point = in.readInt();
+        this.hair_follicles_number = in.readInt();
+        this.browse = in.readInt();
+        this.subscribes = in.readInt();
+        this.is_delivery = in.readInt();
+        this.is_point = in.readInt();
+        this.is_technology = in.readInt();
+        this.is_collect = in.readInt();
+        this.picture = in.createStringArrayList();
+        this.pictures = in.createStringArrayList();
+    }
+
+    public static final Creator<CommodityDetailBean> CREATOR = new Creator<CommodityDetailBean>() {
+        @Override
+        public CommodityDetailBean createFromParcel(Parcel source) {
+            return new CommodityDetailBean(source);
+        }
+
+        @Override
+        public CommodityDetailBean[] newArray(int size) {
+            return new CommodityDetailBean[size];
+        }
+    };
 }

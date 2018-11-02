@@ -9,6 +9,7 @@ import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Environment;
+import android.provider.MediaStore;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewGroup;
@@ -265,7 +266,8 @@ public class UserInfoActivity extends BasePresenterActivity<UserInfoPresenter, U
                 .subscribe(granted -> {
                     if (granted) {
                         try {
-                            startActivityForResult(mPhotoHelper.getTakePhotoIntent(), REQUEST_CODE_TAKE_PHOTO);
+                            startActivityForResult(new Intent(MediaStore.ACTION_IMAGE_CAPTURE), REQUEST_CODE_TAKE_PHOTO);
+                            //startActivityForResult(mPhotoHelper.getTakePhotoIntent(), REQUEST_CODE_TAKE_PHOTO);
                         } catch (Exception e) {
                             BGAPhotoPickerUtil.show(R.string.bga_pp_not_support_take_photo);
                         }
@@ -292,7 +294,12 @@ public class UserInfoActivity extends BasePresenterActivity<UserInfoPresenter, U
                 }
             } else if (requestCode == REQUEST_CODE_TAKE_PHOTO) {
                 try {
-                    startActivityForResult(mPhotoHelper.getCropIntent(mPhotoHelper.getCameraFilePath(), 200, 200), REQUEST_CODE_CROP);
+                    Bundle bundle = data.getExtras(); // 从data中取出传递回来缩略图的信息，图片质量差，适合传递小图片
+                    Bitmap bitmap = (Bitmap) bundle.get("data"); // 将data中的信息流解析为Bitmap类型
+                    ivHeader.setImageBitmap(bitmap);// 显示图片
+                    //处理后的照片
+                    compressedPicture = ImageUtils.compressedPicture(bitmap);
+                    //startActivityForResult(mPhotoHelper.getCropIntent(mPhotoHelper.getCameraFilePath(), 200, 200), REQUEST_CODE_CROP);
                 } catch (Exception e) {
                     mPhotoHelper.deleteCameraFile();
                     mPhotoHelper.deleteCropFile();

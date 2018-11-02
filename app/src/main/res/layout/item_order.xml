@@ -20,7 +20,7 @@
             android:layout_weight="1"
             android:padding="@dimen/dp_10"
             android:textColor="@color/colorBlack_2"
-            android:textSize="@dimen/sp_14" />
+            android:textSize="@dimen/sp_12" />
 
         <TextView
             android:id="@+id/tv_trade_state"
@@ -29,13 +29,12 @@
             android:textColor="@color/colorBlack_2"
             android:textSize="@dimen/sp_14" />
 
-        <ImageView
+        <!--<ImageView
             android:id="@+id/iv_delete"
             android:layout_width="@dimen/dp_30"
             android:layout_height="@dimen/dp_30"
             android:layout_margin="@dimen/dp_10"
-            android:padding="@dimen/dp_6"
-            android:src="@mipmap/ic_placeholder" />
+            android:padding="@dimen/dp_6"/>-->
     </LinearLayout>
 
     <android.support.v7.widget.RecyclerView
@@ -58,7 +57,7 @@
             android:ellipsize="end"
             android:singleLine="true"
             android:textColor="@color/black"
-            android:textSize="@dimen/sp_14" />
+            android:textSize="@dimen/sp_12" />
         <TextView
             android:id="@+id/tv_total"
             android:layout_width="wrap_content"
@@ -67,7 +66,7 @@
             android:layout_marginLeft="@dimen/dp_10"
             android:singleLine="true"
             android:textColor="@color/black"
-            android:textSize="@dimen/sp_14" />
+            android:textSize="@dimen/sp_12" />
         <TextView
             android:id="@+id/tv_integral"
             android:layout_width="wrap_content"
@@ -76,7 +75,7 @@
             android:layout_marginLeft="@dimen/dp_10"
             android:singleLine="true"
             android:textColor="@color/colorRed"
-            android:textSize="@dimen/sp_14" />
+            android:textSize="@dimen/sp_12" />
     </LinearLayout>
 
     <LinearLayout
@@ -99,7 +98,7 @@
             android:singleLine="true"
             android:text="体型发货"
             android:textColor="@color/black"
-            android:textSize="@dimen/sp_14" />
+            android:textSize="@dimen/sp_12" />
 
         <TextView
             android:id="@+id/tv_logistics"
@@ -111,9 +110,9 @@
             android:gravity="center"
             android:padding="@dimen/dp_5"
             android:singleLine="true"
-            android:text="查看物流"
+            android:text="使用"
             android:textColor="@color/black"
-            android:textSize="@dimen/sp_14" />
+            android:textSize="@dimen/sp_12" />
 
         <TextView
             android:id="@+id/tv_evaluate"
@@ -127,7 +126,7 @@
             android:singleLine="true"
             android:text="@string/evaluate"
             android:textColor="@color/black"
-            android:textSize="@dimen/sp_14" />
+            android:textSize="@dimen/sp_12" />
         <TextView
             android:id="@+id/tv_payment"
             android:layout_width="@dimen/dp_70"
@@ -140,7 +139,7 @@
             android:singleLine="true"
             android:text="付款"
             android:textColor="@color/black"
-            android:textSize="@dimen/sp_14" />
+            android:textSize="@dimen/sp_12" />
     </LinearLayout>
 
     <View

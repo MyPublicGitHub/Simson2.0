@@ -6,7 +6,7 @@ import android.view.View;
 import com.simson.www.R;
 import com.simson.www.ui.base.BasePresenterActivity;
 import com.simson.www.ui.core.presenter.BasePresenter;
-import com.simson.www.ui.home.test.TestActivity;
+import com.simson.www.ui.home.test.TestSplashActivity;
 import com.simson.www.ui.mine.invitation.InvitationActivity;
 import com.simson.www.ui.mine.sign.SignActivity;
 
@@ -26,7 +26,7 @@ public class IntegralTaskActivity extends BasePresenterActivity {
                 startActivity(new Intent(this, SignActivity.class));
                 break;
             case R.id.btn_test:
-                startActivity(new Intent(this, TestActivity.class));
+                startActivity(new Intent(this, TestSplashActivity.class));
                 break;
             case R.id.btn_friend:
                 startActivity(new Intent(this, InvitationActivity.class));

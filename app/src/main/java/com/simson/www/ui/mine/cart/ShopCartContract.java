@@ -2,7 +2,7 @@ package com.simson.www.ui.mine.cart;
 
 import com.simson.www.net.bean.BaseBean;
 import com.simson.www.net.bean.mine.ShopCartBean;
-import com.simson.www.net.bean.mine.SubmitShoppCartBean;
+import com.simson.www.net.bean.mine.SubmitShopCartBean;
 import com.simson.www.ui.core.view.IView;
 
 import java.util.List;
@@ -35,6 +35,6 @@ public interface ShopCartContract {
 
         void showUpdateShopCart(BaseBean bean);
 
-        void showSubmitOrder(SubmitShoppCartBean bean);
+        void showSubmitOrder(SubmitShopCartBean bean);
     }
 }

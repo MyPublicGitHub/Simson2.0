@@ -12,7 +12,6 @@ import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
-import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.simson.www.R;
 import com.simson.www.net.bean.community.DiaryDetailAppendBean;
 import com.simson.www.net.bean.community.DiaryDetailBean;
@@ -77,6 +76,7 @@ public class DiaryDetailActivity extends BasePresenterActivity<DiaryDetailPresen
 
     DiaryDetailAdapter adapter;
     DiaryDetailRecommendAdapter adapterRecommend;
+
     @Override
     protected int getLayoutId() {
         return R.layout.activity_diary_detail;
@@ -92,7 +92,7 @@ public class DiaryDetailActivity extends BasePresenterActivity<DiaryDetailPresen
         adapter.setOnItemClickListener((adapter, view, position) ->
                 startActivity(new Intent(DiaryDetailActivity.this, AppendDiaryDetailActivity.class)));
         adapterRecommend = new DiaryDetailRecommendAdapter(null);
-        rvRecommend.setLayoutManager(new GridLayoutManager(this,2));
+        rvRecommend.setLayoutManager(new GridLayoutManager(this, 2));
         rvRecommend.setAdapter(adapterRecommend);
 
         adapterRecommend.setOnItemClickListener((adapter, view, position) -> {
