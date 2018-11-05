@@ -41,9 +41,9 @@ public interface CommodityDetailContract {
 
         String subscribeDate();
 
-        String subscribeDateSave();
+        /*String subscribeDateSave();
 
-        String getBuyNumSave();
+        String getBuyNumSave();*/
 
         String longitude();
 

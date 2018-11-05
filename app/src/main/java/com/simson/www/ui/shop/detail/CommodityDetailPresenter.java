@@ -192,10 +192,12 @@ public class CommodityDetailPresenter extends CommonPresenter<CommodityDetailCon
         map.put("customerId", (String) SPUtils.get(Const.USER_INFO.CUSTOMER_ID, ""));//当前登录人
         map.put("timestamp", DateUtils.getStringDate());
         map.put("itemId", mView.getItemId());//项目id必填
-        map.put("buyNum", mView.getBuyNumSave());//购物数量必填
+        map.put("buyNum", mView.getBuyNum());//购物数量必填
+       // map.put("buyNum", mView.getBuyNumSave());//购物数量必填
         map.put("hospitalId", mView.hospitalId());//医院id
         map.put("technologyId", mView.technologyId());//植发技术
-        map.put("subscribeDate", mView.subscribeDateSave());//到院日期
+        map.put("subscribeDate", mView.subscribeDate());//到院日期
+        //map.put("subscribeDate", mView.subscribeDateSave());//到院日期
         String json = new Gson().toJson(map);
         mModel.saveShopCart(json, observer);
         addDisposable(observer);

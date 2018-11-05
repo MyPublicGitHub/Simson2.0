@@ -33,7 +33,7 @@
                 android:padding="@dimen/dp_10"
                 android:text="【打算发个】收到货接口好的空间和电话刚才吧白金卡费"
                 android:textColor="@color/colorBlack"
-                android:textSize="@dimen/sp_16" />
+                android:textSize="@dimen/sp_13" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -48,7 +48,7 @@
                     android:layout_marginLeft="@dimen/dp_10"
                     android:text="￥4600.00"
                     android:textColor="@color/colorRed"
-                    android:textSize="@dimen/sp_16" />
+                    android:textSize="@dimen/sp_15" />
 
                 <TextView
                     android:id="@+id/tv_original"
@@ -57,14 +57,13 @@
                     android:layout_marginLeft="@dimen/dp_10"
                     android:text="￥6600.00"
                     android:textColor="@color/colorBlack_4"
-                    android:textSize="@dimen/sp_14" />
+                    android:textSize="@dimen/sp_12" />
 
                 <TextView
                     android:id="@+id/tv_point"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/dp_10"
-                    android:text="积分：6600"
                     android:textColor="@color/colorBlack_4"
                     android:textSize="@dimen/sp_14" />
 
@@ -101,20 +100,20 @@
                     android:id="@+id/iv_hospital_img"
                     android:layout_width="@dimen/dp_50"
                     android:layout_height="@dimen/dp_50"
-                    android:background="@mipmap/ic_placeholder" />
+                    android:scaleType="centerCrop"/>
 
                 <TextView
                     android:id="@+id/tv_hospital_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/dp_10"
-                    android:layout_marginTop="@dimen/dp_2"
+                    android:layout_marginTop="@dimen/dp_1"
                     android:layout_toRightOf="@+id/iv_hospital_img"
                     android:ellipsize="end"
                     android:maxLines="1"
                     android:text="南京新生医院"
                     android:textColor="@color/colorBlack"
-                    android:textSize="@dimen/sp_15" />
+                    android:textSize="@dimen/sp_14" />
 
                 <TextView
                     android:id="@+id/tv_hospital_address"
@@ -159,6 +158,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="@dimen/dp_10"
                         android:text="医院主页"
+                        android:textSize="@dimen/sp_12"
                         android:textColor="@color/colorMain" />
 
 
@@ -184,6 +184,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="@dimen/dp_10"
                         android:text="电话咨询"
+                        android:textSize="@dimen/sp_12"
                         android:textColor="@color/colorMain" />
                 </LinearLayout>
             </LinearLayout>
@@ -202,7 +203,7 @@
                     android:layout_weight="1"
                     android:text="评价（256）"
                     android:textColor="@color/colorBlack"
-                    android:textSize="@dimen/sp_16" />
+                    android:textSize="@dimen/sp_14" />
 
                 <TextView
                     android:id="@+id/tv_more"
@@ -213,7 +214,7 @@
                     android:padding="@dimen/dp_10"
                     android:text="查看更多"
                     android:textColor="@color/colorBlack_4"
-                    android:textSize="@dimen/sp_14" />
+                    android:textSize="@dimen/sp_12" />
             </LinearLayout>
 
             <LinearLayout
@@ -324,7 +325,7 @@
                         android:maxLines="1"
                         android:text="金先生"
                         android:textColor="@color/colorBlack"
-                        android:textSize="@dimen/sp_15" />
+                        android:textSize="@dimen/sp_14" />
 
                     <TextView
                         android:id="@+id/tv_contents"
@@ -384,8 +385,8 @@
             android:paddingBottom="@dimen/dp_5">
 
             <ImageView
-                android:layout_width="@dimen/dp_20"
-                android:layout_height="@dimen/dp_20"
+                android:layout_width="@dimen/dp_18"
+                android:layout_height="@dimen/dp_18"
                 android:src="@mipmap/ic_consultation" />
 
             <TextView
@@ -393,7 +394,7 @@
                 android:layout_height="wrap_content"
                 android:text="咨询"
                 android:textColor="@color/colorBlack"
-                android:textSize="@dimen/sp_12" />
+                android:textSize="@dimen/sp_10" />
         </LinearLayout>
 
         <LinearLayout
@@ -409,8 +410,8 @@
 
             <ImageView
                 android:id="@+id/iv_collection"
-                android:layout_width="@dimen/dp_20"
-                android:layout_height="@dimen/dp_20"
+                android:layout_width="@dimen/dp_18"
+                android:layout_height="@dimen/dp_18"
                 android:src="@mipmap/ic_collection" />
 
             <TextView
@@ -419,29 +420,29 @@
                 android:layout_height="wrap_content"
                 android:text="收藏"
                 android:textColor="@color/colorBlack"
-                android:textSize="@dimen/sp_12" />
+                android:textSize="@dimen/sp_10" />
         </LinearLayout>
 
         <TextView
             android:id="@+id/tv_save_shop"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="@dimen/dp_38"
             android:layout_weight="1"
             android:background="@drawable/shape_corner_orange_left_15dp"
             android:gravity="center"
             android:text="加入购物车"
             android:textColor="@color/colorWhite"
-            android:textSize="@dimen/sp_16" />
+            android:textSize="@dimen/sp_14" />
 
         <TextView
             android:id="@+id/tv_pay_now"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="@dimen/dp_38"
             android:layout_weight="1"
             android:background="@drawable/shape_corner_orange_right_15dp"
             android:gravity="center"
             android:text="立即购买"
             android:textColor="@color/colorWhite"
-            android:textSize="@dimen/sp_16" />
+            android:textSize="@dimen/sp_14" />
     </LinearLayout>
 </LinearLayout>

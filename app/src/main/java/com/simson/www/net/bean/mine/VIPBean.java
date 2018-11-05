@@ -10,7 +10,7 @@ public class VIPBean {
 
     private String vip_level;
     private String required_amount;
-    private String discount;
+    private double discount;
 
     public String getVip_level() {
         return vip_level;
@@ -28,11 +28,11 @@ public class VIPBean {
         this.required_amount = required_amount;
     }
 
-    public String getDiscount() {
+    public double getDiscount() {
         return discount;
     }
 
-    public void setDiscount(String discount) {
+    public void setDiscount(double discount) {
         this.discount = discount;
     }
 }

@@ -28,7 +28,7 @@ public class NewSubscribePresenter extends CommonPresenter<NewSubscribeContract.
     @Override
     public void saveSubscribe() {
         mView = getView();
-        if (TextUtils.isEmpty(mView.subscribeType())) {
+        if (TextUtils.isEmpty(mView.itemTypeId())) {
             ToastUtils.showToast("请选择预约类型");
             return;
         }
@@ -63,7 +63,7 @@ public class NewSubscribePresenter extends CommonPresenter<NewSubscribeContract.
         Map<String, String> map = new HashMap<>();
         map.put("hospitalId", mView.hospitalId());//医院id必填
         map.put("customerId", (String) SPUtils.get(Const.USER_INFO.CUSTOMER_ID, ""));
-        map.put("subscribeType", mView.subscribeType());//预约类型；1预约项目；2脱发检测预约 必填
+        //map.put("subscribeType", mView.subscribeType());//预约类型；1预约项目；2脱发检测预约 必填
         map.put("itemTypeId", mView.itemTypeId());//项目id必填；脱发检测0
         map.put("mobile", mView.mobile());//手机号必填
         map.put("subscribeDate", mView.subscribeDate());//到院日期必填

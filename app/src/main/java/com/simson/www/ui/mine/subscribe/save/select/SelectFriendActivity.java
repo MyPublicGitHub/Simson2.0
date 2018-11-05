@@ -79,14 +79,12 @@ public class SelectFriendActivity extends BasePresenterActivity {
                 recyclerView.setAdapter(adapter);
                 break;
             case R.id.btn_commit:
-                //if ()
                 StringBuffer sb = new StringBuffer();
                 for (int i = 0; i < data.size(); i++) {
-                    LogUtils.e("data:" + data.get(i).phone);
                     if (i == 0) {
-                        sb.append(data.get(i));
+                        sb.append(data.get(i).phone);
                     } else {
-                        sb.append(",").append(data.get(i));
+                        sb.append(",").append(data.get(i).phone);
                     }
                 }
                 setResult(1003, new Intent()

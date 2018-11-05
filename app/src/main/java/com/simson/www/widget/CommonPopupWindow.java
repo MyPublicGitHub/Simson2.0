@@ -32,7 +32,6 @@ public class CommonPopupWindow extends PopupWindow {
         super.dismiss();
         controller.setBackGroundLevel(1.0f);
     }
-
     public static class Builder {
         private final PopupController.PopupParams params;
         private ViewInterface listener;

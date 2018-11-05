@@ -158,16 +158,20 @@ public class CommodityDetailActivity extends BasePresenterActivity<CommodityDeta
         tvPresent.setText("￥" + bean.getPresent_price());
         tvOriginal.getPaint().setFlags(Paint.STRIKE_THRU_TEXT_FLAG);
         tvOriginal.setText("￥" + bean.getOriginal_price());
-        tvPoint.setText("积分：" + bean.getItem_point());
+        //tvPoint.setText("积分：" + bean.getItem_point());
         tvUnity.setText("毛囊单位：" + bean.getHair_follicles_number() + "U");
         point = bean.getItem_point();
         isPoint = bean.getIs_point() == 0 ? false : true;//0普通 1积分
+        if (isPoint) {
+            tvPresent.setText("积分" + bean.getItem_point());
+            tvUnity.setText("新生植发");
+        }
         //money = bean.getPresent_price();
         pointUnityPrice = bean.getItem_point();
         initMethod(bean.getIs_collect() == 0 ? false : true);
     }
 
-    boolean isPoint;
+    boolean isPoint, isSave;
     LatelyHospitalBean latelyHospitalBean;
 
     @Override
@@ -275,8 +279,15 @@ public class CommodityDetailActivity extends BasePresenterActivity<CommodityDeta
                 mPresenter.collect();
                 break;
             case R.id.tv_save_shop:
-                saveShopCart();
+                //saveShopCart();
                 //mPresenter.saveShopCart();
+                isSave = true;
+                if (beans == null) return;
+                if (isPoint) {
+                    showBuyPoint();
+                } else {
+                    showNoPoint();
+                }
                 break;
             case R.id.tv_pay_now:
                 if (beans == null) return;
@@ -289,7 +300,7 @@ public class CommodityDetailActivity extends BasePresenterActivity<CommodityDeta
         }
     }
 
-    CommonPopupWindow popupWindowSave;
+    /*CommonPopupWindow popupWindowSave;
 
     private void saveShopCart() {
         if (beans == null) return;
@@ -349,7 +360,7 @@ public class CommodityDetailActivity extends BasePresenterActivity<CommodityDeta
                     .create(); //开始构建
         }
         popupWindowSave.showAsDropDown(mTitle);//弹出PopupWindow
-    }
+    }*/
 
     private void showBuyPoint() {
         if (beans == null) return;
@@ -493,7 +504,7 @@ public class CommodityDetailActivity extends BasePresenterActivity<CommodityDeta
             return true;
         }
     };
-    View.OnTouchListener onTouchListener_save = new View.OnTouchListener() {
+   /* View.OnTouchListener onTouchListener_save = new View.OnTouchListener() {
         @Override
         public boolean onTouch(View v, MotionEvent event) {
             longClicked = true;
@@ -525,7 +536,7 @@ public class CommodityDetailActivity extends BasePresenterActivity<CommodityDeta
             }
             return true;
         }
-    };
+    };*/
 
 
     private void initNumberColor(Message msg, TextView tv_number_save, TextView tv_reduce_save, TextView tv_add_save) {
@@ -560,13 +571,13 @@ public class CommodityDetailActivity extends BasePresenterActivity<CommodityDeta
 
     boolean longClicked;
     int maxValue = 10000;
-    private Handler mHandler_save = new Handler() {
+   /* private Handler mHandler_save = new Handler() {
         public void handleMessage(Message msg) {
             initNumberColor(msg, tv_number_save, tv_reduce_save, tv_add_save);
             return;
 
         }
-    };
+    };*/
     private Handler mHandler = new Handler() {
         public void handleMessage(Message msg) {
             if (isPoint) {
@@ -582,23 +593,23 @@ public class CommodityDetailActivity extends BasePresenterActivity<CommodityDeta
         super.onActivityResult(requestCode, resultCode, data);
         if (data == null) return;
         if (resultCode == 1001) {
-            if (requestCode == 1002) {
+            /*if (requestCode == 1002) {
                 tv_hospital_name_save.setText("" + data.getStringExtra("hospitalName"));
                 hospitalId = data.getStringExtra("hospitalId");
                 mPresenter.getPlantingTechnology();
                 return;
-            }
+            }*/
             tv_hospital_name.setText("" + data.getStringExtra("hospitalName"));
             hospitalId = data.getStringExtra("hospitalId");
             mPresenter.getPlantingTechnology();
         }
     }
 
-    TextView tv_number_save, tv_hospital_name_save, tv_date_save, tv_present_save, tv_reduce_save, tv_add_save,
-            tv_number, tv_hospital_name, tv_date, tv_present, tv_reduce, tv_add,
+    TextView tv_number, tv_hospital_name, tv_date, tv_present, tv_reduce, tv_add,
+            //tv_number_save, tv_hospital_name_save, tv_date_save, tv_present_save, tv_reduce_save, tv_add_save,
             tv_present_point, tv_number_point, tv_reduce_point, tv_add_point;
     HospitalTechnologyAdapter hospitalTechnologyAdapter;
-    View.OnClickListener onClickListener_save = new View.OnClickListener() {
+   /* View.OnClickListener onClickListener_save = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
             switch (view.getId()) {
@@ -609,28 +620,38 @@ public class CommodityDetailActivity extends BasePresenterActivity<CommodityDeta
                     showDatePickerDialog(tv_date_save);
                     break;
                 case R.id.btn_commit:
-                    if (TextUtils.isEmpty(getBuyNumSave())) {
-                        ToastUtils.showToast("请选择购买数量");
-                        return;
+                    if (isPoint) {
+
+                    } else {
+                        if (TextUtils.isEmpty(getBuyNumSave())) {
+                            ToastUtils.showToast("请选择购买数量");
+                            return;
+                        }
+                        if (TextUtils.isEmpty(subscribeDateSave())) {
+                            ToastUtils.showToast("请选择到院时间");
+                            return;
+                        }
+                        if (TextUtils.isEmpty(hospitalId)) {
+                            ToastUtils.showToast("请选择就诊医院");
+                            return;
+                        }
+                        if (TextUtils.isEmpty(technologyId)) {
+                            ToastUtils.showToast("请选择植发技术");
+                            return;
+                        }
                     }
-                    if (TextUtils.isEmpty(subscribeDateSave())) {
-                        ToastUtils.showToast("请选择到院时间");
-                        return;
+                    if (isSave){
+                        mPresenter.saveShopCart();
+                    }else {
+                        mPresenter.saveShopCart();
                     }
-                    if (TextUtils.isEmpty(hospitalId)) {
-                        ToastUtils.showToast("请选择就诊医院");
-                        return;
-                    }
-                    if (TextUtils.isEmpty(technologyId)) {
-                        ToastUtils.showToast("请选择植发技术");
-                        return;
-                    }
-                    mPresenter.saveShopCart();
+                    if (popupWindowSave != null && popupWindowSave.isShowing())
+                        popupWindowSave.dismiss();
                     break;
 
             }
         }
-    };
+    };*/
     View.OnClickListener onClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
@@ -662,7 +683,15 @@ public class CommodityDetailActivity extends BasePresenterActivity<CommodityDeta
                             return;
                         }
                     }
-                    mPresenter.submitOrder();
+                    if (isSave){
+                        mPresenter.saveShopCart();
+                    }else {
+                        mPresenter.submitOrder();
+                    }
+                    isSave=false;
+                    //mPresenter.submitOrder();
+                    if (popupWindow != null && popupWindow.isShowing())
+                        popupWindow.dismiss();
                     break;
 
             }
@@ -680,7 +709,7 @@ public class CommodityDetailActivity extends BasePresenterActivity<CommodityDeta
     }
 
     double unityPrice;
-    BaseQuickAdapter.OnItemClickListener onItemClickListener_save = new BaseQuickAdapter.OnItemClickListener() {
+    /*BaseQuickAdapter.OnItemClickListener onItemClickListener_save = new BaseQuickAdapter.OnItemClickListener() {
         @Override
         public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
             TechnologyBean beans = (TechnologyBean) adapter.getData().get(position);
@@ -700,7 +729,7 @@ public class CommodityDetailActivity extends BasePresenterActivity<CommodityDeta
             }
             hospitalTechnologyAdapter.notifyDataSetChanged();
         }
-    };
+    };*/
     BaseQuickAdapter.OnItemClickListener onItemClickListener = new BaseQuickAdapter.OnItemClickListener() {
         @Override
         public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
@@ -748,10 +777,10 @@ public class CommodityDetailActivity extends BasePresenterActivity<CommodityDeta
         return tv_number == null ? "" : tv_number.getText().toString();
     }
 
-    @Override
+   /* @Override
     public String getBuyNumSave() {
         return tv_number_save == null ? "" : tv_number_save.getText().toString();
-    }
+    }*/
 
     @Override
     public String hospitalId() {
@@ -765,13 +794,13 @@ public class CommodityDetailActivity extends BasePresenterActivity<CommodityDeta
 
     @Override
     public String subscribeDate() {
-        return tv_date == null ? "" : tv_number.getText().toString();
+        return tv_date == null ? "" : tv_date.getText().toString();
     }
 
-    @Override
+   /* @Override
     public String subscribeDateSave() {
-        return tv_date_save == null ? "" : tv_number.getText().toString();
-    }
+        return tv_date_save == null ? "" : tv_date_save.getText().toString();
+    }*/
 
     @Override
     public String longitude() {

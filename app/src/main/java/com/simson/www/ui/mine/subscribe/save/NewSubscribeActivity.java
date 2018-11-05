@@ -130,7 +130,7 @@ public class NewSubscribeActivity extends BasePresenterActivity<NewSubscribePres
 
     }
 
-    String hospitalId, subscribeType, isCar = "0",accompanyFriends;
+    String hospitalId, subscribeType, isCar = "0",accompanyFriends,itemTypeId;
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -141,7 +141,7 @@ public class NewSubscribeActivity extends BasePresenterActivity<NewSubscribePres
             tvHospital.setText(data.getStringExtra("hospitalName") + "");
         }
         if (resultCode == 1002) {
-            subscribeType = data.getStringExtra("itemTypeId");
+            itemTypeId = data.getStringExtra("itemTypeId");
             tvType.setText(data.getStringExtra("itemTypeName") + "");
         }
         if (resultCode == 1003) {
@@ -168,7 +168,7 @@ public class NewSubscribeActivity extends BasePresenterActivity<NewSubscribePres
 
     @Override
     public String itemTypeId() {
-        return "0";
+        return itemTypeId;
     }
 
     @Override

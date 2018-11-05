@@ -4,16 +4,11 @@ import android.support.annotation.Nullable;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.widget.CheckBox;
-import android.widget.CompoundButton;
-import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.request.RequestOptions;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.simson.www.R;
-import com.simson.www.net.bean.mine.AddressBean;
 import com.simson.www.net.bean.mine.ShopCartBean;
 import com.simson.www.ui.mine.cart.ShopCartActivity;
 import com.simson.www.utils.GlideUtils;
@@ -23,7 +18,8 @@ import java.util.List;
 
 public class ShopCartAdapter extends BaseQuickAdapter<ShopCartBean, BaseViewHolder> {
     ShopCartActivity mActivity;
-    public ShopCartAdapter(@Nullable List<ShopCartBean> data,ShopCartActivity activity) {
+
+    public ShopCartAdapter(@Nullable List<ShopCartBean> data, ShopCartActivity activity) {
         super(R.layout.item_shop_cart, data);
         mActivity = activity;
     }
@@ -56,11 +52,15 @@ public class ShopCartAdapter extends BaseQuickAdapter<ShopCartBean, BaseViewHold
         TextView tvNumber = helper.getView(R.id.tv_number);
         TextView tvReduce = helper.getView(R.id.tv_reduce);
 
-        GlideUtils.with(item.getItem_icon(),helper.getView(R.id.iv_image));
+        GlideUtils.with(item.getItem_icon(), helper.getView(R.id.iv_image));
         helper.setText(R.id.tv_title, item.getItem_name());
-        helper.setText(R.id.tv_present, "￥" + String.valueOf(item.getPresent_price()));
-        helper.setText(R.id.tv_point, String.valueOf(item.getItem_point())+"积分");
-
+        //helper.setText(R.id.tv_present, "￥" + String.valueOf(item.getPresent_price()));
+        //helper.setText(R.id.tv_point, String.valueOf(item.getItem_point())+"积分");
+        if (item.getIs_point() == 1) {
+            helper.setText(R.id.tv_present, String.valueOf(item.getItem_point()) + "积分");
+        } else {
+            helper.setText(R.id.tv_present, "￥" + String.valueOf(item.getPresent_price()));
+        }
 
         CheckBox checkBox = helper.getView(R.id.checkbox);
         checkBox.setOnCheckedChangeListener((compoundButton, isCheck) -> item.isCheck = isCheck);
@@ -115,5 +115,6 @@ public class ShopCartAdapter extends BaseQuickAdapter<ShopCartBean, BaseViewHold
                 mActivity.isCheckAll = false;
             }
             mActivity.money();
-        });    }
+        });
+    }
 }

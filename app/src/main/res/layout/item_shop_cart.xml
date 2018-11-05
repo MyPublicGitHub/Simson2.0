@@ -2,10 +2,10 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_marginBottom="@dimen/dp_1"
     android:background="@color/white"
     android:gravity="center_vertical"
     android:orientation="horizontal"
-    android:layout_marginBottom="@dimen/dp_1"
     android:padding="@dimen/dp_10">
 
     <CheckBox
@@ -33,19 +33,20 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:ellipsize="end"
-            android:maxLines="1"
+            android:maxLines="2"
             android:textColor="@color/black"
-            android:textSize="@dimen/sp_14" />
-        <TextView
+            android:textSize="@dimen/sp_12" />
+
+        <!--<TextView
             android:id="@+id/tv_point"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:ellipsize="end"
-            android:text="23123123"
             android:layout_marginTop="@dimen/dp_3"
+            android:ellipsize="end"
             android:maxLines="1"
             android:textColor="@color/colorRed"
-            android:textSize="@dimen/sp_14" />
+            android:textSize="@dimen/sp_12" />-->
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -60,7 +61,7 @@
                 android:ellipsize="end"
                 android:maxLines="1"
                 android:textColor="@color/colorRed"
-                android:textSize="@dimen/sp_14" />
+                android:textSize="@dimen/sp_12" />
 
 
             <LinearLayout
@@ -74,38 +75,38 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@color/colorPrimary"
-                    android:paddingBottom="@dimen/dp_5"
                     android:paddingLeft="@dimen/dp_15"
-                    android:paddingRight="@dimen/dp_15"
                     android:paddingTop="@dimen/dp_5"
+                    android:paddingRight="@dimen/dp_15"
+                    android:paddingBottom="@dimen/dp_5"
                     android:text="—"
                     android:textColor="@color/white"
-                    android:textSize="@dimen/sp_14" />
+                    android:textSize="@dimen/sp_12" />
 
                 <TextView
                     android:id="@+id/tv_number"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@color/colorWhiteBg"
-                    android:paddingBottom="@dimen/dp_5"
                     android:paddingLeft="@dimen/dp_15"
-                    android:paddingRight="@dimen/dp_15"
                     android:paddingTop="@dimen/dp_5"
+                    android:paddingRight="@dimen/dp_15"
+                    android:paddingBottom="@dimen/dp_5"
                     android:textColor="@color/black"
-                    android:textSize="@dimen/sp_14" />
+                    android:textSize="@dimen/sp_12" />
 
                 <TextView
                     android:id="@+id/tv_add"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@color/colorPrimary"
-                    android:paddingBottom="@dimen/dp_5"
                     android:paddingLeft="@dimen/dp_15"
-                    android:paddingRight="@dimen/dp_15"
                     android:paddingTop="@dimen/dp_5"
+                    android:paddingRight="@dimen/dp_15"
+                    android:paddingBottom="@dimen/dp_5"
                     android:text="+"
                     android:textColor="@color/white"
-                    android:textSize="@dimen/sp_14" />
+                    android:textSize="@dimen/sp_12" />
             </LinearLayout>
 
         </LinearLayout>
