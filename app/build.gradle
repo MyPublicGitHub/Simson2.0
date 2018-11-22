@@ -26,9 +26,9 @@ android {
                 abiFilters "armeabi-v7a", "arm64-v8a"
             }
             //打包时剔除剔除无用资源
-            shrinkResources true
-            minifyEnabled true
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            //shrinkResources true
+            //minifyEnabled true//混淆开关
+            //proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             resValue "string", "app_name", "@string/app_name_release"
         }
 
@@ -142,4 +142,6 @@ dependencies {
     //如果使用了分享面板，需要添加
     implementation 'com.umeng.sdk:shareboard-widget:latest.integration'
     //----------------------友盟-----------------------
+
+    implementation 'com.github.LuckSiege.PictureSelector:picture_library:v2.2.3'
 }

@@ -4,6 +4,7 @@ package com.simson.www.ui.main.login;
 import android.text.TextUtils;
 
 import com.google.gson.Gson;
+import com.simson.www.BuildConfig;
 import com.simson.www.R;
 import com.simson.www.application.AppContext;
 import com.simson.www.net.bean.main.CodeBean;
@@ -33,13 +34,15 @@ public class LoginPresenter extends BasePresenter<LoginContract.View> implements
     private boolean verifyAccount() {
         username = mView.getUserName();
         password = mView.getPassWord();
-        if (TextUtils.isEmpty(username)) {
-            ToastUtils.showToast("手机号不能为空");
-            return false;
-        }
-        if (TextUtils.isEmpty(password)) {
-            ToastUtils.showToast("密码");
-            return false;
+        if (!BuildConfig.DEBUG) {
+            if (TextUtils.isEmpty(username)) {
+                ToastUtils.showToast("手机号不能为空");
+                return false;
+            }
+            if (TextUtils.isEmpty(password)) {
+                ToastUtils.showToast("密码不能为空");
+                return false;
+            }
         }
         return true;
     }
@@ -68,6 +71,15 @@ public class LoginPresenter extends BasePresenter<LoginContract.View> implements
             Map<String, String> map = new HashMap<>();
             map.put("mobile", mView.getUserName());
             map.put("code", mView.getPassWord());
+            if (BuildConfig.DEBUG) {
+                if ("".equals(mView.getUserName())) {
+                    map.put("mobile", "17633717732");
+                    map.put("code", "8888888888888888");
+                } /*else if ("2".equals(mView.getUserName())) {
+                    map.put("mobile", "13073400396");
+                    map.put("code", "123456");
+                }*/
+            }
             map.put("deviceToken", "android");
             map.put("appType", "2");
             map.put("timestamp", DateUtils.getStringDate());

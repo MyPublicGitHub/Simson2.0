@@ -12,6 +12,7 @@ import com.simson.www.R;
 import com.simson.www.net.bean.BaseBean;
 import com.simson.www.net.bean.main.CodeBean;
 import com.simson.www.ui.base.BasePresenterActivity;
+import com.simson.www.utils.ToastUtils;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -46,7 +47,8 @@ public class ResetPasswordActivity extends BasePresenterActivity<ResetPasswordPr
 
     @Override
     public void updateCustomerPwd(BaseBean bean) {
-
+        ToastUtils.showToast(bean.message);
+        finish();
     }
 
     @OnClick({R.id.btn_commit, R.id.btn_get_code, R.id.iv_password, R.id.tv_agreement})

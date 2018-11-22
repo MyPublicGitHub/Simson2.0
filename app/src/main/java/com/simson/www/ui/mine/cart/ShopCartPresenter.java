@@ -6,7 +6,7 @@ import com.simson.www.common.Const;
 import com.simson.www.net.NetConfig;
 import com.simson.www.net.bean.BaseBean;
 import com.simson.www.net.bean.mine.ShopCartBean;
-import com.simson.www.net.bean.mine.SubmitShopCartBean;
+import com.simson.www.net.bean.mine.SubmitOrderBean;
 import com.simson.www.net.callback.RxBaseObserver;
 import com.simson.www.net.callback.RxObserver;
 import com.simson.www.ui.core.model.ShopCartModel;
@@ -58,22 +58,23 @@ public class ShopCartPresenter extends BasePresenter<ShopCartContract.View> impl
     @Override
     public void removeShopCart() {
         mView = getView();
-        RxObserver<BaseBean> observer = new RxObserver<BaseBean>(this) {
-
+        RxBaseObserver<BaseBean> observer = new RxBaseObserver<BaseBean>(this) {
             @Override
-            public void onSuccess(BaseBean mData) {
-                mView.showRemoveShopCart(mData);
-            }
-
-            @Override
-            public void onFail(int code, String errorMsg) {
-                mView.showFail("移除失败");
+            public void onNext(BaseBean bean) {
+                //请求成功
+                if (bean.result == NetConfig.REQUEST_SUCCESS) {
+                    mView.showRemoveShopCart(bean);
+                } else {
+                    //失败
+                    mView.showFail("移除失败");
+                    LogUtils.e("移除失败");
+                }
             }
         };
 
         Map<String, String> map = new HashMap<>();
         map.put("timestamp", DateUtils.getStringDate());
-        map.put("cardId", mView.getCartId());//购物车id必填,多个逗号隔开
+        map.put("ids", mView.getCartId());//购物车id必填,多个逗号隔开
         String json = new Gson().toJson(map);
         mModel.removeShopCart(json, observer);
         addDisposable(observer);
@@ -90,17 +91,18 @@ public class ShopCartPresenter extends BasePresenter<ShopCartContract.View> impl
                     mView.showUpdateShopCart(bean);
                 } else {
                     //失败
-                    //mView.showFail("");
+                    mView.showFail(bean.message);
                     LogUtils.e("修改购物车失败");
                 }
             }
 
         };
+
         Map<String, String> map = new HashMap<>();
         map.put("timestamp", DateUtils.getStringDate());
         map.put("customerId", (String) SPUtils.get(Const.USER_INFO.CUSTOMER_ID, ""));//当前登录人
-        map.put("itemIds", mView.getItemIds());//itemIds：项目id多个逗号隔开必填
-        map.put("buyNums", mView.getBuyNums());//buyNums：购买数量多个逗号隔开必填
+        map.put("itemId", mView.getItemIds());//itemIds：项目id多个逗号隔开必填
+        map.put("buyNum", mView.getBuyNums());//buyNums：购买数量多个逗号隔开必填
         map.put("cartId", mView.getCartId());//cartId：购物车id必填
         String json = new Gson().toJson(map);
         mModel.updateShopCart(json, mObserver);
@@ -110,10 +112,10 @@ public class ShopCartPresenter extends BasePresenter<ShopCartContract.View> impl
     @Override
     public void submitOrder() {
         mView = getView();
-        RxObserver<SubmitShopCartBean> observer = new RxObserver<SubmitShopCartBean>(this) {
+        RxObserver<SubmitOrderBean> observer = new RxObserver<SubmitOrderBean>(this) {
 
             @Override
-            public void onSuccess(SubmitShopCartBean mData) {
+            public void onSuccess(SubmitOrderBean mData) {
                 mView.showSubmitOrder(mData);
             }
 

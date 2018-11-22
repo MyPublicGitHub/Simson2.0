@@ -43,10 +43,10 @@ public class ResetPasswordPresenter extends BasePresenter<ResetPasswordContract.
             ToastUtils.showToast("密码不能为空");
             return;
         }
-        if (mView.newPwd().length() < 16) {
+        /*if (mView.newPwd().length() < 16) {
             ToastUtils.showToast("密码不能小于16位");
             return;
-        }
+        }*/
         RxBaseObserver<BaseBean> observer = new RxBaseObserver<BaseBean>(this) {
             @Override
             public void onNext(BaseBean bean) {

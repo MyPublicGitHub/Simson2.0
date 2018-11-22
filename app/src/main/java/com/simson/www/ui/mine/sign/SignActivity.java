@@ -12,7 +12,8 @@ import com.simson.www.net.bean.mine.SignBean;
 import com.simson.www.net.bean.mine.SignPageBean;
 import com.simson.www.ui.adapter.SignInAdapter;
 import com.simson.www.ui.base.BasePresenterActivity;
-import com.simson.www.ui.mine.integral.detail.IntegralDetailActivity;
+import com.simson.www.ui.mine.invitation.InvitationActivity;
+import com.simson.www.ui.mine.subscribe.save.NewSubscribeActivity;
 
 import java.util.Calendar;
 import java.util.Locale;
@@ -36,14 +37,17 @@ public class SignActivity extends BasePresenterActivity<SignPresenter, SignContr
         return R.layout.activity_sign;
     }
 
-    @OnClick({R.id.sign_in_btn, R.id.integral_detail})
+    @OnClick({R.id.sign_in_btn, R.id.iv_invate, R.id.iv_sub})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.sign_in_btn:
                 mPresenter.signIn();
                 break;
-            case R.id.integral_detail:
-                startActivity(new Intent(this,IntegralDetailActivity.class));
+            case R.id.iv_invate:
+                startActivity(new Intent(this, InvitationActivity.class));
+                break;
+            case R.id.iv_sub:
+                startActivity(new Intent(this, NewSubscribeActivity.class));
                 break;
         }
     }

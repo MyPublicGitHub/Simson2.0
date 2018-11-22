@@ -1,7 +1,6 @@
 package com.simson.www.ui.mine.pay;
 
 import android.content.Intent;
-import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
@@ -25,7 +24,6 @@ import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class PayActivity extends BasePresenterActivity<PayPresenter, PayContract.View> implements PayContract.View {
@@ -54,7 +52,7 @@ public class PayActivity extends BasePresenterActivity<PayPresenter, PayContract
     RadioButton rbBalance;
     @BindView(R.id.rb_point)
     RadioButton rbPoint;
-    private String points, money, orderId,payType;//支付类型：1支付宝；2微信；3银联；4 Apple Pay；5卡支付；6积分 必填
+    private String points, money, orderId, payType;//支付类型：1支付宝；2微信；3银联；4 Apple Pay；5卡支付；6积分 必填
     boolean isPoint;
     ArrayList<CommodityDetailBean> datas;
 
@@ -160,6 +158,9 @@ public class PayActivity extends BasePresenterActivity<PayPresenter, PayContract
 
     @Override
     public String getTransactionMoney() {
+        if (".00".equals(money)) {
+            return "0.00";
+        }
         return money;
     }
 
@@ -167,7 +168,7 @@ public class PayActivity extends BasePresenterActivity<PayPresenter, PayContract
      * 将数据保留两位小数
      */
     private String getTwoDecimal(double num) {
-        DecimalFormat dFormat = new DecimalFormat("#.00");
+        DecimalFormat dFormat = new DecimalFormat("###.00");
         String yearString = dFormat.format(num);
         return yearString;
     }

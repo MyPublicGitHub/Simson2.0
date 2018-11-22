@@ -46,7 +46,6 @@ import com.simson.www.net.bean.mine.ShopCartBean;
 import com.simson.www.net.bean.mine.SignBean;
 import com.simson.www.net.bean.mine.SignPageBean;
 import com.simson.www.net.bean.mine.SubmitOrderBean;
-import com.simson.www.net.bean.mine.SubmitShopCartBean;
 import com.simson.www.net.bean.mine.SubscribeListBean;
 import com.simson.www.net.bean.mine.TransactionRecordBean;
 import com.simson.www.net.bean.mine.VIPBean;
@@ -259,7 +258,7 @@ public interface ApiServer {
 
     //购物车提交订单
     @POST("transaction/submitShoppingCartOrder")
-    Observable<BaseBean<SubmitShopCartBean>> submitShoppingCartOrder(@Query("json") String json);
+    Observable<BaseBean<SubmitOrderBean>> submitShoppingCartOrder(@Query("json") String json);
 
     //提交订单
     @POST("transaction/submitOrder")
@@ -328,7 +327,7 @@ public interface ApiServer {
 
     //重置密码获取短信
     @POST("customerController/pwdCode")
-    Observable<CodeBean> pwdCode(@Query("json") String json);
+    Observable<BaseBean<CodeBean>> pwdCode(@Query("json") String json);
 
     //重置密码
     @POST("customerController/updateCustomerPwd")

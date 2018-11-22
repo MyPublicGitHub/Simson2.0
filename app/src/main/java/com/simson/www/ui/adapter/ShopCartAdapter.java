@@ -13,6 +13,7 @@ import com.simson.www.net.bean.mine.ShopCartBean;
 import com.simson.www.ui.mine.cart.ShopCartActivity;
 import com.simson.www.utils.GlideUtils;
 import com.simson.www.utils.LogUtils;
+import com.simson.www.utils.ToastUtils;
 
 import java.util.List;
 
@@ -57,9 +58,15 @@ public class ShopCartAdapter extends BaseQuickAdapter<ShopCartBean, BaseViewHold
         //helper.setText(R.id.tv_present, "￥" + String.valueOf(item.getPresent_price()));
         //helper.setText(R.id.tv_point, String.valueOf(item.getItem_point())+"积分");
         if (item.getIs_point() == 1) {
-            helper.setText(R.id.tv_present, String.valueOf(item.getItem_point()) + "积分");
+            if (item.getTransaction_point() > 0) {
+                item.unityPrincePoint = item.getTransaction_point() / item.getBuy_num();
+            }
+            helper.setText(R.id.tv_present, String.valueOf(item.getTransaction_point()) + "积分");
         } else {
-            helper.setText(R.id.tv_present, "￥" + String.valueOf(item.getPresent_price()));
+            if (item.getTransaction_money() > 0) {
+                item.unityPrince = item.getTransaction_money() / item.getBuy_num();
+            }
+            helper.setText(R.id.tv_present, "￥" + String.valueOf(item.getTransaction_money()));
         }
 
         CheckBox checkBox = helper.getView(R.id.checkbox);
@@ -82,10 +89,6 @@ public class ShopCartAdapter extends BaseQuickAdapter<ShopCartBean, BaseViewHold
             @Override
             public void afterTextChanged(Editable editable) {
                 int number = Integer.parseInt(editable.toString());
-//                if (number <= 0) {
-//                    tvNumber.setText("1");
-//                    number = 1;
-//                }
                 if (number == 1) {
                     tvReduce.setBackgroundColor(tvReduce.getContext().getResources().getColor(R.color.colorBlack_6));
                     tvReduce.setClickable(false);
@@ -94,12 +97,16 @@ public class ShopCartAdapter extends BaseQuickAdapter<ShopCartBean, BaseViewHold
                     tvReduce.setClickable(true);
                 }
 
-                double prince = number * item.getPresent_price();
-                int point = number * item.getItem_point();
                 item.setBuy_num(number);
-                item.priceUser = prince;
-                item.pointUser = point;
-                LogUtils.d("number:" + number);
+                if (item.getIs_point() == 1) {
+                    double transaction_pint = number * item.unityPrincePoint;
+                    item.setTransaction_point(transaction_pint);
+                    helper.setText(R.id.tv_present, String.valueOf(item.getTransaction_point()) + "积分");
+                } else {
+                    double transaction_money = number * item.unityPrince;
+                    item.setTransaction_money(transaction_money);
+                    helper.setText(R.id.tv_present, "￥" + String.valueOf(item.getTransaction_money()));
+                }
             }
         });
         if (item.getBuy_num() == 0) {
@@ -109,11 +116,17 @@ public class ShopCartAdapter extends BaseQuickAdapter<ShopCartBean, BaseViewHold
             tvNumber.setText(item.getBuy_num() + "");
         }
         checkBox.setOnCheckedChangeListener((compoundButton, b) -> {
+            if (!mActivity.isConflict(item.getIs_point())) {
+                compoundButton.setChecked(false);
+                ToastUtils.showToast("金钱商品和积分商品不能混合支付");
+                return;
+            }
             item.isCheck = b;
             if (b == false) {
                 mActivity.setCheckAll(false);
                 mActivity.isCheckAll = false;
             }
+            mActivity.setCheckData();
             mActivity.money();
         });
     }

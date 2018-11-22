@@ -1,5 +1,6 @@
 package com.simson.www.ui.mine.cart;
 
+import android.content.Intent;
 import android.support.v7.widget.LinearLayoutManager;
 import android.text.TextUtils;
 import android.view.View;
@@ -11,9 +12,11 @@ import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.simson.www.R;
 import com.simson.www.net.bean.BaseBean;
 import com.simson.www.net.bean.mine.ShopCartBean;
-import com.simson.www.net.bean.mine.SubmitShopCartBean;
+import com.simson.www.net.bean.mine.SubmitOrderBean;
+import com.simson.www.net.bean.shop.CommodityDetailBean;
 import com.simson.www.ui.adapter.ShopCartAdapter;
 import com.simson.www.ui.base.BasePresenterActivity;
+import com.simson.www.ui.mine.pay.PayActivity;
 import com.simson.www.utils.LogUtils;
 import com.simson.www.utils.ToastUtils;
 import com.yanzhenjie.recyclerview.swipe.SwipeMenu;
@@ -24,6 +27,7 @@ import com.yanzhenjie.recyclerview.swipe.SwipeMenuItemClickListener;
 import com.yanzhenjie.recyclerview.swipe.SwipeMenuRecyclerView;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
@@ -39,8 +43,6 @@ public class ShopCartActivity extends BasePresenterActivity<ShopCartPresenter, S
     public ImageView ivCheckAll;
     @BindView(R.id.tv_total)
     TextView tvTotal;
-    @BindView(R.id.tv_point)
-    TextView tvPoint;
     @BindView(R.id.tv_settlement)
     TextView tvSettlement;
     private ShopCartAdapter adapter;
@@ -55,6 +57,7 @@ public class ShopCartActivity extends BasePresenterActivity<ShopCartPresenter, S
     protected void initViews() {
         setRefresh();
         // 设置监听器。
+        mCheckData = new ArrayList<>();
         mRecyclerView.setSwipeMenuCreator(mSwipeMenuCreator);
         // 菜单点击监听。
         mRecyclerView.setSwipeMenuItemClickListener(mMenuItemClickListener);
@@ -82,7 +85,7 @@ public class ShopCartActivity extends BasePresenterActivity<ShopCartPresenter, S
             ShopCartAdapter adapter = (ShopCartAdapter) adapters;
             itemIds = adapter.getData().get(position).getItem_id();
             cardId = adapter.getData().get(position).getCart_id();
-            buyNums = trim;
+            buyNums = num + "";
             mPresenter.updateShopCart();
         });
         money();
@@ -100,6 +103,7 @@ public class ShopCartActivity extends BasePresenterActivity<ShopCartPresenter, S
         }
         if (mPage == 1) {
             adapter.replaceData(bean);
+            getCheckData();
             money();
         } else {
             adapter.addData(bean);
@@ -121,15 +125,35 @@ public class ShopCartActivity extends BasePresenterActivity<ShopCartPresenter, S
     }
 
     @Override
-    public void showSubmitOrder(SubmitShopCartBean bean) {
-        /*if (bean.getOrderId() != null) {
+    public void showSubmitOrder(SubmitOrderBean bean) {
+        mPage = 1;
+        mPresenter.getShopCart();
+        mRefreshLayout.setNoMoreData(false);
+        if (bean.getOrderId() != null) {
+            ArrayList<CommodityDetailBean> list = new ArrayList<>();
+            for (int i = 0; i < mCheckData.size(); i++) {
+                ShopCartBean itemsBean = mCheckData.get(i);
+                CommodityDetailBean beans = new CommodityDetailBean();
+                ArrayList icon = new ArrayList<>();
+                icon.add(itemsBean.getItem_icon());
+                beans.setPicture(icon);
+                beans.setItem_name(itemsBean.getItem_name());
+                beans.setIs_point(itemsBean.getIs_point());
+                beans.buyNumber = itemsBean.getBuy_num() + "";
+                if (itemsBean.getIs_point() == 1) {
+                    beans.unityPrice = itemsBean.unityPrincePoint;
+                } else
+                    beans.unityPrice = itemsBean.unityPrince;
+                list.add(beans);
+            }
             Intent intent = new Intent(this, PayActivity.class);
             intent.putExtra("transactionMoney", money);
-            intent.putExtra("transactionPoint", point);
+            intent.putExtra("transactionPoint", (int)point);
+            intent.putExtra("isPoint", mCheckData.get(0).getIs_point() == 1 ? true : false);
+            intent.putParcelableArrayListExtra("CommodityDetailBean", list);
             intent.putExtra("orderId", bean.getOrderId());
             startActivity(intent);
-            finish();
-        }*/
+        }
     }
 
     @OnClick({R.id.tv_settlement, R.id.iv_check_all})
@@ -176,6 +200,7 @@ public class ShopCartActivity extends BasePresenterActivity<ShopCartPresenter, S
 
     private void checkAll() {
         setCheckAll(isCheckAll);
+        setCheckData();
         List<ShopCartBean> data = adapter.getData();
         for (int i = 0; i < data.size(); i++) {
             data.get(i).isCheck = isCheckAll;
@@ -193,27 +218,55 @@ public class ShopCartActivity extends BasePresenterActivity<ShopCartPresenter, S
     }
 
     double money;
-    int point;
+    double point;
+    List<ShopCartBean> mCheckData;
+
+    public boolean isConflict(int isPoint) {
+        if (getCheckData().size() == 0) {
+            return true;
+        }
+        return getCheckData().get(0).getIs_point() == isPoint;
+    }
+
+    public List<ShopCartBean> getCheckData() {
+        return mCheckData;
+    }
+
+    public void setCheckData() {
+        mCheckData.clear();
+        List<ShopCartBean> data = adapter.getData();
+        for (int i = 0; i < data.size(); i++) {
+            if (data.get(i).isCheck) {
+                mCheckData.add(data.get(i));
+            }
+        }
+    }
 
     public void money() {
         money = 0;
         point = 0;
-        List<ShopCartBean> data = adapter.getData();
-        for (int i = 0; i < data.size(); i++) {
-            if (data.get(i).isCheck) {
-                BigDecimal bigDecimal1 = new BigDecimal(Double.toString(money));
-                BigDecimal bigDecimal2 = new BigDecimal(Double.toString(data.get(i).priceUser));
-                BigDecimal add = bigDecimal1.add(bigDecimal2);
-                money = add.doubleValue();
+        tvTotal.setText("￥" + String.valueOf(money));
+        if (getCheckData().size() > 0) {
+            if (getCheckData().get(0).getIs_point() == 1) {
+                for (int i = 0; i < getCheckData().size(); i++) {
 
-                BigDecimal bigPoint1 = new BigDecimal(Double.toString(point));
-                BigDecimal bigPoint2 = new BigDecimal(Double.toString(data.get(i).pointUser));
-                BigDecimal addPoint = bigPoint1.add(bigPoint2);
-                point = data.get(i).pointUser + point;
+                    BigDecimal bigDecimal3 = new BigDecimal(Double.toString(point));
+                    BigDecimal bigDecimal4 = new BigDecimal(Double.toString(getCheckData().get(i).getTransaction_point()));
+                    BigDecimal add1 = bigDecimal3.add(bigDecimal4);
+                    point = add1.doubleValue();
+                }
+                tvTotal.setText(String.valueOf(point) + "积分");
+            } else {
+                for (int i = 0; i < getCheckData().size(); i++) {
+                    BigDecimal bigDecimal1 = new BigDecimal(Double.toString(money));
+                    BigDecimal bigDecimal2 = new BigDecimal(Double.toString(getCheckData().get(i).getTransaction_money()));
+                    BigDecimal add = bigDecimal1.add(bigDecimal2);
+                    money = add.doubleValue();
+                }
+                tvTotal.setText("￥" + String.valueOf(money));
             }
         }
-        tvTotal.setText("￥" + String.valueOf(money));
-        tvPoint.setText(String.valueOf(point) + "积分");
+
     }
 
     int removePosition = -1;
@@ -243,8 +296,8 @@ public class ShopCartActivity extends BasePresenterActivity<ShopCartPresenter, S
                 .setBackgroundColor(getResources().getColor(R.color.colorRed))
                 .setText("删除") // 文字。
                 .setTextColor(getResources().getColor(R.color.white)) // 文字颜色。
-                .setTextSize(14) // 文字大小。
-                .setWidth(120)
+                .setTextSize(12) // 文字大小。
+                .setWidth(140)
                 .setHeight(ViewGroup.LayoutParams.MATCH_PARENT);
         rightMenu.addMenuItem(deleteItem); // 在Item右侧添加一个菜单。
 

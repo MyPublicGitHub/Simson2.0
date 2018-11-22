@@ -4,6 +4,8 @@ public class ShopCartBean {
     public boolean isCheck;
     public double priceUser;
     public int pointUser;
+    public double unityPrince;
+    public double unityPrincePoint;
 
     /**
      * transaction_money : 0.0
@@ -29,8 +31,8 @@ public class ShopCartBean {
      * is_off : 1
      */
 
-    private String transaction_money;
-    private int transaction_point;
+    private double transaction_money;
+    private double transaction_point;
     private String cart_id;
     private String item_id;
     private String item_name;
@@ -51,19 +53,19 @@ public class ShopCartBean {
     private String subscribe_time;
     private int is_off;
 
-    public String getTransaction_money() {
+    public double getTransaction_money() {
         return transaction_money;
     }
 
-    public void setTransaction_money(String transaction_money) {
+    public void setTransaction_money(double transaction_money) {
         this.transaction_money = transaction_money;
     }
 
-    public int getTransaction_point() {
+    public double getTransaction_point() {
         return transaction_point;
     }
 
-    public void setTransaction_point(int transaction_point) {
+    public void setTransaction_point(double transaction_point) {
         this.transaction_point = transaction_point;
     }
 

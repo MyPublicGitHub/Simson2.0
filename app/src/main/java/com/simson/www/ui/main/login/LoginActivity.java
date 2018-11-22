@@ -19,7 +19,6 @@ import com.simson.www.event.RxEvent;
 import com.simson.www.net.bean.main.CodeBean;
 import com.simson.www.net.bean.main.LoginBean;
 import com.simson.www.ui.base.BasePresenterActivity;
-import com.simson.www.ui.main.register.RegisterActivity;
 import com.simson.www.ui.main.reset.ResetPasswordActivity;
 import com.simson.www.utils.ToastUtils;
 
@@ -91,12 +90,6 @@ public class LoginActivity extends BasePresenterActivity<LoginPresenter, LoginCo
 
             }
         });
-        if (BuildConfig.DEBUG) {
-            etPhone.setText("17633717732");
-            etCode.setText("201888");
-            etUsername.setText("17633717732");
-            etPassword.setText("8023taoge");
-        }
     }
 
 
@@ -112,10 +105,9 @@ public class LoginActivity extends BasePresenterActivity<LoginPresenter, LoginCo
     @Override
     public void showLogin(LoginBean bean) {
         ToastUtils.showToast("登录成功");
-        RxEvent.getInstance().postEvent(Const.EVENT_ACTION.LOGIN,new Event(Event.Type.LOGIN, true));
+        RxEvent.getInstance().postEvent(Const.EVENT_ACTION.LOGIN, new Event(Event.Type.LOGIN, true));
         finish();
     }
-
 
 
     @OnClick({R.id.btn_get_code, R.id.btn_sign_in, R.id.tv_forget_password, R.id.tv_agreement, R.id.iv_password})
@@ -125,6 +117,7 @@ public class LoginActivity extends BasePresenterActivity<LoginPresenter, LoginCo
                 mPresenter.getCode();
                 break;
             case R.id.btn_sign_in:
+
                 mPresenter.login();
                 break;
             case R.id.tv_forget_password:
@@ -159,11 +152,11 @@ public class LoginActivity extends BasePresenterActivity<LoginPresenter, LoginCo
     @Override
     protected boolean initToolbar() {
         mTitle.setText("登录");
-        mToolbar.inflateMenu(R.menu.toolbar_menu_login);
+        /*mToolbar.inflateMenu(R.menu.toolbar_menu_login);
         mToolbar.setOnMenuItemClickListener(item -> {
             startActivity(new Intent(LoginActivity.this, RegisterActivity.class));
             return false;
-        });
+        });*/
         return true;
     }
 

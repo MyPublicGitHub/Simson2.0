@@ -24,7 +24,7 @@ public class PayAdapter extends BaseQuickAdapter<CommodityDetailBean, BaseViewHo
         if (item.getIs_point() == 0) {
             helper.setText(R.id.tv_unity_price, "" + item.unityPrice);
         } else {
-            helper.setText(R.id.tv_unity_price, "积分" + item.getItem_point());
+            helper.setText(R.id.tv_unity_price, "积分" + item.unityPrice);
         }
     }
 }

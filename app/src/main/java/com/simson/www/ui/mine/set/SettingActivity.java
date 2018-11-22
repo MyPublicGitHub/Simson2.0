@@ -12,6 +12,7 @@ import com.simson.www.event.RxEvent;
 import com.simson.www.ui.base.BasePresenterActivity;
 import com.simson.www.ui.core.presenter.BasePresenter;
 import com.simson.www.ui.main.login.LoginActivity;
+import com.simson.www.ui.main.reset.ResetPasswordActivity;
 import com.simson.www.ui.mine.feed.FeedBackActivity;
 import com.simson.www.ui.mine.set.address.AddressActivity;
 import com.simson.www.ui.mine.user.UserInfoActivity;
@@ -37,6 +38,7 @@ public class SettingActivity extends BasePresenterActivity {
             case R.id.tv_phone:
                 break;
             case R.id.tv_password:
+                startActivity(new Intent(this, ResetPasswordActivity.class));
                 break;
             case R.id.tv_address:
                 startActivity(new Intent(this, AddressActivity.class));

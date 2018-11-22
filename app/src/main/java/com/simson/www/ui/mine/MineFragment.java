@@ -138,10 +138,10 @@ public class MineFragment extends BasePresenterFragment<MinePresenter, MineContr
                 startActivity(new Intent(getActivity(), OrderActivity.class).putExtra("status", ""));
                 break;
             case R.id.ll_pending_delivery:
-                startActivity(new Intent(getActivity(), OrderActivity.class).putExtra("status", "1"));
+                startActivity(new Intent(getActivity(), OrderActivity.class).putExtra("status", "2"));
                 break;
             case R.id.ll_already_shipped:
-                startActivity(new Intent(getActivity(), OrderActivity.class).putExtra("status", "2"));
+                startActivity(new Intent(getActivity(), OrderActivity.class).putExtra("status", "1"));
                 break;
             case R.id.ll_evaluate://
                 startActivity(new Intent(getActivity(), OrderActivity.class).putExtra("status", "3"));
