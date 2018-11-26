@@ -6,15 +6,11 @@ import com.simson.www.common.Const;
 import com.simson.www.net.bean.community.PopularizationBean;
 import com.simson.www.net.bean.community.QuestionsBean;
 import com.simson.www.net.bean.home.DoctorDetailBean;
-import com.simson.www.net.bean.mine.OrderBean;
 import com.simson.www.net.callback.RxObserver;
 import com.simson.www.ui.core.model.ExpertDetailModel;
 import com.simson.www.ui.core.model.ExpertItemModel;
 import com.simson.www.ui.core.model.KnowledgeItemModel;
-import com.simson.www.ui.core.model.OrderModel;
-import com.simson.www.ui.core.presenter.BasePresenter;
 import com.simson.www.ui.core.presenter.CommonPresenter;
-import com.simson.www.ui.mine.order.item.OrderContract;
 import com.simson.www.utils.DateUtils;
 import com.simson.www.utils.SPUtils;
 
@@ -64,6 +60,7 @@ public class ExpertDetailPresenter extends CommonPresenter<ExpertDetailContract.
         mModelKnow.getPopularizationList(json, observer);
         addDisposable(observer);
     }
+
     @Override
     public void getDoctorDetail() {
         mView = getView();
@@ -107,10 +104,10 @@ public class ExpertDetailPresenter extends CommonPresenter<ExpertDetailContract.
 
         Map<String, String> map = new HashMap<>();
         map.put("timestamp", DateUtils.getStringDate());
-        map.put("customerId", (String) SPUtils.get(Const.USER_INFO.CUSTOMER_ID, ""));//当前登录人
+        map.put("customerId", "");//当前登录人
         map.put("myCustomerId", "");//当前登录人
-        map.put("doctorId", mView.getDoctorId());//医生类型
-        map.put("type", mView.getType());//1推荐，2关注，空不传是全部
+        map.put("doctorId", mView.getDoctorId());//医生
+        map.put("type", "");//1推荐，2关注，空不传是全部
         map.put("pageIndex", "1");
         map.put("pageSize", "5");
         String json = new Gson().toJson(map);
@@ -120,7 +117,7 @@ public class ExpertDetailPresenter extends CommonPresenter<ExpertDetailContract.
 
     @Override
     public void follow() {
-        follow(mView.getFollowCustomerId(),mView.getMethod(),mView.getType());
+        follow(mView.getFollowCustomerId(), mView.getMethod(), mView.getType());
     }
 
 }

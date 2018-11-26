@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorMain"
+    android:orientation="vertical"
+    tools:context=".ui.home.hair.BeautifulHairActivity">
+
+    <LinearLayout
+        android:id="@+id/ll"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="@dimen/dp_50"
+        android:visibility="gone"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/iv_image"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_margin="@dimen/dp_10"
+            android:layout_weight="1"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerInParent="true"
+            android:layout_marginBottom="@dimen/dp_40"
+            android:background="@drawable/shape_corner_30dp"
+            android:gravity="center"
+            android:onClick="share"
+            android:paddingLeft="@dimen/dp_50"
+            android:paddingTop="@dimen/dp_5"
+            android:paddingRight="@dimen/dp_50"
+            android:paddingBottom="@dimen/dp_5"
+            android:text="分享到发友圈"
+            android:textColor="@color/colorMain"
+            android:textSize="@dimen/dp_20" />
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/bg"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@mipmap/ic_bg_hair"
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerInParent="true"
+            android:layout_marginBottom="@dimen/dp_45"
+            android:background="@drawable/shape_corner_30dp"
+            android:onClick="take"
+            android:paddingLeft="@dimen/dp_100"
+            android:paddingTop="@dimen/dp_15"
+            android:paddingRight="@dimen/dp_100"
+            android:paddingBottom="@dimen/dp_15"
+            android:text="马上自拍"
+            android:textColor="@color/colorMain"
+            android:textSize="@dimen/dp_30" />
+    </RelativeLayout>
+
+    <ImageView
+        android:layout_width="@dimen/dp_40"
+        android:layout_height="@dimen/dp_40"
+        android:layout_margin="@dimen/dp_10"
+        android:onClick="back"
+        android:padding="@dimen/dp_8"
+        android:src="@drawable/ic_back" />
+</RelativeLayout>

@@ -161,6 +161,10 @@ public class ExpertDetailActivity extends BasePresenterActivity<ExpertDetailPres
         }
     }
 
+    public void moreKnow(View v){
+
+    }
+
     @Override
     public void follow(BaseBean bean) {
         if (bean.result == 0) {

@@ -1,6 +1,7 @@
 package com.simson.www.ui.community.expert;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
@@ -11,12 +12,16 @@ import android.view.View;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.simson.www.R;
 import com.simson.www.net.bean.community.DoctorBean;
+import com.simson.www.net.bean.community.QuestionsBean;
 import com.simson.www.net.bean.home.HospitalBean;
 import com.simson.www.ui.adapter.ExpertCommunityAdapter;
 import com.simson.www.ui.adapter.TabViewPagerAdapter;
 import com.simson.www.ui.adapter.TabViewPagerAdapterItem;
 import com.simson.www.ui.base.BasePresenterFragment;
+import com.simson.www.ui.community.expert.detail.QuestionDetailActivity;
 import com.simson.www.ui.core.presenter.BasePresenter;
+import com.simson.www.ui.home.expert.ExpertActivity;
+import com.simson.www.ui.home.expert.detail.ExpertDetailActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -53,6 +58,10 @@ public class ExpertFragment extends BasePresenterFragment<ExpertPresenter, Exper
         recyclerView.setAdapter(adapter);
 //        adapter.bindToRecyclerView(recyclerView);
 //        adapter.setEmptyView(R.layout.list_empty_view);
+        adapter.setOnItemClickListener((adapter, view1, position) -> {
+            DoctorBean.DoctorItemBean bean = (DoctorBean.DoctorItemBean) adapter.getData().get(position);
+            startActivity(new Intent(getActivity(), ExpertDetailActivity.class).putExtra("doctorId", bean.getDoctor_id()));
+        });
         ArrayList<String> titleData = new ArrayList<>();
         titleData.add("推荐");
         titleData.add("关注");

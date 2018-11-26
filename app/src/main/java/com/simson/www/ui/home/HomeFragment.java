@@ -20,6 +20,7 @@ import com.simson.www.ui.community.knowledge.detail.WebViewActivity;
 import com.simson.www.ui.home.cases.CaseActivity;
 import com.simson.www.ui.home.cause.CauseActivity;
 import com.simson.www.ui.home.expert.ExpertActivity;
+import com.simson.www.ui.home.hair.BeautifulHairActivity;
 import com.simson.www.ui.home.hospital.HospitalActivity;
 import com.simson.www.ui.home.hospital.detail.HospitalDetailActivity;
 import com.simson.www.ui.home.test.TestSplashActivity;
@@ -111,7 +112,8 @@ public class HomeFragment extends BasePresenterFragment<HomePresenter, HomeContr
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.tv_hospital:
-                startActivity(new Intent(getActivity(), HospitalActivity.class));
+                //startActivity(new Intent(getActivity(), HospitalActivity.class));
+                startActivity(new Intent(getActivity(), BeautifulHairActivity.class));
                 break;
             case R.id.tv_expert:
                 startActivity(new Intent(getActivity(), ExpertActivity.class));

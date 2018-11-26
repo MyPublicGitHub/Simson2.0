@@ -32,6 +32,7 @@ import com.simson.www.ui.mine.user.UserInfoActivity;
 import com.simson.www.ui.mine.wallet.WalletActivity;
 import com.simson.www.utils.CommonUtils;
 import com.simson.www.utils.GlideUtils;
+import com.simson.www.utils.LogUtils;
 import com.simson.www.utils.SPUtils;
 import com.simson.www.widget.CircleImageView;
 
@@ -60,8 +61,6 @@ public class MineFragment extends BasePresenterFragment<MinePresenter, MineContr
 
     @Override
     protected void initViews(View view) {
-        GlideUtils.with(SPUtils.get(Const.USER_INFO.CUSTOMER_HEAD, ""), ivHeader);
-        tvUserName.setText((String) SPUtils.get(Const.USER_INFO.CUSTOMER_NICK_NAME, ""));
         mPresenter.getCustomer();
     }
 
@@ -165,12 +164,26 @@ public class MineFragment extends BasePresenterFragment<MinePresenter, MineContr
     }
 
     @Override
+    public void showFail(String msg) {
+        GlideUtils.with("", ivHeader);
+        tvUserName.setText("");
+        tvFans.setText("粉丝：");
+        tvFollow.setText("关注：");
+        tvPost.setText("");
+        tvDiary.setText("");
+        tvMessage.setText("");
+        tvIntegral.setText("");
+    }
+
+    @Override
     protected void receiveEvent(Object object) {
+        mPresenter.getCustomer();
         Event mEvent = (Event) object;
         if (mEvent.type == Event.Type.LOGIN) {
-            GlideUtils.with(SPUtils.get(Const.USER_INFO.CUSTOMER_HEAD, ""), ivHeader);
-            tvUserName.setText((String) SPUtils.get(Const.USER_INFO.CUSTOMER_NICK_NAME, ""));
-            mPresenter.getCustomer();
+            if ((boolean)mEvent.object == true){}
+            else {
+
+            }
         }
     }
 

@@ -9,21 +9,20 @@ import com.scwang.smartrefresh.layout.footer.ClassicsFooter;
 import com.scwang.smartrefresh.layout.header.ClassicsHeader;
 import com.simson.www.BuildConfig;
 import com.simson.www.R;
-import com.squareup.leakcanary.LeakCanary;
-import com.squareup.leakcanary.RefWatcher;
+import com.stickercamera.App;
 import com.umeng.commonsdk.UMConfigure;
 import com.umeng.socialize.PlatformConfig;
 
 import cn.jpush.android.api.JPushInterface;
 
-public class MyApp extends Application {
-    private RefWatcher refWatcher;
+public class MyApp extends App {
+    //private RefWatcher refWatcher;
 
     @Override
     public void onCreate() {
         super.onCreate();
 
-        refWatcher = setupLeakCanary();//初始化内存泄漏检测工具
+        //refWatcher = setupLeakCanary();//初始化内存泄漏检测工具
         AppContext.initialize(this);//初始化App配置
 
         JPushInterface.setDebugMode(BuildConfig.DEBUG);//极光推送
@@ -42,16 +41,16 @@ public class MyApp extends Application {
         PlatformConfig.setQQZone("100424468", "c7394704798a158208a74ab60104f0ba");
 
     }
-    private RefWatcher setupLeakCanary() {
-        if (LeakCanary.isInAnalyzerProcess(this)) {
-            return RefWatcher.DISABLED;
-        }
-        return LeakCanary.install(this);
-    }
-    public static RefWatcher getRefWatcher(Context context) {
-        MyApp application = (MyApp) context.getApplicationContext();
-        return application.refWatcher;
-    }
+//    private RefWatcher setupLeakCanary() {
+//        if (LeakCanary.isInAnalyzerProcess(this)) {
+//            return RefWatcher.DISABLED;
+//        }
+//        return LeakCanary.install(this);
+//    }
+//    public static RefWatcher getRefWatcher(Context context) {
+//        MyApp application = (MyApp) context.getApplicationContext();
+//        return application.refWatcher;
+//    }
     @Override
     protected void attachBaseContext(Context base) {
         super.attachBaseContext(base);

@@ -60,7 +60,7 @@ public class FeedBackActivity extends BasePresenterActivity<FeedBackPresenter, F
                 .subscribe(granted -> {
                     if (granted) {
                         // 拍照后照片的存放目录，改成你自己拍照后要存放照片的目录。如果不传递该参数的话就没有拍照功能
-                        File takePhotoDir = new File(Environment.getExternalStorageDirectory(), "SimsonPhoto");
+                        File takePhotoDir = new File(Environment.getExternalStorageDirectory(), "Simson");
                         Intent photoPickerIntent = new BGAPhotoPickerActivity.IntentBuilder(this)
                                 .cameraFileDir(takePhotoDir) // 拍照后照片的存放目录，改成你自己拍照后要存放照片的目录。如果不传递该参数的话则不开启图库里的拍照功能
                                 .maxChooseCount(snplAddPhotos.getMaxItemCount()) // 图片选择张数的最大值

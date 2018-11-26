@@ -32,8 +32,8 @@ public class NewQuestionsActivity extends BasePresenterActivity<NewQuestionPrese
 
     @BindView(R.id.et_content)
     EditText etContent;
-    @BindView(R.id.cb_display)
-    CheckBox rbDisplay;
+    /*@BindView(R.id.cb_display)
+    CheckBox rbDisplay;*/
     @BindView(R.id.snpl_add_photos)
     BGASortableNinePhotoLayout snplAddPhotos;
 
@@ -65,7 +65,7 @@ public class NewQuestionsActivity extends BasePresenterActivity<NewQuestionPrese
                 .subscribe(granted -> {
                     if (granted) {
                         // 拍照后照片的存放目录，改成你自己拍照后要存放照片的目录。如果不传递该参数的话就没有拍照功能
-                        File takePhotoDir = new File(Environment.getExternalStorageDirectory(), "SimsonPhoto");
+                        File takePhotoDir = new File(Environment.getExternalStorageDirectory(), "Simson");
                         Intent photoPickerIntent = new BGAPhotoPickerActivity.IntentBuilder(this)
                                 .cameraFileDir(takePhotoDir) // 拍照后照片的存放目录，改成你自己拍照后要存放照片的目录。如果不传递该参数的话则不开启图库里的拍照功能
                                 .maxChooseCount(4) // 图片选择张数的最大值
@@ -121,7 +121,7 @@ public class NewQuestionsActivity extends BasePresenterActivity<NewQuestionPrese
 
     @Override
     public int is_display() {
-        return rbDisplay.isChecked() ? 1 : 0;
+        return 0;
     }
 
     @Override

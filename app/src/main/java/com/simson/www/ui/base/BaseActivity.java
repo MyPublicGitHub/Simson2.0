@@ -14,10 +14,8 @@ import android.widget.FrameLayout;
 import android.widget.TextView;
 
 import com.simson.www.R;
-import com.simson.www.application.MyApp;
 import com.simson.www.event.RxEvent;
 import com.simson.www.widget.WaitProgressDialog;
-import com.squareup.leakcanary.RefWatcher;
 
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
@@ -104,8 +102,8 @@ public abstract class BaseActivity extends AppCompatActivity {
         RxEvent.getInstance().unRegisterEvent(registerEvent(), mSubject, mDisposableObserver);
         if (unBinder != null)
             unBinder.unbind();
-        RefWatcher refWatcher = MyApp.getRefWatcher(this);
-        refWatcher.watch(this);
+        //RefWatcher refWatcher = MyApp.getRefWatcher(this);
+        //refWatcher.watch(this);
     }
 
     protected abstract void receiveEvent(Object object);

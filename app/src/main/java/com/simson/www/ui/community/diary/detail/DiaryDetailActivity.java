@@ -157,7 +157,7 @@ public class DiaryDetailActivity extends BasePresenterActivity<DiaryDetailPresen
         rxPermission.request(Manifest.permission.WRITE_EXTERNAL_STORAGE)
                 .subscribe(granted -> {
                     if (granted) {
-                        File downloadDir = new File(Environment.getExternalStorageDirectory(), "SimsonDownload");
+                        File downloadDir = new File(Environment.getExternalStorageDirectory(), "Simson");
                         BGAPhotoPreviewActivity.IntentBuilder photoPreviewIntentBuilder = new BGAPhotoPreviewActivity.IntentBuilder(this)
                                 .saveImgDir(downloadDir); // 保存图片的目录，如果传 null，则没有保存图片功能
 

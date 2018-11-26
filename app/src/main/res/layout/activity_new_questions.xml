@@ -22,12 +22,12 @@
             android:padding="@dimen/dp_10"
             android:textSize="@dimen/dp_16" />
 
-        <CheckBox
+    <!--    <CheckBox
             android:id="@+id/cb_display"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="@dimen/dp_10"
-            android:text="仅专家可见" />
+            android:text="仅专家可见" />-->
 
 
         <cn.bingoogolapple.photopicker.widget.BGASortableNinePhotoLayout

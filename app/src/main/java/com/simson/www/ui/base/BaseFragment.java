@@ -7,10 +7,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.simson.www.application.MyApp;
 import com.simson.www.event.RxEvent;
 import com.simson.www.widget.WaitProgressDialog;
-import com.squareup.leakcanary.RefWatcher;
 
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
@@ -66,8 +64,8 @@ public abstract class BaseFragment extends Fragment {
         //注销事件
         RxEvent.getInstance().unRegisterEvent(registerEvent(), mSubject, mDisposableObserver);
         unBinder.unbind();
-        RefWatcher refWatcher = MyApp.getRefWatcher(getContext());
-        refWatcher.watch(this);
+        //RefWatcher refWatcher = MyApp.getRefWatcher(getContext());
+        //refWatcher.watch(this);
     }
 
     protected abstract void getBundle(Bundle bundle);

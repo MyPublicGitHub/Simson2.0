@@ -4,7 +4,6 @@ import android.Manifest;
 import android.content.Intent;
 import android.os.Environment;
 import android.view.View;
-import android.widget.CheckBox;
 import android.widget.EditText;
 
 import com.simson.www.R;
@@ -35,11 +34,17 @@ public class SaveFriendCircleActivity extends BasePresenterActivity<SaveFriendCi
     protected int getLayoutId() {
         return R.layout.activity_save_friend_circle;
     }
+
     @Override
     protected void initViews() {
-        snplAddPhotos.setPlusEnable(true);//默认加号
-        // 设置拖拽排序控件的代理
-        snplAddPhotos.setDelegate(this);
+        if (isBeau) {
+            snplAddPhotos.setPlusEnable(false);
+        } else {
+            snplAddPhotos.setPlusEnable(true);//默认加号
+            // 设置拖拽排序控件的代理
+            snplAddPhotos.setDelegate(this);
+        }
+        snplAddPhotos.setData(data);
     }
 
     @OnClick({R.id.btn_commit})
@@ -55,6 +60,7 @@ public class SaveFriendCircleActivity extends BasePresenterActivity<SaveFriendCi
     protected SaveFriendCirclePresenter createPresenter() {
         return new SaveFriendCirclePresenter();
     }
+
     private void choicePhotoWrapper() {
         RxPermissions rxPermission = new RxPermissions(this);
         rxPermission.request(Manifest.permission.CAMERA,
@@ -62,7 +68,7 @@ public class SaveFriendCircleActivity extends BasePresenterActivity<SaveFriendCi
                 .subscribe(granted -> {
                     if (granted) {
                         // 拍照后照片的存放目录，改成你自己拍照后要存放照片的目录。如果不传递该参数的话就没有拍照功能
-                        File takePhotoDir = new File(Environment.getExternalStorageDirectory(), "SimsonPhoto");
+                        File takePhotoDir = new File(Environment.getExternalStorageDirectory(), "Simson");
                         Intent photoPickerIntent = new BGAPhotoPickerActivity.IntentBuilder(this)
                                 .cameraFileDir(takePhotoDir) // 拍照后照片的存放目录，改成你自己拍照后要存放照片的目录。如果不传递该参数的话则不开启图库里的拍照功能
                                 .maxChooseCount(snplAddPhotos.getMaxItemCount()) // 图片选择张数的最大值
@@ -86,6 +92,19 @@ public class SaveFriendCircleActivity extends BasePresenterActivity<SaveFriendCi
             snplAddPhotos.setData(BGAPhotoPickerActivity.getSelectedPhotos(data));
         } else if (requestCode == RC_PHOTO_PREVIEW) {
             snplAddPhotos.setData(BGAPhotoPickerPreviewActivity.getSelectedPhotos(data));
+        }
+    }
+
+    ArrayList<String> data = new ArrayList<>();
+    boolean isBeau;
+
+    @Override
+    protected void getIntent(Intent intent) {
+        if (intent == null) return;
+        String d = intent.getStringExtra("data");
+        if (d != null) {
+            data.add(d);
+            isBeau = true;
         }
     }
 
@@ -115,6 +134,7 @@ public class SaveFriendCircleActivity extends BasePresenterActivity<SaveFriendCi
     public void onNinePhotoItemExchanged(BGASortableNinePhotoLayout sortableNinePhotoLayout, int fromPosition, int toPosition, ArrayList<String> models) {
 
     }
+
     @Override
     public String content() {
         return etContent.getText().toString();
@@ -130,6 +150,7 @@ public class SaveFriendCircleActivity extends BasePresenterActivity<SaveFriendCi
         ToastUtils.showToast(bean.message);
         finish();
     }
+
     @Override
     protected boolean initToolbar() {
         mTitle.setText("发友圈");

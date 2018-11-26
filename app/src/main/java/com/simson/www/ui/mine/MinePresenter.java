@@ -27,9 +27,6 @@ public class MinePresenter extends BasePresenter<MineContract.View> implements M
     @Override
     public void getCustomer() {
         mView = getView();
-        if (TextUtils.isEmpty((String) SPUtils.get(Const.USER_INFO.CUSTOMER_ID, ""))){
-            return;
-        }
         RxObserver<CustomerBean> observer = new RxObserver<CustomerBean>(this) {
 
             @Override
