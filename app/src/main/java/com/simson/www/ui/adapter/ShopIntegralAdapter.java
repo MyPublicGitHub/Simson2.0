@@ -5,7 +5,6 @@ import android.support.annotation.Nullable;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.simson.www.R;
-import com.simson.www.net.bean.BaseBean;
 import com.simson.www.net.bean.shop.ShopListBean;
 import com.simson.www.utils.GlideUtils;
 
@@ -19,8 +18,8 @@ public class ShopIntegralAdapter extends BaseQuickAdapter<ShopListBean, BaseView
 
     @Override
     protected void convert(BaseViewHolder helper, ShopListBean item) {
-        GlideUtils.with(item.getItem_icon(),helper.getView(R.id.iv_image));
-        helper.setText(R.id.tv_title,item.getItem_name()+"");
-        helper.setText(R.id.tv_integral,"积分:"+item.getItem_point()+"");
+        GlideUtils.with(item.getItem_icon(), helper.getView(R.id.iv_image));
+        helper.setText(R.id.tv_title, item.getItem_name() + "");
+        helper.setText(R.id.tv_integral, "积分:" + item.getItem_point() + "");
     }
 }

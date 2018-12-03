@@ -2,7 +2,6 @@ package com.simson.www.ui.adapter;
 
 import android.support.v4.app.Fragment;
 
-
 import com.simson.www.net.bean.home.CityListBean;
 import com.simson.www.net.bean.main.ItemTypeBean;
 import com.simson.www.ui.community.diary.item.DiaryItemFragment;
@@ -77,6 +76,7 @@ public class TabViewPagerAdapterItem {
         }
         return adapterItems;
     }
+
     public static List<TabViewPagerAdapterItem> createHospitalItemFragments(List<CityListBean> titleList) {
         ArrayList<TabViewPagerAdapterItem> adapterItems = new ArrayList<>();
         for (int i = 0; i < titleList.size(); i++) {

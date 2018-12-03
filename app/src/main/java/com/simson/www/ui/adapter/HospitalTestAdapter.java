@@ -1,7 +1,6 @@
 package com.simson.www.ui.adapter;
 
 import android.support.annotation.Nullable;
-import android.text.TextUtils;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
@@ -19,7 +18,7 @@ public class HospitalTestAdapter extends BaseQuickAdapter<HospitalTestBean, Base
 
     @Override
     protected void convert(BaseViewHolder helper, HospitalTestBean item) {
-        GlideUtils.with(item.getHospital_icon(),helper.getView(R.id.iv_header));
+        GlideUtils.with(item.getHospital_icon(), helper.getView(R.id.iv_header));
         helper.setText(R.id.tv_name, item.getHospital_name() + "");
         helper.setText(R.id.tv_date, item.getSubscribe_time());
     }

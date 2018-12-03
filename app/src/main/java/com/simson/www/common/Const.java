@@ -39,6 +39,7 @@ public class Const {
         public static final String USER = "3";
         public static final String SHOP = "4";
     }
+
     //收藏type：   1：日记；2科普；3问答；4商品；5脱发原因
     public static class COLLECT_TYPE {
         public static final String DIARY = "1";
@@ -47,6 +48,7 @@ public class Const {
         public static final String COMMODITY = "4";
         public static final String CAUSE = "5";
     }
+
     //点赞type：   1：日记；2科普；3问答；4商品；5脱发原因
     public static class PRAISE_TYPE {
         public static final String DIARY = "1";

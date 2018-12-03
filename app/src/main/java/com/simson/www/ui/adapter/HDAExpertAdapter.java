@@ -5,7 +5,6 @@ import android.support.annotation.Nullable;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.simson.www.R;
-import com.simson.www.net.bean.BaseBean;
 import com.simson.www.net.bean.community.DoctorBean;
 import com.simson.www.utils.GlideUtils;
 

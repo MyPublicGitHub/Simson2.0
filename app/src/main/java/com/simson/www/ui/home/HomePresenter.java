@@ -14,8 +14,6 @@ import com.simson.www.utils.AESUtils;
 import com.simson.www.utils.DateUtils;
 import com.simson.www.utils.SPUtils;
 
-import java.io.UnsupportedEncodingException;
-import java.net.URLEncoder;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;

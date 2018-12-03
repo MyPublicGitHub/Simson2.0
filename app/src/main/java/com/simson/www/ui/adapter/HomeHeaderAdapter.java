@@ -18,7 +18,7 @@ public class HomeHeaderAdapter extends BaseQuickAdapter<HospitalItemBean, BaseVi
 
     @Override
     protected void convert(BaseViewHolder helper, HospitalItemBean item) {
-        GlideUtils.with(item.getHospital_icon(),helper.getView(R.id.iv_image));
+        GlideUtils.with(item.getHospital_icon(), helper.getView(R.id.iv_image));
         helper.setText(R.id.tv_name, item.getHospital_name() + "");
     }
 }

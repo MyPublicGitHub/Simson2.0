@@ -46,9 +46,9 @@ public class BeautifulHairActivity extends BasePresenterActivity {
     }
 
     public void share(View v) {
-        Intent intent = new Intent(this,SaveFriendCircleActivity.class);
-        intent.putExtra("data",imagePath);
-        startActivityForResult(intent,1004);
+        Intent intent = new Intent(this, SaveFriendCircleActivity.class);
+        intent.putExtra("data", imagePath);
+        startActivityForResult(intent, 1004);
         finish();
     }
 

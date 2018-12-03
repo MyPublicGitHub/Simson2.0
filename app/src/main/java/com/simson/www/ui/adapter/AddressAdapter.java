@@ -1,14 +1,11 @@
 package com.simson.www.ui.adapter;
 
 import android.support.annotation.Nullable;
-import android.widget.CompoundButton;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.simson.www.R;
-import com.simson.www.net.bean.community.DiaryBean;
 import com.simson.www.net.bean.mine.AddressBean;
-import com.simson.www.utils.GlideUtils;
 
 import java.util.List;
 
@@ -29,7 +26,7 @@ public class AddressAdapter extends BaseQuickAdapter<AddressBean, BaseViewHolder
          * is_default : 0
          * location : 浙江省杭州市滨江区
          */
-        helper.setText(R.id.tv_name, item.getConsignee()+"");
+        helper.setText(R.id.tv_name, item.getConsignee() + "");
         helper.setText(R.id.tv_phone, item.getContact_number());
         helper.setText(R.id.tv_address, item.getLocation() + item.getAddress());
         helper.setChecked(R.id.cb_default, item.getIs_default() == 1);

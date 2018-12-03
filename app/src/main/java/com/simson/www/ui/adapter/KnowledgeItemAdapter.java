@@ -21,23 +21,23 @@ public class KnowledgeItemAdapter extends BaseQuickAdapter<PopularizationBean, B
 
     @Override
     protected void convert(BaseViewHolder helper, PopularizationBean item) {
-        GlideUtils.with(item.getHospital_icon(),helper.getView(R.id.iv_header));
-        helper.setText(R.id.tv_name,item.getHospital_name()+"");
-        helper.setText(R.id.tv_date,item.getCreate_time()+"");
-        if (item.getIs_follow() == 0){
+        GlideUtils.with(item.getHospital_icon(), helper.getView(R.id.iv_header));
+        helper.setText(R.id.tv_name, item.getHospital_name() + "");
+        helper.setText(R.id.tv_date, item.getCreate_time() + "");
+        if (item.getIs_follow() == 0) {
             helper.setText(R.id.tv_follow, "+ 关注");
 
-        }else {
+        } else {
             helper.setText(R.id.tv_follow, "已关注");
         }
         helper.addOnClickListener(R.id.tv_follow);
         BGANinePhotoLayout ninePhotoLayout = helper.getView(R.id.bga);
         //ninePhotoLayout.setDelegate(delegate);
         ninePhotoLayout.setData((ArrayList<String>) item.getPictures());
-        helper.setText(R.id.tv_title,item.getTitle()+"");
+        helper.setText(R.id.tv_title, item.getTitle() + "");
         //helper.setText(R.id.tv_content,item.getTitle()+"");
         helper.setText(R.id.tv_browse, item.getBrowse() + "阅读");
 //        helper.setText(R.id.tv_comments, item.getComments() + "评论");
-        helper.setText(R.id.tv_praises,item.getPraises()+"赞");
+        helper.setText(R.id.tv_praises, item.getPraises() + "赞");
     }
 }

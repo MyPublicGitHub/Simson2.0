@@ -20,17 +20,7 @@ public class OrderAdapter extends BaseQuickAdapter<OrderBean, BaseViewHolder> {
 
     @Override
     protected void convert(BaseViewHolder helper, OrderBean item) {
-        /**
-         * order_id : HT201809291538200117426632252534
-         * customer_id : 2018090115357871316905625
-         * transaction_money : 888.00
-         * transaction_point : 0
-         * transaction_type : 1
-         * transaction_status : 1
-         * delivery_id :
-         * create_time : 2018-09-29
-         * items : [{"item_id":"2018007","price":"888.00","point":0,"buy_num":1,"is_point":0,"item_name":"【头顶加密种植】【私信领红包 送保险】无痕种植，个性定制，美丽从\"头\"做起","item_icon":"http://58.213.14.195:8081/upload/item/kunmingtoudingjiami/1.jpg","original_price":"1065.60","present_price":"888.00","is_delivery":0}]
-         */
+
         helper.setText(R.id.tv_date, item.getCreate_time());
         //helper.setText(R.id.tv_trade_state, item.getTrans_type());//TODO 字段待确认
         helper.setText(R.id.tv_buy_num, "共" + item.getItems().size() + "件商品");

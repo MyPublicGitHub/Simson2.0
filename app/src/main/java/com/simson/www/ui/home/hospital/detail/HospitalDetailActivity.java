@@ -15,7 +15,6 @@ import com.simson.www.net.bean.community.DiaryBean;
 import com.simson.www.net.bean.community.DoctorBean;
 import com.simson.www.net.bean.home.HospitalDetailBean;
 import com.simson.www.net.bean.home.HospitalDeviceBean;
-import com.simson.www.ui.adapter.HDACaseDiaryAdapter;
 import com.simson.www.ui.adapter.HDAExpertAdapter;
 import com.simson.www.ui.adapter.HDAHospitalInfoAdapter;
 import com.simson.www.ui.adapter.HDAInstrumentAdapter;
@@ -74,7 +73,7 @@ public class HospitalDetailActivity extends BasePresenterActivity<HospitalDetail
     RecyclerView rvExperts;
     @BindView(R.id.rv_instrument)
     RecyclerView rvInstrument;
-//    @BindView(R.id.rv_case_diary)
+    //    @BindView(R.id.rv_case_diary)
 //    RecyclerView rvCaseDiary;
     @BindView(R.id.rv_hospital_info)
     RecyclerView rvHospitalInfo;

@@ -2,7 +2,6 @@ package com.simson.www.application;
 
 import android.content.Context;
 
-import com.simson.www.BuildConfig;
 import com.simson.www.common.UrlConstainer;
 import com.simson.www.net.RxRetrofit;
 import com.simson.www.utils.SPUtils;
@@ -15,7 +14,7 @@ import com.simson.www.utils.SPUtils;
 
 public class AppConfig {
 
-    static void init(Context context){
+    static void init(Context context) {
         //初始化网络框架
         RxRetrofit.getInstance().initRxRetrofit(context, UrlConstainer.getBaseUrl());
         //初始化缓存

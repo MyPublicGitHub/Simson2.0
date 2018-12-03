@@ -1,6 +1,5 @@
 package com.simson.www.application;
 
-import android.app.Application;
 import android.content.Context;
 import android.support.multidex.MultiDex;
 
@@ -29,6 +28,7 @@ public class MyApp extends App {
         JPushInterface.init(this);
         initUM();
     }
+
     private void initUM() {
         /**
          * 设置组件化的Log开关
@@ -41,7 +41,8 @@ public class MyApp extends App {
         PlatformConfig.setQQZone("100424468", "c7394704798a158208a74ab60104f0ba");
 
     }
-//    private RefWatcher setupLeakCanary() {
+
+    //    private RefWatcher setupLeakCanary() {
 //        if (LeakCanary.isInAnalyzerProcess(this)) {
 //            return RefWatcher.DISABLED;
 //        }

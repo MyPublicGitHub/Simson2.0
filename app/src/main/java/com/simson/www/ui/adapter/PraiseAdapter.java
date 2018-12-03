@@ -24,9 +24,9 @@ public class PraiseAdapter extends BaseQuickAdapter<CommentBean, BaseViewHolder>
         helper.setText(R.id.tv_date, item.getCreate_time());
         helper.setText(R.id.tv_content, item.getContent());
         helper.setRating(R.id.rate, item.getItem_comment_star());
-        helper.setText(R.id.tv_environment, "环境："+item.getProfessional_score() );
-        helper.setText(R.id.tv_profession, "专业"+item.getProfessional_score() );
-        helper.setText(R.id.tv_serve, "服务："+item.getService_score() );
-        helper.setText(R.id.tv_effect, "效果："+item.getEffect_score() );
+        helper.setText(R.id.tv_environment, "环境：" + item.getProfessional_score());
+        helper.setText(R.id.tv_profession, "专业" + item.getProfessional_score());
+        helper.setText(R.id.tv_serve, "服务：" + item.getService_score());
+        helper.setText(R.id.tv_effect, "效果：" + item.getEffect_score());
     }
 }

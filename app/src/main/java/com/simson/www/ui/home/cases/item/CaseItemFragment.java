@@ -4,20 +4,15 @@ package com.simson.www.ui.home.cases.item;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.simson.www.R;
 import com.simson.www.common.Const;
-import com.simson.www.net.bean.community.PopularizationBean;
 import com.simson.www.net.bean.mine.CaseBean;
 import com.simson.www.ui.adapter.CaseItemAdapter;
-import com.simson.www.ui.adapter.HomeItemAdapter;
 import com.simson.www.ui.base.BasePresenterFragment;
 import com.simson.www.ui.community.knowledge.detail.WebViewActivity;
-import com.simson.www.ui.home.cases.CaseContract;
-import com.simson.www.ui.home.cases.CasePresenter;
 
 import java.util.List;
 
@@ -49,11 +44,12 @@ public class CaseItemFragment extends BasePresenterFragment<CaseItemPresenter, C
     protected int getLayoutId() {
         return R.layout.fragment_case_item;
     }
+
     CaseItemAdapter adapter;
 
     @Override
     protected void initViews(android.view.View view) {
-        recyclerView.setLayoutManager(new GridLayoutManager(getContext(),2));
+        recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 2));
         adapter = new CaseItemAdapter(null);
         recyclerView.setAdapter(adapter);
 //        recyclerView.setNestedScrollingEnabled(false);
@@ -84,7 +80,6 @@ public class CaseItemFragment extends BasePresenterFragment<CaseItemPresenter, C
         }
         if (bean.size() == 0) {
             mRefreshLayout.setNoMoreData(true);
-
         }
     }
 

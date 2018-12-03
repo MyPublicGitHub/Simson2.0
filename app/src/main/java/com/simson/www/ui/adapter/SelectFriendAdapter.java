@@ -4,14 +4,11 @@ import android.support.annotation.Nullable;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.widget.EditText;
-import android.widget.TextView;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.simson.www.R;
 import com.simson.www.net.bean.home.FriendBean;
-import com.simson.www.net.bean.home.HospitalItemBean;
-import com.simson.www.utils.GlideUtils;
 
 import java.util.List;
 
