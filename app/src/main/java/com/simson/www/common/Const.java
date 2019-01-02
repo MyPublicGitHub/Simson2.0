@@ -19,6 +19,7 @@ public class Const {
     //用户相关
     public static class USER_INFO {
         public static final String CUSTOMER_ID = "CUSTOMER_ID";  //
+        public static final String CUSTOMER_MOBLE = "CUSTOMER_MOBLE";  //
         public static final String CUSTOMER_HEAD = "CUSTOMER_HEAD";  //
         public static final String CUSTOMER_NAME = "CUSTOMER_NAME";  //
         public static final String CUSTOMER_NICK_NAME = "CUSTOMER_NICK_NAME";  //

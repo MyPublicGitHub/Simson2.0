@@ -29,6 +29,10 @@ import com.simson.www.net.bean.home.TechnologyBean;
 import com.simson.www.net.bean.main.CodeBean;
 import com.simson.www.net.bean.main.ItemTypeBean;
 import com.simson.www.net.bean.main.LoginBean;
+import com.simson.www.net.bean.main.NewestRedEnvelopeBean;
+import com.simson.www.net.bean.main.ProgramBean;
+import com.simson.www.net.bean.main.ReceiveRedEnvelopeBean;
+import com.simson.www.net.bean.main.VoteBean;
 import com.simson.www.net.bean.mine.AddressBean;
 import com.simson.www.net.bean.mine.AddressDetailBean;
 import com.simson.www.net.bean.mine.AlopeciaBean;
@@ -42,6 +46,7 @@ import com.simson.www.net.bean.mine.HospitalTestBean;
 import com.simson.www.net.bean.mine.IntegralDetailBean;
 import com.simson.www.net.bean.mine.OrderBean;
 import com.simson.www.net.bean.mine.PaymentOrderBean;
+import com.simson.www.net.bean.mine.RedEnvelopesBean;
 import com.simson.www.net.bean.mine.ShopCartBean;
 import com.simson.www.net.bean.mine.SignBean;
 import com.simson.www.net.bean.mine.SignPageBean;
@@ -59,14 +64,36 @@ import java.util.List;
 import io.reactivex.Observable;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
+import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.Query;
+import retrofit2.http.Url;
 
 /**
  * 接口
  */
 
 public interface ApiServer {
+    //获取红包
+    @POST()
+    Observable<NewestRedEnvelopeBean> newestRedEnvelope(@Url String url);
+
+    //打开红包
+    @POST()
+    Observable<ReceiveRedEnvelopeBean> receiveRedEnvelope(@Url String url, @Query("json") String json);
+
+    //获取节目列表
+    @GET()
+    Observable<List<ProgramBean>> program(@Url String url);
+
+    //投票
+    @GET()
+    Observable<VoteBean> vote(@Url String url);
+
+    //红包记录
+    @POST("")
+    Observable<BaseBean<List<RedEnvelopesBean>>> redEnvelopesRecord(@Url String url,@Query("json") String json);
+
     //交易记录
     @POST("transaction/rechargeOrderList")
     Observable<BaseBean<List<TransactionRecordBean>>> rechargeOrderList(@Query("json") String json);

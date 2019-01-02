@@ -23,6 +23,7 @@ import com.simson.www.ui.home.expert.ExpertActivity;
 import com.simson.www.ui.home.hair.BeautifulHairActivity;
 import com.simson.www.ui.home.hospital.detail.HospitalDetailActivity;
 import com.simson.www.ui.home.test.TestSplashActivity;
+import com.simson.www.ui.main.MainActivity;
 import com.simson.www.ui.mine.subscribe.save.NewSubscribeActivity;
 import com.simson.www.ui.mine.test.save.NewHospitalTestActivity;
 import com.simson.www.utils.CommonUtils;

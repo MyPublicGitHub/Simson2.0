@@ -10,6 +10,7 @@ import com.simson.www.net.bean.mine.CustomerBasicBean;
 import com.simson.www.ui.base.BasePresenterActivity;
 import com.simson.www.ui.mine.wallet.log.TransactionRecordActivity;
 import com.simson.www.ui.mine.wallet.recharge.RechargeActivity;
+import com.simson.www.ui.mine.wallet.red.RedEnvelopesActivity;
 import com.simson.www.utils.CommonUtils;
 
 import butterknife.BindView;
@@ -31,11 +32,14 @@ public class WalletActivity extends BasePresenterActivity<WalletPresenter, Walle
         return R.layout.activity_wallet;
     }
 
-    @OnClick({R.id.ll_recharge, R.id.ll_log, R.id.ll_help})
+    @OnClick({R.id.ll_recharge, R.id.ll_log, R.id.ll_help, R.id.ll_red})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.ll_recharge:
                 startActivity(new Intent(this, RechargeActivity.class));
+                break;
+            case R.id.ll_red:
+                startActivity(new Intent(this, RedEnvelopesActivity.class));
                 break;
             case R.id.ll_log:
                 startActivity(new Intent(this, TransactionRecordActivity.class));
@@ -54,7 +58,7 @@ public class WalletActivity extends BasePresenterActivity<WalletPresenter, Walle
     @Override
     public void getCustomerBasicInfo(CustomerBasicBean bean) {
         if (bean == null) return;
-        tvWallet.setText(""+bean.getCard_amount());
+        tvWallet.setText("" + bean.getCard_amount());
     }
 
     @Override

@@ -41,6 +41,9 @@ public class QuestionAdapter extends BaseQuickAdapter<QuestionsBean, BaseViewHol
         } else {
             helper.getView(R.id.iv_image).setVisibility(View.GONE);
         }
+        helper.setText(R.id.tv_browse, " 阅读 " + item.getBrowse());
+//        helper.setText(R.id.tv_comments, " 评论 "+item.getComments());
+        helper.setText(R.id.tv_praises, " 赞 " + item.getPraises());
     }
 }
 

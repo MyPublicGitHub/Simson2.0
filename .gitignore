@@ -11,3 +11,4 @@
 .idea/
 app/release/output.json
 app/debug/output.json
+Gpu-Image/build/

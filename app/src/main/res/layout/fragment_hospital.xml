@@ -114,7 +114,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/dp_10"
+                android:layout_marginTop="@dimen/dp_5"
                 android:background="@color/colorWhite"
                 android:orientation="horizontal">
 
@@ -132,16 +132,16 @@
                         android:gravity="center"
                         android:text="脱发原因"
                         android:textColor="@color/colorBlack"
-                        android:textSize="@dimen/sp_14" />
+                        android:textSize="@dimen/sp_15" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/tv1"
-                        android:layout_marginTop="@dimen/dp_5"
+                        android:layout_marginTop="@dimen/dp_8"
                         android:gravity="center"
                         android:text="了解原因 根治脱发"
-                        android:textColor="@color/colorBlack_6"
+                        android:textColor="@color/colorBlack_8"
                         android:textSize="@dimen/sp_12" />
 
                     <ImageView
@@ -171,16 +171,16 @@
                         android:gravity="center"
                         android:text="毛囊检测"
                         android:textColor="@color/colorBlack"
-                        android:textSize="@dimen/sp_14" />
+                        android:textSize="@dimen/sp_15" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/tv2"
-                        android:layout_marginTop="@dimen/dp_5"
+                        android:layout_marginTop="@dimen/dp_8"
                         android:gravity="center"
                         android:text="在线检测 预约检测"
-                        android:textColor="@color/colorBlack_6"
+                        android:textColor="@color/colorBlack_8"
                         android:textSize="@dimen/sp_12" />
 
                     <ImageView
@@ -213,16 +213,16 @@
                         android:gravity="center"
                         android:text="咨询医生"
                         android:textColor="@color/colorBlack"
-                        android:textSize="@dimen/sp_14" />
+                        android:textSize="@dimen/sp_15" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/tv3"
-                        android:layout_marginTop="@dimen/dp_5"
+                        android:layout_marginTop="@dimen/dp_8"
                         android:gravity="center"
                         android:text="在线咨询 电话咨询"
-                        android:textColor="@color/colorBlack_6"
+                        android:textColor="@color/colorBlack_8"
                         android:textSize="@dimen/sp_12" />
 
                     <ImageView
@@ -252,16 +252,16 @@
                         android:gravity="center"
                         android:text="线上预约"
                         android:textColor="@color/colorBlack"
-                        android:textSize="@dimen/sp_14" />
+                        android:textSize="@dimen/sp_15" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/tv4"
-                        android:layout_marginTop="@dimen/dp_5"
+                        android:layout_marginTop="@dimen/dp_8"
                         android:gravity="center"
                         android:text="无需排队 在线预约"
-                        android:textColor="@color/colorBlack_6"
+                        android:textColor="@color/colorBlack_8"
                         android:textSize="@dimen/sp_12" />
 
                     <ImageView
@@ -281,9 +281,10 @@
                 android:layout_weight="1"
                 android:background="@color/colorWhite"
                 android:padding="@dimen/dp_10"
+                android:gravity="center_vertical"
                 android:text="猜你喜欢"
                 android:textColor="@color/colorBlack"
-                android:textSize="@dimen/sp_12" />
+                android:textSize="@dimen/sp_17" />
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/recycler_view"

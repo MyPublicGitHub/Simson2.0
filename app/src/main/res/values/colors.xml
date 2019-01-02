@@ -10,6 +10,8 @@
     <color name="colorGrey">#cccccc</color>
     <color name="colorBlack">#000000</color>
     <color name="colorRed">#c90b0b</color>
+    <color name="colorRedVote">#a41e24</color>
+    <color name="colorRedVoteItem">#f40b16</color>
     <color name="colorBlack_2">#222222</color>
     <color name="colorBlack_4">#444444</color>
     <color name="colorBlack_6">#666666</color>
@@ -17,4 +19,6 @@
     <color name="bg_load">#90000000</color>
     <color name="colorOrange">#f06b36</color>
     <color name="colorBlue">#4a5ebc</color>
+    <color name="colorRedEnvelope">#d0594b</color>
+    <color name="colorRedEnvelopeText">#caae80</color>
 </resources>

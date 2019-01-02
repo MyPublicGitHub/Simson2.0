@@ -1,12 +1,16 @@
 apply plugin: 'com.android.application'
 //apply plugin: 'com.neenbedankt.android-apt'
+def releaseTime() {
+    return new Date().format("yyyy-MM-dd_hh_mm_ss", TimeZone.getTimeZone("UTC"))
+}
+
 android {
     compileSdkVersion 27
     defaultConfig {
         applicationId "com.simson.www"
         minSdkVersion 15
         targetSdkVersion 27
-        versionCode 1
+        versionCode 2
         versionName "1.0"
         renderscriptSupportModeEnabled true    // Enable RS support
         javaCompileOptions { annotationProcessorOptions { includeCompileClasspath = true } }
@@ -16,10 +20,22 @@ android {
                 qqappid      : "tencent100424468",//友盟分享
                 JPUSH_PKGNAME: "com.simson.www",
                 JPUSH_APPKEY : "9a3bd399dad9968d6792d1a6", //JPush 上注册的包名对应的 Appkey.
-                //JPUSH_APPKEY : "0fa6d308abab72ad12f5ce7c", //JPush 上注册的包名对应的 Appkey.
+                //JPUSH_APPKEY : "0fa6d308abab72ad12f5ce7c", //JPush 上注册的包名对应的 Appkey.冯涛
                 JPUSH_CHANNEL: "developer-default", //暂时填写默认值即可.
         ]
     }
+    android.applicationVariants.all { variant ->
+        variant.outputs.all { output ->
+            def outputFile = output.outputFile
+            if (outputFile != null && outputFile.name.endsWith('.apk')) {
+                //这里修改apk文件名
+                //def fileName = "simson" + "-" + buildType.name +"-v" + defaultConfig.versionCode + releaseTime() + ".apk"
+                //output.outputFile = new File(outputFile.parent, fileName)
+                outputFileName = "simson" + "-" + buildType.name + "-v" + defaultConfig.versionCode + "_" + releaseTime() + ".apk"
+            }
+        }
+    }
+
     buildTypes {
         release {
             ndk {
@@ -93,6 +109,7 @@ dependencies {
     implementation 'com.squareup.retrofit2:converter-gson:2.2.0'
     implementation 'com.squareup.retrofit2:adapter-rxjava2:2.2.0'
     implementation 'com.google.code.gson:gson:2.8.2'
+    //implementation 'com.squareup.retrofit2:converter-scalars:2.0.0'    //导入scalars包
     implementation 'com.github.bumptech.glide:glide:4.7.1'
     implementation 'com.android.support.constraint:constraint-layout:1.1.3'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.7.1'
@@ -118,8 +135,8 @@ dependencies {
     implementation 'com.zaaach:citypicker:2.0.2'
 
     //极光推送
-    implementation 'cn.jiguang.sdk:jpush:3.1.6'  // 此处以JPush 3.1.6 版本为例。
-    implementation 'cn.jiguang.sdk:jcore:1.2.5'  // 此处以JCore 1.2.5 版本为例。
+    api 'cn.jiguang.sdk:jpush:3.1.6'  // 此处以JPush 3.1.6 版本为例。
+    api 'cn.jiguang.sdk:jcore:1.2.5'  // 此处以JCore 1.2.5 版本为例。
 
     implementation 'com.iarcuschin:simpleratingbar:0.1.5'
     implementation 'me.zhanghai.android.materialratingbar:library:1.3.1'
@@ -133,7 +150,7 @@ dependencies {
     //3D地图so及jar
     //implementation 'com.amap.api:3dmap:latest.integration'
 
-    implementation 'me.jessyan:autosize:1.0.0'//屏幕适配
+    implementation 'me.jessyan:autosize:1.1.0'//屏幕适配
     //----------------------友盟-----------------------
     implementation 'com.umeng.sdk:common:1.5.0'
     implementation 'com.umeng.sdk:share-core:latest.integration'

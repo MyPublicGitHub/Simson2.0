@@ -49,14 +49,7 @@ public class HomePresenter extends CommonPresenter<HomeContract.View> implements
         map.put("timestamp", DateUtils.getStringDate());
         map.put("customerId", SPUtils.get(Const.USER_INFO.CUSTOMER_ID, ""));
         String json = new Gson().toJson(map);
-        String jsonEn = AESUtils.encrypt(json);
-        /*String url = "";
-        try {
-            url = "indexController/indexSynchysis?json=" + URLEncoder.encode(jsonEn, "utf-8");
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
-        }*/
-        mModel.indexSynchysis(jsonEn, observer);
+        mModel.indexSynchysis(json, observer);
     }
 
     @Override
@@ -77,16 +70,7 @@ public class HomePresenter extends CommonPresenter<HomeContract.View> implements
 
         Map<String, String> map = new HashMap<>();
         map.put("timestamp", DateUtils.getStringDate());
-//        map.put("cityId", mView.getCityId());
-//        map.put("pageIndex", mView.getPage());
-//        map.put("pageSize", Const.PAGE_SIZE);
         String json = new Gson().toJson(map);
-      /*  String url = "";
-        try {
-            url = URLEncoder.encode(AESUtils.encrypt(json), "utf-8");
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
-        }*/
         mHospitalModel.getHospital(json, observer);
         addDisposable(observer);
     }

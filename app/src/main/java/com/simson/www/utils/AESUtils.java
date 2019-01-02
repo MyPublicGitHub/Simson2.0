@@ -32,7 +32,7 @@ public class AESUtils {
      * @throws Exception
      */
     public static String encrypt(String encryptSrc) {
-        if (UrlConstainer.DEBUG) return encryptSrc;//本地服务器暂时没有加密，直接返回
+        //if (UrlConstainer.DEBUG) return encryptSrc;//本地服务器暂时没有加密，直接返回
         try {
             Cipher cipher = Cipher.getInstance("AES/CBC/PKCS5Padding");
             byte[] raw = sKey.getBytes();
@@ -58,7 +58,39 @@ public class AESUtils {
         }
         return null;
     }
-
+    /**
+     * AES加密
+     *
+     * @param encryptSrc
+     * @return
+     * @throws Exception
+     */
+    public static String encryptRed(String encryptSrc) {
+        try {
+            Cipher cipher = Cipher.getInstance("AES/CBC/PKCS5Padding");
+            byte[] raw = sKey.getBytes();
+            SecretKeySpec skeySpec = new SecretKeySpec(raw, "AES");
+            IvParameterSpec iv = new IvParameterSpec(ivParameter.getBytes());// 使用CBC模式，需要一个向量iv，可增加加密算法的强度
+            cipher.init(Cipher.ENCRYPT_MODE, skeySpec, iv);
+            byte[] encrypted = cipher.doFinal(encryptSrc.getBytes("utf-8"));
+            //return new BASE64Encoder().encode(encrypted);// 此处使用BASE64做转码。
+            //return Base64.encodeToString(encrypted, Base64.DEFAULT);
+            return URLEncoder.encode(Base64.encodeToString(encrypted, Base64.DEFAULT), "utf-8");
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        } catch (NoSuchPaddingException e) {
+            e.printStackTrace();
+        } catch (InvalidKeyException e) {
+            e.printStackTrace();
+        } catch (IllegalBlockSizeException e) {
+            e.printStackTrace();
+        } catch (BadPaddingException e) {
+            e.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
     /**
      * AES解密
      *
@@ -79,6 +111,7 @@ public class AESUtils {
             String originalString = new String(original, "utf-8");
             return originalString;
         } catch (Exception ex) {
+            ex.printStackTrace();
             return null;
         }
     }

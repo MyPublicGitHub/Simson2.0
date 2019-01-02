@@ -36,8 +36,8 @@ public class KnowledgeItemAdapter extends BaseQuickAdapter<PopularizationBean, B
         ninePhotoLayout.setData((ArrayList<String>) item.getPictures());
         helper.setText(R.id.tv_title, item.getTitle() + "");
         //helper.setText(R.id.tv_content,item.getTitle()+"");
-        helper.setText(R.id.tv_browse, item.getBrowse() + "阅读");
+        helper.setText(R.id.tv_browse, " 阅读 " + item.getBrowse());
 //        helper.setText(R.id.tv_comments, item.getComments() + "评论");
-        helper.setText(R.id.tv_praises, item.getPraises() + "赞");
+        helper.setText(R.id.tv_praises, " 赞 " + item.getPraises());
     }
 }

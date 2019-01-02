@@ -28,8 +28,8 @@ public class FriendCircleAdapter extends BaseQuickAdapter<FriendsCircleBean, Bas
         BGANinePhotoLayout ninePhotoLayout = helper.getView(R.id.bga);
         ninePhotoLayout.setData((ArrayList<String>) item.getPictures());
         helper.setText(R.id.tv_content, item.getContent() + "");
-        helper.setText(R.id.tv_comments, item.getComments() + "评论");
-        helper.setText(R.id.tv_praises, item.getPraises() + "赞");
+        helper.setText(R.id.tv_comments, " 评论 " + item.getComments());
+        helper.setText(R.id.tv_praises, " 赞 " + item.getPraises());
 
     }
 }

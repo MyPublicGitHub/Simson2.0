@@ -52,7 +52,31 @@
             android:textColor="@color/black"
             android:textSize="@dimen/dp_16" />
     </LinearLayout>
+    <LinearLayout
+        android:id="@+id/ll_red"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_1"
+        android:background="@color/white"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="@dimen/dp_10">
 
+        <ImageView
+            android:layout_width="@dimen/dp_25"
+            android:layout_height="@dimen/dp_25"
+            android:src="@mipmap/ic_wallet_red" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp_20"
+            android:layout_weight="1"
+            android:drawableRight="@mipmap/ic_open"
+            android:text="红包记录"
+            android:textColor="@color/black"
+            android:textSize="@dimen/dp_16" />
+    </LinearLayout>
     <LinearLayout
         android:id="@+id/ll_log"
         android:layout_width="match_parent"

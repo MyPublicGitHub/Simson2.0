@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="@dimen/dp_1"
+    android:background="@color/colorWhite"
+    android:orientation="horizontal"
+    android:padding="@dimen/dp_10">
+
+    <TextView
+        android:id="@+id/tv_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="0.45元"
+        android:textColor="@color/red"
+        android:textSize="@dimen/sp_14" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="红包已经转出到支付宝"
+        android:textColor="@color/colorBlack"
+        android:textSize="@dimen/sp_14" />
+
+    <TextView
+        android:id="@+id/tv_content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_title"
+        android:text="南京新生植发"
+        android:textColor="@color/colorBlack"
+        android:textSize="@dimen/sp_14" />
+
+</LinearLayout>

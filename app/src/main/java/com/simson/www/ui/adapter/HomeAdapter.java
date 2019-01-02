@@ -30,8 +30,8 @@ public class HomeAdapter extends BaseMultiItemQuickAdapter<IndexSynchysisBean, B
             BGANinePhotoLayout ninePhotoLayout = helper.getView(R.id.bga);
             ninePhotoLayout.setData((ArrayList<String>) item.getPictures());
             helper.setText(R.id.tv_title, item.getContent() + "");
-            helper.setText(R.id.tv_comments, item.getComments() + "评论");
-            helper.setText(R.id.tv_praises, item.getPraises() + "赞");
+            helper.setText(R.id.tv_comments, " 评论 " + item.getComments());
+            helper.setText(R.id.tv_praises, " 赞 " + item.getPraises());
         } else if (IndexSynchysisBean.popularization == helper.getItemViewType()) {
             GlideUtils.with(item.getHospital_icon(), helper.getView(R.id.iv_header));
             helper.setText(R.id.tv_name, item.getHospital_name() + "");
@@ -45,8 +45,8 @@ public class HomeAdapter extends BaseMultiItemQuickAdapter<IndexSynchysisBean, B
             BGANinePhotoLayout ninePhotoLayout = helper.getView(R.id.bga);
             ninePhotoLayout.setData((ArrayList<String>) item.getPictures());
             helper.setText(R.id.tv_title, item.getTitle() + "");
-            helper.setText(R.id.tv_browse, item.getBrowse() + "阅读");
-            helper.setText(R.id.tv_praises, item.getPraises() + "赞");
+            helper.setText(R.id.tv_browse, "  阅读  " + item.getBrowse());
+            helper.setText(R.id.tv_praises, "  赞  " + item.getPraises());
             helper.addOnClickListener(R.id.tv_follow);
         }
     }

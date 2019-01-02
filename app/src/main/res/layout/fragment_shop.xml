@@ -51,6 +51,9 @@
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/recyclerView"
                 android:layout_width="match_parent"
+                android:background="@color/white"
+                android:paddingTop="@dimen/dp_10"
+                android:paddingBottom="@dimen/dp_10"
                 android:layout_height="wrap_content" />
 
             <ImageView
@@ -64,6 +67,7 @@
                 android:layout_height="wrap_content"
                 android:background="@color/colorWhite"
                 android:gravity="center"
+                android:padding="@dimen/dp_10"
                 android:orientation="horizontal">
 
                 <View
@@ -77,7 +81,7 @@
                     android:layout_height="wrap_content"
                     android:text="积分福利"
                     android:textColor="@color/colorBlack"
-                    android:textSize="@dimen/sp_12" />
+                    android:textSize="@dimen/sp_17" />
 
                 <View
                     android:layout_width="@dimen/dp_50"
@@ -117,7 +121,7 @@
                     android:background="@color/colorWhite"
                     android:drawableRight="@mipmap/ic_open"
                     android:drawablePadding="@dimen/dp_5"
-                    android:padding="@dimen/dp_5"
+                    android:padding="@dimen/dp_10"
                     android:text="查看更多"
                     android:textSize="@dimen/sp_12" />
             </LinearLayout>
@@ -128,6 +132,8 @@
                 android:layout_marginTop="@dimen/dp_10"
                 android:background="@color/colorWhite"
                 android:gravity="center"
+                android:paddingTop="@dimen/dp_15"
+                android:paddingBottom="@dimen/dp_5"
                 android:orientation="horizontal">
 
                 <View
@@ -142,7 +148,7 @@
                     android:layout_marginLeft="@dimen/dp_10"
                     android:text="商品推荐"
                     android:textColor="@color/colorBlack"
-                    android:textSize="@dimen/sp_12" />
+                    android:textSize="@dimen/sp_17" />
 
                 <View
                     android:layout_width="@dimen/dp_50"

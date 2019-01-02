@@ -1,28 +1,49 @@
 package com.simson.www.ui.main;
 
+import android.content.Intent;
+import android.os.Build;
+import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.text.TextUtils;
+import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.simson.www.R;
 import com.simson.www.application.AppContext;
+import com.simson.www.common.Const;
+import com.simson.www.net.bean.main.NewestRedEnvelopeBean;
+import com.simson.www.net.bean.main.ReceiveRedEnvelopeBean;
 import com.simson.www.ui.base.BasePresenterActivity;
 import com.simson.www.ui.community.CommunityFragment;
-import com.simson.www.ui.core.presenter.BasePresenter;
 import com.simson.www.ui.home.HomeFragment;
 import com.simson.www.ui.hospital.HospitalFragment;
+import com.simson.www.ui.main.login.LoginActivity;
+import com.simson.www.ui.main.vote.VoteActivity;
 import com.simson.www.ui.mine.MineFragment;
 import com.simson.www.ui.shop.ShopFragment;
+import com.simson.www.utils.DateUtils;
+import com.simson.www.utils.GlideUtils;
+import com.simson.www.utils.Rotate3dAnimation;
+import com.simson.www.utils.SPUtils;
 import com.simson.www.utils.ToastUtils;
+import com.simson.www.widget.CommonPopupWindow;
 
 import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.OnClick;
 
-public class MainActivity extends BasePresenterActivity {
+public class MainActivity extends BasePresenterActivity<MainPresenter, MainContract.View> implements MainContract.View {
 
     @BindView(R.id.btn_main)
     Button btnMain;
@@ -34,6 +55,10 @@ public class MainActivity extends BasePresenterActivity {
     Button btnShop;
     @BindView(R.id.btn_mine)
     Button btnMine;
+    @BindView(R.id.iv_red_envelope)
+    ImageView ivRedEnvelope;
+    @BindView(R.id.iv_vote)
+    ImageView ivVote;
     public ArrayList<Fragment> mFragments;
     private Button[] btns;
 
@@ -43,18 +68,268 @@ public class MainActivity extends BasePresenterActivity {
         return R.layout.activity_main;
     }
 
-
     @Override
-    protected BasePresenter createPresenter() {
-        return null;
+    protected void onCreate(Bundle bundle) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            Window window = getWindow();
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+            window.setStatusBarColor(getResources().getColor(R.color.colorMain));
+        }
+        super.onCreate(bundle);
+
     }
 
     @Override
     protected void initViews() {
         initButton();
         initFragment();
+        GlideUtils.with(R.mipmap.ic_main_red_packet, ivRedEnvelope);
+        GlideUtils.with(R.mipmap.ic_main_vote, ivVote);
     }
 
+    boolean isRun = true;
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        isRun = false;
+    }
+
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+    }
+
+    @Override
+    protected void initData() {
+        String data = DateUtils.getDateTimeHHmm();
+        if (DateUtils.yearMonthDayBetween("2019-01-17 00:00", data, "2019-01-23 08:00")) {
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    while (isRun) {
+                        try {
+                            Thread.sleep(10000);
+                            Message msgMessage = new Message();
+                            msgMessage.arg1 = 1;
+                            handler.sendMessage(msgMessage);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }
+            }).start();
+        }
+        if (DateUtils.yearMonthDayBetween("2019-01-17 00:00", data, "2019-01-23 08:00")) {
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    try {
+                        Thread.sleep(3000);
+                        Message msgMessage = new Message();
+                        msgMessage.arg1 = 2;
+                        handler.sendMessage(msgMessage);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }).start();
+        }
+    }
+
+    private Handler handler = new Handler() {
+        public void handleMessage(Message msg) {
+            switch (msg.arg1) {
+                case 1:
+                    initVoteView();
+                    break;
+                case 2:
+                    initCountDown();
+                default:
+                    break;
+            }
+        }
+    };
+
+    public void redClick(View view) {
+        if (TextUtils.isEmpty((String) SPUtils.get(Const.USER_INFO.CUSTOMER_MOBLE, ""))) {
+            startActivity(new Intent(this, LoginActivity.class));
+        } else {
+            mPresenter.newestRedEnvelope();
+        }
+    }
+
+    public void voteClick(View view) {
+        if (TextUtils.isEmpty((String) SPUtils.get(Const.USER_INFO.CUSTOMER_MOBLE, ""))) {
+            startActivity(new Intent(this, LoginActivity.class));
+        } else {
+            startActivity(new Intent(this, VoteActivity.class));
+        }
+    }
+
+    CommonPopupWindow popupWindow, popupWindowFail;
+
+    @Override
+    public void newestRedEnvelope(NewestRedEnvelopeBean bean) {
+        //crowd_no = AESUtils.decrypt(bean.getCrowd_no());
+        //LogUtils.e(crowd_no);
+        crowd_no = bean.getCrowd_no();
+        crowd_name = bean.getCoupon_name();
+        popupWindow = new CommonPopupWindow.Builder(this)
+                .setView(R.layout.pop_red_envelope) //设置PopupWindow布局
+                .setWidthAndHeight(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT) //设置宽高
+                //.setAnimationStyle(R.style.AnimDown) //设置动画
+                .setBackGroundLevel(0.5f) //设置背景颜色，取值范围0.0f-1.0f 值越小越暗 1.0f为透明
+                .setViewOnclickListener((view1, layoutResId) -> {
+                    TextView title = view1.findViewById(R.id.tv_title);
+                    content = view1.findViewById(R.id.tv_content);
+                    open = view1.findViewById(R.id.iv_open);
+                    ImageView close = view1.findViewById(R.id.iv_close);
+                    title.setText("" + crowd_name);
+                    open.setOnClickListener(v -> {
+                        float centerX = open.getWidth() / 2.0f;
+                        float centerY = open.getHeight() / 2.0f;
+                        float depthZ = 0f;
+                        Rotate3dAnimation rotate3dAnimationX = new Rotate3dAnimation(0, 360,
+                                centerX, centerY, depthZ, Rotate3dAnimation.ROTATE_Y_AXIS, true);
+                        rotate3dAnimationX.setDuration(1000);
+                        open.startAnimation(rotate3dAnimationX);
+                        mPresenter.receiveRedEnvelope();
+                    });
+                    close.setOnClickListener(v -> {
+                        popupWindow.dismiss();
+                        popupWindow = null;
+                    });
+                })
+                .setOutsideTouchable(false) //设置外部是否可点击 默认是true
+                .create(); //开始构建
+        popupWindow.showAtLocation(ivRedEnvelope, Gravity.TOP | Gravity.START, 0, 0);//弹出PopupWindow
+    }
+
+    @Override
+    public void newestRedEnvelopeFail() {
+        popupWindowFail = new CommonPopupWindow.Builder(this)
+                .setView(R.layout.pop_red_envelope_fail) //设置PopupWindow布局
+                .setWidthAndHeight(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT) //设置宽高
+                //.setAnimationStyle(R.style.AnimDown) //设置动画
+                .setBackGroundLevel(0.5f) //设置背景颜色，取值范围0.0f-1.0f 值越小越暗 1.0f为透明
+                .setViewOnclickListener((view1, layoutResId) -> {
+                    ImageView close = view1.findViewById(R.id.iv_close);
+                    close.setOnClickListener(v -> {
+                        popupWindowFail.dismiss();
+                    });
+                })
+                .setOutsideTouchable(true) //设置外部是否可点击 默认是true
+                .create(); //开始构建
+        popupWindowFail.showAtLocation(ivRedEnvelope, Gravity.TOP | Gravity.START, 0, 0);//弹出PopupWindow
+    }
+
+    @Override
+    public void receiveRedEnvelope(ReceiveRedEnvelopeBean bean) {
+        content.setText(bean.getMessage());
+        open.setVisibility(View.GONE);
+    }
+
+    public void initVoteView() {
+        String data = DateUtils.getDateTimeHHmm();
+        if (index == 0) {
+            if (DateUtils.yearMonthDayBetween("2019-01-22 06:00", data, "2019-01-23 08:00")) {
+                ivRedEnvelope.setVisibility(View.VISIBLE);
+                ivVote.setVisibility(View.VISIBLE);
+            } else {
+                ivRedEnvelope.setVisibility(View.GONE);
+                ivVote.setVisibility(View.GONE);
+            }
+        } else {
+            ivRedEnvelope.setVisibility(View.GONE);
+            ivVote.setVisibility(View.GONE);
+        }
+
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        isRun = true;
+        initCountDown();
+    }
+
+    CommonPopupWindow popupWindowCountDown;
+
+    public void initCountDown() {
+        if (popupWindowCountDown != null && popupWindowCountDown.isShowing()) {
+            popupWindowCountDown.dismiss();
+        }
+        ivRedEnvelope.setVisibility(View.GONE);
+        ivVote.setVisibility(View.GONE);
+        String data = DateUtils.getDateTimeHHmm();
+        if (DateUtils.yearMonthDayBetween("2019-01-17 00:00", data, "2019-01-21 23:59")) {//显示倒计时
+            popupWindowCountDown = new CommonPopupWindow.Builder(this)
+                    .setView(R.layout.pop_count_down) //设置PopupWindow布局
+                    .setWidthAndHeight(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT) //设置宽高
+                    //.setAnimationStyle(R.style.AnimDown) //设置动画
+                    .setBackGroundLevel(0.5f) //设置背景颜色，取值范围0.0f-1.0f 值越小越暗 1.0f为透明
+                    .setViewOnclickListener((view1, layoutResId) -> {
+                        ImageView close = view1.findViewById(R.id.iv_close);
+                        ImageView image = view1.findViewById(R.id.iv_image);
+                        String datas = DateUtils.getDateTime();
+                        if (datas.equals("2019-01-17")) {
+                            image.setImageResource(R.mipmap.ic_main_count_down_5);
+                        } else if (datas.equals("2019-01-18")) {
+                            image.setImageResource(R.mipmap.ic_main_count_down_4);
+                        } else if (datas.equals("2019-01-19")) {
+                            image.setImageResource(R.mipmap.ic_main_count_down_3);
+                        } else if (datas.equals("2019-01-20")) {
+                            image.setImageResource(R.mipmap.ic_main_count_down_2);
+                        } else if (datas.equals("2019-01-21")) {
+                            image.setImageResource(R.mipmap.ic_main_count_down_1);
+                        } else {
+                            image.setImageResource(R.mipmap.ic_main_count_down_now);
+                        }
+                        close.setOnClickListener(v -> {
+                            popupWindowCountDown.dismiss();
+                        });
+                    })
+                    .setOutsideTouchable(true) //设置外部是否可点击 默认是true
+                    .create(); //开始构建
+            popupWindowCountDown.showAtLocation(ivRedEnvelope, Gravity.TOP | Gravity.START, 0, 0);//弹出PopupWindow
+            ivRedEnvelope.setVisibility(View.GONE);
+            ivVote.setVisibility(View.GONE);
+        } else if (DateUtils.yearMonthDayBetween("2019-01-22 00:00", data, "2019-01-22 05:59")) {//显示即将开始
+            popupWindowCountDown = new CommonPopupWindow.Builder(this)
+                    .setView(R.layout.pop_count_down) //设置PopupWindow布局
+                    .setWidthAndHeight(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT) //设置宽高
+                    //.setAnimationStyle(R.style.AnimDown) //设置动画
+                    .setBackGroundLevel(0.5f) //设置背景颜色，取值范围0.0f-1.0f 值越小越暗 1.0f为透明
+                    .setViewOnclickListener((view1, layoutResId) -> {
+                        ImageView close = view1.findViewById(R.id.iv_close);
+                        close.setOnClickListener(v -> {
+                            popupWindowCountDown.dismiss();
+                        });
+                    })
+                    .setOutsideTouchable(true) //设置外部是否可点击 默认是true
+                    .create(); //开始构建
+            popupWindowCountDown.showAtLocation(ivRedEnvelope, Gravity.TOP | Gravity.START, 0, 0);//弹出PopupWindow
+            ivRedEnvelope.setVisibility(View.GONE);
+            ivVote.setVisibility(View.GONE);
+        } else if (DateUtils.yearMonthDayBetween("2019-01-22 06:00", data, "2019-01-23 08:00")) {//显示红包按钮
+            if (index == 0) {
+                ivRedEnvelope.setVisibility(View.VISIBLE);
+                ivVote.setVisibility(View.VISIBLE);
+            } else {
+                ivRedEnvelope.setVisibility(View.GONE);
+                ivVote.setVisibility(View.GONE);
+            }
+        } else {//隐藏按钮
+            ivRedEnvelope.setVisibility(View.GONE);
+            ivVote.setVisibility(View.GONE);
+        }
+
+    }
+
+    TextView content;
+    ImageView open;
     private int currentPosition;
     private int index;
 
@@ -88,8 +363,6 @@ public class MainActivity extends BasePresenterActivity {
 
     /**
      * 切换显示当前Fragment
-     *
-     * @param index
      */
     private void showCurrentFragment(int index) {
         if (currentPosition != index) {
@@ -104,6 +377,7 @@ public class MainActivity extends BasePresenterActivity {
             scaleView();
             currentPosition = index;
         }
+        initVoteView();
     }
 
     /**
@@ -124,7 +398,11 @@ public class MainActivity extends BasePresenterActivity {
         if (keyCode == KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_DOWN) {
 
             if (System.currentTimeMillis() - mExitTime < 2000) {
-                finish();
+                //启动一个意图,回到桌面
+                Intent backHome = new Intent(Intent.ACTION_MAIN);
+                backHome.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                backHome.addCategory(Intent.CATEGORY_HOME);
+                startActivity(backHome);
             } else {
                 mExitTime = System.currentTimeMillis();
                 ToastUtils.showToast(AppContext.getContext(), "请再按一次退出程序");
@@ -155,6 +433,18 @@ public class MainActivity extends BasePresenterActivity {
                 break;
         }
         showCurrentFragment(index);
+    }
+
+    String crowd_no, crowd_name;
+
+    @Override
+    public String crowd_no() {
+        return crowd_no;
+    }
+
+    @Override
+    protected MainPresenter createPresenter() {
+        return new MainPresenter();
     }
 
 }

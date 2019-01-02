@@ -20,6 +20,7 @@ import com.simson.www.net.bean.main.CodeBean;
 import com.simson.www.net.bean.main.LoginBean;
 import com.simson.www.ui.base.BasePresenterActivity;
 import com.simson.www.ui.main.reset.ResetPasswordActivity;
+import com.simson.www.utils.SPUtils;
 import com.simson.www.utils.ToastUtils;
 
 import butterknife.BindView;
@@ -105,6 +106,7 @@ public class LoginActivity extends BasePresenterActivity<LoginPresenter, LoginCo
     @Override
     public void showLogin(LoginBean bean) {
         ToastUtils.showToast("登录成功");
+        SPUtils.put(Const.USER_INFO.CUSTOMER_MOBLE, bean.getMobile());
         RxEvent.getInstance().postEvent(Const.EVENT_ACTION.LOGIN, new Event(Event.Type.LOGIN, true));
         finish();
     }

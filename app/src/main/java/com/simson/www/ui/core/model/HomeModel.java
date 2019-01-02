@@ -12,7 +12,7 @@ public class HomeModel extends BaseModel {
 
     public void indexSynchysis(String json, RxObserver<List<IndexSynchysisBean>> rxObserver) {
         doRxRequest().
-                indexSynchysis(json)
+                indexSynchysis(AESUtils.encrypt(json))
                 .compose(RxSchedulers.io_main())
                 .subscribe(rxObserver);
     }

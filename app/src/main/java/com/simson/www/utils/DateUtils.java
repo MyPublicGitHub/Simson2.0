@@ -143,4 +143,74 @@ public class DateUtils {
         String dateString = formatter.format(currentTime);
         return dateString;
     }
+
+    /**
+     * 获取现在时间
+     *
+     * @return返回字符串格式 yyyy-MM-dd
+     */
+    public static String getDateTimeHHmm() {
+        Date currentTime = new Date();
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+        String dateString = formatter.format(currentTime);
+        return dateString;
+    }
+
+    /**
+     * @param nowDate   要比较的时间
+     * @param startDate 开始时间
+     * @param endDate   结束时间
+     * @return true在时间段内，false不在时间段内
+     * @throws Exception
+     */
+    public static boolean hourMinuteBetween(String nowDate, String startDate, String endDate) throws Exception {
+
+        SimpleDateFormat format = new SimpleDateFormat("HH:mm");
+
+        Date now = format.parse(nowDate);
+        Date start = format.parse(startDate);
+        Date end = format.parse(endDate);
+
+        long nowTime = now.getTime();
+        long startTime = start.getTime();
+        long endTime = end.getTime();
+
+        return nowTime >= startTime && nowTime <= endTime;
+    }
+
+    /**
+     * @param nowDate   要比较的时间
+     * @param startDate 开始时间
+     * @param endDate   结束时间
+     * @return true在时间段内，false不在时间段内
+     * @throws Exception
+     */
+    public static boolean yearMonthDayBetween(String startDate, String nowDate, String endDate) {
+
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+        Date now;
+        Date start;
+        Date end;
+        try {
+            now = format.parse(nowDate);
+            start = format.parse(startDate);
+            end = format.parse(endDate);
+            LogUtils.e("当前时间:" + now.toString());
+            LogUtils.e("开始时间:" + start.toString());
+            LogUtils.e("结束时间:" + end.toString());
+            long nowTime = now.getTime();
+            long startTime = start.getTime();
+            long endTime = end.getTime();
+            LogUtils.e("1111111:" + nowTime);
+            LogUtils.e("0000000:" + startTime);
+            LogUtils.e("2222222:" + endTime);
+            LogUtils.e("nowTime >= startTime && nowTime <= endTime" + (nowTime >= startTime && nowTime <= endTime));
+            return nowTime >= startTime && nowTime <= endTime;
+        } catch (ParseException e) {
+            e.printStackTrace();
+            return false;
+        }
+
+    }
+
 }

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorRedVote"
+    android:orientation="vertical"
+    tools:context=".ui.main.vote.VoteActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_160"
+        android:background="@mipmap/ic_bg_vote">
+
+        <ImageView
+            android:layout_width="@dimen/dp_40"
+            android:layout_height="@dimen/dp_40"
+            android:onClick="finish"
+            android:layout_margin="@dimen/dp_10"
+            android:padding="@dimen/dp_5"
+            app:srcCompat="@drawable/ic_close_white_24dp" />
+    </RelativeLayout>
+
+    <com.scwang.smartrefresh.layout.SmartRefreshLayout
+        android:id="@+id/refresh_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:focusable="false"
+            android:nestedScrollingEnabled="false" />
+
+    </com.scwang.smartrefresh.layout.SmartRefreshLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_1"
+        android:background="@color/colorBlack_6" />
+
+    <TextView
+        android:id="@+id/tv_vote"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:onClick="voteClick"
+        android:padding="@dimen/dp_10"
+        android:text="投票"
+        android:textColor="@color/white"
+        android:textSize="@dimen/dp_18" />
+</LinearLayout>

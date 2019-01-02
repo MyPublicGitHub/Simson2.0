@@ -17,7 +17,7 @@
         android:id="@+id/tv_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/dp_2"
+        android:layout_marginTop="@dimen/dp_6"
         android:text="张俊杰"
         android:textColor="@color/colorBlack_6"
         android:textSize="@dimen/sp_12" />
