@@ -39,8 +39,6 @@ public class ShopFragment extends BasePresenterFragment<ShopPresenter, ShopContr
     ShopIntegralAdapter mShopIntegralAdapter;
     ShopCommodityAdapter mShopCommodityAdapter;
 
-    @BindView(R.id.srl_integral)
-    SmartRefreshLayout srlIntegral;
     @BindView(R.id.refresh_layout)
     SmartRefreshLayout refreshLayout;
     private int mPageCommodity = 1, mPageIntegral = 1;
@@ -129,12 +127,8 @@ public class ShopFragment extends BasePresenterFragment<ShopPresenter, ShopContr
         }
         if (mPageIntegral == 1) {
             mShopIntegralAdapter.replaceData(bean);
-
         } else {
             mShopIntegralAdapter.addData(bean);
-        }
-        if (bean.size() == 0) {
-            srlIntegral.setNoMoreData(true);
         }
     }
 
@@ -169,24 +163,16 @@ public class ShopFragment extends BasePresenterFragment<ShopPresenter, ShopContr
     private void setRefresh() {
         refreshLayout.setOnRefreshListener(refreshLayouts -> {
             mPageCommodity = 1;
+            mPresenter.getItemType();
             mPresenter.getShopList(0);
+            mPresenter.getShopList(1);
             refreshLayout.setNoMoreData(false);
             refreshLayouts.finishRefresh();
         });
         refreshLayout.setOnLoadMoreListener(refreshLayouts -> {
             mPageCommodity++;
+            mPresenter.getItemType();
             mPresenter.getShopList(0);
-            refreshLayouts.finishLoadMore();
-        });
-        srlIntegral.setOnRefreshListener(refreshLayouts -> {
-            mPageIntegral = 1;
-            mPresenter.getShopList(1);
-            srlIntegral.setNoMoreData(false);
-            refreshLayouts.finishRefresh();
-        });
-        srlIntegral.setOnLoadMoreListener(refreshLayouts -> {
-            mPageIntegral++;
-            mPresenter.getShopList(1);
             refreshLayouts.finishLoadMore();
         });
     }

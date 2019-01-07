@@ -19,7 +19,7 @@
             android:layout_height="wrap_content"
             android:layout_marginRight="@dimen/dp_30"
             android:gravity="center"
-            android:padding="@dimen/dp_5"
+            android:padding="@dimen/dp_8"
             app:srcCompat="@drawable/ic_close_white_24dp" />
 
         <ImageView

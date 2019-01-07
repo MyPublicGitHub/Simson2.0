@@ -1,6 +1,8 @@
 package com.simson.www.application;
 
+import android.app.Activity;
 import android.content.Context;
+import android.os.Bundle;
 import android.support.multidex.MultiDex;
 
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
@@ -8,6 +10,7 @@ import com.scwang.smartrefresh.layout.footer.ClassicsFooter;
 import com.scwang.smartrefresh.layout.header.ClassicsHeader;
 import com.simson.www.BuildConfig;
 import com.simson.www.R;
+import com.simson.www.utils.LogUtils;
 import com.stickercamera.App;
 import com.umeng.commonsdk.UMConfigure;
 import com.umeng.socialize.PlatformConfig;
@@ -27,6 +30,57 @@ public class MyApp extends App {
         JPushInterface.setDebugMode(BuildConfig.DEBUG);//极光推送
         JPushInterface.init(this);
         initUM();
+        registerActivityLifecycle();
+    }
+
+    public int count = 0;
+
+    private void registerActivityLifecycle() {
+        registerActivityLifecycleCallbacks(new ActivityLifecycleCallbacks() {
+
+            @Override
+            public void onActivityStopped(Activity activity) {
+                LogUtils.e(activity + "onActivityStopped");
+                count--;
+                if (count == 0) {
+                    LogUtils.e(">>>>>>>>>>>>>>>>>>>切到后台  lifecycle");
+                }
+            }
+
+            @Override
+            public void onActivityStarted(Activity activity) {
+                LogUtils.e(activity + "onActivityStarted");
+                if (count == 0) {
+                    LogUtils.e(">>>>>>>>>>>>>>>>>>>切到前台  lifecycle");
+                }
+                count++;
+            }
+
+            @Override
+            public void onActivitySaveInstanceState(Activity activity, Bundle outState) {
+                LogUtils.e(activity + "onActivitySaveInstanceState");
+            }
+
+            @Override
+            public void onActivityResumed(Activity activity) {
+                LogUtils.e(activity + "onActivityResumed");
+            }
+
+            @Override
+            public void onActivityPaused(Activity activity) {
+                LogUtils.e(activity + "onActivityPaused");
+            }
+
+            @Override
+            public void onActivityDestroyed(Activity activity) {
+                LogUtils.e(activity + "onActivityDestroyed");
+            }
+
+            @Override
+            public void onActivityCreated(Activity activity, Bundle savedInstanceState) {
+                LogUtils.e(activity + "onActivityCreated");
+            }
+        });
     }
 
     private void initUM() {

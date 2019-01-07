@@ -19,8 +19,8 @@ android {
         manifestPlaceholders = [
                 qqappid      : "tencent100424468",//友盟分享
                 JPUSH_PKGNAME: "com.simson.www",
-                JPUSH_APPKEY : "9a3bd399dad9968d6792d1a6", //JPush 上注册的包名对应的 Appkey.
-                //JPUSH_APPKEY : "0fa6d308abab72ad12f5ce7c", //JPush 上注册的包名对应的 Appkey.冯涛
+                //JPUSH_APPKEY : "9a3bd399dad9968d6792d1a6", //JPush 上注册的包名对应的 Appkey.
+                JPUSH_APPKEY : "0fa6d308abab72ad12f5ce7c", //JPush 上注册的包名对应的 Appkey.冯涛
                 JPUSH_CHANNEL: "developer-default", //暂时填写默认值即可.
         ]
     }
@@ -57,7 +57,7 @@ android {
             //minifyEnabled true
             //proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             //applicationIdSuffix '.test' //增加包名后缀test
-            resValue "string", "app_name", "@string/app_name_debug"
+            resValue "string", "app_name", "@string/app_name_release"
         }
     }
     sourceSets {
@@ -162,4 +162,8 @@ dependencies {
     //----------------------友盟-----------------------
 
     implementation 'com.github.LuckSiege.PictureSelector:picture_library:v2.2.3'
+
+    implementation 'com.amap.api:navi-3dmap:latest.integration'
+    implementation 'com.amap.api:location:latest.integration'
+    implementation 'com.amap.api:search:latest.integration'
 }

@@ -1,5 +1,7 @@
 package com.simson.www.ui.main;
 
+import android.app.ActivityManager;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
@@ -33,12 +35,14 @@ import com.simson.www.ui.mine.MineFragment;
 import com.simson.www.ui.shop.ShopFragment;
 import com.simson.www.utils.DateUtils;
 import com.simson.www.utils.GlideUtils;
+import com.simson.www.utils.LogUtils;
 import com.simson.www.utils.Rotate3dAnimation;
 import com.simson.www.utils.SPUtils;
 import com.simson.www.utils.ToastUtils;
 import com.simson.www.widget.CommonPopupWindow;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -90,52 +94,59 @@ public class MainActivity extends BasePresenterActivity<MainPresenter, MainContr
     boolean isRun = true;
 
     @Override
-    protected void onStop() {
-        super.onStop();
-        isRun = false;
-    }
-
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-    }
-
-    @Override
     protected void initData() {
-        String data = DateUtils.getDateTimeHHmm();
-        if (DateUtils.yearMonthDayBetween("2019-01-17 00:00", data, "2019-01-23 08:00")) {
-            new Thread(new Runnable() {
-                @Override
-                public void run() {
-                    while (isRun) {
+        init();
+    }
+
+    private void init() {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                while (isRun) {
+                    try {
+                        Thread.sleep(10000);
+                        Message msgMessage = new Message();
+                        msgMessage.arg1 = 1;
+                        handler.sendMessage(msgMessage);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        }).start();
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    Thread.sleep(3000);
+                    Message msgMessage = new Message();
+                    msgMessage.arg1 = 2;
+                    handler.sendMessage(msgMessage);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        }).start();
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                while (true) {
+                    if (isRun && popupWindowCountDown != null && popupWindowCountDown.isShowing()) {
                         try {
-                            Thread.sleep(10000);
+                            Thread.sleep(5000);
                             Message msgMessage = new Message();
-                            msgMessage.arg1 = 1;
+                            msgMessage.arg1 = 3;
                             handler.sendMessage(msgMessage);
                         } catch (InterruptedException e) {
                             e.printStackTrace();
                         }
                     }
                 }
-            }).start();
-        }
-        if (DateUtils.yearMonthDayBetween("2019-01-17 00:00", data, "2019-01-23 08:00")) {
-            new Thread(new Runnable() {
-                @Override
-                public void run() {
-                    try {
-                        Thread.sleep(3000);
-                        Message msgMessage = new Message();
-                        msgMessage.arg1 = 2;
-                        handler.sendMessage(msgMessage);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                }
-            }).start();
-        }
+
+            }
+        }).start();
+        initVoteView();
     }
 
     private Handler handler = new Handler() {
@@ -146,6 +157,12 @@ public class MainActivity extends BasePresenterActivity<MainPresenter, MainContr
                     break;
                 case 2:
                     initCountDown();
+                    break;
+                case 3:
+                    if (popupWindowCountDown != null && popupWindowCountDown.isShowing()) {
+                        popupWindowCountDown.dismiss();
+                    }
+                    break;
                 default:
                     break;
             }
@@ -233,8 +250,8 @@ public class MainActivity extends BasePresenterActivity<MainPresenter, MainContr
 
     public void initVoteView() {
         String data = DateUtils.getDateTimeHHmm();
-        if (index == 0) {
-            if (DateUtils.yearMonthDayBetween("2019-01-22 06:00", data, "2019-01-23 08:00")) {
+        if (DateUtils.yearMonthDayBetween("2019-01-22 18:00", data, "2019-01-23 08:00")) {
+            if (index == 0) {
                 ivRedEnvelope.setVisibility(View.VISIBLE);
                 ivVote.setVisibility(View.VISIBLE);
             } else {
@@ -245,14 +262,55 @@ public class MainActivity extends BasePresenterActivity<MainPresenter, MainContr
             ivRedEnvelope.setVisibility(View.GONE);
             ivVote.setVisibility(View.GONE);
         }
+    }
 
+    //用来控制应用前后台切换的逻辑
+    private boolean isCurrentRunningForeground = true;
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (Const.RED) {
+            mPresenter.newestRedEnvelope();
+            Const.RED = false;
+        }
     }
 
     @Override
-    protected void onRestart() {
-        super.onRestart();
+    protected void onStart() {
+        super.onStart();
         isRun = true;
-        initCountDown();
+        if (!isCurrentRunningForeground) {
+            LogUtils.e("1111111111111111111111111111切到前台 MainActivity process");
+            initCountDown();
+            initVoteView();
+        }
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        isRun = false;
+        isCurrentRunningForeground = isRunningForeground();
+        if (!isCurrentRunningForeground) {
+            LogUtils.d("1111111111111111111切到后台 activity process");
+        }
+    }
+
+    public boolean isRunningForeground() {
+        ActivityManager activityManager = (ActivityManager) this.getSystemService(Context.ACTIVITY_SERVICE);
+        List<ActivityManager.RunningAppProcessInfo> appProcessInfos = activityManager.getRunningAppProcesses();
+        // 枚举进程
+        for (ActivityManager.RunningAppProcessInfo appProcessInfo : appProcessInfos) {
+            if (appProcessInfo.importance == ActivityManager.RunningAppProcessInfo.IMPORTANCE_FOREGROUND) {
+                if (appProcessInfo.processName.equals(this.getApplicationInfo().processName)) {
+                    LogUtils.e("EntryActivity isRunningForeGround");
+                    return true;
+                }
+            }
+        }
+        LogUtils.e("EntryActivity isRunningBackGround");
+        return false;
     }
 
     CommonPopupWindow popupWindowCountDown;
@@ -296,7 +354,7 @@ public class MainActivity extends BasePresenterActivity<MainPresenter, MainContr
             popupWindowCountDown.showAtLocation(ivRedEnvelope, Gravity.TOP | Gravity.START, 0, 0);//弹出PopupWindow
             ivRedEnvelope.setVisibility(View.GONE);
             ivVote.setVisibility(View.GONE);
-        } else if (DateUtils.yearMonthDayBetween("2019-01-22 00:00", data, "2019-01-22 05:59")) {//显示即将开始
+        } else if (DateUtils.yearMonthDayBetween("2019-01-22 00:00", data, "2019-01-22 17:59")) {//显示即将开始
             popupWindowCountDown = new CommonPopupWindow.Builder(this)
                     .setView(R.layout.pop_count_down) //设置PopupWindow布局
                     .setWidthAndHeight(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT) //设置宽高
@@ -313,7 +371,7 @@ public class MainActivity extends BasePresenterActivity<MainPresenter, MainContr
             popupWindowCountDown.showAtLocation(ivRedEnvelope, Gravity.TOP | Gravity.START, 0, 0);//弹出PopupWindow
             ivRedEnvelope.setVisibility(View.GONE);
             ivVote.setVisibility(View.GONE);
-        } else if (DateUtils.yearMonthDayBetween("2019-01-22 06:00", data, "2019-01-23 08:00")) {//显示红包按钮
+        } else if (DateUtils.yearMonthDayBetween("2019-01-22 18:00", data, "2019-01-23 08:00")) {//显示红包按钮
             if (index == 0) {
                 ivRedEnvelope.setVisibility(View.VISIBLE);
                 ivVote.setVisibility(View.VISIBLE);

@@ -195,16 +195,9 @@ public class DateUtils {
             now = format.parse(nowDate);
             start = format.parse(startDate);
             end = format.parse(endDate);
-            LogUtils.e("当前时间:" + now.toString());
-            LogUtils.e("开始时间:" + start.toString());
-            LogUtils.e("结束时间:" + end.toString());
             long nowTime = now.getTime();
             long startTime = start.getTime();
             long endTime = end.getTime();
-            LogUtils.e("1111111:" + nowTime);
-            LogUtils.e("0000000:" + startTime);
-            LogUtils.e("2222222:" + endTime);
-            LogUtils.e("nowTime >= startTime && nowTime <= endTime" + (nowTime >= startTime && nowTime <= endTime));
             return nowTime >= startTime && nowTime <= endTime;
         } catch (ParseException e) {
             e.printStackTrace();

@@ -7,11 +7,11 @@ import com.simson.www.BuildConfig;
  */
 public class UrlConstainer {
     public static final boolean DEBUG = BuildConfig.DEBUG;
-    //public static final String baseUrl_DEBUG = "http://58.213.14.195:8081/simson/";
+    // public static final String baseUrl_DEBUG = "http://58.213.14.195:8081/simson/";
     //public static final String baseUrl_DEBUG = "http://58.213.14.195:8082/simson_admin/";
     //public static final String baseUrl_DEBUG = "https://images.maofa.com/simson/";
+    //public static final String baseUrl_DEBUG = "http://58.213.14.195:8082/simson/";
     public static final String baseUrl_DEBUG = "https://appapi.maofa.com/simson/";
-    //public static final String baseUrl_DEBUG = "https://images.maofa.com/simson_admin/";
     public static final String baseUrl_RELEASE = "https://appapi.maofa.com/simson/";
 
     public static final String LOGIN = "loginController/login";//登录

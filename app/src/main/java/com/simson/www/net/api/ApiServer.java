@@ -126,7 +126,7 @@ public interface ApiServer {
     @POST(UrlConstainer.LOGIN)
     Observable<BaseBean<LoginBean>> login(@Query("json") String json);
 
-    @POST(UrlConstainer.GET_CODE)
+    @POST("loginController/code")
     Observable<BaseBean<CodeBean>> getCode(@Query("json") String json);
 
     //注册
@@ -136,9 +136,6 @@ public interface ApiServer {
     @POST(UrlConstainer.ITEM_TYPE)
     Observable<BaseBean<List<ItemTypeBean>>> getItemType(@Query("json") String json);
 
-    //获取Banner信息
-    @POST("indexController/menuPicture")
-    Observable<BaseBean<List<HomeBannerBean>>> getHomeBannerData(@Query("json") String json);
 
     //首页混排数据列表
     @POST("indexController/indexSynchysis")

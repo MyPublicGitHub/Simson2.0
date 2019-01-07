@@ -22,14 +22,14 @@
     <permission
         android:name="com.simson.www.permission.JPUSH_MESSAGE"
         android:protectionLevel="signature" />
-
+<!--        android:roundIcon="@mipmap/ic_logo_round"
+-->
     <application
         android:name=".application.MyApp"
         android:allowBackup="true"
         android:icon="@mipmap/ic_logo"
         android:label="@string/app_name"
         android:networkSecurityConfig="@xml/network_security_config"
-        android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:node="replace">
@@ -44,6 +44,7 @@
             android:name=".ui.main.MainActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait"
+            android:launchMode="singleInstance"
             android:windowSoftInputMode="adjustResize|stateHidden">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -298,10 +299,23 @@
             android:name="cn.jpush.android.service.PushService"
             android:process=":multiprocess"
             tools:node="replace" />
-
+        <receiver
+            android:name=".common.MyJPushReceiver"
+            android:enabled="true"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="cn.jpush.android.intent.REGISTRATION" />
+                <action android:name="cn.jpush.android.intent.MESSAGE_RECEIVED" />
+                <action android:name="cn.jpush.android.intent.NOTIFICATION_RECEIVED" />
+                <action android:name="cn.jpush.android.intent.NOTIFICATION_OPENED" />
+                <action android:name="cn.jpush.android.intent.NOTIFICATION_CLICK_ACTION" />
+                <action android:name="cn.jpush.android.intent.CONNECTION" />
+                <category android:name="com.simson.www" />
+            </intent-filter>
+        </receiver>
         <meta-data
             android:name="JPUSH_APPKEY"
-            android:value="9a3bd399dad9968d6792d1a6" />
+            android:value="0fa6d308abab72ad12f5ce7c" />
 
         <provider
             android:name="cn.jpush.android.service.DataProvider"
@@ -343,6 +357,16 @@
             </intent-filter>
         </receiver>
         <!-- 极光推送 -->
+        <!-- 高德地图 -->
+        <meta-data
+            android:name="com.amap.api.v2.apikey"
+            android:value="b3a87204a943dc457be778b003648076" />
+
+        <service android:name="com.amap.api.location.APSService" />
+        <activity android:name="com.amap.api.navi.AmapRouteActivity"
+            android:theme="@android:style/Theme.NoTitleBar"
+            android:configChanges="orientation|keyboardHidden|screenSize" />
+        <!-- 高德地图 -->
     </application>
 
 </manifest>

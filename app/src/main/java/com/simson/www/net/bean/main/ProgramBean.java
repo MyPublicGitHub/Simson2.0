@@ -13,6 +13,16 @@ public class ProgramBean {
     private String Name;
     private String Url;
     private String Describe;
+
+    public String getBallot() {
+        return ballot;
+    }
+
+    public void setBallot(String ballot) {
+        this.ballot = ballot;
+    }
+
+    private String ballot;
     private int Votes;
     private boolean Selection;
 

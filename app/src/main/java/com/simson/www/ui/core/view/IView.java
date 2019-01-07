@@ -1,6 +1,5 @@
 package com.simson.www.ui.core.view;
 
-import com.lljjcoder.bean.CityBean;
 import com.simson.www.net.bean.BaseBean;
 import com.simson.www.net.bean.home.CityListBean;
 import com.simson.www.net.bean.main.ItemTypeBean;

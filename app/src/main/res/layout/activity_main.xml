@@ -97,24 +97,22 @@
             android:src="@drawable/tabbar_hospital" />
         <ImageView
             android:id="@+id/iv_vote"
-            android:layout_width="@dimen/dp_60"
-            android:layout_height="@dimen/dp_70"
+            android:layout_width="@dimen/dp_70"
+            android:layout_height="@dimen/dp_80"
             android:layout_alignParentRight="true"
             android:layout_alignParentBottom="true"
             android:layout_marginRight="@dimen/dp_35"
-            android:layout_marginBottom="@dimen/dp_160"
+            android:layout_marginBottom="@dimen/dp_170"
             android:onClick="voteClick"
-            android:visibility="gone"
             android:src="@mipmap/ic_main_vote" />
         <ImageView
             android:id="@+id/iv_red_envelope"
-            android:layout_width="@dimen/dp_70"
-            android:layout_height="@dimen/dp_70"
+            android:layout_width="@dimen/dp_80"
+            android:layout_height="@dimen/dp_80"
             android:layout_alignParentRight="true"
             android:layout_alignParentBottom="true"
             android:layout_marginRight="@dimen/dp_30"
             android:layout_marginBottom="@dimen/dp_90"
-            android:visibility="gone"
             android:onClick="redClick"
             android:src="@mipmap/ic_main_red_packet" />
     </RelativeLayout>

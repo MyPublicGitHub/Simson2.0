@@ -3,12 +3,31 @@ package com.simson.www.ui.home.hospital.detail;
 import android.content.Intent;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
+import com.amap.api.location.AMapLocation;
+import com.amap.api.location.AMapLocationClient;
+import com.amap.api.location.AMapLocationClientOption;
+import com.amap.api.location.AMapLocationListener;
+import com.amap.api.maps.model.LatLng;
+import com.amap.api.maps.model.Poi;
+import com.amap.api.navi.AmapNaviPage;
+import com.amap.api.navi.AmapNaviParams;
+import com.amap.api.navi.AmapNaviType;
+import com.amap.api.navi.INaviInfoCallback;
+import com.amap.api.navi.model.AMapNaviLocation;
+import com.amap.api.services.geocoder.GeocodeAddress;
+import com.amap.api.services.geocoder.GeocodeQuery;
+import com.amap.api.services.geocoder.GeocodeResult;
+import com.amap.api.services.geocoder.GeocodeSearch;
+import com.amap.api.services.geocoder.RegeocodeResult;
 import com.simson.www.R;
+import com.simson.www.application.AppContext;
 import com.simson.www.common.Const;
 import com.simson.www.net.bean.BaseBean;
 import com.simson.www.net.bean.community.DiaryBean;
@@ -26,6 +45,7 @@ import com.simson.www.ui.home.hospital.device.DeviceActivity;
 import com.simson.www.utils.CommonUtils;
 import com.simson.www.utils.GlideImageLoader;
 import com.simson.www.utils.GlideUtils;
+import com.simson.www.utils.LogUtils;
 import com.simson.www.utils.ToastUtils;
 import com.simson.www.widget.CircleImageView;
 import com.youth.banner.Banner;
@@ -130,6 +150,7 @@ public class HospitalDetailActivity extends BasePresenterActivity<HospitalDetail
         mHDAHospitalInfoAdapter.setEmptyView(R.layout.list_empty_view);
         rvHospitalInfo.setAdapter(mHDAHospitalInfoAdapter);
         initBanner();
+        initMap();
     }
 
     String phone;
@@ -152,9 +173,12 @@ public class HospitalDetailActivity extends BasePresenterActivity<HospitalDetail
             isFollow = true;
         }
         tvLocation.setText(bean.getHospital_address() + "");
+        location = bean.getHospital_address();
         phone = bean.getConsulting_phone();
         initMethod();
     }
+
+    String location;
 
     @Override
     public void showDoctorList(DoctorBean beans) {
@@ -182,6 +206,7 @@ public class HospitalDetailActivity extends BasePresenterActivity<HospitalDetail
         //mHDACaseDiaryAdapter.replaceData(beans);
     }
 
+
     @OnClick({R.id.tv_doctor_more, R.id.tv_device_more,
             R.id.tv_follow, R.id.ll_location, R.id.ll_call, R.id.ll_online})
     public void onViewClicked(View view) {
@@ -198,6 +223,11 @@ public class HospitalDetailActivity extends BasePresenterActivity<HospitalDetail
                 mPresenter.followHospital();
                 break;
             case R.id.ll_location:
+                getLatlon(location);
+                if (start!=null&&end!=null){
+                    AmapNaviPage.getInstance().showRouteActivity(HospitalDetailActivity.this,
+                            new AmapNaviParams(start, null, end, AmapNaviType.DRIVER), null);
+                }
                 break;
             case R.id.ll_call:
                 CommonUtils.callPhone(this, phone);
@@ -206,6 +236,91 @@ public class HospitalDetailActivity extends BasePresenterActivity<HospitalDetail
                 break;
         }
     }
+    Poi start;
+    private void getLatlon(String cityName) {
+        if (TextUtils.isEmpty(cityName)) {
+            LogUtils.e("地址空");
+            return;
+        }
+        GeocodeSearch geocodeSearch = new GeocodeSearch(AppContext.getContext());
+        geocodeSearch.setOnGeocodeSearchListener(new GeocodeSearch.OnGeocodeSearchListener() {
+            @Override
+            public void onRegeocodeSearched(RegeocodeResult regeocodeResult, int i) {
+            }
+
+            @Override
+            public void onGeocodeSearched(GeocodeResult geocodeResult, int i) {
+                showLoadingDialog();
+                if (i == 1000) {
+                    if (geocodeResult != null && geocodeResult.getGeocodeAddressList() != null
+                            && geocodeResult.getGeocodeAddressList().size() > 0) {
+
+                        GeocodeAddress geocodeAddress = geocodeResult.getGeocodeAddressList().get(0);
+                        double latitude = geocodeAddress.getLatLonPoint().getLatitude();//纬度s
+                        double longitude = geocodeAddress.getLatLonPoint().getLongitude();//经度
+
+                        end = new Poi(cityName, new LatLng(latitude, longitude), "");
+                        LogUtils.e("11111111111111111111"+start.getCoordinate().latitude);
+
+                    }
+                } else {
+                    LogUtils.e("i:" + i);
+                }
+                hideLoadingDialog();
+            }
+        });
+
+        GeocodeQuery geocodeQuery = new GeocodeQuery(cityName.trim(), "0");
+        geocodeSearch.getFromLocationNameAsyn(geocodeQuery);
+    }
+    Poi end;
+    private void initMap() {
+        //初始化定位
+        mLocationClient = new AMapLocationClient(getApplicationContext());
+        mLocationOption = new AMapLocationClientOption();
+        //设置定位回调监听
+        mLocationClient.setLocationListener(mLocationListener);
+        mLocationOption.setLocationPurpose(AMapLocationClientOption.AMapLocationPurpose.SignIn);
+
+        //设置定位模式为AMapLocationMode.Hight_Accuracy，高精度模式。
+        mLocationOption.setLocationMode(AMapLocationClientOption.AMapLocationMode.Hight_Accuracy);
+        //设置是否返回地址信息（默认返回地址信息）
+        mLocationOption.setNeedAddress(true);
+        if (null != mLocationClient) {
+            mLocationClient.setLocationOption(mLocationOption);
+            //设置场景模式后最好调用一次stop，再调用start以保证场景模式生效
+            mLocationClient.stopLocation();
+            //启动定位
+            mLocationClient.startLocation();
+        }
+    }
+
+    //声明AMapLocationClientOption对象
+    public AMapLocationClientOption mLocationOption = null;
+    //声明AMapLocationClient类对象
+    public AMapLocationClient mLocationClient = null;
+    //声明定位回调监听器
+    public AMapLocationListener mLocationListener = new AMapLocationListener() {
+        @Override
+        public void onLocationChanged(AMapLocation amapLocation) {
+            if (amapLocation != null) {
+                if (amapLocation.getErrorCode() == 0) {
+                    //可在其中解析amapLocation获取相应内容。
+                    double latitudes = amapLocation.getLatitude();//获取纬度
+                    double longitudes = amapLocation.getLongitude();//获取经度
+                    String address = amapLocation.getAddress();//地址，如果option中设置isNeedAddress为false，则没有此结果，网络定位结果中会有地址信息，GPS定位不返回地址信息。
+                    LogUtils.e("纬度：" + latitudes + "经度：" + longitudes + "地址：" + address);
+                    start = new Poi("当前位置", new LatLng(latitudes, longitudes), "");
+                } else {
+                    //定位失败时，可通过ErrCode（错误码）信息来确定失败的原因，errInfo是错误信息，详见错误码表。
+                    Log.e("AmapError", "location Error, ErrCode:"
+                            + amapLocation.getErrorCode() + ", errInfo:"
+                            + amapLocation.getErrorInfo());
+                }
+            }
+
+        }
+    };
 
     @Override
     public void follow(BaseBean bean) {
@@ -220,6 +335,7 @@ public class HospitalDetailActivity extends BasePresenterActivity<HospitalDetail
 
     @Override
     protected void initData() {
+
         mPresenter.getHospitalDetail();
         mPresenter.getDoctorList();
         mPresenter.getHospitalDeviceList();
@@ -282,5 +398,4 @@ public class HospitalDetailActivity extends BasePresenterActivity<HospitalDetail
         mBanner.setDelayTime(4000);//设置轮播时间
         mBanner.setIndicatorGravity(BannerConfig.CENTER);//设置指示器位置（当banner模式中有指示器时）
     }
-
 }

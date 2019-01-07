@@ -24,7 +24,7 @@ public class VoteAdapter extends BaseQuickAdapter<ProgramBean, BaseViewHolder> {
         GlideUtils.with(item.getUrl(), helper.getView(R.id.iv_image));
         helper.setText(R.id.tv_title, item.getName() + "");
         helper.setText(R.id.tv_content, item.getDescribe() + "");
-        helper.setText(R.id.tv_vote, item.getVotes() + "票");
+        helper.setText(R.id.tv_vote, item.getBallot());
         ImageView select = helper.getView(R.id.iv_select);
         if (item.isSelection()){
             select.setVisibility(View.VISIBLE);

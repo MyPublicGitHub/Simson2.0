@@ -37,10 +37,6 @@
 
     </com.scwang.smartrefresh.layout.SmartRefreshLayout>
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/dp_1"
-        android:background="@color/colorBlack_6" />
 
     <TextView
         android:id="@+id/tv_vote"

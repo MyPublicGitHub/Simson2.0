@@ -37,11 +37,14 @@ public class VoteActivity extends BasePresenterActivity<VotePresenter, VoteContr
         adapter.bindToRecyclerView(recyclerView);
         adapter.setEmptyView(R.layout.list_empty_view);
         adapter.setOnItemClickListener((adapter, view1, position) -> {
+            if (isSelect) {
+                return;
+            }
             for (int i = 0; i < adapter.getData().size(); i++) {
                 ProgramBean beans = (ProgramBean) adapter.getData().get(i);
-                if (beans.isSelection()) {
+                /*if (beans.isSelection()) {
                     return;
-                }
+                }*/
                 if (i == position) {
                     beans.setSelection(true);
                     id = beans.getId();
@@ -78,13 +81,17 @@ public class VoteActivity extends BasePresenterActivity<VotePresenter, VoteContr
         return id;
     }
 
+    boolean isSelect;
+
     @Override
     public void program(List<ProgramBean> bean) {
         adapter.replaceData(bean);
+        isSelect = false;
         for (int i = 0; i < bean.size(); i++) {
             ProgramBean beans = (ProgramBean) bean.get(i);
             if (beans.isSelection()) {
                 id = beans.getId();
+                isSelect = true;
                 return;
             }
         }
@@ -93,10 +100,12 @@ public class VoteActivity extends BasePresenterActivity<VotePresenter, VoteContr
     @Override
     public void vote(VoteBean bean) {
         ToastUtils.showToast(bean.getMessage());
+        mPresenter.program();
     }
 
     private void setRefresh() {
         mRefreshLayout.setOnRefreshListener(refreshLayout -> {
+            isSelect = false;
             mPresenter.program();
             mRefreshLayout.setNoMoreData(false);
             refreshLayout.finishRefresh();

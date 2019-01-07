@@ -48,6 +48,11 @@ public class RedEnvelopesActivity extends BasePresenterActivity<RedEnvelopesPres
     }
 
     @Override
+    public void showFail(String msg) {
+
+    }
+
+    @Override
     protected void initData() {
         mPresenter.redEnvelopesRecord();
     }

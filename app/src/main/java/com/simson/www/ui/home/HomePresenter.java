@@ -10,7 +10,6 @@ import com.simson.www.ui.core.model.HomeModel;
 import com.simson.www.ui.core.model.HospitalItemModel;
 import com.simson.www.ui.core.presenter.CommonPresenter;
 import com.simson.www.ui.home.hospital.item.HospitalItemContract;
-import com.simson.www.utils.AESUtils;
 import com.simson.www.utils.DateUtils;
 import com.simson.www.utils.SPUtils;
 
@@ -23,6 +22,7 @@ public class HomePresenter extends CommonPresenter<HomeContract.View> implements
     private HomeModel mModel;
     private HospitalItemModel mHospitalModel;
     private HomeContract.View mView;
+    private boolean isFirst = true;
 
     HomePresenter() {
         this.mModel = new HomeModel();
@@ -43,6 +43,12 @@ public class HomePresenter extends CommonPresenter<HomeContract.View> implements
             @Override
             public void onFail(int code, String errorMsg) {
                 mView.showFail(errorMsg);
+            }
+
+            @Override
+            protected void onStart() {
+                //if (isFirst) super.onStart();
+                isFirst = false;
             }
         };
         Map map = new HashMap<>();
@@ -65,6 +71,11 @@ public class HomePresenter extends CommonPresenter<HomeContract.View> implements
             @Override
             public void onFail(int code, String errorMsg) {
                 mView.showFail(errorMsg);
+            }
+
+            @Override
+            protected void onStart() {
+
             }
         };
 
