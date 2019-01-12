@@ -36,6 +36,16 @@ public class CommodityDetailBean implements Parcelable {
     private int subscribes;
     private int is_delivery;
     private int is_point;
+    private String item_type_id ;//用到哪些技术
+
+    public String getItemTypeId() {
+        return item_type_id;
+    }
+
+    public void setItemTypeId(String itemTypeId) {
+        this.item_type_id = itemTypeId;
+    }
+
     private int is_technology;
     private int is_collect;
     private List<String> picture;

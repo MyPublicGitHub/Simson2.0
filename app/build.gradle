@@ -1,5 +1,6 @@
 apply plugin: 'com.android.application'
 //apply plugin: 'com.neenbedankt.android-apt'
+apply plugin: 'bugly'
 def releaseTime() {
     return new Date().format("yyyy-MM-dd_hh_mm_ss", TimeZone.getTimeZone("UTC"))
 }
@@ -10,8 +11,8 @@ android {
         applicationId "com.simson.www"
         minSdkVersion 15
         targetSdkVersion 27
-        versionCode 2
-        versionName "1.0"
+        versionCode 4
+        versionName "2019-01-10"
         renderscriptSupportModeEnabled true    // Enable RS support
         javaCompileOptions { annotationProcessorOptions { includeCompileClasspath = true } }
         multiDexEnabled true
@@ -19,8 +20,8 @@ android {
         manifestPlaceholders = [
                 qqappid      : "tencent100424468",//友盟分享
                 JPUSH_PKGNAME: "com.simson.www",
-                //JPUSH_APPKEY : "9a3bd399dad9968d6792d1a6", //JPush 上注册的包名对应的 Appkey.
-                JPUSH_APPKEY : "0fa6d308abab72ad12f5ce7c", //JPush 上注册的包名对应的 Appkey.冯涛
+                JPUSH_APPKEY : "9a3bd399dad9968d6792d1a6", //JPush 上注册的包名对应的 Appkey.
+                //JPUSH_APPKEY : "0fa6d308abab72ad12f5ce7c", //JPush 上注册的包名对应的 Appkey.冯涛
                 JPUSH_CHANNEL: "developer-default", //暂时填写默认值即可.
         ]
     }
@@ -86,10 +87,10 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
     }
 
-//    bugly {
-//        appId = 'c280c5ebb7' // 注册时分配的App ID
-//        appKey = '1f0b896a-c638-4bb7-ba20-56dc4d920af3' // 注册时分配的App Key
-//    }
+    bugly {
+        appId = 'c280c5ebb7' // 注册时分配的App ID
+        appKey = '1f0b896a-c638-4bb7-ba20-56dc4d920af3' // 注册时分配的App Key
+    }
 }
 
 dependencies {
@@ -166,4 +167,8 @@ dependencies {
     implementation 'com.amap.api:navi-3dmap:latest.integration'
     implementation 'com.amap.api:location:latest.integration'
     implementation 'com.amap.api:search:latest.integration'
+    //implementation 'com.tencent.bugly:crashreport:latest.release' //其中latest.release指代最新Bugly SDK版本号，也可以指定明确的版本号，例如2.2.0
+    implementation 'com.tencent.bugly:crashreport_upgrade:latest.release'//其中latest.release指代最新版本号，也可以指定明确的版本号，例如1.2.0
+    implementation 'com.tencent.bugly:nativecrashreport:latest.release' //其中latest.release指代最新版本号，也可以指定明确的版本号，例如2.2.0
+    //implementation 'com.airbnb.android:lottie:1.0.1'
 }

@@ -1,6 +1,6 @@
 package com.simson.www.ui.hospital;
 
-import com.simson.www.net.bean.shop.ShopListBean;
+import com.simson.www.net.bean.shop.BigEventBean;
 import com.simson.www.ui.core.view.IView;
 
 import java.util.List;
@@ -8,14 +8,14 @@ import java.util.List;
 public interface HospitalContract {
     interface Presenter {
 
-        void getShopList();
+        void bigEventList();
 
 
     }
 
     interface View extends IView {
 
-        void getShopList(List<ShopListBean> bean);
+        void bigEventList(List<BigEventBean> bean);
 
         String pageIndex();
 

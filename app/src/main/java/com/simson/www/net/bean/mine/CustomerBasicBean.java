@@ -16,6 +16,16 @@ public class CustomerBasicBean {
     private String customer_head;
     private String birthday;
 
+    public String getIs_internal_staff() {
+        return is_internal_staff;
+    }
+
+    public void setIs_internal_staff(String is_internal_staff) {
+        this.is_internal_staff = is_internal_staff;
+    }
+
+    private String is_internal_staff;
+
     public String getCard_amount() {
         return card_amount;
     }

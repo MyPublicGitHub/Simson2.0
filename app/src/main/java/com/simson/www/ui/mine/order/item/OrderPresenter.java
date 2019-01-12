@@ -8,6 +8,7 @@ import com.simson.www.net.callback.RxObserver;
 import com.simson.www.ui.core.model.OrderModel;
 import com.simson.www.ui.core.presenter.BasePresenter;
 import com.simson.www.utils.DateUtils;
+import com.simson.www.utils.LogUtils;
 import com.simson.www.utils.SPUtils;
 
 import java.util.HashMap;
@@ -44,11 +45,12 @@ public class OrderPresenter extends BasePresenter<OrderContract.View> implements
         map.put("timestamp", DateUtils.getStringDate());
         map.put("customerId", (String) SPUtils.get(Const.USER_INFO.CUSTOMER_ID, ""));//当前登录人
         map.put("status", mView.getStatus());
-        if ("3".equals(mView.getStatus()))
+        if ("4".equals(mView.getStatus()))
             map.put("isComment", "0");
         map.put("pageIndex", mView.getPage());
         map.put("pageSize", Const.PAGE_SIZE);
         String json = new Gson().toJson(map);
+        LogUtils.e("json:"+json);
         mModel.getOrder(json, observer);
         addDisposable(observer);
     }

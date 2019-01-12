@@ -201,6 +201,7 @@ public class MainActivity extends BasePresenterActivity<MainPresenter, MainContr
                 .setViewOnclickListener((view1, layoutResId) -> {
                     TextView title = view1.findViewById(R.id.tv_title);
                     content = view1.findViewById(R.id.tv_content);
+
                     open = view1.findViewById(R.id.iv_open);
                     ImageView close = view1.findViewById(R.id.iv_close);
                     title.setText("" + crowd_name);
@@ -281,7 +282,6 @@ public class MainActivity extends BasePresenterActivity<MainPresenter, MainContr
         super.onStart();
         isRun = true;
         if (!isCurrentRunningForeground) {
-            LogUtils.e("1111111111111111111111111111切到前台 MainActivity process");
             initCountDown();
             initVoteView();
         }
@@ -293,7 +293,6 @@ public class MainActivity extends BasePresenterActivity<MainPresenter, MainContr
         isRun = false;
         isCurrentRunningForeground = isRunningForeground();
         if (!isCurrentRunningForeground) {
-            LogUtils.d("1111111111111111111切到后台 activity process");
         }
     }
 
@@ -304,12 +303,11 @@ public class MainActivity extends BasePresenterActivity<MainPresenter, MainContr
         for (ActivityManager.RunningAppProcessInfo appProcessInfo : appProcessInfos) {
             if (appProcessInfo.importance == ActivityManager.RunningAppProcessInfo.IMPORTANCE_FOREGROUND) {
                 if (appProcessInfo.processName.equals(this.getApplicationInfo().processName)) {
-                    LogUtils.e("EntryActivity isRunningForeGround");
+//                    LogUtils.e("EntryActivity isRunningForeGround");
                     return true;
                 }
             }
         }
-        LogUtils.e("EntryActivity isRunningBackGround");
         return false;
     }
 

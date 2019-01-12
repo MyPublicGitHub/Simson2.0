@@ -39,8 +39,8 @@ public class OrderActivity extends BasePresenterActivity {
         ArrayList<Fragment> frag = new ArrayList<>();
         frag.add(OrderFragment.newInstance(""));
         frag.add(OrderFragment.newInstance("2"));
-        frag.add(OrderFragment.newInstance("1"));//status：1待支付；2已支付；空全部
-        frag.add(OrderFragment.newInstance("3"));
+        frag.add(OrderFragment.newInstance("1"));//status：空全部 1待支付；2已支付；4待评价
+        frag.add(OrderFragment.newInstance("4"));
         ArrayList<String> titleData = new ArrayList<>();
         titleData.add("全部");
         titleData.add("已付款");

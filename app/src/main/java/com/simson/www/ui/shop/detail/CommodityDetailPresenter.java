@@ -19,6 +19,7 @@ import com.simson.www.ui.core.model.TechnologyModel;
 import com.simson.www.ui.core.presenter.CommonPresenter;
 import com.simson.www.ui.shop.detail.technology.TechnologyContract;
 import com.simson.www.utils.DateUtils;
+import com.simson.www.utils.LogUtils;
 import com.simson.www.utils.SPUtils;
 import com.simson.www.utils.ToastUtils;
 
@@ -224,10 +225,11 @@ public class CommodityDetailPresenter extends CommonPresenter<CommodityDetailCon
                 mView.showFail(errorMsg);
             }
         };
-
-        Map<String, String> map = new HashMap();
+        LogUtils.e("hospitalId:"+mView.hospitalId()+";itemTypeId:"+mView.itemTypeId());
+        Map map = new HashMap();
         map.put("timestamp", DateUtils.getStringDate());
         map.put("hospitalId", mView.hospitalId());
+        map.put("itemTypeId", mView.itemTypeId());
         String json = new Gson().toJson(map);
         mTechnologyModel.getPlantingTechnology(json, observer);
         addDisposable(observer);

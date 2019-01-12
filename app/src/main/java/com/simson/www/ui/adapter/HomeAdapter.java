@@ -10,11 +10,14 @@ import com.chad.library.adapter.base.BaseMultiItemQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.simson.www.R;
 import com.simson.www.common.Const;
+import com.simson.www.net.bean.home.ImageBean;
 import com.simson.www.net.bean.home.IndexSynchysisBean;
 import com.simson.www.ui.community.circle.detail.FriendCircleDetailActivity;
 import com.simson.www.ui.community.knowledge.detail.WebViewActivity;
 import com.simson.www.utils.GlideUtils;
+import com.simson.www.utils.LogUtils;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class HomeAdapter extends BaseMultiItemQuickAdapter<IndexSynchysisBean, BaseViewHolder> {
@@ -23,10 +26,13 @@ public class HomeAdapter extends BaseMultiItemQuickAdapter<IndexSynchysisBean, B
         super(data);
         addItemType(IndexSynchysisBean.friendsCircle, R.layout.item_home_friend_circle);
         addItemType(IndexSynchysisBean.popularization, R.layout.item_home_popularization);
+        addItemType(IndexSynchysisBean.bigEvent, R.layout.item_hospital_fragment);
+        addItemType(IndexSynchysisBean.OTHER, R.layout.list_empty_view);
     }
 
     @Override
     protected void convert(BaseViewHolder helper, IndexSynchysisBean item) {
+        LogUtils.e("HomeAdapter::::" + helper.getItemViewType());
         if (IndexSynchysisBean.friendsCircle == helper.getItemViewType()) {
             GlideUtils.with(item.getCustomer_head(), helper.getView(R.id.iv_header));
             helper.setText(R.id.tv_name, item.getCustomer_name() + "");
@@ -62,9 +68,8 @@ public class HomeAdapter extends BaseMultiItemQuickAdapter<IndexSynchysisBean, B
             } else {
                 helper.setText(R.id.tv_follow, "已关注");
             }
+            //自动匹配图片
             RecyclerView recyclerView = helper.getView(R.id.recyclerView);
-            recyclerView.setClickable(false);
-            recyclerView.setFocusable(false);
             RecyclerView.LayoutManager layoutManager;
             if (item.getPictures().size() == 1) {
                 layoutManager = new LinearLayoutManager(mContext, LinearLayoutManager.HORIZONTAL, false);
@@ -75,6 +80,7 @@ public class HomeAdapter extends BaseMultiItemQuickAdapter<IndexSynchysisBean, B
             recyclerView.setLayoutManager(layoutManager);
             HomeAdapterItemAdapter adapters = new HomeAdapterItemAdapter(item.getPictures());
             recyclerView.setAdapter(adapters);
+            //自动匹配图片
             adapters.setOnItemClickListener((adapter, view1, position) -> {
                 mContext.startActivity(new Intent(mContext, WebViewActivity.class)
                         .putExtra(Const.WEB_VIEW_TITLE, "科普详情")
@@ -87,6 +93,25 @@ public class HomeAdapter extends BaseMultiItemQuickAdapter<IndexSynchysisBean, B
             helper.setText(R.id.tv_browse, "  阅读  " + item.getBrowse());
             helper.setText(R.id.tv_praises, "  赞  " + item.getPraises());
             helper.addOnClickListener(R.id.tv_follow);
+        } else if (IndexSynchysisBean.bigEvent == helper.getItemViewType()) {
+            helper.setText(R.id.tv_title, item.getEvent_date() + "");
+            helper.setText(R.id.tv_content, "" + item.getTitle());
+            //自动匹配图片
+            ImageBean bean = new ImageBean();
+            bean.images = item.getPictures();
+            List<ImageBean> imageBeans = new ArrayList<>();
+            imageBeans.add(bean);
+            RecyclerView recyclerView = helper.getView(R.id.recyclerView);
+            recyclerView.setLayoutManager(new LinearLayoutManager(mContext, LinearLayoutManager.HORIZONTAL, false));
+            AutoImageAdapter adapters = new AutoImageAdapter(imageBeans);
+            recyclerView.setAdapter(adapters);
+            //自动匹配图片
+            adapters.setOnItemClickListener((adapter, view1, position) -> {
+                String url = item.getLink_url();
+                mContext.startActivity(new Intent(mContext, WebViewActivity.class)
+                        .putExtra(Const.WEB_VIEW_TITLE, item.getTitle())
+                        .putExtra(Const.WEB_VIEW_URL, url));
+            });
         }
     }
 }

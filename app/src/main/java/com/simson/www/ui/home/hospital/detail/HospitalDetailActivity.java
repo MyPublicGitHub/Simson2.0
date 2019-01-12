@@ -260,7 +260,7 @@ public class HospitalDetailActivity extends BasePresenterActivity<HospitalDetail
                         double longitude = geocodeAddress.getLatLonPoint().getLongitude();//经度
 
                         end = new Poi(cityName, new LatLng(latitude, longitude), "");
-                        LogUtils.e("11111111111111111111"+start.getCoordinate().latitude);
+                        //LogUtils.e("11111111111111111111"+start.getCoordinate().latitude);
 
                     }
                 } else {

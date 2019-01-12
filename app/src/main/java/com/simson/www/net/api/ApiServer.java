@@ -17,7 +17,6 @@ import com.simson.www.net.bean.home.AlopeciaTestBean;
 import com.simson.www.net.bean.home.CauseListBean;
 import com.simson.www.net.bean.home.CityListBean;
 import com.simson.www.net.bean.home.DoctorDetailBean;
-import com.simson.www.net.bean.home.HomeBannerBean;
 import com.simson.www.net.bean.home.HospitalBean;
 import com.simson.www.net.bean.home.HospitalDetailBean;
 import com.simson.www.net.bean.home.HospitalDeviceBean;
@@ -54,6 +53,7 @@ import com.simson.www.net.bean.mine.SubmitOrderBean;
 import com.simson.www.net.bean.mine.SubscribeListBean;
 import com.simson.www.net.bean.mine.TransactionRecordBean;
 import com.simson.www.net.bean.mine.VIPBean;
+import com.simson.www.net.bean.shop.BigEventBean;
 import com.simson.www.net.bean.shop.CommentBean;
 import com.simson.www.net.bean.shop.CommodityDetailBean;
 import com.simson.www.net.bean.shop.CommodityDetailPraiseBean;
@@ -92,7 +92,7 @@ public interface ApiServer {
 
     //红包记录
     @POST("")
-    Observable<BaseBean<List<RedEnvelopesBean>>> redEnvelopesRecord(@Url String url,@Query("json") String json);
+    Observable<BaseBean<List<RedEnvelopesBean>>> redEnvelopesRecord(@Url String url, @Query("json") String json);
 
     //交易记录
     @POST("transaction/rechargeOrderList")
@@ -156,6 +156,9 @@ public interface ApiServer {
 
     @POST("itemController/itemList")
     Observable<BaseBean<List<ShopListBean>>> getShopList(@Query("json") String json);
+
+    @POST("bigEventController/bigEventList")
+    Observable<BaseBean<List<BigEventBean>>> bigEventList(@Query("json") String json);
 
     @POST("itemController/itemDetail")
     Observable<BaseBean<CommodityDetailBean>> getCommodityDetail(@Query("json") String json);
@@ -300,7 +303,7 @@ public interface ApiServer {
     @POST("transaction/paymentOrder")
     Observable<BaseBean<PaymentOrderBean>> paymentOrder(@Query("json") String json);
 
-    //订单支付
+    //
     @POST("customerController/getCustomerBasicInfo")
     Observable<BaseBean<CustomerBasicBean>> getCustomerBasicInfo(@Query("json") String json);
 

@@ -36,6 +36,7 @@ public interface CommodityDetailContract {
         String getBuyNum();
 
         String hospitalId();
+        String itemTypeId();
 
         String technologyId();
 

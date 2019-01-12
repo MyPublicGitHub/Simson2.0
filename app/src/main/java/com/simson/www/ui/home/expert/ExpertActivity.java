@@ -58,6 +58,8 @@ public class ExpertActivity extends BasePresenterActivity<ExpertPresenter, Exper
         recyclerView.setAdapter(adapter);
         adapter.bindToRecyclerView(recyclerView);
         adapter.setEmptyView(R.layout.list_empty_view);
+        recyclerView.setNestedScrollingEnabled(false);
+        recyclerView.setFocusable(false);
         setRefresh();
         adapter.setOnItemClickListener((adapter, view, position) -> {
             DoctorBean.DoctorItemBean bean = (DoctorBean.DoctorItemBean) adapter.getData().get(position);

@@ -10,8 +10,12 @@ import com.scwang.smartrefresh.layout.footer.ClassicsFooter;
 import com.scwang.smartrefresh.layout.header.ClassicsHeader;
 import com.simson.www.BuildConfig;
 import com.simson.www.R;
-import com.simson.www.utils.LogUtils;
+import com.simson.www.common.Const;
+import com.simson.www.ui.main.MainActivity;
 import com.stickercamera.App;
+import com.tencent.bugly.Bugly;
+import com.tencent.bugly.beta.Beta;
+import com.tencent.bugly.crashreport.CrashReport;
 import com.umeng.commonsdk.UMConfigure;
 import com.umeng.socialize.PlatformConfig;
 
@@ -31,6 +35,18 @@ public class MyApp extends App {
         JPushInterface.init(this);
         initUM();
         registerActivityLifecycle();
+
+        initBugly();
+    }
+
+    private void initBugly(){
+        Bugly.init(getApplicationContext(), Const.BUGLY_APP_ID, BuildConfig.DEBUG);
+        Beta.autoInit = true;//自动初始化开关
+        Beta.autoCheckUpgrade = true;//自动检查更新开关
+        Beta.upgradeCheckPeriod = 5 * 60 * 1000;//升级检查周期设置
+        Beta.initDelay = 5 * 1000;//延迟初始化
+        Beta.canShowUpgradeActs.add(MainActivity.class);//添加可显示弹窗的Activity
+        Beta.autoDownloadOnWifi = true;//设置Wifi下自动下载
     }
 
     public int count = 0;
@@ -40,45 +56,45 @@ public class MyApp extends App {
 
             @Override
             public void onActivityStopped(Activity activity) {
-                LogUtils.e(activity + "onActivityStopped");
+                //LogUtils.e(activity + "onActivityStopped");
                 count--;
                 if (count == 0) {
-                    LogUtils.e(">>>>>>>>>>>>>>>>>>>切到后台  lifecycle");
+                    //LogUtils.e(">>>>>>>>>>>>>>>>>>>切到后台  lifecycle");
                 }
             }
 
             @Override
             public void onActivityStarted(Activity activity) {
-                LogUtils.e(activity + "onActivityStarted");
+                //LogUtils.e(activity + "onActivityStarted");
                 if (count == 0) {
-                    LogUtils.e(">>>>>>>>>>>>>>>>>>>切到前台  lifecycle");
+                    // LogUtils.e(">>>>>>>>>>>>>>>>>>>切到前台  lifecycle");
                 }
                 count++;
             }
 
             @Override
             public void onActivitySaveInstanceState(Activity activity, Bundle outState) {
-                LogUtils.e(activity + "onActivitySaveInstanceState");
+                //LogUtils.e(activity + "onActivitySaveInstanceState");
             }
 
             @Override
             public void onActivityResumed(Activity activity) {
-                LogUtils.e(activity + "onActivityResumed");
+                //LogUtils.e(activity + "onActivityResumed");
             }
 
             @Override
             public void onActivityPaused(Activity activity) {
-                LogUtils.e(activity + "onActivityPaused");
+                //LogUtils.e(activity + "onActivityPaused");
             }
 
             @Override
             public void onActivityDestroyed(Activity activity) {
-                LogUtils.e(activity + "onActivityDestroyed");
+                //LogUtils.e(activity + "onActivityDestroyed");
             }
 
             @Override
             public void onActivityCreated(Activity activity, Bundle savedInstanceState) {
-                LogUtils.e(activity + "onActivityCreated");
+                //LogUtils.e(activity + "onActivityCreated");
             }
         });
     }

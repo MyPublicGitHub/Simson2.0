@@ -22,8 +22,8 @@
     <permission
         android:name="com.simson.www.permission.JPUSH_MESSAGE"
         android:protectionLevel="signature" />
-<!--        android:roundIcon="@mipmap/ic_logo_round"
--->
+
+    <!--         android:roundIcon="@mipmap/ic_logo_round" -->
     <application
         android:name=".application.MyApp"
         android:allowBackup="true"
@@ -43,8 +43,8 @@
         <activity
             android:name=".ui.main.MainActivity"
             android:label="@string/app_name"
-            android:screenOrientation="portrait"
             android:launchMode="singleInstance"
+            android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustResize|stateHidden">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -299,6 +299,7 @@
             android:name="cn.jpush.android.service.PushService"
             android:process=":multiprocess"
             tools:node="replace" />
+
         <receiver
             android:name=".common.MyJPushReceiver"
             android:enabled="true"
@@ -310,12 +311,14 @@
                 <action android:name="cn.jpush.android.intent.NOTIFICATION_OPENED" />
                 <action android:name="cn.jpush.android.intent.NOTIFICATION_CLICK_ACTION" />
                 <action android:name="cn.jpush.android.intent.CONNECTION" />
+
                 <category android:name="com.simson.www" />
             </intent-filter>
         </receiver>
+
         <meta-data
             android:name="JPUSH_APPKEY"
-            android:value="0fa6d308abab72ad12f5ce7c" />
+            android:value="9a3bd399dad9968d6792d1a6" /> <!-- 0fa6d308abab72ad12f5ce7c -->
 
         <provider
             android:name="cn.jpush.android.service.DataProvider"
@@ -363,10 +366,30 @@
             android:value="b3a87204a943dc457be778b003648076" />
 
         <service android:name="com.amap.api.location.APSService" />
-        <activity android:name="com.amap.api.navi.AmapRouteActivity"
-            android:theme="@android:style/Theme.NoTitleBar"
-            android:configChanges="orientation|keyboardHidden|screenSize" />
+
+        <activity
+            android:name="com.amap.api.navi.AmapRouteActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:theme="@android:style/Theme.NoTitleBar" />
         <!-- 高德地图 -->
+        <!--Bugly Update-->
+        <activity
+            android:name="com.tencent.bugly.beta.ui.BetaActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize|locale"
+            android:theme="@android:style/Theme.Translucent" />
+        <provider
+            android:name="android.support.v4.content.FileProvider"
+            android:authorities="${applicationId}.fileProvider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/provider_paths" />
+        </provider>
+        <!--Bugly Update-->
+        <activity
+            android:name=".ui.community.expert.quest.QusetActivity"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

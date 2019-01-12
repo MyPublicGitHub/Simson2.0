@@ -10,7 +10,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
 import android.text.TextUtils;
@@ -166,6 +166,7 @@ public class CommodityDetailActivity extends BasePresenterActivity<CommodityDeta
             tvPresent.setText("积分" + bean.getItem_point());
             tvUnity.setText("新生植发");
         }
+        itemTypeId = bean.getItemTypeId();
         //money = bean.getPresent_price();
         pointUnityPrice = bean.getItem_point();
         initMethod(bean.getIs_collect() == 0 ? false : true);
@@ -358,7 +359,7 @@ public class CommodityDetailActivity extends BasePresenterActivity<CommodityDeta
                     .setViewOnclickListener((view1, layoutResId) -> {
                         RecyclerView recyclerView = view1.findViewById(R.id.recycler_view);
                         hospitalTechnologyAdapter = new HospitalTechnologyAdapter(null);
-                        recyclerView.setLayoutManager(new GridLayoutManager(this, 3));
+                        recyclerView.setLayoutManager(new LinearLayoutManager(this));
                         //hospitalTechnologyAdapter.bindToRecyclerView(recyclerView);
                         //hospitalTechnologyAdapter.setEmptyView(R.layout.list_empty_view);
                         recyclerView.setAdapter(hospitalTechnologyAdapter);
@@ -366,7 +367,7 @@ public class CommodityDetailActivity extends BasePresenterActivity<CommodityDeta
                         ImageView iv_image = view1.findViewById(R.id.iv_image);
                         TextView tv_title = view1.findViewById(R.id.tv_title);
                         tv_present = view1.findViewById(R.id.tv_present);
-                        TextView tv_unity = view1.findViewById(R.id.tv_unity);
+                        tv_unity = view1.findViewById(R.id.tv_unity);
                         tv_number = view1.findViewById(R.id.tv_number);
                         tv_hospital_name = view1.findViewById(R.id.tv_hospital_name);
                         tv_date = view1.findViewById(R.id.tv_date);
@@ -495,7 +496,7 @@ public class CommodityDetailActivity extends BasePresenterActivity<CommodityDeta
     }
 
     TextView tv_number, tv_hospital_name, tv_date, tv_present, tv_reduce, tv_add,
-            tv_present_point, tv_number_point, tv_reduce_point, tv_add_point;
+            tv_present_point, tv_number_point, tv_reduce_point, tv_add_point, tv_unity;
     HospitalTechnologyAdapter hospitalTechnologyAdapter;
     View.OnClickListener onClickListener = new View.OnClickListener() {
         @Override
@@ -559,13 +560,27 @@ public class CommodityDetailActivity extends BasePresenterActivity<CommodityDeta
     BaseQuickAdapter.OnItemClickListener onItemClickListener = new BaseQuickAdapter.OnItemClickListener() {
         @Override
         public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-            TechnologyBean beans = (TechnologyBean) adapter.getData().get(position);
-            technologyId = beans.getTechnology_id();
-            unityPrice = beans.getUnit_price();
+            TechnologyBean technologyBean = (TechnologyBean) adapter.getData().get(position);
+            technologyId = technologyBean.getTechnology_id();
+            unityPrice = technologyBean.getUnit_price();
+            tv_number.setText("" + technologyBean.getPlanting_number());
             String trim = tv_number.getText().toString().trim();
             int num = Integer.parseInt(trim);
             money = num * unityPrice;
             tv_present.setText("￥" + money);
+            if ("1".equals(technologyBean.getTechnology_type())) {
+                tv_add.setBackgroundColor(getResources().getColor(R.color.colorBlack_6));
+                tv_add.setClickable(false);
+                tv_reduce.setBackgroundColor(getResources().getColor(R.color.colorBlack_6));
+                tv_reduce.setClickable(false);
+                tv_unity.setText("毛囊单位:" + technologyBean.getPlanting_number() + "套");
+            } else {
+                tv_add.setClickable(true);
+                tv_add.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
+                tv_reduce.setClickable(true);
+                tv_reduce.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
+                tv_unity.setText("毛囊单位:" + technologyBean.getPlanting_number() + "U");
+            }
             for (int i = 0; i < adapter.getData().size(); i++) {
                 TechnologyBean bean = (TechnologyBean) adapter.getData().get(i);
                 if (i == position) {
@@ -606,6 +621,13 @@ public class CommodityDetailActivity extends BasePresenterActivity<CommodityDeta
     @Override
     public String hospitalId() {
         return hospitalId;
+    }
+
+    String itemTypeId;
+
+    @Override
+    public String itemTypeId() {
+        return itemTypeId;
     }
 
     @Override

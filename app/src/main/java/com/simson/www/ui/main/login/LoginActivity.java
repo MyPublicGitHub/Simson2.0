@@ -107,6 +107,7 @@ public class LoginActivity extends BasePresenterActivity<LoginPresenter, LoginCo
     public void showLogin(LoginBean bean) {
         ToastUtils.showToast("登录成功");
         SPUtils.put(Const.USER_INFO.CUSTOMER_MOBLE, bean.getMobile());
+        SPUtils.put(Const.USER_INFO.CUSTOMER_IS_INTERNAL_STAFF, bean.getIs_internal_staff());
         RxEvent.getInstance().postEvent(Const.EVENT_ACTION.LOGIN, new Event(Event.Type.LOGIN, true));
         finish();
     }

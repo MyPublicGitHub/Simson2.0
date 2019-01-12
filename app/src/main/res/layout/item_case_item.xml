@@ -11,11 +11,11 @@
         android:id="@+id/npl_item_moment_photos"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:clickable="false"
+        android:focusable="false"
         app:bga_npl_itemCornerRadius="0dp"
         app:bga_npl_itemSpanCount="3"
         app:bga_npl_itemWhiteSpacing="4dp"
-        android:focusable="false"
-        android:clickable="false"
         app:bga_npl_itemWidth="0dp"
         app:bga_npl_otherWhiteSpacing="64dp"
         app:bga_npl_placeholderDrawable="@mipmap/bga_pp_ic_holder_light"
@@ -71,21 +71,24 @@
             android:id="@+id/tv_name"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/dp_10"
+            android:layout_marginLeft="@dimen/dp_5"
             android:layout_weight="1"
-            android:maxLines="1"
             android:ellipsize="end"
+            android:maxLines="1"
             android:text="是可敬的尽快回复"
             android:textColor="@color/colorBlack"
             android:textSize="@dimen/sp_12" />
+
+        <ImageView
+            android:layout_width="@dimen/dp_20"
+            android:layout_height="@dimen/dp_20"
+            android:src="@mipmap/ic_browse" />
 
         <TextView
             android:id="@+id/tv_browse"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/dp_10"
-            android:drawableLeft="@mipmap/ic_browse"
-            android:drawablePadding="@dimen/dp_5"
+            android:layout_marginLeft="@dimen/dp_5"
             android:text="123"
             android:textColor="@color/colorBlack"
             android:textSize="@dimen/sp_12" />

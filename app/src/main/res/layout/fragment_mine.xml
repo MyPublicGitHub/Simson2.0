@@ -584,13 +584,28 @@
                     android:textColor="@color/colorBlack"
                     android:textSize="@dimen/sp_13" />
             </LinearLayout>
-
             <LinearLayout
+                android:id="@+id/ll_complaint_box"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:orientation="vertical"></LinearLayout>
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="@dimen/dp_35"
+                    android:layout_height="@dimen/dp_35"
+                    android:src="@mipmap/ic_mine_complaint_box" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp_3"
+                    android:text="意见箱"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="@dimen/sp_13" />
+            </LinearLayout>
+
 
         </LinearLayout>
     </LinearLayout>

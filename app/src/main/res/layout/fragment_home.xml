@@ -5,28 +5,31 @@
     android:background="@color/colorWhiteBg"
     android:orientation="vertical">
 
-    <TextView
+    <!--<TextView
         android:layout_width="match_parent"
         android:layout_height="@dimen/dp_40"
         android:background="@color/colorMain"
         android:gravity="center"
         android:text="首页"
         android:textColor="@color/white"
-        android:textSize="@dimen/sp_17" />
-
-
-    <android.support.v7.widget.RecyclerView
-        android:layout_marginTop="@dimen/dp_10"
-        android:id="@+id/recycler_view_header"
+        android:textSize="@dimen/sp_17" />-->
+    <!-- <android.support.v7.widget.RecyclerView
+         android:layout_marginTop="@dimen/dp_10"
+         android:id="@+id/recycler_view_header"
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content" />-->
+    <com.youth.banner.Banner
+        android:id="@+id/banner"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="@dimen/banner_height"
+        android:background="@mipmap/ic_placeholder" />
 
     <com.scwang.smartrefresh.layout.SmartRefreshLayout
         android:id="@+id/refresh_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <android.support.v4.widget.NestedScrollView
+        <com.simson.www.widget.StickyScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@color/colorWhiteBg"
@@ -243,41 +246,48 @@
                     </RelativeLayout>
                 </LinearLayout>
 
-                <ImageView
-                    android:id="@+id/iv_test"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:scaleType="centerCrop"
-                    android:src="@mipmap/ic_bg_home_test" />
-
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/dp_1"
-                    android:background="@color/colorWhite"
                     android:gravity="center"
-                    android:orientation="horizontal"
-                    android:padding="@dimen/dp_15">
+                    android:orientation="vertical"
+                    android:tag="sticky">
 
-                    <View
-                        android:layout_width="@dimen/dp_50"
-                        android:layout_height="@dimen/dp_1"
-                        android:layout_marginRight="@dimen/dp_20"
-                        android:background="@color/colorBlack_2" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
+                    <ImageView
+                        android:id="@+id/iv_test"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="@dimen/dp_10"
-                        android:text="推荐科普"
-                        android:textColor="@color/colorBlack"
-                        android:textSize="@dimen/sp_17" />
+                        android:scaleType="centerCrop"
+                        android:src="@mipmap/ic_bg_home_test" />
 
-                    <View
-                        android:layout_width="@dimen/dp_50"
-                        android:layout_height="@dimen/dp_1"
-                        android:layout_marginLeft="@dimen/dp_20"
-                        android:background="@color/colorBlack_2" />
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/dp_1"
+                        android:background="@color/colorWhite"
+                        android:gravity="center"
+                        android:orientation="horizontal"
+                        android:padding="@dimen/dp_15">
+
+                        <View
+                            android:layout_width="@dimen/dp_50"
+                            android:layout_height="@dimen/dp_1"
+                            android:layout_marginRight="@dimen/dp_20"
+                            android:background="@color/colorBlack_2" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/dp_10"
+                            android:text="推荐科普"
+                            android:textColor="@color/colorBlack"
+                            android:textSize="@dimen/sp_17" />
+                        <View
+                            android:layout_width="@dimen/dp_50"
+                            android:layout_height="@dimen/dp_1"
+                            android:layout_marginLeft="@dimen/dp_20"
+                            android:background="@color/colorBlack_2" />
+                    </LinearLayout>
                 </LinearLayout>
 
                 <android.support.v7.widget.RecyclerView
@@ -286,7 +296,7 @@
                     android:layout_height="wrap_content" />
             </LinearLayout>
 
-        </android.support.v4.widget.NestedScrollView>
+        </com.simson.www.widget.StickyScrollView>
     </com.scwang.smartrefresh.layout.SmartRefreshLayout>
 
 </LinearLayout>

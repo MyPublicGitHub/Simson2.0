@@ -19,7 +19,7 @@ public class ExpertItemPresenter extends CommonPresenter<ExpertItemContract.View
     private ExpertItemModel mModel;
     private ExpertItemContract.View mView;
 
-    ExpertItemPresenter() {
+    public ExpertItemPresenter() {
         this.mModel = new ExpertItemModel();
     }
 

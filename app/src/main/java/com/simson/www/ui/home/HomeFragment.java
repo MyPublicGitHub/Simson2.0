@@ -13,7 +13,6 @@ import com.simson.www.net.bean.BaseBean;
 import com.simson.www.net.bean.home.HospitalItemBean;
 import com.simson.www.net.bean.home.IndexSynchysisBean;
 import com.simson.www.ui.adapter.HomeAdapter;
-import com.simson.www.ui.adapter.HomeHeaderAdapter;
 import com.simson.www.ui.base.BasePresenterFragment;
 import com.simson.www.ui.community.circle.detail.FriendCircleDetailActivity;
 import com.simson.www.ui.community.knowledge.detail.WebViewActivity;
@@ -26,7 +25,13 @@ import com.simson.www.ui.home.test.TestSplashActivity;
 import com.simson.www.ui.mine.subscribe.save.NewSubscribeActivity;
 import com.simson.www.ui.mine.test.save.NewHospitalTestActivity;
 import com.simson.www.utils.CommonUtils;
+import com.simson.www.utils.GlideImageLoader;
+import com.youth.banner.Banner;
+import com.youth.banner.BannerConfig;
+import com.youth.banner.Transformer;
+import com.youth.banner.listener.OnBannerListener;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
@@ -35,14 +40,16 @@ import butterknife.OnClick;
 
 public class HomeFragment extends BasePresenterFragment<HomePresenter, HomeContract.View> implements HomeContract.View {
 
-    @BindView(R.id.recycler_view_header)
-    RecyclerView recyclerViewHeader;
+    /*@BindView(R.id.recycler_view_header)
+    RecyclerView recyclerViewHeader;*/
     @BindView(R.id.recycler_view)
     RecyclerView recyclerView;
     @BindView(R.id.refresh_layout)
     SmartRefreshLayout mRefreshLayout;
-    HomeHeaderAdapter homeHeaderAdapter;
+    //HomeHeaderAdapter homeHeaderAdapter;
     HomeAdapter adapter;
+    @BindView(R.id.banner)
+    Banner mBanner;
 
     @Override
     protected int getLayoutId() {
@@ -52,27 +59,27 @@ public class HomeFragment extends BasePresenterFragment<HomePresenter, HomeContr
     @Override
     protected void initViews(View view) {
         setRefresh();
-        recyclerViewHeader.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
+        /*recyclerViewHeader.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
         homeHeaderAdapter = new HomeHeaderAdapter(null);
         recyclerViewHeader.setAdapter(homeHeaderAdapter);
         recyclerViewHeader.setNestedScrollingEnabled(false);
-        recyclerViewHeader.setFocusable(false);
+        recyclerViewHeader.setFocusable(false);*/
 //        homeHeaderAdapter.bindToRecyclerView(recyclerView);
 //        homeHeaderAdapter.setEmptyView(R.layout.list_empty_view);
-        homeHeaderAdapter.setOnItemClickListener((adapter, view1, position) -> {
+       /* homeHeaderAdapter.setOnItemClickListener((adapter, view1, position) -> {
             List<HospitalItemBean> bean = (List<HospitalItemBean>) adapter.getData();
             String hospitalId = bean.get(position).getHospital_id();
             startActivity(new Intent(getContext(), HospitalDetailActivity.class)
                     .putExtra("hospitalId", hospitalId));
-        });
+        });*/
 
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         adapter = new HomeAdapter(null);
         recyclerView.setAdapter(adapter);
         recyclerView.setNestedScrollingEnabled(false);
         recyclerView.setFocusable(false);
-        adapter.bindToRecyclerView(recyclerView);
-        adapter.setEmptyView(R.layout.list_empty_view);
+        /*adapter.bindToRecyclerView(recyclerView);
+        adapter.setEmptyView(R.layout.list_empty_view);*/
         adapter.setOnItemClickListener((adapter, view1, position) -> {
             IndexSynchysisBean bean = (IndexSynchysisBean) adapter.getData().get(position);
             if ("friendsCircle".equals(bean.getData_status())) {
@@ -94,6 +101,7 @@ public class HomeFragment extends BasePresenterFragment<HomePresenter, HomeContr
                     break;
             }
         });
+        initBanner();
         mPresenter.indexSynchysis();
         mPresenter.getHospital();
     }
@@ -138,15 +146,6 @@ public class HomeFragment extends BasePresenterFragment<HomePresenter, HomeContr
         }
     }
 
-    @Override
-    protected HomePresenter createPresenter() {
-        return new HomePresenter();
-    }
-
-    @Override
-    protected void getBundle(Bundle bundle) {
-
-    }
 
     @Override
     public void indexSynchysis(List<IndexSynchysisBean> bean) {
@@ -158,11 +157,45 @@ public class HomeFragment extends BasePresenterFragment<HomePresenter, HomeContr
     }
 
     @Override
-    public void getHospital(List<HospitalItemBean> bean) {
-        if (bean == null) {
+    public void getHospital(List<HospitalItemBean> beans) {
+        if (beans == null) {
             return;
         }
-        homeHeaderAdapter.replaceData(bean);
+        List<String> images = new ArrayList<>();
+        List<String> title = new ArrayList<>();
+        for (int i = 0; i < beans.size(); i++) {
+            images.add(beans.get(i).getHospital_icon());
+            title.add(beans.get(i).getHospital_name());
+        }
+        if (images.size() == 0) {
+            mBanner.setVisibility(View.GONE);
+        } else {
+            mBanner.setVisibility(View.VISIBLE);
+            mBanner.setImages(images);//设置图片集合
+            mBanner.setBannerTitles(title);//设置图片集合
+            //设置点击事件，下标是从1开始
+            mBanner.setOnBannerListener(new OnBannerListener() {
+                @Override
+                public void OnBannerClick(int position) {
+                    String hospitalId = beans.get(position).getHospital_id();
+                    startActivity(new Intent(getContext(), HospitalDetailActivity.class)
+                            .putExtra("hospitalId", hospitalId));
+                }
+            });
+
+            mBanner.start();
+        }
+        /*List<DoctorBean.DoctorItemBean> bean = beans.getList();
+        if (mPage == 1) {
+            adapter.replaceData(bean);
+
+        } else {
+            adapter.addData(bean);
+        }
+        if (bean.size() == 0) {
+            mRefreshLayout.setNoMoreData(true);
+        }*/
+        //homeHeaderAdapter.replaceData(bean);
     }
 
     boolean isAdd;
@@ -180,5 +213,38 @@ public class HomeFragment extends BasePresenterFragment<HomePresenter, HomeContr
             mPresenter.indexSynchysis();
             refreshLayout.finishLoadMore();
         });
+    }
+
+    @Override
+    protected HomePresenter createPresenter() {
+        return new HomePresenter();
+    }
+
+    private void initBanner() {
+        mBanner.setBannerStyle(BannerConfig.NUM_INDICATOR_TITLE);//设置banner样式
+        mBanner.setImageLoader(new GlideImageLoader());//设置图片加载器
+        mBanner.setBannerAnimation(Transformer.DepthPage);//设置banner动画效果
+        mBanner.setDelayTime(5000);//设置轮播时间
+        mBanner.setIndicatorGravity(BannerConfig.CENTER);//设置指示器位置（当banner模式中有指示器时）
+        mBanner.start();
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        if (mBanner != null)
+            mBanner.stopAutoPlay();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        if (mBanner != null)
+            mBanner.startAutoPlay();
+    }
+
+    @Override
+    protected void getBundle(Bundle bundle) {
+
     }
 }

@@ -46,7 +46,7 @@ public class MyJPushReceiver extends BroadcastReceiver {
         }
 
         Bundle bundle = intent.getExtras();
-        LogUtils.e("onReceive - " + intent.getAction() + ", extras: ");
+//        LogUtils.e("onReceive - " + intent.getAction() + ", extras: ");
 
         if (JPushInterface.ACTION_REGISTRATION_ID.equals(intent.getAction())) {
             LogUtils.e("JPush 用户注册成功");
@@ -65,7 +65,7 @@ public class MyJPushReceiver extends BroadcastReceiver {
             openNotification(context, bundle);
 
         } else {
-            LogUtils.e("Unhandled intent - " + intent.getAction());
+//            LogUtils.e("Unhandled intent - " + intent.getAction());
         }
     }
 

@@ -7,7 +7,17 @@ import java.util.List;
 public class IndexSynchysisBean implements MultiItemEntity {
     public static final int friendsCircle = 0;
     public static final int popularization = 1;
-    public static final int OTHER = 2;
+    public static final int bigEvent = 2;
+    public static final int OTHER = 100;
+    /**
+     * big_event_id : 6c6d482bb50844d58cb6ad123847867f
+     * event_date : 2018-09-15
+     * is_praise : 0
+     */
+
+    private String big_event_id;
+    private String event_date;
+    private int is_praise;
 
     @Override
     public int getItemType() {
@@ -15,6 +25,8 @@ public class IndexSynchysisBean implements MultiItemEntity {
             return friendsCircle;
         } else if ("popularization".equals(data_status)) {//商品
             return popularization;
+        } else if ("bigEvent".equals(data_status)) {//大事件
+            return bigEvent;
         } else {
             return OTHER;
         }
@@ -222,5 +234,29 @@ public class IndexSynchysisBean implements MultiItemEntity {
 
     public void setPictures(List<String> pictures) {
         this.pictures = pictures;
+    }
+
+    public String getBig_event_id() {
+        return big_event_id;
+    }
+
+    public void setBig_event_id(String big_event_id) {
+        this.big_event_id = big_event_id;
+    }
+
+    public String getEvent_date() {
+        return event_date;
+    }
+
+    public void setEvent_date(String event_date) {
+        this.event_date = event_date;
+    }
+
+    public int getIs_praise() {
+        return is_praise;
+    }
+
+    public void setIs_praise(int is_praise) {
+        this.is_praise = is_praise;
     }
 }

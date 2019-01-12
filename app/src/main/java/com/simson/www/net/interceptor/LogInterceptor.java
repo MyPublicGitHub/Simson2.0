@@ -34,7 +34,7 @@ public class LogInterceptor implements Interceptor {
             }
             body = buffer.readString(charset);
         }
-        LogUtils.e("HTTP, \n发送请求" +
+        LogUtils.e("\n发送请求" +
                 "\nmethod：" + request.method() +
                 "\nurl：" + request.url() +
                 "\nheaders：" + request.headers() +
@@ -59,7 +59,7 @@ public class LogInterceptor implements Interceptor {
         }
         rBody = buffer.clone().readString(charset);
         //}
-        LogUtils.e("HTTP,\n收到响应" +
+        LogUtils.e("\n收到响应" +
                 "\n状态码：" + response.code() +
                 "\n返回消息：" + response.message() +
                 "\n响应时间：" + tookMs + "纳秒" +

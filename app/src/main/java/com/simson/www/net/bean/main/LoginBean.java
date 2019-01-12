@@ -18,6 +18,16 @@ public class LoginBean {
     private String nickName;
     private String customerHead;
     private String deviceToken;
+    private String is_internal_staff;
+
+    public String getIs_internal_staff() {
+        return is_internal_staff;
+    }
+
+    public void setIs_internal_staff(String is_internal_staff) {
+        this.is_internal_staff = is_internal_staff;
+    }
+
     private int appType;
 
     public String getCustomerId() {

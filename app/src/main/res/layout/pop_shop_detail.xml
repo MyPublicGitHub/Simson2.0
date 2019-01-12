@@ -65,7 +65,6 @@
                     android:layout_toRightOf="@+id/iv_image"
                     android:ellipsize="end"
                     android:maxLines="1"
-                    android:text="毛囊单位：500U"
                     android:textColor="@color/black"
                     android:textSize="@dimen/sp_12" />
 

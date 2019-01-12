@@ -19,6 +19,7 @@ import com.simson.www.ui.adapter.KnowledgeItemAdapter;
 import com.simson.www.ui.adapter.QuestionAdapter;
 import com.simson.www.ui.base.BasePresenterActivity;
 import com.simson.www.ui.community.expert.detail.QuestionDetailActivity;
+import com.simson.www.ui.community.expert.quest.QusetActivity;
 import com.simson.www.ui.community.knowledge.detail.WebViewActivity;
 import com.simson.www.utils.GlideUtils;
 import com.simson.www.utils.ToastUtils;
@@ -95,7 +96,9 @@ public class ExpertDetailActivity extends BasePresenterActivity<ExpertDetailPres
         }
         initMethod();
     }
-
+    public void moreQuestion(View v){
+        startActivity(new Intent(this,QusetActivity.class));
+    }
     @Override
     public void shoExpert(List<QuestionsBean> bean) {
         if (bean == null) {

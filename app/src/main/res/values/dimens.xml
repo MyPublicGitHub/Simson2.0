@@ -2,6 +2,7 @@
 <resources>
 
     <dimen name="banner_height">170dp</dimen>
+    <dimen name="image">170dp</dimen>
 
     <!--尺寸 dp 从小到大-->
     <dimen name="dp_0">0dp</dimen>

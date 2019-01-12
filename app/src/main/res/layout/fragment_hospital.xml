@@ -282,7 +282,7 @@
                 android:background="@color/colorWhite"
                 android:padding="@dimen/dp_10"
                 android:gravity="center_vertical"
-                android:text="猜你喜欢"
+                android:text="新生品牌"
                 android:textColor="@color/colorBlack"
                 android:textSize="@dimen/sp_17" />
 

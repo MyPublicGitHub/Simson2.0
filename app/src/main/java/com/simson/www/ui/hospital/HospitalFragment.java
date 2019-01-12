@@ -9,16 +9,18 @@ import android.view.View;
 
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.simson.www.R;
-import com.simson.www.net.bean.shop.ShopListBean;
+import com.simson.www.common.Const;
+import com.simson.www.net.bean.shop.BigEventBean;
 import com.simson.www.ui.adapter.HospitalFragmentAdapter;
 import com.simson.www.ui.base.BasePresenterFragment;
+import com.simson.www.ui.community.knowledge.detail.WebViewActivity;
 import com.simson.www.ui.home.cause.CauseActivity;
 import com.simson.www.ui.hospital.call.CallActivity;
 import com.simson.www.ui.mine.subscribe.save.NewSubscribeActivity;
 import com.simson.www.ui.mine.test.save.NewHospitalTestActivity;
 import com.simson.www.ui.mine.wallet.recharge.RechargeActivity;
-import com.simson.www.ui.shop.detail.CommodityDetailActivity;
 import com.simson.www.utils.CommonUtils;
+import com.tencent.bugly.beta.ui.BetaActivity;
 
 import java.util.List;
 
@@ -53,14 +55,14 @@ public class HospitalFragment extends BasePresenterFragment<HospitalPresenter, H
         recyclerView.setNestedScrollingEnabled(false);
         recyclerView.setFocusable(false);
         adapter.setOnItemClickListener((adapter, view1, position) -> {
-                    List<ShopListBean> data = (List<ShopListBean>) adapter.getData();
-                    ShopListBean shopListBean = data.get(position);
-                    startActivity(new Intent(getActivity(), CommodityDetailActivity.class)
-                            .putExtra("id", shopListBean.getItem_id()));
+                    BigEventBean bean = (BigEventBean) adapter.getData().get(position);
+                    startActivity(new Intent(getContext(), WebViewActivity.class)
+                            .putExtra(Const.WEB_VIEW_TITLE, bean.getTitle() + "")
+                            .putExtra(Const.WEB_VIEW_URL, bean.getLink_url()));
                 }
         );
         setRefresh();
-        mPresenter.getShopList();
+        mPresenter.bigEventList();
     }
 
     @Override
@@ -69,19 +71,19 @@ public class HospitalFragment extends BasePresenterFragment<HospitalPresenter, H
     }
 
     @Override
-    public void getShopList(List<ShopListBean> bean) {
-        if (bean == null) {
+    public void bigEventList(List<BigEventBean> bean) {
+        if (bean == null || bean.size() == 0) {
+            mRefreshLayout.setNoMoreData(true);
+            if (mPage > 1) {
+                mPage--;
+
+            }
             return;
         }
         if (mPage == 1) {
             adapter.replaceData(bean);
-
         } else {
             adapter.addData(bean);
-        }
-        if (bean.size() == 0) {
-            mRefreshLayout.setNoMoreData(true);
-
         }
     }
 
@@ -93,13 +95,13 @@ public class HospitalFragment extends BasePresenterFragment<HospitalPresenter, H
     private void setRefresh() {
         mRefreshLayout.setOnRefreshListener(refreshLayout -> {
             mPage = 1;
-            mPresenter.getShopList();
+            mPresenter.bigEventList();
             mRefreshLayout.setNoMoreData(false);
             refreshLayout.finishRefresh();
         });
         mRefreshLayout.setOnLoadMoreListener(refreshLayout -> {
             mPage++;
-            mPresenter.getShopList();
+            mPresenter.bigEventList();
             refreshLayout.finishLoadMore();
         });
     }
@@ -112,7 +114,7 @@ public class HospitalFragment extends BasePresenterFragment<HospitalPresenter, H
                 CommonUtils.consultation(getActivity());
                 break;
             case R.id.ll_storage_value:
-                startActivity(new Intent(getActivity(),RechargeActivity.class));
+                startActivity(new Intent(getActivity(), RechargeActivity.class));
                 break;
             case R.id.ll_consultation:
                 startActivity(new Intent(getActivity(), CallActivity.class));

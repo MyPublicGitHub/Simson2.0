@@ -4,13 +4,16 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.simson.www.R;
 import com.simson.www.common.Const;
 import com.simson.www.event.Event;
+import com.simson.www.net.bean.mine.CustomerBasicBean;
 import com.simson.www.net.bean.mine.CustomerBean;
 import com.simson.www.ui.base.BasePresenterFragment;
+import com.simson.www.ui.community.knowledge.detail.WebViewActivity;
 import com.simson.www.ui.main.login.LoginActivity;
 import com.simson.www.ui.mine.alopecias.AlopeciaActivity;
 import com.simson.www.ui.mine.cart.ShopCartActivity;
@@ -32,7 +35,6 @@ import com.simson.www.ui.mine.user.UserInfoActivity;
 import com.simson.www.ui.mine.wallet.WalletActivity;
 import com.simson.www.utils.CommonUtils;
 import com.simson.www.utils.GlideUtils;
-import com.simson.www.utils.LogUtils;
 import com.simson.www.utils.SPUtils;
 import com.simson.www.widget.CircleImageView;
 
@@ -58,12 +60,22 @@ public class MineFragment extends BasePresenterFragment<MinePresenter, MineContr
     TextView tvMessage;
     @BindView(R.id.tv_integral)
     TextView tvIntegral;
+    @BindView(R.id.ll_complaint_box)
+    LinearLayout llComplaintBox;
 
     @Override
     protected void initViews(View view) {
+        init();
         mPresenter.getCustomer();
     }
 
+    private void init() {
+        if ("1".equals((String) SPUtils.get(Const.USER_INFO.CUSTOMER_IS_INTERNAL_STAFF, "0"))) {
+            llComplaintBox.setVisibility(View.VISIBLE);
+        } else {
+            llComplaintBox.setVisibility(View.INVISIBLE);
+        }
+    }
 
     @Override
     protected int getLayoutId() {
@@ -83,9 +95,22 @@ public class MineFragment extends BasePresenterFragment<MinePresenter, MineContr
         tvIntegral.setText(bean.getPoints() + "");
     }
 
+    @Override
+    public void getCustomerBasicInfo(CustomerBasicBean bean) {
+        if (bean == null) return;
+        SPUtils.put(Const.USER_INFO.CUSTOMER_IS_INTERNAL_STAFF, bean.getIs_internal_staff());
+        init();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        mPresenter.getCustomerBasicInfo();
+    }
+
     @OnClick({R.id.tv_follow, R.id.tv_fans, R.id.iv_setting, R.id.ll_user_info, R.id.ll_integral_mall, R.id.ll_sign_in, R.id.ll_invitation,
             R.id.ll_diary, R.id.ll_message, R.id.ll_integral, R.id.ll_post, R.id.ll_pending_payment, R.id.ll_integral_task,
-            R.id.ll_pending_delivery, R.id.ll_already_shipped, R.id.ll_evaluate, R.id.ll_member,
+            R.id.ll_pending_delivery, R.id.ll_already_shipped, R.id.ll_evaluate, R.id.ll_member, R.id.ll_complaint_box,
             R.id.ll_shop_card, R.id.ll_collect, R.id.ll_wallet, R.id.ll_feed_back, R.id.ll_consultation})
     public void onViewClicked(View view) {
         if (TextUtils.isEmpty((String) SPUtils.get(Const.USER_INFO.CUSTOMER_ID, ""))) {
@@ -143,7 +168,7 @@ public class MineFragment extends BasePresenterFragment<MinePresenter, MineContr
                 startActivity(new Intent(getActivity(), OrderActivity.class).putExtra("status", "1"));
                 break;
             case R.id.ll_evaluate://
-                startActivity(new Intent(getActivity(), OrderActivity.class).putExtra("status", "3"));
+                startActivity(new Intent(getActivity(), OrderActivity.class).putExtra("status", "4"));
                 break;
             case R.id.ll_shop_card://购物车
                 startActivity(new Intent(getActivity(), ShopCartActivity.class));
@@ -153,6 +178,11 @@ public class MineFragment extends BasePresenterFragment<MinePresenter, MineContr
                 break;
             case R.id.ll_wallet://
                 startActivity(new Intent(getActivity(), WalletActivity.class));
+                break;
+            case R.id.ll_complaint_box://
+                startActivity(new Intent(getActivity(), WebViewActivity.class)
+                        .putExtra(Const.WEB_VIEW_TITLE, "意见箱")
+                        .putExtra(Const.WEB_VIEW_URL, "http://ww.baidu.com"));
                 break;
             case R.id.ll_feed_back://
                 startActivity(new Intent(getActivity(), FeedBackActivity.class));
@@ -178,10 +208,11 @@ public class MineFragment extends BasePresenterFragment<MinePresenter, MineContr
     @Override
     protected void receiveEvent(Object object) {
         mPresenter.getCustomer();
+        mPresenter.getCustomerBasicInfo();
         Event mEvent = (Event) object;
         if (mEvent.type == Event.Type.LOGIN) {
-            if ((boolean)mEvent.object == true){}
-            else {
+            if ((boolean) mEvent.object == true) {
+            } else {
 
             }
         }
