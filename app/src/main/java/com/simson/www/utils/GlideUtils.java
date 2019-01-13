@@ -4,6 +4,7 @@ import android.support.annotation.DrawableRes;
 import android.widget.ImageView;
 
 import com.simson.www.R;
+import com.simson.www.application.AppContext;
 import com.simson.www.application.GlideApp;
 
 
@@ -22,7 +23,7 @@ public class GlideUtils {
     }
 
     public static void with(Object url, ImageView imageView, @DrawableRes int placeholder, @DrawableRes int error) {
-        GlideApp.with(imageView.getContext())
+        GlideApp.with(AppContext.getContext())
                 .load(url)
                 .placeholder(placeholder)
                 .error(error)

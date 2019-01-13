@@ -2,7 +2,6 @@ package com.simson.www.ui.adapter;
 
 import android.content.Intent;
 import android.support.annotation.Nullable;
-import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
@@ -37,7 +36,7 @@ public class HomeAdapter extends BaseMultiItemQuickAdapter<IndexSynchysisBean, B
             GlideUtils.with(item.getCustomer_head(), helper.getView(R.id.iv_header));
             helper.setText(R.id.tv_name, item.getCustomer_name() + "");
             helper.setText(R.id.tv_date, item.getCreate_time() + "");
-            RecyclerView recyclerView = helper.getView(R.id.recyclerView);
+            /*RecyclerView recyclerView = helper.getView(R.id.recyclerView);
             RecyclerView.LayoutManager layoutManager;
             if (item.getPictures().size() == 1) {
                 layoutManager = new LinearLayoutManager(mContext, LinearLayoutManager.HORIZONTAL, false);
@@ -49,10 +48,25 @@ public class HomeAdapter extends BaseMultiItemQuickAdapter<IndexSynchysisBean, B
             HomeAdapterItemAdapter adapters = new HomeAdapterItemAdapter(item.getPictures());
             recyclerView.setAdapter(adapters);
             adapters.setOnItemClickListener((adapter, view1, position) -> {
-                String id = item.getFriends_circle_id();
-                mContext.startActivity(new Intent(mContext, FriendCircleDetailActivity.class).putExtra("id", id));
+                mContext.startActivity(new Intent(mContext, FriendCircleDetailActivity.class).putExtra("id", item.getFriends_circle_id()));
+            });*/
+            //自动匹配图片
+            ImageBean bean = new ImageBean();
+            bean.images = item.getPictures();
+            List<ImageBean> imageBeans = new ArrayList<>();
+            imageBeans.add(bean);
+            RecyclerView recyclerView = helper.getView(R.id.recyclerView);
+            recyclerView.setLayoutManager(new LinearLayoutManager(mContext));
+            AutoImageAdapter adapters = new AutoImageAdapter(imageBeans, (adapter, view, position) -> {
+                mContext.startActivity(new Intent(mContext, FriendCircleDetailActivity.class)
+                        .putExtra("id", item.getFriends_circle_id()));
             });
-
+            recyclerView.setAdapter(adapters);
+            adapters.setOnItemClickListener((adapter, view1, position) -> {
+                mContext.startActivity(new Intent(mContext, FriendCircleDetailActivity.class)
+                        .putExtra("id", item.getFriends_circle_id()));
+            });
+            //自动匹配图片
             /*BGANinePhotoLayout ninePhotoLayout = helper.getView(R.id.bga);
             ninePhotoLayout.setData((ArrayList<String>) item.getPictures());*/
             helper.setText(R.id.tv_title, item.getContent() + "");
@@ -68,27 +82,27 @@ public class HomeAdapter extends BaseMultiItemQuickAdapter<IndexSynchysisBean, B
             } else {
                 helper.setText(R.id.tv_follow, "已关注");
             }
-            //自动匹配图片
-            RecyclerView recyclerView = helper.getView(R.id.recyclerView);
-            RecyclerView.LayoutManager layoutManager;
-            if (item.getPictures().size() == 1) {
-                layoutManager = new LinearLayoutManager(mContext, LinearLayoutManager.HORIZONTAL, false);
 
-            } else {
-                layoutManager = new GridLayoutManager(mContext, 2, LinearLayoutManager.VERTICAL, false);
-            }
-            recyclerView.setLayoutManager(layoutManager);
-            HomeAdapterItemAdapter adapters = new HomeAdapterItemAdapter(item.getPictures());
-            recyclerView.setAdapter(adapters);
             //自动匹配图片
+            ImageBean bean = new ImageBean();
+            bean.images = item.getPictures();
+            List<ImageBean> imageBeans = new ArrayList<>();
+            imageBeans.add(bean);
+            RecyclerView recyclerView = helper.getView(R.id.recyclerView);
+            recyclerView.setLayoutManager(new LinearLayoutManager(mContext));
+            AutoImageAdapter adapters = new AutoImageAdapter(imageBeans, (adapter, view, position) -> {
+                mContext.startActivity(new Intent(mContext, WebViewActivity.class)
+                        .putExtra(Const.WEB_VIEW_TITLE, "科普详情")
+                        .putExtra(Const.WEB_VIEW_URL, item.getLink_url()));
+            });
+            recyclerView.setAdapter(adapters);
             adapters.setOnItemClickListener((adapter, view1, position) -> {
                 mContext.startActivity(new Intent(mContext, WebViewActivity.class)
                         .putExtra(Const.WEB_VIEW_TITLE, "科普详情")
                         .putExtra(Const.WEB_VIEW_URL, item.getLink_url()));
             });
+            //自动匹配图片
 
-            /*BGANinePhotoLayout ninePhotoLayout = helper.getView(R.id.bga);
-            ninePhotoLayout.setData((ArrayList<String>) item.getPictures());*/
             helper.setText(R.id.tv_title, item.getTitle() + "");
             helper.setText(R.id.tv_browse, "  阅读  " + item.getBrowse());
             helper.setText(R.id.tv_praises, "  赞  " + item.getPraises());
@@ -102,16 +116,21 @@ public class HomeAdapter extends BaseMultiItemQuickAdapter<IndexSynchysisBean, B
             List<ImageBean> imageBeans = new ArrayList<>();
             imageBeans.add(bean);
             RecyclerView recyclerView = helper.getView(R.id.recyclerView);
-            recyclerView.setLayoutManager(new LinearLayoutManager(mContext, LinearLayoutManager.HORIZONTAL, false));
-            AutoImageAdapter adapters = new AutoImageAdapter(imageBeans);
+            recyclerView.setLayoutManager(new LinearLayoutManager(mContext));
+            AutoImageAdapter adapters = new AutoImageAdapter(imageBeans, (adapter, view, position) -> {
+                String url = item.getLink_url();
+                mContext.startActivity(new Intent(mContext, WebViewActivity.class)
+                        .putExtra(Const.WEB_VIEW_TITLE, item.getTitle())
+                        .putExtra(Const.WEB_VIEW_URL, url));
+            });
             recyclerView.setAdapter(adapters);
-            //自动匹配图片
             adapters.setOnItemClickListener((adapter, view1, position) -> {
                 String url = item.getLink_url();
                 mContext.startActivity(new Intent(mContext, WebViewActivity.class)
                         .putExtra(Const.WEB_VIEW_TITLE, item.getTitle())
                         .putExtra(Const.WEB_VIEW_URL, url));
             });
+            //自动匹配图片
         }
     }
 }
