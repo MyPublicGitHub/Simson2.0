@@ -76,24 +76,24 @@ public class InvitationActivity extends BasePresenterActivity {
     UMShareListener listener = new UMShareListener() {
         @Override
         public void onStart(SHARE_MEDIA share_media) {
-            LogUtils.d("onStart" + share_media.toString());
+            LogUtils.e("onStart" + share_media.toString());
         }
 
         @Override
         public void onResult(SHARE_MEDIA share_media) {
-            LogUtils.d("onResult" + share_media.toString());
+            LogUtils.e("onResult" + share_media.toString());
             ToastUtils.showToast("邀请成功");
         }
 
         @Override
         public void onError(SHARE_MEDIA share_media, Throwable throwable) {
-            LogUtils.d("onError" + share_media.toString() + "throwable:" + throwable.toString() + "throwable.getMessage:" + throwable.getMessage());
+            LogUtils.e("onError" + share_media.toString() + "throwable:" + throwable.toString() + "throwable.getMessage:" + throwable.getMessage());
             ToastUtils.showToast(throwable.getMessage());
         }
 
         @Override
         public void onCancel(SHARE_MEDIA share_media) {
-            LogUtils.d("onCancel" + share_media.toString());
+            LogUtils.e("onCancel" + share_media.toString());
             ToastUtils.showToast("取消邀请");
         }
     };

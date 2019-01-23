@@ -53,6 +53,7 @@ public class QuestionBean {
         /**
          * option_id : 1000
          * questionnaire_option : 男
+         * questionnaire_id : 男
          * corresponding_id : 120
          * is_picture : 0
          * option_picture :
@@ -60,6 +61,16 @@ public class QuestionBean {
 
         public boolean isChech;
         private String option_id;
+
+        public String getQuestionnaire_id() {
+            return questionnaire_id;
+        }
+
+        public void setQuestionnaire_id(String questionnaire_id) {
+            this.questionnaire_id = questionnaire_id;
+        }
+
+        private String questionnaire_id;
         private String questionnaire_option;
         private String corresponding_id;
         private int is_picture;

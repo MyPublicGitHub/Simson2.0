@@ -33,6 +33,8 @@ import com.simson.www.ui.main.login.LoginActivity;
 import com.simson.www.ui.main.vote.VoteActivity;
 import com.simson.www.ui.mine.MineFragment;
 import com.simson.www.ui.shop.ShopFragment;
+import com.simson.www.utils.ClickUtil;
+import com.simson.www.utils.CommonUtils;
 import com.simson.www.utils.DateUtils;
 import com.simson.www.utils.GlideUtils;
 import com.simson.www.utils.LogUtils;
@@ -89,6 +91,7 @@ public class MainActivity extends BasePresenterActivity<MainPresenter, MainContr
         initFragment();
         GlideUtils.with(R.mipmap.ic_main_red_packet, ivRedEnvelope);
         GlideUtils.with(R.mipmap.ic_main_vote, ivVote);
+        CommonUtils.setAlias();
     }
 
     boolean isRun = true;
@@ -99,52 +102,46 @@ public class MainActivity extends BasePresenterActivity<MainPresenter, MainContr
     }
 
     private void init() {
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                while (isRun) {
+        new Thread(() -> {
+            while (true) {
+                if (isRun) {
                     try {
                         Thread.sleep(10000);
-                        Message msgMessage = new Message();
-                        msgMessage.arg1 = 1;
-                        handler.sendMessage(msgMessage);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
+                    Message msgMessage = new Message();
+                    msgMessage.arg1 = 1;
+                    handler.sendMessage(msgMessage);
                 }
             }
         }).start();
 
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
+        new Thread(() -> {
+            try {
+                Thread.sleep(3000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            Message msgMessage = new Message();
+            msgMessage.arg1 = 2;
+            handler.sendMessage(msgMessage);
+
+        }).start();
+        new Thread(() -> {
+            while (true) {
                 try {
-                    Thread.sleep(3000);
-                    Message msgMessage = new Message();
-                    msgMessage.arg1 = 2;
-                    handler.sendMessage(msgMessage);
+                    Thread.sleep(5000);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-            }
-        }).start();
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                while (true) {
-                    if (isRun && popupWindowCountDown != null && popupWindowCountDown.isShowing()) {
-                        try {
-                            Thread.sleep(5000);
-                            Message msgMessage = new Message();
-                            msgMessage.arg1 = 3;
-                            handler.sendMessage(msgMessage);
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
-                        }
-                    }
+                if (isRun && popupWindowCountDown != null && popupWindowCountDown.isShowing()) {
+                    Message msgMessage = new Message();
+                    msgMessage.arg1 = 3;
+                    handler.sendMessage(msgMessage);
                 }
-
             }
+
         }).start();
         initVoteView();
     }
@@ -170,6 +167,10 @@ public class MainActivity extends BasePresenterActivity<MainPresenter, MainContr
     };
 
     public void redClick(View view) {
+        if (!ClickUtil.isFastClick()) {
+            LogUtils.e("请不要疯狂点击");
+            return;
+        }
         if (TextUtils.isEmpty((String) SPUtils.get(Const.USER_INFO.CUSTOMER_MOBLE, ""))) {
             startActivity(new Intent(this, LoginActivity.class));
         } else {
@@ -216,7 +217,8 @@ public class MainActivity extends BasePresenterActivity<MainPresenter, MainContr
                         mPresenter.receiveRedEnvelope();
                     });
                     close.setOnClickListener(v -> {
-                        popupWindow.dismiss();
+                        if (popupWindow != null && popupWindow.isShowing())
+                            popupWindow.dismiss();
                         popupWindow = null;
                     });
                 })
@@ -235,6 +237,7 @@ public class MainActivity extends BasePresenterActivity<MainPresenter, MainContr
                 .setViewOnclickListener((view1, layoutResId) -> {
                     ImageView close = view1.findViewById(R.id.iv_close);
                     close.setOnClickListener(v -> {
+                        if (popupWindowFail != null && popupWindowFail.isShowing())
                         popupWindowFail.dismiss();
                     });
                 })
@@ -245,13 +248,17 @@ public class MainActivity extends BasePresenterActivity<MainPresenter, MainContr
 
     @Override
     public void receiveRedEnvelope(ReceiveRedEnvelopeBean bean) {
-        content.setText(bean.getMessage());
-        open.setVisibility(View.GONE);
+        if (content != null)
+            content.setText(bean.getMessage() + "");
+        if (open != null)
+            open.setVisibility(View.GONE);
     }
 
     public void initVoteView() {
+        if (ivRedEnvelope==null)return;
+        if (ivVote==null)return;
         String data = DateUtils.getDateTimeHHmm();
-        if (DateUtils.yearMonthDayBetween("2019-01-22 18:00", data, "2019-01-23 08:00")) {
+        if (DateUtils.yearMonthDayBetween("2019-01-22 18:00", data, "2019-02-06 23:00")) {
             if (index == 0) {
                 ivRedEnvelope.setVisibility(View.VISIBLE);
                 ivVote.setVisibility(View.VISIBLE);
@@ -271,7 +278,7 @@ public class MainActivity extends BasePresenterActivity<MainPresenter, MainContr
     @Override
     protected void onResume() {
         super.onResume();
-        if (Const.RED) {
+        if (Const.RED) {//判断收到推送
             mPresenter.newestRedEnvelope();
             Const.RED = false;
         }
@@ -317,6 +324,8 @@ public class MainActivity extends BasePresenterActivity<MainPresenter, MainContr
         if (popupWindowCountDown != null && popupWindowCountDown.isShowing()) {
             popupWindowCountDown.dismiss();
         }
+        if (ivRedEnvelope==null)return;
+        if (ivVote==null)return;
         ivRedEnvelope.setVisibility(View.GONE);
         ivVote.setVisibility(View.GONE);
         String data = DateUtils.getDateTimeHHmm();
@@ -369,7 +378,7 @@ public class MainActivity extends BasePresenterActivity<MainPresenter, MainContr
             popupWindowCountDown.showAtLocation(ivRedEnvelope, Gravity.TOP | Gravity.START, 0, 0);//弹出PopupWindow
             ivRedEnvelope.setVisibility(View.GONE);
             ivVote.setVisibility(View.GONE);
-        } else if (DateUtils.yearMonthDayBetween("2019-01-22 18:00", data, "2019-01-23 08:00")) {//显示红包按钮
+        } else if (DateUtils.yearMonthDayBetween("2019-01-22 18:00", data, "2019-02-06 23:00")) {//显示红包按钮
             if (index == 0) {
                 ivRedEnvelope.setVisibility(View.VISIBLE);
                 ivVote.setVisibility(View.VISIBLE);

@@ -80,6 +80,7 @@ public class TestActivity extends BasePresenterActivity<TestPresenter, TestContr
         adapter.setOnItemClickListener((adapter, view1, position) -> {
             QuestionBean.OptionsBean bean = (QuestionBean.OptionsBean) adapter.getData().get(position);
             correspondingId = bean.getCorresponding_id();
+            questionnaireId = bean.getQuestionnaire_id();
             optionId = bean.getOption_id();
             if (!options.contains(bean.getOption_id()))
                 options.add(bean.getOption_id());
@@ -191,11 +192,16 @@ public class TestActivity extends BasePresenterActivity<TestPresenter, TestContr
         popupWindowRes.showAsDropDown(mTitle);//弹出PopupWindow
     }
 
-    String correspondingId, optionId;
+    String correspondingId, optionId, questionnaireId;
 
     @Override
     public String correspondingId() {
         return correspondingId;
+    }
+
+    @Override
+    public String questionnaireId() {
+        return questionnaireId;
     }
 
     @Override

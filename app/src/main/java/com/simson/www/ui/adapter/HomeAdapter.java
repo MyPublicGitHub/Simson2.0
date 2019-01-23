@@ -31,7 +31,7 @@ public class HomeAdapter extends BaseMultiItemQuickAdapter<IndexSynchysisBean, B
 
     @Override
     protected void convert(BaseViewHolder helper, IndexSynchysisBean item) {
-        LogUtils.e("HomeAdapter::::" + helper.getItemViewType());
+       // LogUtils.e("HomeAdapter::::" + helper.getItemViewType());
         if (IndexSynchysisBean.friendsCircle == helper.getItemViewType()) {
             GlideUtils.with(item.getCustomer_head(), helper.getView(R.id.iv_header));
             helper.setText(R.id.tv_name, item.getCustomer_name() + "");

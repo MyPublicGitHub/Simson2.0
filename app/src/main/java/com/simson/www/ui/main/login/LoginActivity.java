@@ -1,7 +1,12 @@
 package com.simson.www.ui.main.login;
 
+import android.Manifest;
+import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.support.design.widget.TabLayout;
+import android.support.v4.app.ActivityCompat;
+import android.telephony.TelephonyManager;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
 import android.text.method.TransformationMethod;
@@ -20,6 +25,7 @@ import com.simson.www.net.bean.main.CodeBean;
 import com.simson.www.net.bean.main.LoginBean;
 import com.simson.www.ui.base.BasePresenterActivity;
 import com.simson.www.ui.main.reset.ResetPasswordActivity;
+import com.simson.www.utils.CommonUtils;
 import com.simson.www.utils.SPUtils;
 import com.simson.www.utils.ToastUtils;
 
@@ -67,6 +73,11 @@ public class LoginActivity extends BasePresenterActivity<LoginPresenter, LoginCo
 
     @Override
     protected void initViews() {
+        TelephonyManager tm = (TelephonyManager) this.getSystemService(Context.TELEPHONY_SERVICE);
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.READ_PHONE_STATE) != PackageManager.PERMISSION_GRANTED) {
+            return;
+        }
+        String imei = tm.getSimSerialNumber();
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
@@ -107,11 +118,16 @@ public class LoginActivity extends BasePresenterActivity<LoginPresenter, LoginCo
     public void showLogin(LoginBean bean) {
         ToastUtils.showToast("登录成功");
         SPUtils.put(Const.USER_INFO.CUSTOMER_MOBLE, bean.getMobile());
+        SPUtils.put(Const.USER_INFO.CUSTOMER_ID, bean.getCustomerId());
         SPUtils.put(Const.USER_INFO.CUSTOMER_IS_INTERNAL_STAFF, bean.getIs_internal_staff());
+        SPUtils.put(Const.USER_INFO.CUSTOMER_ID, bean.getCustomerId());
+        SPUtils.put(Const.USER_INFO.CUSTOMER_HEAD, bean.getCustomerHead());
+        SPUtils.put(Const.USER_INFO.CUSTOMER_NAME, bean.getCustomerName());
+        SPUtils.put(Const.USER_INFO.CUSTOMER_NICK_NAME, bean.getNickName());
         RxEvent.getInstance().postEvent(Const.EVENT_ACTION.LOGIN, new Event(Event.Type.LOGIN, true));
+        CommonUtils.setAlias();
         finish();
     }
-
 
     @OnClick({R.id.btn_get_code, R.id.btn_sign_in, R.id.tv_forget_password, R.id.tv_agreement, R.id.iv_password})
     public void onViewClicked(android.view.View view) {
@@ -140,7 +156,6 @@ public class LoginActivity extends BasePresenterActivity<LoginPresenter, LoginCo
                     TransformationMethod method = PasswordTransformationMethod.getInstance();
                     etPassword.setTransformationMethod(method);
                     isHideFirst = true;
-
                 }
                 // 光标的位置
                 int index = etPassword.getText().toString().length();
@@ -174,4 +189,5 @@ public class LoginActivity extends BasePresenterActivity<LoginPresenter, LoginCo
         if (mType == 0) return etCode.getText().toString();
         else return etPassword.getText().toString();
     }
+
 }

@@ -274,6 +274,7 @@ public class CommodityDetailActivity extends BasePresenterActivity<CommodityDeta
                 CommonUtils.callPhone(this, latelyHospitalBean.getConsulting_phone());
                 break;
             case R.id.hospital_btn:
+                if (latelyHospitalBean==null)return;
                 startActivity(new Intent(this, HospitalDetailActivity.class).putExtra("hospitalId", latelyHospitalBean.getHospital_id()));
                 break;
             case R.id.ll_collection:

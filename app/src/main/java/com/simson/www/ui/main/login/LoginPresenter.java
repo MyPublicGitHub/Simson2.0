@@ -12,6 +12,7 @@ import com.simson.www.net.bean.main.LoginBean;
 import com.simson.www.net.callback.RxObserver;
 import com.simson.www.ui.core.model.LoginModel;
 import com.simson.www.ui.core.presenter.BasePresenter;
+import com.simson.www.utils.CommonUtils;
 import com.simson.www.utils.DateUtils;
 import com.simson.www.utils.ToastUtils;
 
@@ -59,7 +60,6 @@ public class LoginPresenter extends BasePresenter<LoginContract.View> implements
 
                 @Override
                 protected void onSuccess(LoginBean userBean) {
-                    mModel.saveUserInfo(userBean);
                     mView.showLogin(userBean);
                 }
 
@@ -80,7 +80,7 @@ public class LoginPresenter extends BasePresenter<LoginContract.View> implements
                     map.put("code", "123456");
                 }*/
             }
-            map.put("deviceToken", "android");
+            map.put("deviceToken", CommonUtils.getPhoneSign());
             map.put("appType", "2");
             map.put("timestamp", DateUtils.getStringDate());
             Gson gson = new Gson();

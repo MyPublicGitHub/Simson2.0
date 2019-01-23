@@ -43,6 +43,7 @@ public class TestPresenter extends BasePresenter<TestContract.View> implements T
         map.put("customerId", SPUtils.get(Const.USER_INFO.CUSTOMER_ID, ""));
         map.put("optionId", mView.optionId());
         map.put("correspondingId", mView.correspondingId());
+        map.put("questionnaireId", mView.questionnaireId());
         String json = new Gson().toJson(map);
         mModel.getQuestion(json, observer);
         addDisposable(observer);

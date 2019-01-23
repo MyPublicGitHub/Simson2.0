@@ -23,6 +23,7 @@ public class GlideUtils {
     }
 
     public static void with(Object url, ImageView imageView, @DrawableRes int placeholder, @DrawableRes int error) {
+        if (url == null) return;
         GlideApp.with(AppContext.getContext())
                 .load(url)
                 .placeholder(placeholder)

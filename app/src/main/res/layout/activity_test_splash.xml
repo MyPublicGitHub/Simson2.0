@@ -21,7 +21,8 @@
     <TextView
         android:id="@+id/tv_test"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="@dimen/dp_60"
+        android:gravity="center"
         android:layout_alignParentBottom="true"
         android:layout_centerInParent="true"
         android:layout_marginBottom="@dimen/dp_35"

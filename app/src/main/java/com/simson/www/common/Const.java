@@ -6,6 +6,7 @@ package com.simson.www.common;
 
 public class Const {
     public static final String WE_CHAT_APP_ID = "wx228b74e2c2ea50c4";
+    public static final String ALIAS = "ALIAS";//是否设置别名
     public static boolean RED = false;
 
     public static final String BUGLY_APP_ID = "c280c5ebb7";

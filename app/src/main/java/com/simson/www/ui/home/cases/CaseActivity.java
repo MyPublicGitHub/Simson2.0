@@ -34,6 +34,7 @@ public class CaseActivity extends BasePresenterActivity<CasePresenter, CaseContr
     public void setItemType(List<ItemTypeBean> bean) {
         TabViewPagerAdapter adapter = new TabViewPagerAdapter(getSupportFragmentManager(),
                 TabViewPagerAdapterItem.createCaseItemFragments(bean));
+        if (viewPager == null) return;
         viewPager.setOffscreenPageLimit(3);
         viewPager.setAdapter(adapter);
         tabLayout.setupWithViewPager(viewPager);

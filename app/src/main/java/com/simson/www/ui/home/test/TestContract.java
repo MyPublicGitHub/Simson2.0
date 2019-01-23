@@ -20,6 +20,8 @@ public interface TestContract {
 
         String correspondingId();
 
+        String questionnaireId();
+
         String optionId();
 
         String deviceToken();

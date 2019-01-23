@@ -58,7 +58,6 @@ import de.greenrobot.event.EventBus;
 
 /**
  * 相机界面
- * Created by sky on 15/7/6.
  */
 public class CameraActivity extends CameraBaseActivity {
 
@@ -134,13 +133,12 @@ public class CameraActivity extends CameraBaseActivity {
 //                - DistanceUtil.getCameraPhotoAreaHeight();
 
         //添加系统相册内的图片
-        ArrayList<PhotoItem> sysPhotos = FileUtils.getInst().findPicsInDir(
-                FileUtils.getInst().getSystemPhotoPath());
+        /*ArrayList<PhotoItem> sysPhotos = FileUtils.getInst().findPicsInDir( FileUtils.getInst().getSystemPhotoPath());
         int showNumber = sysPhotos.size() > photoNumber ? photoNumber
                 : sysPhotos.size();
         for (int i = 0; i < showNumber; i++) {
             addPhoto(sysPhotos.get(showNumber - 1 - i));
-        }
+        }*/
     }
 
     private void addPhoto(PhotoItem photoItem) {

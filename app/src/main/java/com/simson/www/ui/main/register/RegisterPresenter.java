@@ -9,6 +9,7 @@ import com.simson.www.net.bean.main.RegisterBean;
 import com.simson.www.net.callback.RxObserver;
 import com.simson.www.ui.core.model.RegisterModel;
 import com.simson.www.ui.core.presenter.BasePresenter;
+import com.simson.www.utils.CommonUtils;
 import com.simson.www.utils.DateUtils;
 import com.simson.www.utils.ToastUtils;
 
@@ -67,7 +68,7 @@ public class RegisterPresenter extends BasePresenter<RegisterContract.IRegisterV
             map.put("mobile", iRegisterView.getUserName());
             map.put("code", iRegisterView.getCode());
             map.put("pwd", iRegisterView.getPassword());
-            map.put("deviceToken", "");
+            map.put("deviceToken", CommonUtils.getPhoneSign());
             map.put("appType", "2");
             map.put("timestamp", DateUtils.getStringDate());
             Gson gson = new Gson();

@@ -27,7 +27,7 @@ public class AutoImageAdapter extends BaseMultiItemQuickAdapter<ImageBean, BaseV
 
     @Override
     protected void convert(BaseViewHolder helper, ImageBean item) {
-        LogUtils.e("AutoImageAdapter::::" + helper.getItemViewType());
+       // LogUtils.e("AutoImageAdapter::::" + helper.getItemViewType());
         //LogUtils.e("GlideUtils::::" + item.images.get(0));
         if (ImageBean.ONE == helper.getItemViewType()) {
             GlideUtils.with(item.images.get(0), helper.getView(R.id.image));
