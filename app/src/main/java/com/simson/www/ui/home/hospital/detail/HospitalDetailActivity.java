@@ -19,8 +19,6 @@ import com.amap.api.maps.model.Poi;
 import com.amap.api.navi.AmapNaviPage;
 import com.amap.api.navi.AmapNaviParams;
 import com.amap.api.navi.AmapNaviType;
-import com.amap.api.navi.INaviInfoCallback;
-import com.amap.api.navi.model.AMapNaviLocation;
 import com.amap.api.services.geocoder.GeocodeAddress;
 import com.amap.api.services.geocoder.GeocodeQuery;
 import com.amap.api.services.geocoder.GeocodeResult;
@@ -224,7 +222,7 @@ public class HospitalDetailActivity extends BasePresenterActivity<HospitalDetail
                 break;
             case R.id.ll_location:
                 getLatlon(location);
-                if (start!=null&&end!=null){
+                if (start != null && end != null) {
                     AmapNaviPage.getInstance().showRouteActivity(HospitalDetailActivity.this,
                             new AmapNaviParams(start, null, end, AmapNaviType.DRIVER), null);
                 }
@@ -233,10 +231,13 @@ public class HospitalDetailActivity extends BasePresenterActivity<HospitalDetail
                 CommonUtils.callPhone(this, phone);
                 break;
             case R.id.ll_online:
+                CommonUtils.consultation(this);
                 break;
         }
     }
+
     Poi start;
+
     private void getLatlon(String cityName) {
         if (TextUtils.isEmpty(cityName)) {
             LogUtils.e("地址空");
@@ -273,7 +274,9 @@ public class HospitalDetailActivity extends BasePresenterActivity<HospitalDetail
         GeocodeQuery geocodeQuery = new GeocodeQuery(cityName.trim(), "0");
         geocodeSearch.getFromLocationNameAsyn(geocodeQuery);
     }
+
     Poi end;
+
     private void initMap() {
         //初始化定位
         mLocationClient = new AMapLocationClient(getApplicationContext());

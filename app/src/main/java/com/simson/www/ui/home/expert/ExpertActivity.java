@@ -82,9 +82,9 @@ public class ExpertActivity extends BasePresenterActivity<ExpertPresenter, Exper
         for (int i = 0; i < beans.getRecommend().size(); i++) {
             images.add(beans.getRecommend().get(i).getDoctor_picture());
         }
-        if (images.size()==0){
+        if (images.size() == 0) {
             mBanner.setVisibility(View.GONE);
-        }else {
+        } else {
             mBanner.setVisibility(View.VISIBLE);
             mBanner.setImages(images);//设置图片集合
             mBanner.start();

@@ -32,7 +32,7 @@ android {
                 //这里修改apk文件名
                 //def fileName = "simson" + "-" + buildType.name +"-v" + defaultConfig.versionCode + releaseTime() + ".apk"
                 //output.outputFile = new File(outputFile.parent, fileName)
-                outputFileName = "simson" + "-" + buildType.name + "-v" + defaultConfig.versionCode + "_" + releaseTime() + ".apk"
+                outputFileName = "新生植发" + "-" + buildType.name + "-v" + defaultConfig.versionName + "_" + releaseTime() + ".apk"
             }
         }
     }
@@ -90,6 +90,7 @@ android {
     bugly {
         appId = 'c280c5ebb7' // 注册时分配的App ID
         appKey = '1f0b896a-c638-4bb7-ba20-56dc4d920af3' // 注册时分配的App Key
+        debug = true
     }
 }
 
@@ -110,7 +111,7 @@ dependencies {
     implementation 'com.squareup.retrofit2:converter-gson:2.2.0'
     implementation 'com.squareup.retrofit2:adapter-rxjava2:2.2.0'
     implementation 'com.google.code.gson:gson:2.8.2'
-    //implementation 'com.squareup.retrofit2:converter-scalars:2.0.0'    //导入scalars包
+    //implementation 'com.squareup.retrofit2:converter-scalars:2.0.0'    //导入scalars包解析字符串
     implementation 'com.github.bumptech.glide:glide:4.7.1'
     implementation 'com.android.support.constraint:constraint-layout:1.1.3'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.7.1'

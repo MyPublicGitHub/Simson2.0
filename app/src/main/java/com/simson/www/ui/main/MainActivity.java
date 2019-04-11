@@ -238,7 +238,7 @@ public class MainActivity extends BasePresenterActivity<MainPresenter, MainContr
                     ImageView close = view1.findViewById(R.id.iv_close);
                     close.setOnClickListener(v -> {
                         if (popupWindowFail != null && popupWindowFail.isShowing())
-                        popupWindowFail.dismiss();
+                            popupWindowFail.dismiss();
                     });
                 })
                 .setOutsideTouchable(true) //设置外部是否可点击 默认是true
@@ -255,8 +255,8 @@ public class MainActivity extends BasePresenterActivity<MainPresenter, MainContr
     }
 
     public void initVoteView() {
-        if (ivRedEnvelope==null)return;
-        if (ivVote==null)return;
+        if (ivRedEnvelope == null) return;
+        if (ivVote == null) return;
         String data = DateUtils.getDateTimeHHmm();
         if (DateUtils.yearMonthDayBetween("2019-01-22 18:00", data, "2019-02-06 23:00")) {
             if (index == 0) {
@@ -324,8 +324,8 @@ public class MainActivity extends BasePresenterActivity<MainPresenter, MainContr
         if (popupWindowCountDown != null && popupWindowCountDown.isShowing()) {
             popupWindowCountDown.dismiss();
         }
-        if (ivRedEnvelope==null)return;
-        if (ivVote==null)return;
+        if (ivRedEnvelope == null) return;
+        if (ivVote == null) return;
         ivRedEnvelope.setVisibility(View.GONE);
         ivVote.setVisibility(View.GONE);
         String data = DateUtils.getDateTimeHHmm();

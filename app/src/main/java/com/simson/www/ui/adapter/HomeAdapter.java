@@ -90,17 +90,15 @@ public class HomeAdapter extends BaseMultiItemQuickAdapter<IndexSynchysisBean, B
             imageBeans.add(bean);
             RecyclerView recyclerView = helper.getView(R.id.recyclerView);
             recyclerView.setLayoutManager(new LinearLayoutManager(mContext));
-            AutoImageAdapter adapters = new AutoImageAdapter(imageBeans, (adapter, view, position) -> {
-                mContext.startActivity(new Intent(mContext, WebViewActivity.class)
-                        .putExtra(Const.WEB_VIEW_TITLE, "科普详情")
-                        .putExtra(Const.WEB_VIEW_URL, item.getLink_url()));
-            });
+            AutoImageAdapter adapters = new AutoImageAdapter(imageBeans, (adapter, view, position) ->
+                    mContext.startActivity(new Intent(mContext, WebViewActivity.class)
+                    .putExtra(Const.WEB_VIEW_TITLE, "科普详情")
+                    .putExtra(Const.WEB_VIEW_URL, item.getLink_url())));
             recyclerView.setAdapter(adapters);
-            adapters.setOnItemClickListener((adapter, view1, position) -> {
-                mContext.startActivity(new Intent(mContext, WebViewActivity.class)
-                        .putExtra(Const.WEB_VIEW_TITLE, "科普详情")
-                        .putExtra(Const.WEB_VIEW_URL, item.getLink_url()));
-            });
+            adapters.setOnItemClickListener((adapter, view1, position) ->
+                    mContext.startActivity(new Intent(mContext, WebViewActivity.class)
+                    .putExtra(Const.WEB_VIEW_TITLE, "科普详情")
+                    .putExtra(Const.WEB_VIEW_URL, item.getLink_url())));
             //自动匹配图片
 
             helper.setText(R.id.tv_title, item.getTitle() + "");
